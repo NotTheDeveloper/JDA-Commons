@@ -1,0 +1,1 @@
+cmd.exe /X /C ""C:\Program Files\Java\jdk1.8.0_321\bin\javac" @C:/Users/Dominic/eclipse-workspace/JDA-Commons/target/org.codehaus.plexus.compiler.javac.JavacCompiler731943141553296733arguments"
