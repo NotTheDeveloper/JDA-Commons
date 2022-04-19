@@ -18,6 +18,14 @@ public class GuildTargetMember {
     private MessageContextInteractionEvent messageEvent;
 
     /**
+     * Constructs a new {@link GuildTargetMember Guild Target Member}
+     * <br>
+     * This is a private constructor, because it should not be accessed for other classes
+     */
+    private GuildTargetMember() {
+    }
+
+    /**
      * Constructs a <b>new</b> {@link GuildTargetMember Guild Target Member} instance. If you don't
      * initialize a {@link net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent
      * User Context Interaction Event}, {@link GuildTargetMember Guild Target Member}

@@ -1,25 +1,25 @@
 package dev.blocky.library.testzone;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 import dev.blocky.library.jda.interfaces.app.message.IMessageContext;
-import dev.blocky.library.jda.interfaces.app.user.IUserContext;
-import dev.blocky.library.testzone.commands.app.slash.PingSlashCommand;
 import dev.blocky.library.jda.interfaces.app.slash.ISlashCommand;
+import dev.blocky.library.jda.interfaces.app.user.IUserContext;
 import dev.blocky.library.testzone.commands.app.message.IDMessageContextCommand;
-
+import dev.blocky.library.testzone.commands.app.slash.PingSlashCommand;
 import dev.blocky.library.testzone.commands.app.user.AvatarUserContextCommand;
+
 import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 
+import org.jetbrains.annotations.NotNull;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Nonnull;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * This is a class, which manages
@@ -76,7 +76,7 @@ public class ApplicationCommandManager extends ListenerAdapter {
     }
 
     @Override
-    public void onSlashCommandInteraction(@Nonnull SlashCommandInteractionEvent event) {
+    public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
         String commandName = event.getName();
         ISlashCommand command = slashMap.get(commandName);
 
@@ -86,7 +86,7 @@ public class ApplicationCommandManager extends ListenerAdapter {
     }
 
     @Override
-    public void onMessageContextInteraction(@Nonnull MessageContextInteractionEvent event) {
+    public void onMessageContextInteraction(@NotNull MessageContextInteractionEvent event) {
         String commandName = event.getName();
         IMessageContext command = messageMap.get(commandName);
 
@@ -96,7 +96,7 @@ public class ApplicationCommandManager extends ListenerAdapter {
     }
 
     @Override
-    public void onUserContextInteraction(@Nonnull UserContextInteractionEvent event) {
+    public void onUserContextInteraction(@NotNull UserContextInteractionEvent event) {
         String commandName = event.getName();
         IUserContext command = userMap.get(commandName);
 

@@ -2,8 +2,7 @@ package dev.blocky.library.testzone.commands.app.user;
 
 import dev.blocky.library.jda.interfaces.app.user.IUserContext;
 import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent;
-
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This is a simple avatar user context command
@@ -15,7 +14,7 @@ import javax.annotation.Nonnull;
 public class AvatarUserContextCommand implements IUserContext {
 
     @Override
-    public void onUserContext(@Nonnull UserContextInteractionEvent event) {
+    public void onUserContext(@NotNull UserContextInteractionEvent event) {
         event.reply(event.getTargetMember().getUser().getAvatarUrl()).queue();
     }
 }

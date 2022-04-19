@@ -1,22 +1,20 @@
 package dev.blocky.library.testzone;
 
-import javax.annotation.Nonnull;
-import javax.security.auth.login.LoginException;
-
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
-
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nonnull;
+import javax.security.auth.login.LoginException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
 import java.util.EnumSet;
 
 /**
@@ -38,7 +36,7 @@ public class DiscordBotExample {
      * @param args An {@link java.lang.reflect.Array Array} of String arguments
      * @throws LoginException If an login failure occurs
      */
-    public static void main(String[] args) throws LoginException {
+    public static void main(@NotNull String[] args) throws LoginException {
         new DiscordBotExample();
     }
 

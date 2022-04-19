@@ -42,3 +42,4 @@ dev\blocky\library\testzone\commands\app\slash\PingSlashCommand.class
 dev\blocky\library\testzone\commands\package-info.class
 dev\blocky\library\jda\entities\impl\CommandTimeoutImpl.class
 dev\blocky\library\jda\interfaces\app\user\package-info.class
+dev\blocky\library\jda\entities\SelfMember.class

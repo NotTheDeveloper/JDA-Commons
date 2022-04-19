@@ -1,8 +1,7 @@
 package dev.blocky.library.jda.interfaces.app.user;
 
 import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent;
-
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A simple User Context Menu Interface, which you can use to easily program some user context menus.
@@ -18,11 +17,10 @@ public interface IUserContext {
      *
      * <br>
      * <p>
-     * This contains a <a href=
-     * "https://github.com/BlockyDotJar/JDA-Commons/tree/main/src/dev/blocky/library/testzone/ApplicationCommandManager.java">Application
-     * Command Manager</a>.
+     * This contains a
+     * <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/main/java/dev/blocky/library/testzone/ApplicationCommandManager.java">Application Command Manager</a>.
      *
      * @param event Indicates that a message context command was used
      */
-    void onUserContext(@Nonnull UserContextInteractionEvent event);
+    void onUserContext(@NotNull UserContextInteractionEvent event);
 }

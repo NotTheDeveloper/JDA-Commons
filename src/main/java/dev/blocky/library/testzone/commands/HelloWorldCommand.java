@@ -3,6 +3,7 @@ package dev.blocky.library.testzone.commands;
 import dev.blocky.library.jda.interfaces.ICommand;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
@@ -16,7 +17,7 @@ import javax.annotation.Nonnull;
 public class HelloWorldCommand implements ICommand {
 
     @Override
-    public void onCommand(@Nonnull MessageReceivedEvent event, @Nonnull String[] args) {
+    public void onCommand(@NotNull MessageReceivedEvent event, @Nonnull String[] args) {
         event.getChannel().sendMessage("Hello World!").queue();
     }
 }

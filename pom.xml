@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>dev.blocky.library</groupId>
     <artifactId>jda-commons</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
@@ -114,17 +114,11 @@
             <url>https://maven.pkg.github.com/BlockyDotJar/JDA-Commons</url>
         </repository>
     </distributionManagement>
-    <repositories>
-        <repository>
-            <id>github</id>
-            <url>https://maven.pkg.github.com/BlockyDotJar/JDA-Commons</url>
-        </repository>
-    </repositories>
     <dependencies>
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>5.0.0-alpha.9</version>
+            <version>5.0.0-alpha.10</version>
         </dependency>
         <dependency>
             <groupId>club.minnced</groupId>

@@ -28,7 +28,7 @@ public class Utility {
      * @param amount  The amount of messages to delete
      * @return List of futures representing all deletion task
      */
-    public static List<Message> checkClearSafety(SafetyClear clear, TextChannel channel, int amount) {
+    protected static List<Message> checkClearSafety(SafetyClear clear, TextChannel channel, int amount) {
         List<Message> messages = new ArrayList<>();
 
         if (clear == null) {
@@ -81,7 +81,7 @@ public class Utility {
      * @param amount  The amount of messages to delete
      * @return List of futures representing all deletion task
      */
-    public static List<Message> checkClearSafety(SafetyClear clear, MessageChannel channel, int amount) {
+    protected static List<Message> checkClearSafety(SafetyClear clear, MessageChannel channel, int amount) {
         List<Message> messages = new ArrayList<>();
 
         if (clear == null) {
@@ -133,7 +133,7 @@ public class Utility {
      *                should be initialized.
      * @return List of futures representing all deletion task
      */
-    public static List<Message> checkChannelClearSafety(SafetyClear clear, TextChannel channel) {
+    protected static List<Message> checkChannelClearSafety(SafetyClear clear, TextChannel channel) {
         List<Message> messages = new ArrayList<>();
 
         if (clear == null) {
@@ -181,7 +181,7 @@ public class Utility {
      *                should be initialized.
      * @return List of futures representing all deletion task
      */
-    public static List<Message> checkChannelClearSafety(SafetyClear clear, MessageChannel channel) {
+    protected static List<Message> checkChannelClearSafety(SafetyClear clear, MessageChannel channel) {
         List<Message> messages = new ArrayList<>();
 
         if (clear == null) {
@@ -228,7 +228,7 @@ public class Utility {
      * @param delayInSeconds The delay in seconds which should be converted
      * @return The delay calculated to the specified {@link TimeUnit TimeUnit}
      */
-    public static long calculateDelay(TimeUnit unit, long delayInSeconds) {
+    protected static long calculateDelay(TimeUnit unit, long delayInSeconds) {
         if (unit == null) {
             unit = TimeUnit.SECONDS;
         }

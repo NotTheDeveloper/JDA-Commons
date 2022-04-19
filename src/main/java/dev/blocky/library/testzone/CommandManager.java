@@ -1,22 +1,21 @@
 package dev.blocky.library.testzone;
 
-import java.util.Arrays;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.regex.Pattern;
-
-import dev.blocky.library.testzone.commands.HelloWorldCommand;
 import dev.blocky.library.jda.interfaces.ICommand;
-
-import net.dv8tion.jda.api.entities.*;
+import dev.blocky.library.testzone.commands.HelloWorldCommand;
+import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.ShutdownEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Pattern;
 
 /**
  * This is a class, which manages default message commands
@@ -31,12 +30,12 @@ public class CommandManager extends ListenerAdapter {
     private static final Logger logger = LoggerFactory.getLogger(CommandManager.class);
 
     @Override
-    public void onReady(@Nonnull ReadyEvent event) {
+    public void onReady(@NotNull ReadyEvent event) {
         logger.info("{} successfully connected to the discord network and finally logged in.", event.getJDA().getSelfUser().getAsTag());
     }
 
     @Override
-    public void onShutdown(@Nonnull ShutdownEvent event) {
+    public void onShutdown(@NotNull ShutdownEvent event) {
         logger.info("{} successfully disconnected from the discord network and finally logged out.", event.getJDA().getSelfUser().getAsTag());
     }
 
@@ -73,7 +72,7 @@ public class CommandManager extends ListenerAdapter {
     }
 
     @Override
-    public void onMessageReceived(@Nonnull MessageReceivedEvent event) {
+    public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         String message = event.getMessage().getContentDisplay();
 
         if (event.isFromType(ChannelType.TEXT)) {

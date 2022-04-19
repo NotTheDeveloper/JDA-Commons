@@ -1,12 +1,11 @@
 package dev.blocky.library.jda.entities;
 
-import java.util.List;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Role;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.Role;
+import java.util.List;
 
 /**
  * Represents a Guild-specific {@link net.dv8tion.jda.api.entities.User User}.
@@ -16,7 +15,15 @@ import net.dv8tion.jda.api.entities.Role;
  * @since v1.0.0-alpha.1
  */
 public class GuildMember {
-    private final Member member;
+    private Member member;
+
+    /**
+     * Constructs a new {@link GuildMember Guild Member}
+     * <br>
+     * This is a private constructor, because it should not be accessed for other classes
+     */
+    private GuildMember() {
+    }
 
     /**
      * Constructs a <b>new</b> {@link GuildMember Guild Member} instance. If you don't

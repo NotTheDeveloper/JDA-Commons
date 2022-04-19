@@ -1,11 +1,10 @@
 package dev.blocky.library.testzone.commands.app.slash;
 
 import dev.blocky.library.jda.interfaces.app.slash.ISlashCommand;
-
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.awt.*;
 import java.time.OffsetDateTime;
 
@@ -19,7 +18,7 @@ import java.time.OffsetDateTime;
 public class PingSlashCommand implements ISlashCommand {
 
     @Override
-    public void onSlashCommand(@Nonnull SlashCommandInteractionEvent event) {
+    public void onSlashCommand(@NotNull SlashCommandInteractionEvent event) {
         long restPing = event.getJDA().getRestPing().complete();
         EmbedBuilder builder = new EmbedBuilder();
         builder.setTimestamp(OffsetDateTime.now());

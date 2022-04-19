@@ -26,10 +26,18 @@ import java.util.stream.Collectors;
  * @version v2.0.0
  * @since v1.0.0-alpha.1
  */
-public class GuildMessageChannel {
+public class GuildMessageChannel extends Utility {
     private static final Logger logger = LoggerFactory.getLogger(GuildTextChannel.class);
-    private final MessageChannel channel;
+    private MessageChannel channel;
     private Member member;
+
+    /**
+     * Constructs a new {@link GuildMessageChannel Guild Message Channel}
+     * <br>
+     * This is a private constructor, because it should not be accessed for other classes
+     */
+    private GuildMessageChannel() {
+    }
 
     /**
      * Constructs a <b>new</b> {@link GuildMessageChannel Guild Message Channel} instance. If you don't
@@ -414,7 +422,7 @@ public class GuildMessageChannel {
         if (amount == 0) {
             logger.error("The amount can not be 0", new IllegalArgumentException());
         }
-        return channel.purgeMessages(Utility.checkClearSafety(clear, channel, amount));
+        return channel.purgeMessages(checkClearSafety(clear, channel, amount));
     }
 
     /**
@@ -478,7 +486,7 @@ public class GuildMessageChannel {
     /**
      * This works like a normal Message sending, but with more given options and a delay between using the command.
      * <br>
-     * You must specify a delay for timeouting a command. (the long delayInSeconds <b>must not equal to 0</b>. If this
+     * You must specify a delay to time out a command. (the long delayInSeconds <b>must not equal to 0</b>. If this
      * is true a {@link IllegalArgumentException IllegalArgumentException} will be thrown)
      * <br>
      * You also can specify a delay error message, which will be sent if you are under a delay. (if whileDelayErrorMessage
@@ -527,7 +535,7 @@ public class GuildMessageChannel {
     /**
      * This works like a normal Message sending, but with more given options and a delay between using the command.
      * <br>
-     * You must specify a delay for timeouting a command. (the long delayInSeconds <b>must not equal to 0</b>. If this
+     * You must specify a delay  to time out a command. (the long delayInSeconds <b>must not equal to 0</b>. If this
      * is true a {@link IllegalArgumentException IllegalArgumentException} will be thrown)
      * <br>
      * You also can specify a delay error message embed, which will be sent if you are under a delay. (if whileDelayErrorMessage
@@ -576,7 +584,7 @@ public class GuildMessageChannel {
     /**
      * This works like a normal embedded Message sending, but with more given options and a delay between using the command.
      * <br>
-     * You must specify a delay for timeouting a command. (the long delayInSeconds <b>must not equal to 0</b>. If this
+     * You must specify a delay  to time out a command. (the long delayInSeconds <b>must not equal to 0</b>. If this
      * is true a {@link IllegalArgumentException IllegalArgumentException} will be thrown)
      * <br>
      * You also can specify a delay error message, which will be sent if you are under a delay. (if whileDelayErrorMessage
@@ -625,7 +633,7 @@ public class GuildMessageChannel {
     /**
      * This works like a normal embedded Message sending, but with more given options and a delay between using the command.
      * <br>
-     * You must specify a delay for timeouting a command. (the long delayInSeconds <b>must not equal to 0</b>. If this
+     * You must specify a delay to time out a command. (the long delayInSeconds <b>must not equal to 0</b>. If this
      * is true a {@link IllegalArgumentException IllegalArgumentException} will be thrown)
      * <br>
      * You also can specify a delay error message embed, which will be sent if you are under a delay. (if whileDelayErrorMessage

@@ -14,6 +14,14 @@ public class DataImpl {
     private final static HashMap<Long, Long> map = new HashMap<>();
 
     /**
+     * Constructs a new {@link DataImpl Data Implementation}
+     * <br>
+     * This is a private constructor, because it should not be accessed for other classes
+     */
+    private DataImpl() {
+    }
+
+    /**
      * /**
      * The {@link HashMap Hash Map} Instance from the
      * {@link DataImpl Data Implementation} class

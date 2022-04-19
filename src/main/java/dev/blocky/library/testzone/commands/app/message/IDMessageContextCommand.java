@@ -2,8 +2,7 @@ package dev.blocky.library.testzone.commands.app.message;
 
 import dev.blocky.library.jda.interfaces.app.message.IMessageContext;
 import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent;
-
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This is a simple id message context command
@@ -15,7 +14,7 @@ import javax.annotation.Nonnull;
 public class IDMessageContextCommand implements IMessageContext {
 
     @Override
-    public void onMessageContext(@Nonnull MessageContextInteractionEvent event) {
+    public void onMessageContext(@NotNull MessageContextInteractionEvent event) {
         event.reply(event.getMember().getId()).queue();
     }
 }
