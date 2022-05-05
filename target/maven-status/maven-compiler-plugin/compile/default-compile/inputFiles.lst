@@ -29,6 +29,7 @@ C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\e
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\annotations\ForRemoval.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\entities\SelfMember.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\interfaces\app\user\IUserContext.java
+C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\interfaces\app\slash\ICommands.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\interfaces\ICommand.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\entities\manager\GuildController.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\interfaces\app\message\package-info.java

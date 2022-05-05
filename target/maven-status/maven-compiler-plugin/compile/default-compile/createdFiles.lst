@@ -9,6 +9,7 @@ dev\blocky\library\jda\entities\package-info.class
 dev\blocky\library\testzone\commands\app\message\package-info.class
 dev\blocky\library\jda\annotations\package-info.class
 dev\blocky\library\jda\entities\impl\DataImpl.class
+dev\blocky\library\jda\interfaces\app\slash\ICommands.class
 dev\blocky\library\jda\Utility$1.class
 dev\blocky\library\testzone\commands\app\slash\package-info.class
 dev\blocky\library\jda\entities\GuildTargetMember.class
