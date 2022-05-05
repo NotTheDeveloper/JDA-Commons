@@ -1,8 +1,21 @@
+/**
+ * Copyright 2022 Dominic (aka. BlockyDotJar)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>
+ * </p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package dev.blocky.library.jda;
 
 import dev.blocky.library.jda.annotations.Deadline;
-import dev.blocky.library.jda.entities.SelfMember;
-import net.dv8tion.jda.api.entities.Guild;
 
 import javax.annotation.Nonnull;
 
@@ -24,16 +37,6 @@ public final class CommonsClient {
      * This is a private constructor, because it should not be accessed for other classes
      */
     private CommonsClient() {
-    }
-
-    /**
-     * Get a new {@link SelfMember}, by initializing a specific {@link Guild Guild}
-     *
-     * @param guild The guild, which should be used to get the {@link SelfMember Self Member}
-     * @return A <b>new</b> {@link SelfMember Self Member} instance
-     */
-    public SelfMember getSelfMember(Guild guild) {
-        return new SelfMember(guild);
     }
 
     /**

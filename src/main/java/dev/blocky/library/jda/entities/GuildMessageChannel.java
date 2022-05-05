@@ -1,3 +1,18 @@
+/**
+ * Copyright 2022 Dominic (aka. BlockyDotJar)
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>
+ * </p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package dev.blocky.library.jda.entities;
 
 import dev.blocky.library.jda.entities.impl.DataImpl;
@@ -414,8 +429,8 @@ public class GuildMessageChannel extends Utility {
      * CompletionStage.exceptionally(Function)} to handle failures.
      *
      * @param amount The amount of messages to delete
-     * @param clear  The Safety Clear option, which helps for specifying different message types, which will not be deleted
-     * @return List of futures representing all deletion task
+     * @param clear  The {@link SafetyClear Safety Clear} option, which helps for specifying different message types, which will not be deleted
+     * @return {@link List List} of futures representing all deletion task
      */
     @Nonnull
     public List<CompletableFuture<Void>> purgeMessages(int amount, @Nullable SafetyClear clear) {
@@ -430,8 +445,8 @@ public class GuildMessageChannel extends Utility {
      * No checks will be done to prevent failures, use {@link java.util.concurrent.CompletionStage#exceptionally(Function)
      * CompletionStage.exceptionally(Function)} to handle failures.
      *
-     * @param clear The Safety Clear option, which helps for specifying different message types, which will not be deleted
-     * @return List of futures representing all deletion task
+     * @param clear The {@link SafetyClear Safety Clear} option, which helps for specifying different message types, which will not be deleted
+     * @return {@link List List} of futures representing all deletion task
      */
     @Nullable
     public List<CompletableFuture<Void>> purgeChannel(@Nullable SafetyClear clear) {
@@ -443,7 +458,7 @@ public class GuildMessageChannel extends Utility {
      * No checks will be done to prevent failures, use {@link java.util.concurrent.CompletionStage#exceptionally(Function)
      * CompletionStage.exceptionally(Function)} to handle failures.
      *
-     * @return List of futures representing all deletion task
+     * @return {@link List List} of futures representing all deletion task
      */
     @Nonnull
     public List<CompletableFuture<Void>> purgeChannel() {
@@ -455,8 +470,8 @@ public class GuildMessageChannel extends Utility {
      *
      * @param content     The message content, which should be checked
      * @param checkAmount The Amount of messages, which should be checked
-     * @return <b>true</b> If the content, you specified, is written in this channel
-     * <b>false</b> If the content, you specified, is not written in this channel
+     * @return <b>true -</b> If the content, you specified, is written in this channel <br>
+     *       <b>false -</b> If the content, you specified, is not written in this channel
      */
     public boolean containsMessage(@Nonnull String content, int checkAmount) {
         for (Message message : channel.getIterableHistory().cache(false)) {

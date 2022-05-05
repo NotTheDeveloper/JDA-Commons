@@ -1,3 +1,18 @@
+/**
+ * Copyright 2022 Dominic (aka. BlockyDotJar)
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>
+ * </p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package dev.blocky.library.testzone;
 
 import dev.blocky.library.jda.interfaces.ICommand;
@@ -53,15 +68,11 @@ public class CommandManager extends ListenerAdapter {
      * Checks if {@link ICommand the Command
      * Interface} equals to null or not
      *
-     * @param command The {@link java.lang.String String} of the command
-     * @param event   The
-     *                {@link net.dv8tion.jda.api.events.message.MessageReceivedEvent
-     *                MessageReceivedEvent}, which should used for the commands
+     * @param command The {@link String String} of the command
+     * @param event   The {@link MessageReceivedEvent MessageReceivedEvent}, which should used for the commands
      * @param args    The {@link java.lang.reflect.Array Array} of Strings, which should be initialized
-     * @return true If {@link ICommand the
-     * Command Interface} does not equal to null <br>
-     * false - If {@link ICommand the
-     * Command Interface} equals to null
+     * @return <b>true -</b> If {@link ICommand the Command Interface} does not equal to null <br>
+     * <b>false -</b> If {@link ICommand the Command Interface} equals to null
      */
     public boolean onMessage(@Nullable String command, @Nonnull MessageReceivedEvent event, @Nonnull String[] args) {
         ICommand cmd = commands.get(command.toLowerCase());
