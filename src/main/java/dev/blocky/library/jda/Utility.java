@@ -20,8 +20,9 @@ import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.TextChannel;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -36,7 +37,7 @@ import java.util.concurrent.TimeUnit;
 public class Utility {
 
     /**
-     * Constructs a new {@link Utility Utility}
+     * Constructs a <b>new</b> {@link Utility Utility}
      * <br>
      * This is a private constructor, because it should not be accessed for other classes
      */
@@ -54,7 +55,7 @@ public class Utility {
      * @return {@link List List} of futures representing all deletion task
      */
     @Nullable
-    protected static List<Message> checkClearSafety(@Nullable SafetyClear clear, @Nonnull TextChannel channel, int amount) {
+    protected static List<Message> checkClearSafety(@Nullable SafetyClear clear, @NotNull TextChannel channel, int amount) {
         List<Message> messages = new ArrayList<>();
 
         if (clear == null) {
@@ -108,7 +109,7 @@ public class Utility {
      * @return {@link List List} of futures representing all deletion task
      */
     @Nullable
-    protected static List<Message> checkClearSafety(@Nullable SafetyClear clear, @Nonnull MessageChannel channel, int amount) {
+    protected static List<Message> checkClearSafety(@Nullable SafetyClear clear, @NotNull MessageChannel channel, int amount) {
         List<Message> messages = new ArrayList<>();
 
         if (clear == null) {
@@ -155,15 +156,16 @@ public class Utility {
      * Checks, which {@link SafetyClear Safety Clear} {@link Enum enum} is given. (if clear equals null, the
      * {@link SafetyClear Safety Clear} {@link Enum enum} will be set to {@link SafetyClear#NONE SafetyClear.NONE})
      *
+     * @param clear   The {@link SafetyClear Safety Clear} option, which helps for specifying different message types, which will not be deleted
      * @param channel The {@link TextChannel Text Channel}, which
      *                should be initialized.
      * @return {@link List List} of futures representing all deletion task
      */
     @Nullable
-    protected static List<Message> checkChannelClearSafety(@Nullable SafetyClear clear, @Nonnull TextChannel channel) {
+    protected static List<Message> checkChannelClearSafety(@Nullable SafetyClear clear, @NotNull TextChannel channel) {
         List<Message> messages = new ArrayList<>();
 
-        if (null == null) {
+        if (clear == null) {
             clear = SafetyClear.NONE;
         }
 
@@ -203,12 +205,13 @@ public class Utility {
      * Checks, which {@link SafetyClear Safety Clear} {@link Enum enum} is given. (if clear equals null, the
      * {@link SafetyClear Safety Clear} {@link Enum enum} will be set to {@link SafetyClear#NONE SafetyClear.NONE})
      *
+     * @param clear   The {@link SafetyClear Safety Clear} option, which helps for specifying different message types, which will not be deleted
      * @param channel The {@link MessageChannel Message Channel}, which
      *                should be initialized.
      * @return {@link List List} of futures representing all deletion task
      */
     @Nullable
-    protected static List<Message> checkChannelClearSafety(@Nullable SafetyClear clear, @Nonnull MessageChannel channel) {
+    protected static List<Message> checkChannelClearSafety(@Nullable SafetyClear clear, @NotNull MessageChannel channel) {
         List<Message> messages = new ArrayList<>();
 
         if (clear == null) {

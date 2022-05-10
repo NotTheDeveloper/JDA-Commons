@@ -9,7 +9,6 @@ dev\blocky\library\jda\entities\package-info.class
 dev\blocky\library\testzone\commands\app\message\package-info.class
 dev\blocky\library\jda\annotations\package-info.class
 dev\blocky\library\jda\entities\impl\DataImpl.class
-dev\blocky\library\jda\interfaces\app\slash\ICommands.class
 dev\blocky\library\jda\Utility$1.class
 dev\blocky\library\testzone\commands\app\slash\package-info.class
 dev\blocky\library\jda\entities\GuildTargetMember.class
@@ -41,6 +40,5 @@ dev\blocky\library\jda\interfaces\app\slash\package-info.class
 dev\blocky\library\jda\entities\manager\GuildController.class
 dev\blocky\library\testzone\commands\app\slash\PingSlashCommand.class
 dev\blocky\library\testzone\commands\package-info.class
-dev\blocky\library\jda\entities\impl\CommandTimeoutImpl.class
 dev\blocky\library\jda\interfaces\app\user\package-info.class
 dev\blocky\library\jda\entities\SelfMember.class

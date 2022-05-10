@@ -15,7 +15,7 @@
  */
 package dev.blocky.library.jda.entities.impl;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 
 /**
@@ -29,7 +29,7 @@ public class DataImpl {
     private final static HashMap<Long, Long> map = new HashMap<>();
 
     /**
-     * Constructs a new {@link DataImpl Data Implementation}
+     * Constructs a <b>new</b> {@link DataImpl Data Implementation}
      * <br>
      * This is a private constructor, because it should not be accessed for other classes
      */
@@ -43,7 +43,7 @@ public class DataImpl {
      *
      * @return {@link DataImpl#map}
      */
-    @Nonnull
+    @NotNull
     public static HashMap<Long, Long> getMap() {
         return map;
     }

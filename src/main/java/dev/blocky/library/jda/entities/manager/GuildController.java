@@ -18,9 +18,10 @@ package dev.blocky.library.jda.entities.manager;
 import dev.blocky.library.jda.annotations.Deadline;
 import dev.blocky.library.jda.entities.SelfMember;
 import net.dv8tion.jda.api.entities.Guild;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This is a controller you can control guilds with.
@@ -33,9 +34,11 @@ import javax.annotation.Nullable;
  */
 @Deadline(version = "v1.5.0")
 public class GuildController {
+    private static final Logger logger = LoggerFactory.getLogger(GuildController.class);
+    private Guild guild;
 
     /**
-     * Constructs a new {@link GuildController Guild Controller}
+     * Constructs a <b>new</b> {@link GuildController Guild Controller}
      * <br>
      * This is a private constructor, because it should not be accessed for other classes
      */
@@ -43,22 +46,48 @@ public class GuildController {
     }
 
     /**
-     * Get a new {@link SelfMember}, by initializing a specific {@link Guild Guild}
+     * Constructs a <b>new</b> {@link GuildController Guild Controller}
+     * <br>
+     * This is a private constructor, because it should not be accessed for other classes
      *
-     * @return A <b>new</b> {@link SelfMember Self Member} instance
+     * @param guild The {@link Guild Guild}, which should be used to get {@link GuildController Guild Controller}
      */
-    @Nullable
-    public SelfMember getSelfMember(Guild guild) {
-        return new SelfMember(guild);
+    private GuildController(@Nullable Guild guild) {
+        this.guild = guild;
+
+        if (guild == null) {
+            logger.error("The Guild you specify equals null", new NullPointerException());
+        }
     }
 
     /**
-     * Represents a new {@link GuildController Guild Controller} instance
+     * Constructs a <b>new</b> {@link GuildController Guild Controller} instance. If you don't
+     * initialize a {@link Guild Guild}, {@link GuildController Guild Controller} always will be <b>null</b>.
      *
-     * @return new {@link GuildController Guild Controller}
+     * @param guild The {@link Guild Guild}, which should be used to get {@link GuildController Guild Controller}
+     * @return A <b>new</b> {@link GuildController Guild Controller} instance
      */
-    @Nonnull
-    public static GuildController getGuildController() {
-        return new GuildController();
+    public static GuildController set(@Nullable Guild guild) {
+        return new GuildController(guild);
+    }
+
+    /**
+     * The {@link Guild Guild} the Message was received in.
+     *
+     * @return The {@link Guild Guild} the Message was received in
+     */
+    @NotNull
+    public Guild getGuild() {
+        return guild;
+    }
+
+    /**
+     * Gets a <b>new</b> {@link SelfMember}, by initializing a specific {@link Guild Guild}
+     *
+     * @return A <b>new</b> {@link SelfMember Self Member} instance
+     */
+    @NotNull
+    public SelfMember getSelfMember() {
+        return SelfMember.set(guild);
     }
 }

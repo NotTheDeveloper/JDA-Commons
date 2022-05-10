@@ -25,7 +25,6 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Nonnull;
 import javax.security.auth.login.LoginException;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -62,7 +61,7 @@ public class DiscordBotExample {
      */
     public DiscordBotExample() throws LoginException {
         jda = JDABuilder
-                .createDefault("YOUR_BOT_TOKEN",
+                .createDefault("BOT_TOKEN",
                         EnumSet.of(
                                 GatewayIntent.GUILD_MESSAGES,
                                 GatewayIntent.GUILD_MEMBERS
@@ -120,7 +119,7 @@ public class DiscordBotExample {
      *
      * @return {@link DiscordBotExample#jda}
      */
-    @Nonnull
+    @NotNull
     public static JDA getJDA() {
         return jda;
     }

@@ -17,7 +17,7 @@ package dev.blocky.library.jda;
 
 import dev.blocky.library.jda.annotations.Deadline;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * This is a Client for the JDA-Commons Library.
@@ -32,7 +32,7 @@ import javax.annotation.Nonnull;
 public final class CommonsClient {
 
     /**
-     * Constructs a new {@link CommonsClient Commons Client}
+     * Constructs a <br>new</b> {@link CommonsClient Commons Client}
      * <br>
      * This is a private constructor, because it should not be accessed for other classes
      */
@@ -50,11 +50,11 @@ public final class CommonsClient {
     public static class Builder {
 
         /**
-         * Represents a new {@link CommonsClient Commons Client} instance
+         * Represents a <b>new</b> {@link CommonsClient Commons Client} instance
          *
-         * @return new {@link CommonsClient Commons Client}
+         * @return A <b>new</b> {@link CommonsClient Commons Client} instance
          */
-        @Nonnull
+        @NotNull
         public static CommonsClient getCommonsClient() {
             return new CommonsClient();
         }

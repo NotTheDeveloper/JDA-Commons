@@ -23,11 +23,10 @@ import net.dv8tion.jda.api.events.ShutdownEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
@@ -55,8 +54,7 @@ public class CommandManager extends ListenerAdapter {
     }
 
     /**
-     * Constructs a new {@link CommandManager Command
-     * Manager}
+     * Constructs a <b>new</b> {@link CommandManager Command Manager}
      */
     public CommandManager() {
         commands = new ConcurrentHashMap<>();
@@ -74,7 +72,7 @@ public class CommandManager extends ListenerAdapter {
      * @return <b>true -</b> If {@link ICommand the Command Interface} does not equal to null <br>
      * <b>false -</b> If {@link ICommand the Command Interface} equals to null
      */
-    public boolean onMessage(@Nullable String command, @Nonnull MessageReceivedEvent event, @Nonnull String[] args) {
+    public boolean onMessage(@Nullable String command, @NotNull MessageReceivedEvent event, @NotNull String[] args) {
         ICommand cmd = commands.get(command.toLowerCase());
         if (cmd != null) {
             cmd.onCommand(event, args);

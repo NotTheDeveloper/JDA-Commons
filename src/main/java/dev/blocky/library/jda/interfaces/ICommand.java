@@ -18,8 +18,6 @@ package dev.blocky.library.jda.interfaces;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
-
 /**
  * A simple Command Interface, which you can use to easily program message commands.
  *
@@ -39,5 +37,5 @@ public interface ICommand {
      * @param event The {@link MessageReceivedEvent Message Received Event} for performing a command
      * @param args  An {@link java.lang.reflect.Array Array} of Strings for performing a command
      */
-    void onCommand(@NotNull MessageReceivedEvent event, @Nonnull String[] args);
+    void onCommand(@NotNull MessageReceivedEvent event, @NotNull String[] args);
 }

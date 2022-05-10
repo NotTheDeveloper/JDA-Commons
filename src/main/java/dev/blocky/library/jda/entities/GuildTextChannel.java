@@ -18,17 +18,17 @@ package dev.blocky.library.jda.entities;
 import dev.blocky.library.jda.Utility;
 import dev.blocky.library.jda.entities.impl.DataImpl;
 import dev.blocky.library.jda.enums.SafetyClear;
-import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.requests.restaction.MessageAction;
+import net.dv8tion.jda.api.requests.restaction.interactions.ReplyCallbackAction;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -37,7 +37,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * Represents a Discord Text {@link net.dv8tion.jda.api.entities.GuildChannel GuildChannel}.
+ * Represents a Discord Text {@link net.dv8tion.jda.api.entities.GuildChannel Guild Channel}.
  *
  * @author BlockyDotJar
  * @version v2.0.0
@@ -54,20 +54,17 @@ public class GuildTextChannel extends Utility {
      * This is a private constructor, because it should not be accessed for other classes
      */
     private GuildTextChannel() {
-        super();
     }
 
     /**
-     * Constructs a <b>new</b> {@link GuildTextChannel Guild Text Channel} instance. If you don't
-     * initialize a {@link TextChannel Text Channel} or a {@link Member Member},
-     * {@link GuildTextChannel Guild Text Channel} always will be <b>null</b>.
+     * Constructs a <b>new</b> {@link GuildTextChannel Guild Text Channel}
+     * <br>
+     * This is a private constructor, because it should not be accessed for other classes
      *
-     * @param channel The {@link TextChannel Text Channel}, which
-     *                should be initialized.
-     * @param member  The {@link Member Member}, which
-     *                should be initialized.
+     * @param channel The {@link TextChannel Text Channel}, which should be used to get {@link GuildTextChannel Guild Text Channel}
+     * @param member  The {@link Member Member}, which should be used to get {@link GuildTextChannel Guild Text Channel}
      */
-    public GuildTextChannel(@Nonnull TextChannel channel, @Nullable Member member) {
+    private GuildTextChannel(@NotNull TextChannel channel, @Nullable Member member) {
         this.channel = channel;
         this.member = member;
 
@@ -81,19 +78,65 @@ public class GuildTextChannel extends Utility {
     }
 
     /**
-     * Constructs a <b>new</b> {@link GuildTextChannel Guild Text Channel} instance. If you don't
-     * initialize a {@link TextChannel Text Channel},
-     * {@link GuildTextChannel Guild Text Channel} always will be <b>null</b>.
+     * Constructs a <b>new</b> {@link GuildTextChannel Guild Text Channel}
+     * <br>
+     * This is a private constructor, because it should not be accessed for other classes
      *
-     * @param channel The {@link TextChannel Text Channel}, which
-     *                should be initialized.
+     * @param channel The {@link TextChannel Text Channel}, which should be used to get {@link GuildTextChannel Guild Text Channel}
      */
-    public GuildTextChannel(@Nonnull TextChannel channel) {
+    private GuildTextChannel(@NotNull TextChannel channel) {
         this.channel = channel;
 
         if (channel == null) {
             logger.error("The Text Channel you specify equals null", new NullPointerException());
         }
+    }
+
+    /**
+     * Constructs a <b>new</b> {@link GuildTextChannel Guild Text Channel} instance. If you don't
+     * initialize a {@link TextChannel Text Channel} or a {@link net.dv8tion.jda.api.entities.Member Member},
+     * {@link GuildTextChannel Guild Text Channel} always will be <b>null</b>.
+     *
+     * @param channel The {@link TextChannel Text Channel}, which should be initialized.
+     * @param member  The {@link net.dv8tion.jda.api.entities.Member Member}, which should be initialized.
+     * @return A <b>new</b> {@link GuildTextChannel Guild Text Channel} instance
+     */
+    @NotNull
+    public static GuildTextChannel set(@NotNull TextChannel channel, @Nullable Member member) {
+        return new GuildTextChannel(channel, member);
+    }
+
+    /**
+     * Constructs a <b>new</b> {@link GuildTextChannel Guild Text Channel} instance. If you don't
+     * initialize a {@link TextChannel Text Channel},
+     * {@link GuildTextChannel Guild Text Channel} always will be <b>null</b>.
+     *
+     * @param channel The {@link TextChannel Text Channel}, which should be initialized.
+     * @return A <b>new</b> {@link GuildTextChannel Guild Text Channel} instance
+     */
+    @NotNull
+    public static GuildTextChannel set(@NotNull TextChannel channel) {
+        return new GuildTextChannel(channel);
+    }
+
+    /**
+     * The Author of the {@link net.dv8tion.jda.api.entities.Message Message} received as {@link Member Member} object.
+     *
+     * @return The Author of the {@link net.dv8tion.jda.api.entities.Message Message} as null-able Member object.
+     */
+    @Nullable
+    public Member getMember() {
+        return member;
+    }
+
+    /**
+     * The {@link TextChannel Text Channel} for this {@link Message Message}.
+     *
+     * @return The {@link TextChannel Text Channel}
+     */
+    @NotNull
+    public TextChannel getChannel() {
+        return channel;
     }
 
     /**
@@ -107,10 +150,12 @@ public class GuildTextChannel extends Utility {
      *
      * @param content The message content
      * @param message The target message
+     * @return Updated {@link MessageAction Message Action} for chaining convenience
      */
-    public void reply(@Nonnull String content, @Nonnull Message message) {
+    @NotNull
+    public MessageAction reply(@NotNull CharSequence content, @NotNull Message message) {
         MessageAction action = channel.sendMessage(content);
-        action.reference(message).queue();
+        return action.reference(message);
     }
 
     /**
@@ -124,10 +169,12 @@ public class GuildTextChannel extends Utility {
      *
      * @param content   The message content
      * @param messageId The target message
+     * @return Updated {@link MessageAction Message Action} for chaining convenience
      */
-    public void replyById(@Nonnull String content, @Nonnull String messageId) {
+    @NotNull
+    public MessageAction replyById(@NotNull CharSequence content, @NotNull String messageId) {
         MessageAction action = channel.sendMessage(content);
-        action.referenceById(messageId).queue();
+        return action.referenceById(messageId);
     }
 
     /**
@@ -141,10 +188,12 @@ public class GuildTextChannel extends Utility {
      *
      * @param content   The message content
      * @param messageId The target message
+     * @return Updated {@link MessageAction Message Action} for chaining convenience
      */
-    public void replyById(@Nonnull String content, long messageId) {
+    @NotNull
+    public MessageAction replyById(@NotNull CharSequence content, long messageId) {
         MessageAction action = channel.sendMessage(content);
-        action.referenceById(messageId).queue();
+        return action.referenceById(messageId);
     }
 
     /**
@@ -158,10 +207,12 @@ public class GuildTextChannel extends Utility {
      *
      * @param embed   The {@link MessageEmbed Message Embed} to send
      * @param message The target message
+     * @return Updated {@link MessageAction Message Action} for chaining convenience
      */
-    public void replyEmbed(@Nonnull MessageEmbed embed, @Nonnull Message message) {
+    @NotNull
+    public MessageAction replyEmbeds(@NotNull MessageEmbed embed, @NotNull Message message) {
         MessageAction action = channel.sendMessageEmbeds(embed);
-        action.reference(message).queue();
+        return action.reference(message);
     }
 
     /**
@@ -175,10 +226,12 @@ public class GuildTextChannel extends Utility {
      *
      * @param embed     The {@link MessageEmbed Message Embed} to send
      * @param messageId The target message
+     * @return Updated {@link MessageAction Message Action} for chaining convenience
      */
-    public void replyEmbedById(@Nonnull MessageEmbed embed, @Nonnull String messageId) {
+    @NotNull
+    public MessageAction replyEmbedsById(@NotNull MessageEmbed embed, @NotNull String messageId) {
         MessageAction action = channel.sendMessageEmbeds(embed);
-        action.referenceById(messageId).queue();
+        return action.referenceById(messageId);
     }
 
     /**
@@ -192,10 +245,12 @@ public class GuildTextChannel extends Utility {
      *
      * @param embed     The {@link MessageEmbed Message Embed} to send
      * @param messageId The target message
+     * @return Updated {@link MessageAction Message Action} for chaining convenience
      */
-    public void replyEmbedById(@Nonnull MessageEmbed embed, long messageId) {
+    @NotNull
+    public MessageAction replyEmbedsById(@NotNull MessageEmbed embed, long messageId) {
         MessageAction action = channel.sendMessageEmbeds(embed);
-        action.referenceById(messageId).queue();
+        return action.referenceById(messageId);
     }
 
     /**
@@ -210,10 +265,12 @@ public class GuildTextChannel extends Utility {
      * @param format  The string that should be formatted, if this is null or empty the content of the Message would be empty and cause a builder exception.
      * @param args    The arguments for your format
      * @param message The target message
+     * @return Updated {@link MessageAction Message Action} for chaining convenience
      */
-    public void replyFormat(@Nonnull String format, @Nonnull Object args, @Nonnull Message message) {
+    @NotNull
+    public MessageAction replyFormat(@NotNull String format, @NotNull Object args, @NotNull Message message) {
         MessageAction action = channel.sendMessageFormat(format, args);
-        action.reference(message).queue();
+        return action.reference(message);
     }
 
     /**
@@ -228,10 +285,12 @@ public class GuildTextChannel extends Utility {
      * @param format    The string that should be formatted, if this is null or empty the content of the Message would be empty and cause a builder exception.
      * @param args      The arguments for your format
      * @param messageId The target message
+     * @return Updated {@link MessageAction Message Action} for chaining convenience
      */
-    public void replyFormatById(@Nonnull String format, @Nonnull Object args, @Nonnull String messageId) {
+    @NotNull
+    public MessageAction replyFormatById(@NotNull String format, @NotNull Object args, @NotNull String messageId) {
         MessageAction action = channel.sendMessageFormat(format, args);
-        action.referenceById(messageId).queue();
+        return action.referenceById(messageId);
     }
 
     /**
@@ -246,10 +305,12 @@ public class GuildTextChannel extends Utility {
      * @param format    The string that should be formatted, if this is null or empty the content of the Message would be empty and cause a builder exception.
      * @param args      The arguments for your format
      * @param messageId The target message
+     * @return Updated {@link MessageAction Message Action} for chaining convenience
      */
-    public void replyFormatById(@Nonnull String format, @Nonnull Object args, long messageId) {
+    @NotNull
+    public MessageAction replyFormatById(@NotNull String format, @NotNull Object args, long messageId) {
         MessageAction action = channel.sendMessageFormat(format, args);
-        action.referenceById(messageId).queue();
+        return action.referenceById(messageId);
     }
 
     /**
@@ -265,10 +326,12 @@ public class GuildTextChannel extends Utility {
      * @param content     The message content
      * @param message     The target message
      * @param pingEnabled If the member of the written target message should get pinged
+     * @return Updated {@link MessageAction Message Action} for chaining convenience
      */
-    public void reply(@Nonnull String content, @Nonnull Message message, boolean pingEnabled) {
+    @NotNull
+    public MessageAction reply(@NotNull CharSequence content, @NotNull Message message, boolean pingEnabled) {
         MessageAction action = channel.sendMessage(content);
-        action.reference(message).mentionRepliedUser(pingEnabled).queue();
+        return action.reference(message).mentionRepliedUser(pingEnabled);
     }
 
     /**
@@ -284,10 +347,12 @@ public class GuildTextChannel extends Utility {
      * @param content     The message content
      * @param messageId   The target message
      * @param pingEnabled If the member of the written target message should get pinged
+     * @return Updated {@link MessageAction Message Action} for chaining convenience
      */
-    public void replyById(@Nonnull String content, @Nonnull String messageId, boolean pingEnabled) {
+    @NotNull
+    public MessageAction replyById(@NotNull CharSequence content, @NotNull String messageId, boolean pingEnabled) {
         MessageAction action = channel.sendMessage(content);
-        action.referenceById(messageId).mentionRepliedUser(pingEnabled).queue();
+        return action.referenceById(messageId).mentionRepliedUser(pingEnabled);
     }
 
     /**
@@ -303,10 +368,12 @@ public class GuildTextChannel extends Utility {
      * @param content     The message content
      * @param messageId   The target message
      * @param pingEnabled If the member of the written target message should get pinged
+     * @return Updated {@link MessageAction Message Action} for chaining convenience
      */
-    public void replyById(@Nonnull String content, long messageId, boolean pingEnabled) {
+    @NotNull
+    public MessageAction replyById(@NotNull CharSequence content, long messageId, boolean pingEnabled) {
         MessageAction action = channel.sendMessage(content);
-        action.referenceById(messageId).mentionRepliedUser(pingEnabled).queue();
+        return action.referenceById(messageId).mentionRepliedUser(pingEnabled);
     }
 
     /**
@@ -322,10 +389,12 @@ public class GuildTextChannel extends Utility {
      * @param embed       The {@link MessageEmbed Message Embed} to send
      * @param message     The target message
      * @param pingEnabled If the member of the written target message should get pinged
+     * @return Updated {@link MessageAction Message Action} for chaining convenience
      */
-    public void replyEmbed(@Nonnull MessageEmbed embed, @Nonnull Message message, boolean pingEnabled) {
+    @NotNull
+    public MessageAction replyEmbeds(@NotNull MessageEmbed embed, @NotNull Message message, boolean pingEnabled) {
         MessageAction action = channel.sendMessageEmbeds(embed);
-        action.reference(message).mentionRepliedUser(pingEnabled).queue();
+        return action.reference(message).mentionRepliedUser(pingEnabled);
     }
 
     /**
@@ -341,10 +410,12 @@ public class GuildTextChannel extends Utility {
      * @param embed       The {@link MessageEmbed Message Embed} to send
      * @param messageId   The target message
      * @param pingEnabled If the member of the written target message should get pinged
+     * @return Updated {@link MessageAction Message Action} for chaining convenience
      */
-    public void replyEmbedById(@Nonnull MessageEmbed embed, @Nonnull String messageId, boolean pingEnabled) {
+    @NotNull
+    public MessageAction replyEmbedsById(@NotNull MessageEmbed embed, @NotNull String messageId, boolean pingEnabled) {
         MessageAction action = channel.sendMessageEmbeds(embed);
-        action.referenceById(messageId).mentionRepliedUser(pingEnabled).queue();
+        return action.referenceById(messageId).mentionRepliedUser(pingEnabled);
     }
 
     /**
@@ -360,10 +431,12 @@ public class GuildTextChannel extends Utility {
      * @param embed       The {@link MessageEmbed Message Embed} to send
      * @param messageId   The target message
      * @param pingEnabled If the member of the written target message should get pinged
+     * @return Updated {@link MessageAction Message Action} for chaining convenience
      */
-    public void replyEmbedById(@Nonnull MessageEmbed embed, long messageId, boolean pingEnabled) {
+    @NotNull
+    public MessageAction replyEmbedsById(@NotNull MessageEmbed embed, long messageId, boolean pingEnabled) {
         MessageAction action = channel.sendMessageEmbeds(embed);
-        action.referenceById(messageId).mentionRepliedUser(pingEnabled).queue();
+        return action.referenceById(messageId).mentionRepliedUser(pingEnabled);
     }
 
     /**
@@ -380,10 +453,12 @@ public class GuildTextChannel extends Utility {
      * @param args        The arguments for your format
      * @param message     The target message
      * @param pingEnabled If the member of the written target message should get pinged
+     * @return Updated {@link MessageAction Message Action} for chaining convenience
      */
-    public void replyFormat(@Nonnull String format, @Nonnull Object args, @Nonnull Message message, boolean pingEnabled) {
+    @NotNull
+    public MessageAction replyFormat(@NotNull String format, @NotNull Object args, @NotNull Message message, boolean pingEnabled) {
         MessageAction action = channel.sendMessageFormat(format, args);
-        action.reference(message).mentionRepliedUser(pingEnabled).queue();
+        return action.reference(message).mentionRepliedUser(pingEnabled);
     }
 
     /**
@@ -400,10 +475,12 @@ public class GuildTextChannel extends Utility {
      * @param args        The arguments for your format
      * @param messageId   The target message
      * @param pingEnabled If the member of the written target message should get pinged
+     * @return Updated {@link MessageAction Message Action} for chaining convenience
      */
-    public void replyFormatById(@Nonnull String format, @Nonnull Object args, @Nonnull String messageId, boolean pingEnabled) {
+    @NotNull
+    public MessageAction replyFormatById(@NotNull String format, @NotNull Object args, @NotNull String messageId, boolean pingEnabled) {
         MessageAction action = channel.sendMessageFormat(format, args);
-        action.referenceById(messageId).mentionRepliedUser(pingEnabled).queue();
+        return action.referenceById(messageId).mentionRepliedUser(pingEnabled);
     }
 
     /**
@@ -420,10 +497,12 @@ public class GuildTextChannel extends Utility {
      * @param args        The arguments for your format
      * @param messageId   The target message
      * @param pingEnabled If the member of the written target message should get pinged
+     * @return Updated {@link MessageAction Message Action} for chaining convenience
      */
-    public void replyFormatById(@Nonnull String format, @Nonnull Object args, long messageId, boolean pingEnabled) {
+    @NotNull
+    public MessageAction replyFormatById(@NotNull String format, @NotNull Object args, long messageId, boolean pingEnabled) {
         MessageAction action = channel.sendMessageFormat(format, args);
-        action.referenceById(messageId).mentionRepliedUser(pingEnabled).queue();
+        return action.referenceById(messageId).mentionRepliedUser(pingEnabled);
     }
 
     /**
@@ -435,11 +514,8 @@ public class GuildTextChannel extends Utility {
      * @param clear  The {@link SafetyClear Safety Clear} option, which helps for specifying different message types, which will not be deleted
      * @return {@link List List} of futures representing all deletion task
      */
-    @Nonnull
+    @Nullable
     public List<CompletableFuture<Void>> purgeMessages(int amount, @Nullable SafetyClear clear) {
-        if (amount == 0) {
-            logger.error("The amount can not be 0", new IllegalArgumentException());
-        }
         return channel.purgeMessages(checkClearSafety(clear, channel, amount));
     }
 
@@ -449,11 +525,11 @@ public class GuildTextChannel extends Utility {
      * CompletionStage.exceptionally(Function)} to handle failures.
      *
      * @param clear The {@link SafetyClear Safety Clear} option, which helps for specifying different message types, which will not be deleted
-     * @return {@link List List}  of futures representing all deletion task
+     * @return {@link List List} of futures representing all deletion task
      */
     @Nullable
     public List<CompletableFuture<Void>> purgeChannel(@Nullable SafetyClear clear) {
-        return channel.purgeMessages(checkChannelClearSafety(null, channel));
+        return channel.purgeMessages(Utility.checkChannelClearSafety(null, channel));
     }
 
     /**
@@ -461,9 +537,9 @@ public class GuildTextChannel extends Utility {
      * No checks will be done to prevent failures, use {@link java.util.concurrent.CompletionStage#exceptionally(Function)
      * CompletionStage.exceptionally(Function)} to handle failures.
      *
-     * @return {@link List List}  of futures representing all deletion task
+     * @return {@link List List} of futures representing all deletion task
      */
-    @Nonnull
+    @NotNull
     public List<CompletableFuture<Void>> purgeChannel() {
         return channel.purgeMessages(Utility.checkChannelClearSafety(null, channel));
     }
@@ -476,9 +552,9 @@ public class GuildTextChannel extends Utility {
      * @return <b>true -</b> If the content, you specified, is written in this channel <br>
      * <b>false -</b> If the content, you specified, is not written in this channel
      */
-    public boolean containsMessage(@Nonnull String content, int checkAmount) {
+    public boolean containsMessage(@NotNull CharSequence content, int checkAmount) {
         for (Message message : channel.getIterableHistory().cache(false)) {
-            if (message.getContentRaw().equals(content)) {
+            if (message.getContentRaw().contentEquals(content)) {
                 return true;
             }
             if (checkAmount-- <= 0) {
@@ -489,211 +565,243 @@ public class GuildTextChannel extends Utility {
     }
 
     /**
-     * Get all the messages from a specific member in this channel (max. 1000 messages per channel)
+     * Gets all the messages from a specific member in this channel (max. 1000 messages per channel)
      *
-     * @param memb The {@link Member member}, for which the messages should be checked
      * @return The written messages of the specified member in this channel
      */
-    public List<Message> getMessagesByUser(Member memb) {
+    @NotNull
+    public List<Message> getMessagesByUser() {
         return channel.getIterableHistory().stream()
                 .limit(1000)
-                .filter(m -> m.getAuthor().equals(memb.getUser()))
+                .filter(m -> m.getAuthor().equals(member.getUser()))
                 .collect(Collectors.toList());
     }
 
     /**
-     * This works like a normal Message sending, but with more given options and a delay between using the command.
+     * This works like a normal Message sending, but with more given options and a delay between using this.
      * <br>
      * You must specify a delay to time out a command. (the long delayInSeconds <b>must not equal to 0</b>. If this
-     * is true a {@link IllegalArgumentException IllegalArgumentException} will be thrown)
+     * is true a {@link IllegalArgumentException IllegalArgumentException} will be thrown).
+     * (The same is applicable for numbers under 0)
      * <br>
-     * You also can specify a delay error message, which will be sent if you are under a delay. (if whileDelayErrorMessage
+     * You also can specify a delay message, which will be sent if you are under a delay. (if delayMessage
      * equals null, there will be sent a default error message)
      * <br>
-     * Option you can use a specified Time Unit like {@link TimeUnit#MINUTES minutes}, {@link TimeUnit#HOURS hours} or
-     * even {@link TimeUnit#DAYS days} (if Time Unit equals null, there will be used a default Time Unit: {@link TimeUnit#SECONDS TimeUnit.SECONDS})
+     * Another option you can use a specified {@link TimeUnit Time Unit} like {@link TimeUnit#MINUTES minutes},
+     * {@link TimeUnit#HOURS hours} or even {@link TimeUnit#DAYS days} (if {@link TimeUnit Time Unit} equals null,
+     * there will be used a default {@link TimeUnit Time Unit}: {@link TimeUnit#SECONDS TimeUnit.SECONDS})
      *
-     * @param content                The message content
-     * @param delayInSeconds         The delay for the command to execute in seconds
-     * @param whileDelayErrorMessage The error message, which should appear, if the member has not yet waited for the delay
-     * @param unit                   The Time Unit, which you use for specifying the type of time for the delay
+     * @param action         The {@link MessageAction Message Action}, which should be used
+     * @param delayInSeconds The delay for the executing command in seconds
+     * @param delayMessage   The error message, which should appear, if the member has not waited for the delay yet
+     * @param unit           The {@link TimeUnit TimeUnit}, which is used for specifying the type of time for the delay
+     * @return The specified {@link MessageAction Message Actions}
      */
-    public void sendTimeoutedMessage(@Nonnull String content, long delayInSeconds, @Nullable String whileDelayErrorMessage,
-                                     @Nullable TimeUnit unit) {
-        if (content == null) {
-            logger.error("The Message Content you specified equals null", new NullPointerException());
-        }
-
+    @NotNull
+    public MessageAction sendTimeoutedMessage(@NotNull MessageAction action, long delayInSeconds, @Nullable MessageAction delayMessage,
+                                              @Nullable TimeUnit unit) {
         if (delayInSeconds == 0) {
-            logger.error("The Time you specified is 0, so it makes no sense that you choose a Timeouted Message", new IllegalArgumentException());
+            logger.error("The Time, which you are specifying, equals 0, so it makes no sense that you chose a Timeouted Message.", new IllegalArgumentException());
         }
 
-        long id = member.getIdLong();
-        if (DataImpl.getMap().containsKey(id)) {
-            long time = DataImpl.getMap().get(id);
+        if (delayInSeconds < 0) {
+            logger.error("The Time, which you are specifying can not be under 0.", new IllegalArgumentException());
+        }
 
-            if ((System.currentTimeMillis() - time) >= Utility.calculateDelay(unit, delayInSeconds)) {
-                DataImpl.getMap().put(id, System.currentTimeMillis());
-                channel.sendMessage(content).queue();
-            } else {
-                if (whileDelayErrorMessage == null) {
-                    DecimalFormat df = new DecimalFormat("0.00");
-                    channel.sendMessage(member.getEffectiveName() + ", you must wait "
-                            + df.format((Utility.calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛").queue();
+        try {
+            long id = member.getIdLong();
+            long time;
+            if (DataImpl.getMap().containsKey(id)) {
+                time = DataImpl.getMap().get(id);
+
+                if ((System.currentTimeMillis() - time) >= Utility.calculateDelay(unit, delayInSeconds)) {
+                    DataImpl.getMap().put(id, System.currentTimeMillis());
+                    return action;
                 } else {
-                    channel.sendMessage(whileDelayErrorMessage).queue();
+                    if (delayMessage == null) {
+                        DecimalFormat df = new DecimalFormat("0.00");
+                        delayMessage = channel.sendMessage(member.getEffectiveName() + ", you must wait "
+                                + df.format((Utility.calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛");
+                    } else {
+                        return delayMessage;
+                    }
                 }
+            } else {
+                DataImpl.getMap().put(id, System.currentTimeMillis());
+                return action;
             }
-        } else {
-            DataImpl.getMap().put(id, System.currentTimeMillis());
-            channel.sendMessage(content).queue();
+        } catch (NullPointerException e) {
+            logger.error("The Message Action, which you are specifying, equals null.", e);
         }
+
+        return delayMessage;
     }
 
     /**
-     * This works like a normal Message sending, but with more given options and a delay between using the command.
+     * This works like a normal Message sending, but with more given options and a delay between using this.
      * <br>
      * You must specify a delay to time out a command. (the long delayInSeconds <b>must not equal to 0</b>. If this
-     * is true a {@link IllegalArgumentException IllegalArgumentException} will be thrown)
+     * is true a {@link IllegalArgumentException IllegalArgumentException} will be thrown).
+     * (The same is applicable for numbers under 0)
      * <br>
-     * You also can specify a delay error message embed, which will be sent if you are under a delay. (if whileDelayErrorMessage
-     * equals null, there will be sent a default error message embed)
-     * <br>
-     * Option you can use a specified Time Unit like {@link TimeUnit#MINUTES minutes}, {@link TimeUnit#HOURS hours} or
-     * even {@link TimeUnit#DAYS days} (if Time Unit equals null, there will be used a default Time Unit: {@link TimeUnit#SECONDS TimeUnit.SECONDS})
+     * You also can specify a delay message, which will be sent if you are under a delay. (if delayMessage
+     * equals null, there will be sent a default error message)
      *
-     * @param content                The message content
-     * @param delayInSeconds         The delay for the command to execute in seconds
-     * @param whileDelayErrorMessage The error message embed, which should appear, if the member has not yet waited for the delay
-     * @param unit                   The Time Unit, which you use for specifying the type of time for the delay
+     * @param action         The {@link MessageAction Message Action}, which should be used
+     * @param delayInSeconds The delay for the executing command in seconds
+     * @param delayMessage   The error message, which should appear, if the member has not waited for the delay yet
+     * @return The specified {@link MessageAction Message Actions}
      */
-    public void sendTimeoutedMessageEmbeds(@Nonnull String content, long delayInSeconds, @Nullable EmbedBuilder whileDelayErrorMessage,
-                                           @Nullable TimeUnit unit) {
-        if (content == null) {
-            logger.error("The Message Content you specified equals null", new NullPointerException());
-        }
-
+    @NotNull
+    public MessageAction sendTimeoutedMessage(@NotNull MessageAction action, long delayInSeconds, @Nullable MessageAction delayMessage) {
         if (delayInSeconds == 0) {
-            logger.error("The Time you specified is 0, so it makes no sense that you choose a Timeouted Message", new IllegalArgumentException());
+            logger.error("The Time, which you are specifying, equals 0, so it makes no sense that you chose a Timeouted Message.", new IllegalArgumentException());
         }
 
-        long id = member.getIdLong();
-        if (DataImpl.getMap().containsKey(id)) {
-            long time = DataImpl.getMap().get(id);
+        if (delayInSeconds < 0) {
+            logger.error("The Time, which you are specifying can not be under 0.", new IllegalArgumentException());
+        }
 
-            if ((System.currentTimeMillis() - time) >= Utility.calculateDelay(unit, delayInSeconds)) {
-                DataImpl.getMap().put(id, System.currentTimeMillis());
-                channel.sendMessage(content).queue();
-            } else {
-                if (whileDelayErrorMessage == null) {
-                    DecimalFormat df = new DecimalFormat("0.00");
-                    channel.sendMessage(member.getEffectiveName() + ", you must wait "
-                            + df.format((Utility.calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛").queue();
+        try {
+            long id = member.getIdLong();
+            long time;
+            if (DataImpl.getMap().containsKey(id)) {
+                time = DataImpl.getMap().get(id);
+
+                if ((System.currentTimeMillis() - time) >= Utility.calculateDelay(null, delayInSeconds)) {
+                    DataImpl.getMap().put(id, System.currentTimeMillis());
+                    return action;
                 } else {
-                    channel.sendMessageEmbeds(whileDelayErrorMessage.build()).queue();
+                    if (delayMessage == null) {
+                        DecimalFormat df = new DecimalFormat("0.00");
+                        delayMessage = channel.sendMessage(member.getEffectiveName() + ", you must wait "
+                                + df.format((Utility.calculateDelay(null, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛");
+                    } else {
+                        return delayMessage;
+                    }
                 }
+            } else {
+                DataImpl.getMap().put(id, System.currentTimeMillis());
+                return action;
             }
-        } else {
-            DataImpl.getMap().put(id, System.currentTimeMillis());
-            channel.sendMessage(content).queue();
+        } catch (NullPointerException e) {
+            logger.error("The Message Action, which you are specifying, equals null.", e);
         }
+
+        return delayMessage;
     }
 
     /**
-     * This works like a normal embedded Message sending, but with more given options and a delay between using the command.
+     * This works like a normal Message sending, but with more given options and a delay between using this.
      * <br>
      * You must specify a delay to time out a command. (the long delayInSeconds <b>must not equal to 0</b>. If this
-     * is true a {@link IllegalArgumentException IllegalArgumentException} will be thrown)
+     * is true a {@link IllegalArgumentException IllegalArgumentException} will be thrown).
+     * (The same is applicable for numbers under 0)
      * <br>
-     * You also can specify a delay error message, which will be sent if you are under a delay. (if whileDelayErrorMessage
+     * You also can specify a delay message, which will be sent if you are under a delay. (if delayMessage
      * equals null, there will be sent a default error message)
      * <br>
-     * Option you can use a specified Time Unit like {@link TimeUnit#MINUTES minutes}, {@link TimeUnit#HOURS hours} or
-     * even {@link TimeUnit#DAYS days} (if Time Unit equals null, there will be used a default Time Unit: {@link TimeUnit#SECONDS TimeUnit.SECONDS})
+     * Another option you can use a specified {@link TimeUnit Time Unit} like {@link TimeUnit#MINUTES minutes},
+     * {@link TimeUnit#HOURS hours} or even {@link TimeUnit#DAYS days} (if {@link TimeUnit Time Unit} equals null,
+     * there will be used a default {@link TimeUnit Time Unit}: {@link TimeUnit#SECONDS TimeUnit.SECONDS})
      *
-     * @param content                The message embed content
-     * @param delayInSeconds         The delay for the command to execute in seconds
-     * @param whileDelayErrorMessage The error message, which should appear, if the member has not yet waited for the delay
-     * @param unit                   The Time Unit, which you use for specifying the type of time for the delay
+     * @param action         The {@link ReplyCallbackAction Reply Callback Action}, which should be used
+     * @param delayInSeconds The delay for the executing command in seconds
+     * @param delayMessage   The error message, which should appear, if the member has not waited for the delay yet
+     * @param unit           The {@link TimeUnit TimeUnit}, which is used for specifying the type of time for the delay
+     * @return The specified {@link MessageAction Message Actions}
      */
-    public void sendTimeoutedMessageEmbeds(@Nonnull EmbedBuilder content, long delayInSeconds, @Nullable String whileDelayErrorMessage,
-                                           @Nullable TimeUnit unit) {
-        if (content == null) {
-            logger.error("The Message Embed you specified equals null", new NullPointerException());
-        }
-
+    @NotNull
+    public ReplyCallbackAction replyTimeoutedMessage(@NotNull ReplyCallbackAction action, long delayInSeconds, @Nullable ReplyCallbackAction delayMessage,
+                                                     @Nullable TimeUnit unit) {
         if (delayInSeconds == 0) {
-            logger.error("The Time you specified is 0, so it makes no sense that you choose a Timeouted Message", new IllegalArgumentException());
+            logger.error("The Time, which you are specifying, equals 0, so it makes no sense that you chose a Timeouted Message.", new IllegalArgumentException());
         }
 
-        long id = member.getIdLong();
-        if (DataImpl.getMap().containsKey(id)) {
-            long time = DataImpl.getMap().get(id);
+        if (delayInSeconds < 0) {
+            logger.error("The Time, which you are specifying can not be under 0.", new IllegalArgumentException());
+        }
 
-            if ((System.currentTimeMillis() - time) >= Utility.calculateDelay(unit, delayInSeconds)) {
-                DataImpl.getMap().put(id, System.currentTimeMillis());
-                channel.sendMessageEmbeds(content.build()).queue();
-            } else {
-                if (whileDelayErrorMessage == null) {
-                    DecimalFormat df = new DecimalFormat("0.00");
-                    channel.sendMessage(member.getEffectiveName() + ", you must wait "
-                            + df.format((Utility.calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛").queue();
+        try {
+            long id = member.getIdLong();
+            long time;
+            if (DataImpl.getMap().containsKey(id)) {
+                time = DataImpl.getMap().get(id);
+
+                if ((System.currentTimeMillis() - time) >= Utility.calculateDelay(unit, delayInSeconds)) {
+                    DataImpl.getMap().put(id, System.currentTimeMillis());
+                    return action;
                 } else {
-                    channel.sendMessage(whileDelayErrorMessage).queue();
+                    if (delayMessage == null) {
+                        DecimalFormat df = new DecimalFormat("0.00");
+                        channel.sendMessage(member.getEffectiveName() + ", you must wait "
+                                + df.format((Utility.calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛").queue();
+                    } else {
+                        return delayMessage;
+                    }
                 }
+            } else {
+                DataImpl.getMap().put(id, System.currentTimeMillis());
+                return action;
             }
-        } else {
-            DataImpl.getMap().put(id, System.currentTimeMillis());
-            channel.sendMessageEmbeds(content.build()).queue();
+        } catch (NullPointerException e) {
+            logger.error("The Reply Callback Action, which you are specifying, equals null.", e);
         }
+
+        return delayMessage;
     }
 
     /**
-     * This works like a normal embedded Message sending, but with more given options and a delay between using the command.
+     * This works like a normal Message sending, but with more given options and a delay between using this.
      * <br>
      * You must specify a delay to time out a command. (the long delayInSeconds <b>must not equal to 0</b>. If this
-     * is true a {@link IllegalArgumentException IllegalArgumentException} will be thrown)
+     * is true a {@link IllegalArgumentException IllegalArgumentException} will be thrown).
+     * (The same is applicable for numbers under 0)
      * <br>
-     * You also can specify a delay error message embed, which will be sent if you are under a delay. (if whileDelayErrorMessage
-     * equals null, there will be sent a default error message embed)
-     * <br>
-     * Option you can use a specified Time Unit like {@link TimeUnit#MINUTES minutes}, {@link TimeUnit#HOURS hours} or
-     * even {@link TimeUnit#DAYS days} (if Time Unit equals null, there will be used a default Time Unit: {@link TimeUnit#SECONDS TimeUnit.SECONDS})
+     * You also can specify a delay message, which will be sent if you are under a delay. (if delayMessage
+     * equals null, there will be sent a default error message)
      *
-     * @param content                The message embed content
-     * @param delayInSeconds         The delay for the command to execute in seconds
-     * @param whileDelayErrorMessage The error message embed, which should appear, if the member has not yet waited for the delay
-     * @param unit                   The Time Unit, which you use for specifying the type of time for the delay
+     * @param action         The {@link ReplyCallbackAction Reply Callback Action}, which should be used
+     * @param delayInSeconds The delay for the executing command in seconds
+     * @param delayMessage   The error message, which should appear, if the member has not waited for the delay yet
+     * @return The specified {@link MessageAction Message Actions}
      */
-    public void sendTimeoutedMessageEmbeds(@Nonnull EmbedBuilder content, long delayInSeconds, @Nullable EmbedBuilder whileDelayErrorMessage,
-                                           @Nullable TimeUnit unit) {
-        if (content == null) {
-            logger.error("The Message Embed you specified equals null", new NullPointerException());
-        }
-
+    @NotNull
+    public ReplyCallbackAction replyTimeoutedMessage(@NotNull ReplyCallbackAction action, long delayInSeconds, @Nullable ReplyCallbackAction delayMessage) {
         if (delayInSeconds == 0) {
-            logger.error("The Time you specified is 0, so it makes no sense that you choose a Timeouted Message", new IllegalArgumentException());
+            logger.error("The Time, which you are specifying, equals 0, so it makes no sense that you chose a Timeouted Message.", new IllegalArgumentException());
         }
 
-        long id = member.getIdLong();
-        if (DataImpl.getMap().containsKey(id)) {
-            long time = DataImpl.getMap().get(id);
+        if (delayInSeconds < 0) {
+            logger.error("The Time, which you are specifying can not be under 0.", new IllegalArgumentException());
+        }
 
-            if ((System.currentTimeMillis() - time) >= Utility.calculateDelay(unit, delayInSeconds)) {
-                DataImpl.getMap().put(id, System.currentTimeMillis());
-                channel.sendMessageEmbeds(content.build()).queue();
-            } else {
-                if (whileDelayErrorMessage == null) {
-                    DecimalFormat df = new DecimalFormat("0.00");
-                    channel.sendMessage(member.getEffectiveName() + ", you must wait "
-                            + df.format((Utility.calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛").queue();
+        try {
+            long id = member.getIdLong();
+            long time;
+            if (DataImpl.getMap().containsKey(id)) {
+                time = DataImpl.getMap().get(id);
+
+                if ((System.currentTimeMillis() - time) >= Utility.calculateDelay(null, delayInSeconds)) {
+                    DataImpl.getMap().put(id, System.currentTimeMillis());
+                    return action;
                 } else {
-                    channel.sendMessageEmbeds(whileDelayErrorMessage.build()).queue();
+                    if (delayMessage == null) {
+                        DecimalFormat df = new DecimalFormat("0.00");
+                        channel.sendMessage(member.getEffectiveName() + ", you must wait "
+                                + df.format((Utility.calculateDelay(null, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛").queue();
+                    } else {
+                        return delayMessage;
+                    }
                 }
+            } else {
+                DataImpl.getMap().put(id, System.currentTimeMillis());
+                return action;
             }
-        } else {
-            DataImpl.getMap().put(id, System.currentTimeMillis());
-            channel.sendMessageEmbeds(content.build()).queue();
+        } catch (NullPointerException e) {
+            logger.error("The Reply Callback Action, which you are specifying, equals null.", e);
         }
+
+        return delayMessage;
     }
 }
