@@ -72,6 +72,7 @@ public class GuildTargetMember {
      * always will be <b>null</b>.
      *
      * @param userEvent The {@link UserContextInteractionEvent User Context Interaction Event}, which should be initialized
+     * @return A <b>new</b> {@link GuildTargetMember Guild Target Member} instance
      */
     public static GuildTargetMember set(UserContextInteractionEvent userEvent) {
         return new GuildTargetMember(userEvent);
@@ -84,6 +85,7 @@ public class GuildTargetMember {
      * always will be <b>null</b>.
      *
      * @param messageEvent The {@link MessageContextInteractionEvent  Message Context Interaction Event}, which should be initialized
+     * @return A <b>new</b> {@link GuildTargetMember Guild Target Member} instance
      */
     public static GuildTargetMember set(MessageContextInteractionEvent messageEvent) {
         return new GuildTargetMember(messageEvent);
