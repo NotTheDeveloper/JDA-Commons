@@ -19,7 +19,6 @@ import dev.blocky.library.jda.enums.SafetyClear;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.TextChannel;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,28 +30,27 @@ import java.util.concurrent.TimeUnit;
  * This is a class, which has many utility methods in it.
  *
  * @author BlockyDotJar
- * @version v1.0.0
+ * @version v1.0.1
  * @since v1.0.0
  */
 public class Utility {
 
     /**
-     * Constructs a <b>new</b> {@link Utility Utility}
+     * Constructs a <b>new</b> {@link Utility Utility}.
      * <br>
-     * This is a private constructor, because it should not be accessed for other classes
+     * This is a private constructor, because it should not be accessed for other classes.
      */
     protected Utility() {
     }
 
     /**
-     * Checks, which {@link SafetyClear Safety Clear} {@link Enum enum} is given. (if clear equals null, the
-     * {@link SafetyClear Safety Clear} {@link Enum enum}  will be set to {@link SafetyClear#NONE SafetyClear.NONE})
+     * Checks, which {@link SafetyClear Safety Clear} enum is given. (if clear equals null, the
+     * {@link SafetyClear Safety Clear} enum  will be set to {@link SafetyClear#NONE SafetyClear#NONE}).
      *
      * @param clear   The {@link SafetyClear Safety Clear} option, which helps for specifying different message types, which will not be deleted
-     * @param channel The {@link TextChannel Text Channel}, which
-     *                should be initialized.
+     * @param channel The {@link TextChannel Text Channel}, which should be initialized.
      * @param amount  The amount of messages to delete
-     * @return {@link List List} of futures representing all deletion task
+     * @return List of futures representing all deletion task
      */
     @Nullable
     protected static List<Message> checkClearSafety(@Nullable SafetyClear clear, @NotNull TextChannel channel, int amount) {
@@ -99,14 +97,13 @@ public class Utility {
     }
 
     /**
-     * Checks, which {@link SafetyClear Safety Clear} {@link Enum enum} is given. (if clear equals null, the
-     * {@link SafetyClear Safety Clear} {@link Enum enum}  will be set to {@link SafetyClear#NONE SafetyClear.NONE})
+     * Checks, which {@link SafetyClear Safety Clear} enum is given. (if clear equals null, the
+     * {@link SafetyClear Safety Clear} enum  will be set to {@link SafetyClear#NONE SafetyClear#NONE}).
      *
      * @param clear   The {@link SafetyClear Safety Clear} option, which helps for specifying different message types, which will not be deleted
-     * @param channel The {@link MessageChannel Message Channel}, which
-     *                should be initialized.
+     * @param channel The {@link MessageChannel Message Channel}, which  should be initialized.
      * @param amount  The amount of messages to delete
-     * @return {@link List List} of futures representing all deletion task
+     * @return List of futures representing all deletion task
      */
     @Nullable
     protected static List<Message> checkClearSafety(@Nullable SafetyClear clear, @NotNull MessageChannel channel, int amount) {
@@ -153,13 +150,12 @@ public class Utility {
     }
 
     /**
-     * Checks, which {@link SafetyClear Safety Clear} {@link Enum enum} is given. (if clear equals null, the
-     * {@link SafetyClear Safety Clear} {@link Enum enum} will be set to {@link SafetyClear#NONE SafetyClear.NONE})
+     * Checks, which {@link SafetyClear Safety Clear} enum is given. (if clear equals null, the
+     * {@link SafetyClear Safety Clear} enum will be set to {@link SafetyClear#NONE SafetyClear#NONE}).
      *
      * @param clear   The {@link SafetyClear Safety Clear} option, which helps for specifying different message types, which will not be deleted
-     * @param channel The {@link TextChannel Text Channel}, which
-     *                should be initialized.
-     * @return {@link List List} of futures representing all deletion task
+     * @param channel The {@link TextChannel Text Channel}, which should be initialized.
+     * @return List of futures representing all deletion task
      */
     @Nullable
     protected static List<Message> checkChannelClearSafety(@Nullable SafetyClear clear, @NotNull TextChannel channel) {
@@ -202,13 +198,12 @@ public class Utility {
     }
 
     /**
-     * Checks, which {@link SafetyClear Safety Clear} {@link Enum enum} is given. (if clear equals null, the
-     * {@link SafetyClear Safety Clear} {@link Enum enum} will be set to {@link SafetyClear#NONE SafetyClear.NONE})
+     * Checks, which {@link SafetyClear Safety Clear} enum is given. (if clear equals null, the
+     * {@link SafetyClear Safety Clear} enum will be set to {@link SafetyClear#NONE SafetyClear#NONE}).
      *
      * @param clear   The {@link SafetyClear Safety Clear} option, which helps for specifying different message types, which will not be deleted
-     * @param channel The {@link MessageChannel Message Channel}, which
-     *                should be initialized.
-     * @return {@link List List} of futures representing all deletion task
+     * @param channel The {@link MessageChannel Message Channel}, which should be initialized.
+     * @return List of futures representing all deletion task
      */
     @Nullable
     protected static List<Message> checkChannelClearSafety(@Nullable SafetyClear clear, @NotNull MessageChannel channel) {
@@ -251,12 +246,12 @@ public class Utility {
     }
 
     /**
-     * Calculates the delay, depending on which {@link TimeUnit Time Unit} is given
+     * Calculates the delay, depending on which {@link TimeUnit Time Unit} is specified.
      *
-     * @param unit           The {@link TimeUnit TimeUnit}, which should be used for calculating each time (if unit equals null the
-     *                       default {@link TimeUnit TimeUnit} will bes used [{@link TimeUnit#SECONDS TimeUnit.SECONDS}])
+     * @param unit           The {@link TimeUnit Time Unit}, which should be used for calculating each time (if {@link TimeUnit Time Unit} equals null the
+     *                       default {@link TimeUnit Time Unit} will be used [{@link TimeUnit#SECONDS TimeUnit#SECONDS}])
      * @param delayInSeconds The delay in seconds which should be converted
-     * @return The delay calculated to the specified {@link TimeUnit TimeUnit}
+     * @return The delay calculated to the specified {@link TimeUnit Time Unit}
      */
     protected static long calculateDelay(@Nullable TimeUnit unit, long delayInSeconds) {
         if (unit == null) {

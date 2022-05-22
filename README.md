@@ -44,11 +44,7 @@ If you need a bot, use a bot account from the [Application Dashboard](https://di
 
 There is not much to write about introducing you to this lib (at the moment), because this is only an extension to the original lib, but you should read [the introduction to JDA](https://github.com/DV8FromTheWorld/JDA#creating-the-jda-object).
 
-**Creating a Common Client:**
-
-```java
-CommonsClient client = CommonsClient.Builder.getCommonsClient();
-```
+[Click here](https://github.com/BlockyDotJar/JDA-Commons/wiki/Setup-JDA-C) to get to the wiki, where you can find, how you setup JDA-C.
 
 ## Download
 
@@ -59,6 +55,27 @@ Latest Release: [GitHub Release](https://github.com/BlockyDotJar/JDA-Commons/rel
 Be sure to replace the **`${VERSION}`** key below with the one of the versions shown above!
 
 **Maven**
+
+First you should create a `settings.xml` and add this to it: <br>
+Be sure to replace the **`GITHUB_USERNAME`** key below with your github username and **`TOKEN`** with a [Github token](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)!
+
+```xml
+<servers>
+    <server>
+        <id>github</id>
+        <username>GITHUB_USERNAME</username>
+        <password>TOKEN</password>
+    </server>
+</servers>
+```
+
+```xml
+<repository>
+   <id>github</id>
+   <name>GitHub BlockyDotJar Apache Maven Packages</name>
+   <url>https://maven.pkg.github.com/BlockyDotJar/JDA-Commons</url>
+</repository>
+```
 
 ```xml
   <dependency>
@@ -93,7 +110,10 @@ There is a guide for logback-classic available in the JDA wiki: [Logging Setup](
 ## Documentation
 
 Docs can be found on [github.io](https://BlockyDotJar.github.io/JDA-Commons).
-<br>A simple Wiki can also be found in this repository's [Wiki section](https://github.com/BlockyDotJar/JDA-Commons/wiki)
+<br>
+A simple Wiki can also be found in this repository's [Wiki section](https://github.com/BlockyDotJar/JDA-Commons/wiki)
+<br>
+A simple Wiki about JDA can also be found in whose repository's [Wiki section](https://github.com/DV8FromTheWorld/JDA/wiki)
 
 ### Annotations
 
@@ -116,12 +136,11 @@ the Discord API.
 
 ## Getting Help
 
-For general troubleshooting you can visit our wiki [Troubleshooting](https://github.com/BlockyDotJar/JDA-Commons/wiki) and [FAQ](https://github.com/DV8FromTheWorld/JDA/wiki/10%29-FAQ).
+For general troubleshooting you can visit our wiki [Troubleshooting](https://github.com/DV8FromTheWorld/JDA/wiki/19%29-Troubleshooting) and [FAQ](https://github.com/DV8FromTheWorld/JDA/wiki/10%29-FAQ).
 <br>If you need help, or just want to talk with the JDA-C or other Devs, you can join the [Support Server][discord-invite].
 
-For guides and setup help you can also take a look at the [wiki](https://github.com/DV8FromTheWorld/JDA/wiki)
-<br>Especially interesting are the [Getting Started](https://github.com/DV8FromTheWorld/JDA/wiki/3%29-Getting-Started)
-and [Setup](https://github.com/DV8FromTheWorld/JDA/wiki/2%29-Setup) Pages.
+For guides and setup help you can also take a look at the [JDA wiki](https://github.com/DV8FromTheWorld/JDA/wiki) or [our wiki](https://github.com/BlockyDotJar/JDA-Commons/wiki)
+<br>Especially interesting are the [Getting Started](https://github.com/DV8FromTheWorld/JDA/wiki/3%29-Getting-Started), the [JDA Setup](https://github.com/DV8FromTheWorld/JDA/wiki/2%29-Setup) and the [JDA-C Setup](https://github.com/BlockyDotJar/JDA-Commons/wiki/Setup-JDA-C) Pages.
 
 ## Third Party Recommendations
 
@@ -206,13 +225,13 @@ This project requires **Java 8+**
   * Version: **v1.2.11**
   * [Github](https://github.com/qos-ch/logback)
 
-* jsr305
-  * Version: **v3.0.2** 
-  * [Github](https://github.com/findbugsproject/findbugs)
-
 * trove4j
   * Version: **v3.0.3**
   * [Bitbucket](https://bitbucket.org/trove4j/trove)
+
+* json
+  * Version: **v20220320** 
+  * [Github](https://github.com/stleary/JSON-java)
 
 These are only the libraries, which we have in our [pom.xml](https://github.com/BlockyDotJar/JDA-Commons/blob/main/pom.xml), but we are using [all libraries](https://github.com/DV8FromTheWorld/JDA#dependencies), which the original JDA uses too.
 

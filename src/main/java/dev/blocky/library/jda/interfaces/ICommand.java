@@ -19,23 +19,21 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * A simple Command Interface, which you can use to easily program message commands.
+ * A simple command interface, which you can use to easily program message commands.
  *
  * @author BlockyDotJar
- * @version v2.0.0
+ * @version v2.0.1
  * @since v1.0.0-alpha.3
  */
 public interface ICommand {
 
     /**
-     * An interface, which you can use to easily program message commands.
-     *
+     *  A simple command interface, which you can use to easily program message commands.
      * <br>
-     * This contains a
-     * <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/main/java/dev/blocky/library/testzone/CommandManager.java">Command Manager</a>.
+     * This contains a {@link dev.blocky.library.testzone.CommandManager Command Manager}.
      *
      * @param event The {@link MessageReceivedEvent Message Received Event} for performing a command
-     * @param args  An {@link java.lang.reflect.Array Array} of Strings for performing a command
+     * @param args  An array of strings for performing a command
      */
     void onCommand(@NotNull MessageReceivedEvent event, @NotNull String[] args);
 }

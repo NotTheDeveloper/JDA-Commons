@@ -32,16 +32,15 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
 /**
- * This is a class, which manages default message commands
+ * This is a class, which manages default {@link net.dv8tion.jda.api.entities.Message message} commands.
  *
  * @author BlockyDotJar
- * @version v2.0.0
+ * @version v2.0.1
  * @since v1.0.0-alpha.3
  */
 public class CommandManager extends ListenerAdapter {
-    private static ConcurrentHashMap<String, ICommand> commands;
-
     private static final Logger logger = LoggerFactory.getLogger(CommandManager.class);
+    private static ConcurrentHashMap<String, ICommand> commands;
 
     @Override
     public void onReady(@NotNull ReadyEvent event) {
@@ -54,21 +53,24 @@ public class CommandManager extends ListenerAdapter {
     }
 
     /**
-     * Constructs a <b>new</b> {@link CommandManager Command Manager}
+     * Constructs a <b>new</b> {@link CommandManager Command Manager}.
      */
     public CommandManager() {
         commands = new ConcurrentHashMap<>();
+
+        /*
+         * Here you can import your commands
+         */
 
         commands.put("hello-world", new HelloWorldCommand());
     }
 
     /**
-     * Checks if {@link ICommand the Command
-     * Interface} equals to null or not
+     * Checks if {@link ICommand the command interface} equals null.
      *
-     * @param command The {@link String String} of the command
-     * @param event   The {@link MessageReceivedEvent MessageReceivedEvent}, which should used for the commands
-     * @param args    The {@link java.lang.reflect.Array Array} of Strings, which should be initialized
+     * @param command The string of the command
+     * @param event   The {@link MessageReceivedEvent Message Received Event}, which should used for the commands
+     * @param args    The array of strings
      * @return <b>true -</b> If {@link ICommand the Command Interface} does not equal to null <br>
      * <b>false -</b> If {@link ICommand the Command Interface} equals to null
      */

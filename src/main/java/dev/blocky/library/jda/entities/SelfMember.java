@@ -1,12 +1,12 @@
 /**
  * Copyright 2022 Dominic (aka. BlockyDotJar)
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,16 +17,20 @@ package dev.blocky.library.jda.entities;
 
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Objects;
+
 /**
  * Represents the Self Member (aka. the bot itself) of a specific {@link Guild Guild}.
  *
  * @author BlockyDotJar
- * @version v1.0.0
+ * @version v1.1.0
  * @since v1.0.1
  */
 public class SelfMember {
@@ -51,8 +55,25 @@ public class SelfMember {
     private SelfMember(@NotNull Guild guild) {
         this.guild = guild;
 
-        if (guild == null) {
-            logger.error("The Guild you specify equals null", new NullPointerException());
+        if (JDALogger.SLF4J_ENABLED) {
+            if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES) && !guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS)) {
+                logger.warn("The GUILD_MESSAGES and GUILD_MEMBERS Intents are not enabled, which means, that some stuff could not work.");
+                return;
+            }
+
+            if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES)) {
+                logger.warn("The GUILD_MESSAGES Intent is not enabled, which means, that some stuff could not work.");
+                return;
+            }
+
+            if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS)) {
+                logger.warn("The GUILD_MEMBERS Intent is not enabled, which means, that some stuff could not work.");
+                return;
+            }
+
+            if (guild == null) {
+                logger.error("The Guild you specify equals null.", new NullPointerException());
+            }
         }
     }
 
@@ -87,5 +108,32 @@ public class SelfMember {
      */
     public boolean isPinged(@NotNull Message message) {
         return message.getContentDisplay().startsWith("<@" + guild.getSelfMember().getId() + ">");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        SelfMember that = (SelfMember) o;
+
+        return guild.equals(that.getGuild());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(guild);
+    }
+
+    @Override
+    public String toString() {
+        return "SelfMember{" +
+                "guild=" + guild +
+                '}';
     }
 }

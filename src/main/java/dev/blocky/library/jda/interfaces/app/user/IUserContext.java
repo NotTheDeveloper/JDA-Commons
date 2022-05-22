@@ -19,19 +19,17 @@ import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEven
 import org.jetbrains.annotations.NotNull;
 
 /**
- * A simple User Context Menu Interface, which you can use to easily program some user context menus.
+ * A simple user context menu interface, which you can use to easily program some user context menus.
  *
  * @author BlockyDotJar
- * @version v1.0.0
+ * @version v1.0.1
  * @since v1.0.0
  */
 public interface IUserContext {
 
     /**
-     * An interface, which you can use to easily program some user context menus.
-     *
+     * A simple user context menu interface, which you can use to easily program some user context menus.
      * <br>
-     * <p>
      * This contains a
      * <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/main/java/dev/blocky/library/testzone/ApplicationCommandManager.java">Application Command Manager</a>.
      *

@@ -1,13 +1,13 @@
 /**
- * Root package of the JDA-Common User Context Command Interfaces.
+ * Root package of the JDA-Common user context command interfaces.
  *
  * <br>
- * From here you can navigate to the User Context Command Interfaces, which are made by this library.
+ * From here you can navigate to the user context command interfaces.
  * <br>
  *
  * <ul>
- * <li>{@link dev.blocky.library.jda.interfaces.app.user.IUserContext User Context Command Interface} <br>
- * A simple User Context Menu Interface, which you can use to easily program some user context menus. </li>
+ * <li>{@link dev.blocky.library.jda.interfaces.app.user.IUserContext Default User Context Interface} <br>
+ * A simple user context menu interface, which you can use to easily program some user context menus. </li>
  * </ul>
  */
 package dev.blocky.library.jda.interfaces.app.user;

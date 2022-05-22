@@ -1,13 +1,13 @@
 /**
- * Root package of the JDA-Common Slash Command Interfaces.
+ * Root package of the JDA-Common slash command interfaces.
  *
  * <br>
- * From here you can navigate to the Slash Command Interfaces, which are made by this library.
+ * From here you can navigate to the slash command interfaces.
  * <br>
  *
  * <ul>
- * <li>{@link dev.blocky.library.jda.interfaces.app.slash.ISlashCommand Slash Command Interface} <br>
- * A simple Slash Command Interface, with which you can use to easily program your bot. </li>
+ * <li>{@link dev.blocky.library.jda.interfaces.app.slash.ISlashCommand Default Slash Command Interface} <br>
+ * A simple slash command interface, which you can use to easily program some slash commands. </li>
  * </ul>
  */
 package dev.blocky.library.jda.interfaces.app.slash;

@@ -1,13 +1,13 @@
 /**
- * Root package of the JDA-Common Command Interfaces.
+ * Root package of the JDA-Common command interfaces.
  *
  * <br>
- * From here you can navigate to the Command Interfaces, which are made by this library.
+ * From here you can navigate to the Command Interfaces.
  * <br>
  *
  * <ul>
- * <li>{@link dev.blocky.library.jda.interfaces.ICommand Command Interface} <br>
- * A simple Command Interface, which you can use to easily program message commands. </li>
+ * <li>{@link dev.blocky.library.jda.interfaces.ICommand Default Command Interface} <br>
+ *  A simple command interface, which you can use to easily program message commands. </li>
  * </ul>
  */
 package dev.blocky.library.jda.interfaces;

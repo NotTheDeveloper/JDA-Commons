@@ -2,7 +2,7 @@
  * Root package of the JDA-Common command tests.
  *
  * <br>
- * From here you can navigate to all command tests, which are made by this library.
+ * From here you can navigate to all command tests.
  * <br>
  *
  * <ul>

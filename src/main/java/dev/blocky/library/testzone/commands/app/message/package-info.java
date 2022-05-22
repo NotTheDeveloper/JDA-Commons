@@ -2,12 +2,12 @@
  * Root package of the JDA-Common message context command tests.
  *
  * <br>
- * From here you can navigate to all message context command tests, which are made by this library.
+ * From here you can navigate to all message context command tests.
  * <br>
  *
  * <ul>
- * <li>{@link dev.blocky.library.testzone.commands.app.message.IDMessageContextCommand ID Message Context Command} <br>
- * This is a simple id message context command.</li>
+ * <li>{@link dev.blocky.library.testzone.commands.app.message.RickrollMessageContextCommand Rickroll Command} <br>
+ * This is a simple command, which definitely is not going to rickroll you ;D</li>
  * </ul>
  */
 package dev.blocky.library.testzone.commands.app.message;

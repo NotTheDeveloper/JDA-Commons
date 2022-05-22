@@ -1,12 +1,12 @@
 /**
  * Copyright 2022 Dominic (aka. BlockyDotJar)
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,12 +17,15 @@ package dev.blocky.library.jda.entities;
 
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Represents a Guild-specific {@link net.dv8tion.jda.api.entities.User User}.
@@ -53,8 +56,15 @@ public class GuildMember {
     private GuildMember(@NotNull Member member) {
         this.member = member;
 
-        if (member == null) {
-            logger.error("The Member you specify equals null", new NullPointerException());
+        if (JDALogger.SLF4J_ENABLED) {
+            if (!member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS)) {
+                logger.warn("The GUILD_MEMBERS Intent is not enabled, which means, that some stuff could not work.");
+                return;
+            }
+
+            if (member == null) {
+                logger.error("The Member you specify equals null.", new NullPointerException());
+            }
         }
     }
 
@@ -157,5 +167,32 @@ public class GuildMember {
      */
     public boolean isServerBooster() {
         return member.getTimeBoosted() != null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        GuildMember that = (GuildMember) o;
+
+        return Objects.equals(member, that.member);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(member);
+    }
+
+    @Override
+    public String toString() {
+        return "GuildMember{" +
+                "member=" + member +
+                '}';
     }
 }

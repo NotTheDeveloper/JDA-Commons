@@ -32,22 +32,21 @@ import java.io.InputStreamReader;
 import java.util.EnumSet;
 
 /**
- * This is the Main class of the Discord Bot
+ * This is the main class of the Discord bot.
  *
  * @author BlockyDotJar
- * @version v2.0.0
+ * @version v2.0.1
  * @since v1.0.0-alpha.1
  */
 public class DiscordBotExample {
+    private static final Logger logger = LoggerFactory.getLogger(DiscordBotExample.class);
+    private static final CommandManager cmdMan = new CommandManager();
     private static JDA jda;
 
-    private static final CommandManager cmdMan = new CommandManager();
-    private static final Logger logger = LoggerFactory.getLogger(DiscordBotExample.class);
-
     /**
-     * This is the main method of the discord bot
+     * This is the main method of the Discord bot.
      *
-     * @param args An {@link java.lang.reflect.Array Array} of String arguments
+     * @param args An {@link java.lang.reflect.Array array} of string arguments
      * @throws LoginException If an login failure occurs
      */
     public static void main(@NotNull String[] args) throws LoginException {
@@ -55,37 +54,42 @@ public class DiscordBotExample {
     }
 
     /**
-     * Constructs a new discord bot
+     * Constructs a <b>new</b> {@link DiscordBotExample Discord Bot Example}.
      *
      * @throws LoginException If an login failure occurs
      */
     public DiscordBotExample() throws LoginException {
         jda = JDABuilder
-                .createDefault("BOT_TOKEN",
+                .createDefault("BOT_TOKEN", // Replace BOT_TOKEN with the token of your Bot
                         EnumSet.of(
+                                // All needed intents
                                 GatewayIntent.GUILD_MESSAGES,
                                 GatewayIntent.GUILD_MEMBERS
                         )
                 )
                 .disableCache(
                         EnumSet.of(
+                                // Disables all not needed cache flags
                                 CacheFlag.CLIENT_STATUS,
                                 CacheFlag.ACTIVITY,
                                 CacheFlag.EMOTE,
                                 CacheFlag.VOICE_STATE
                         )
                 )
+                // Policy which decides whether a member (and respective user) should be kept in cache
                 .setMemberCachePolicy(MemberCachePolicy.ALL)
+                // Adds all provided listeners to the list of listeners that will be used to populate the JDA object
                 .addEventListeners(cmdMan)
                 .build();
+        // Adds all provided listeners to the event-listeners that will be used to handle events
         jda.addEventListener(new ApplicationCommandManager());
 
         shutdown();
     }
 
     /**
-     * Shutdown the System and the jda instance after five seconds, when the exit
-     * command was typed
+     * Shutdowns the system and the {@link DiscordBotExample#jda JDA} instance after five seconds, when the exit
+     * command was typed.
      */
     private static void shutdown() {
         new Thread(() -> {
@@ -102,22 +106,24 @@ public class DiscordBotExample {
                             }
                             Thread.sleep(1000);
                         }
+                        // Sets the Presence of the Bot to OFFLINE
                         jda.getPresence().setStatus(OnlineStatus.OFFLINE);
+                        // Shuts down this JDA instance, closing all its connections.
                         jda.shutdown();
+                        // Terminates the currently running Java Virtual Machine.
                         System.exit(0);
                     }
                 }
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
-        }).start();
+        }).start(); // Causes this thread to begin execution
     }
 
     /**
-     * The {@link JDA JDA} Instance from the
-     * {@link DiscordBotExample Discord Bot Example} class
+     * The {@link JDA JDA} instance from the {@link DiscordBotExample Discord Bot Example} class.
      *
-     * @return {@link DiscordBotExample#jda}
+     * @return {@link DiscordBotExample#jda DiscordBotExample#jda}
      */
     @NotNull
     public static JDA getJDA() {

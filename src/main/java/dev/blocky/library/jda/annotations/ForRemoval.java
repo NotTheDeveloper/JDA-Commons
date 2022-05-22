@@ -21,19 +21,18 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This is an {@link java.lang.annotation.Annotation Annotation} which tells the developers that a method/class should
- * be removed in the future.
+ * This is an annotation, which tells the developers that a method/class should be removed in the future.
  *
  * @author BlockyDotJar
- * @version v1.0.0
+ * @version v1.0.1
  * @since v1.0.0
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE, ElementType.METHOD, ElementType.CONSTRUCTOR})
+@Target({ElementType.TYPE, ElementType.METHOD})
 public @interface ForRemoval {
 
     /**
-     * @return The version in which the deprecated method/class should be removed.
+     * @return The version, in which the deprecated method/class should be removed.
      */
     String deadline();
 }

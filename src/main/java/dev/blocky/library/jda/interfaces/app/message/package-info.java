@@ -1,13 +1,13 @@
 /**
- * Root package of the JDA-Common Message Context Command Interfaces.
+ * Root package of the JDA-Common message context interfaces.
  *
  * <br>
- * From here you can navigate to the Message Context Command Interfaces, which are made by this library.
+ * From here you can navigate to the message context interfaces.
  * <br>
  *
  * <ul>
- * <li>{@link dev.blocky.library.jda.interfaces.app.message.IMessageContext Message Context Command Interface} <br>
- * A simple Message Context Menu Interface, which you can use to easily program some message context menus. </li>
+ * <li>{@link dev.blocky.library.jda.interfaces.app.message.IMessageContext Default Message Context Interface} <br>
+ *  A simple message context menu interface, which you can use to easily program some message context menus. </li>
  * </ul>
  */
 package dev.blocky.library.jda.interfaces.app.message;

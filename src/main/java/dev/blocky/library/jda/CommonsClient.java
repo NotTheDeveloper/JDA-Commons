@@ -20,39 +20,39 @@ import dev.blocky.library.jda.annotations.Deadline;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * This is a Client for the JDA-Commons Library.
+ * This is a client for the JDA-Commons library.
  * <br>
  * The exact use is still unknown.
  *
  * @author BlockyDotJar
- * @version v1.0.0-alpha.1
+ * @version v1.0.0-alpha.2
  * @since v1.0.0
  */
 @Deadline(version = "v1.5.0")
 public final class CommonsClient {
 
     /**
-     * Constructs a <br>new</b> {@link CommonsClient Commons Client}
+     * Constructs a <br>new</b> {@link CommonsClient Commons Client}.
      * <br>
-     * This is a private constructor, because it should not be accessed for other classes
+     * This is a private constructor, because it should not be accessed for other classes.
      */
     private CommonsClient() {
     }
 
     /**
-     * This is the Builder for the {@link CommonsClient Commons Client}
+     * This is the Builder for the {@link CommonsClient Commons Client}.
      *
      * @author BlockyDotJar
-     * @version v1.0.0-alpha.1
+     * @version v1.0.0-alpha.2
      * @since v1.0.0
      */
     @Deadline(version = "v1.6.0")
     public static class Builder {
 
         /**
-         * Represents a <b>new</b> {@link CommonsClient Commons Client} instance
+         * Represents a <b>new</b> {@link CommonsClient Commons Client} instance.
          *
-         * @return A <b>new</b> {@link CommonsClient Commons Client} instance
+         * @return A <b>new</b> {@link CommonsClient Commons Client} instance.
          */
         @NotNull
         public static CommonsClient getCommonsClient() {

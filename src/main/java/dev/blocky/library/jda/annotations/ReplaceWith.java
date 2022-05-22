@@ -21,19 +21,18 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This is an {@link java.lang.annotation.Annotation Annotation} which tells the developers with which method/class a
- * deprecated method/class should be replaced.
+ * This is an annotation, which tells the developers, with which method/class a deprecated method/class should be replaced.
  *
  * @author BlockyDotJar
- * @version v2.0.0
+ * @version v1.0.1
  * @since v1.0.0-alpha.1
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE, ElementType.METHOD, ElementType.CONSTRUCTOR})
+@Target({ElementType.TYPE, ElementType.METHOD})
 public @interface ReplaceWith {
 
     /**
-     * @return The method/class which should used instead.
+     * @return The method/class, which should used instead.
      */
     String method();
 }

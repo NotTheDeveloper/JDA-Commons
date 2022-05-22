@@ -16,14 +16,16 @@
 package dev.blocky.library.jda.entities;
 
 import dev.blocky.library.jda.Utility;
-import dev.blocky.library.jda.entities.impl.DataImpl;
 import dev.blocky.library.jda.enums.SafetyClear;
+import dev.blocky.library.jda.impl.DataImpl;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.requests.restaction.MessageAction;
 import net.dv8tion.jda.api.requests.restaction.interactions.ReplyCallbackAction;
+import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -31,6 +33,7 @@ import org.slf4j.LoggerFactory;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
@@ -40,7 +43,7 @@ import java.util.stream.Collectors;
  * Represents a Discord Text {@link net.dv8tion.jda.api.entities.GuildChannel Guild Channel}.
  *
  * @author BlockyDotJar
- * @version v2.0.0
+ * @version v2.1.0
  * @since v1.0.0-alpha.1
  */
 public class GuildTextChannel extends Utility {
@@ -68,12 +71,29 @@ public class GuildTextChannel extends Utility {
         this.channel = channel;
         this.member = member;
 
-        if (channel == null) {
-            logger.error("The Text Channel you specify equals null", new NullPointerException());
-        }
+        if (JDALogger.SLF4J_ENABLED) {
+            if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES) && !member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS)) {
+                logger.warn("The GUILD_MESSAGES and GUILD_MEMBERS Intents are not enabled, which means, that some stuff could not work.");
+                return;
+            }
 
-        if (member == null) {
-            logger.error("The Member you specify equals null", new NullPointerException());
+            if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES)) {
+                logger.warn("The GUILD_MESSAGES Intent is not enabled, which means, that some stuff could not work.");
+                return;
+            }
+
+            if (!member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS)) {
+                logger.warn("The GUILD_MEMBERS Intent is not enabled, which means, that some stuff could not work.");
+                return;
+            }
+
+            if (channel == null) {
+                logger.error("The Text Channel you specify equals null.", new NullPointerException());
+            }
+
+            if (member == null) {
+                logger.error("The Member you specify equals null.", new NullPointerException());
+            }
         }
     }
 
@@ -87,8 +107,15 @@ public class GuildTextChannel extends Utility {
     private GuildTextChannel(@NotNull TextChannel channel) {
         this.channel = channel;
 
-        if (channel == null) {
-            logger.error("The Text Channel you specify equals null", new NullPointerException());
+        if (JDALogger.SLF4J_ENABLED) {
+            if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES)) {
+                logger.warn("The GUILD_MESSAGES Intent is not enabled, which means, that some stuff could not work.");
+                return;
+            }
+
+            if (channel == null) {
+                logger.error("The Text Channel you specify equals null.", new NullPointerException());
+            }
         }
     }
 
@@ -529,7 +556,7 @@ public class GuildTextChannel extends Utility {
      */
     @Nullable
     public List<CompletableFuture<Void>> purgeChannel(@Nullable SafetyClear clear) {
-        return channel.purgeMessages(Utility.checkChannelClearSafety(null, channel));
+        return channel.purgeMessages(checkChannelClearSafety(clear, channel));
     }
 
     /**
@@ -541,7 +568,7 @@ public class GuildTextChannel extends Utility {
      */
     @NotNull
     public List<CompletableFuture<Void>> purgeChannel() {
-        return channel.purgeMessages(Utility.checkChannelClearSafety(null, channel));
+        return channel.purgeMessages(checkChannelClearSafety(null, channel));
     }
 
     /**
@@ -611,23 +638,23 @@ public class GuildTextChannel extends Utility {
         try {
             long id = member.getIdLong();
             long time;
-            if (DataImpl.getMap().containsKey(id)) {
-                time = DataImpl.getMap().get(id);
+            if (DataImpl.getHashMap().containsKey(id)) {
+                time = DataImpl.getHashMap().get(id);
 
-                if ((System.currentTimeMillis() - time) >= Utility.calculateDelay(unit, delayInSeconds)) {
-                    DataImpl.getMap().put(id, System.currentTimeMillis());
+                if ((System.currentTimeMillis() - time) >= calculateDelay(unit, delayInSeconds)) {
+                    DataImpl.getHashMap().put(id, System.currentTimeMillis());
                     return action;
                 } else {
                     if (delayMessage == null) {
                         DecimalFormat df = new DecimalFormat("0.00");
                         delayMessage = channel.sendMessage(member.getEffectiveName() + ", you must wait "
-                                + df.format((Utility.calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛");
+                                + df.format((calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛");
                     } else {
                         return delayMessage;
                     }
                 }
             } else {
-                DataImpl.getMap().put(id, System.currentTimeMillis());
+                DataImpl.getHashMap().put(id, System.currentTimeMillis());
                 return action;
             }
         } catch (NullPointerException e) {
@@ -665,23 +692,23 @@ public class GuildTextChannel extends Utility {
         try {
             long id = member.getIdLong();
             long time;
-            if (DataImpl.getMap().containsKey(id)) {
-                time = DataImpl.getMap().get(id);
+            if (DataImpl.getHashMap().containsKey(id)) {
+                time = DataImpl.getHashMap().get(id);
 
-                if ((System.currentTimeMillis() - time) >= Utility.calculateDelay(null, delayInSeconds)) {
-                    DataImpl.getMap().put(id, System.currentTimeMillis());
+                if ((System.currentTimeMillis() - time) >= calculateDelay(null, delayInSeconds)) {
+                    DataImpl.getHashMap().put(id, System.currentTimeMillis());
                     return action;
                 } else {
                     if (delayMessage == null) {
                         DecimalFormat df = new DecimalFormat("0.00");
                         delayMessage = channel.sendMessage(member.getEffectiveName() + ", you must wait "
-                                + df.format((Utility.calculateDelay(null, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛");
+                                + df.format((calculateDelay(null, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛");
                     } else {
                         return delayMessage;
                     }
                 }
             } else {
-                DataImpl.getMap().put(id, System.currentTimeMillis());
+                DataImpl.getHashMap().put(id, System.currentTimeMillis());
                 return action;
             }
         } catch (NullPointerException e) {
@@ -725,23 +752,23 @@ public class GuildTextChannel extends Utility {
         try {
             long id = member.getIdLong();
             long time;
-            if (DataImpl.getMap().containsKey(id)) {
-                time = DataImpl.getMap().get(id);
+            if (DataImpl.getHashMap().containsKey(id)) {
+                time = DataImpl.getHashMap().get(id);
 
-                if ((System.currentTimeMillis() - time) >= Utility.calculateDelay(unit, delayInSeconds)) {
-                    DataImpl.getMap().put(id, System.currentTimeMillis());
+                if ((System.currentTimeMillis() - time) >= calculateDelay(unit, delayInSeconds)) {
+                    DataImpl.getHashMap().put(id, System.currentTimeMillis());
                     return action;
                 } else {
                     if (delayMessage == null) {
                         DecimalFormat df = new DecimalFormat("0.00");
                         channel.sendMessage(member.getEffectiveName() + ", you must wait "
-                                + df.format((Utility.calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛").queue();
+                                + df.format((calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛").queue();
                     } else {
                         return delayMessage;
                     }
                 }
             } else {
-                DataImpl.getMap().put(id, System.currentTimeMillis());
+                DataImpl.getHashMap().put(id, System.currentTimeMillis());
                 return action;
             }
         } catch (NullPointerException e) {
@@ -779,23 +806,23 @@ public class GuildTextChannel extends Utility {
         try {
             long id = member.getIdLong();
             long time;
-            if (DataImpl.getMap().containsKey(id)) {
-                time = DataImpl.getMap().get(id);
+            if (DataImpl.getHashMap().containsKey(id)) {
+                time = DataImpl.getHashMap().get(id);
 
-                if ((System.currentTimeMillis() - time) >= Utility.calculateDelay(null, delayInSeconds)) {
-                    DataImpl.getMap().put(id, System.currentTimeMillis());
+                if ((System.currentTimeMillis() - time) >= calculateDelay(null, delayInSeconds)) {
+                    DataImpl.getHashMap().put(id, System.currentTimeMillis());
                     return action;
                 } else {
                     if (delayMessage == null) {
                         DecimalFormat df = new DecimalFormat("0.00");
                         channel.sendMessage(member.getEffectiveName() + ", you must wait "
-                                + df.format((Utility.calculateDelay(null, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛").queue();
+                                + df.format((calculateDelay(null, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛").queue();
                     } else {
                         return delayMessage;
                     }
                 }
             } else {
-                DataImpl.getMap().put(id, System.currentTimeMillis());
+                DataImpl.getHashMap().put(id, System.currentTimeMillis());
                 return action;
             }
         } catch (NullPointerException e) {
@@ -803,5 +830,33 @@ public class GuildTextChannel extends Utility {
         }
 
         return delayMessage;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        GuildTextChannel that = (GuildTextChannel) o;
+
+        return channel.equals(that.getChannel()) && Objects.equals(member, that.getMember());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(channel, member);
+    }
+
+    @Override
+    public String toString() {
+        return "GuildTextChannel{" +
+                "channel=" + channel +
+                ", member=" + member +
+                '}';
     }
 }

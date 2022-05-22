@@ -21,11 +21,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This is an {@link java.lang.annotation.Annotation Annotation} which tells the developers that a
- * method/class/constructor/package is not documented yet.
+ * This is an annotation, which tells the developers that a method/class/constructor/package is not documented yet.
  *
  * @author BlockyDotJar
- * @version v1.0.0
+ * @version v1.0.1
  * @since v1.0.0
  */
 @Retention(RetentionPolicy.RUNTIME)

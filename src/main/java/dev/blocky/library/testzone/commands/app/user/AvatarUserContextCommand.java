@@ -16,20 +16,31 @@
 package dev.blocky.library.testzone.commands.app.user;
 
 import dev.blocky.library.jda.interfaces.app.user.IUserContext;
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent;
 import org.jetbrains.annotations.NotNull;
 
+import java.time.OffsetDateTime;
+
 /**
- * This is a simple avatar user context command
+ * This is a simple avatar user context command.
  *
  * @author BlockyDotJar
- * @version v2.0.0
+ * @version v2.1.0
  * @since v1.0.0
  */
 public class AvatarUserContextCommand implements IUserContext {
 
     @Override
     public void onUserContext(@NotNull UserContextInteractionEvent event) {
-        event.reply(event.getTargetMember().getUser().getAvatarUrl()).queue();
+        EmbedBuilder builder = new EmbedBuilder();
+
+        builder.setTimestamp(OffsetDateTime.now()); // Sets the timestamp to the time, when the message were sent
+        builder.setColor(0x7289dd);
+
+        builder.setTitle("Avatar of " + event.getTargetMember().getUser().getAsTag());
+        builder.setDescription("[Here you can download the avatar](" + event.getTargetMember().getUser().getAvatarUrl() + ")"); // Gets the avatar url of the user, the context menu was used on
+        builder.setImage(event.getTargetMember().getUser().getAvatarUrl());
+        event.replyEmbeds(builder.build()).queue(); // Sends the embed
     }
 }

@@ -1,8 +1,8 @@
 /**
- * Root package of the Main Features.
+ * Root package of the main features.
  *
  * <br>
- * From here you can navigate to the Main Features, which are made by this library.
+ * From here you can navigate to the main features of this library.
  * <br>
  *
  * <ul>
