@@ -15,6 +15,7 @@
  */
 package dev.blocky.library.jda.entities;
 
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.ThreadMember;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -28,155 +29,181 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Represents a {@link net.dv8tion.jda.api.entities.Member Member}, who joined a
- * {@link net.dv8tion.jda.api.entities.ThreadChannel Thread Channel}.
+ * Represents a {@link net.dv8tion.jda.api.entities.Member member}, who joined a
+ * {@link net.dv8tion.jda.api.entities.ThreadChannel thread channel}.
  *
  * @author BlockyDotJar
- * @version v1.0.0
+ * @version v1.1.0
  * @since v1.1.1
  */
-public class GuildThreadMember {
+public class GuildThreadMember
+{
     private static final Logger logger = LoggerFactory.getLogger(GuildThreadMember.class);
     private ThreadMember member;
 
     /**
-     * Constructs a <b>new</b> {@link GuildThreadMember Guild Thread Member}
-     * <br>
-     * This is a private constructor, because it should not be accessed for other classes
+     * Constructs a <b>new</b> {@link GuildThreadMember guild thread member}.
+     * <br> This is a private constructor, because it should not be accessed for other classes.
      */
-    private GuildThreadMember() {
+    private GuildThreadMember()
+    {
     }
 
     /**
-     * Constructs a <b>new</b> {@link GuildThreadMember Guild Thread Member}
-     * <br>
-     * This is a private constructor, because it should not be accessed for other classes
+     * Constructs a <b>new</b> {@link GuildThreadMember guild thread member}.
+     * <br> This is a private constructor, because it should not be accessed for other classes.
      *
-     * @param member The {@link ThreadMember Thread Member}, which should be used to get {@link GuildThreadMember Guild Thread Member}
+     * @param member The {@link ThreadMember thread member}, which should be used to get {@link GuildThreadMember guild thread member}
      */
-    private GuildThreadMember(@NotNull ThreadMember member) {
+    private GuildThreadMember(@NotNull ThreadMember member)
+    {
         this.member = member;
 
-        if (JDALogger.SLF4J_ENABLED) {
-            if (!member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS)) {
-                logger.warn("The GUILD_MEMBERS Intent is not enabled, which means, that some stuff could not work.");
+        if (JDALogger.SLF4J_ENABLED)
+        {
+            if (!member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
+            {
+                logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
                 return;
             }
 
-            if (member == null) {
-                logger.error("The Thread Member you specify equals null.", new NullPointerException());
+            if (member == null)
+            {
+                logger.error("The thread member you specify equals null.", new NullPointerException());
             }
         }
     }
 
     /**
-     * Constructs a <b>new</b> {@link GuildThreadMember Guild Thread Member} instance. If you don't
-     * initialize a {@link ThreadMember Thread Member}, {@link GuildThreadMember Guild Thread Member} always will be <b>null</b>.
+     * Constructs a <b>new</b> {@link GuildThreadMember guild thread member} instance. If you don't
+     * initialize a {@link ThreadMember thread member}, {@link GuildThreadMember guild thread member} always will be <b>null</b>.
      *
-     * @param member The {@link ThreadMember Thread Member}, which should be used to get {@link GuildThreadMember Guild Thread Member}
-     * @return A <b>new</b> {@link GuildThreadMember Guild Thread Member} instance
+     * @param member The {@link ThreadMember thread member}, which should be used to get {@link GuildThreadMember guild thread member}
+     * @return A <b>new</b> {@link GuildThreadMember guild thread member} instance
      */
     @NotNull
-    public static GuildThreadMember set(@Nullable ThreadMember member) {
+    public static GuildThreadMember set(@Nullable ThreadMember member)
+    {
         return new GuildThreadMember(member);
     }
 
     /**
-     * The Author of the {@link net.dv8tion.jda.api.entities.Message Message} received as {@link ThreadMember Thread Member} object.
+     * The author of the {@link net.dv8tion.jda.api.entities.Message message} received as {@link ThreadMember thread member} object.
      *
-     * @return The Author of the {@link net.dv8tion.jda.api.entities.Message Message} as null-able Member object.
+     * @return The author of the {@link net.dv8tion.jda.api.entities.Message message} as null-able member object
      */
     @Nullable
-    public ThreadMember getMember() {
+    public ThreadMember getMember()
+    {
         return member;
     }
 
     /**
-     * Checks if the {@link ThreadMember Thread Member} has the {@link Role Role} with the ID you specified.
+     * Checks if the {@link Role role} with the id you specified, is found on the role board of the {@link Member thread member}.
      *
-     * @param roleId The ID of the {@link Role Role}, which should be checked
-     * @return <b>null</b> If the {@link ThreadMember Thread Member} has not the {@link Role Role}
+     * @param roleId The id of the {@link Role role}, which should be checked
+     * @return
+     * <b>not-null -</b> If the {@link Role role} is found on the role board of the {@link Member thread member}
+     * <br><b>null -</b> If the {@link Role role} is not found on the role board of the {@link Member thread member}
      */
     @Nullable
-    public Role findRoleById(long roleId) {
+    public Role findRoleById(long roleId)
+    {
         List<Role> roles = member.getMember().getRoles();
         return roles.stream().filter(role -> role.getIdLong() == roleId).findFirst().orElse(null);
     }
 
     /**
-     * Checks if the {@link ThreadMember Thread Member} has the {@link Role Role} with the ID you specified.
+     * Checks if the {@link Role role} with the id you specified, is found on the role board of the {@link Member thread member}.
      *
-     * @param roleId The ID of the {@link Role Role}, which should be checked
-     * @return <b>null</b> If the {@link ThreadMember Thread Member} has not the {@link Role Role}
+     * @param roleId The id of the {@link Role role}, which should be checked
+     * @return
+     * <b>not-null -</b> If the {@link Role role} is found on the role board of the {@link Member thread member}
+     * <br><b>null -</b> If the {@link Role role} is not found on the role board of the {@link Member thread member}
      */
     @Nullable
-    public Role findRoleById(@NotNull String roleId) {
+    public Role findRoleById(@NotNull String roleId)
+    {
         List<Role> roles = member.getMember().getRoles();
         return roles.stream().filter(role -> role.getId().equals(roleId)).findFirst().orElse(null);
     }
 
     /**
-     * Checks if the {@link ThreadMember Thread Member} has the {@link Role Role} with the ID you specified.
+     * Checks if the {@link Role role} with the name you specified, is found on the role board of the {@link Member thread member}.
      *
-     * @param roleName The ID of the {@link Role Role}, which should be checked
-     * @return <b>null</b> If the {@link ThreadMember Thread Member} has not the {@link Role Role}
+     * @param roleName The name of the {@link Role role}, which should be checked
+     * @return
+     * <b>not-null -</b> If the {@link Role role} is found on the role board of the {@link Member thread member}
+     * <br><b>null -</b> If the {@link Role role} is not found on the role board of the {@link Member thread member}
      */
     @Nullable
-    public Role findRoleByName(@NotNull String roleName) {
+    public Role findRoleByName(@NotNull String roleName)
+    {
         List<Role> roles = member.getMember().getRoles();
         return roles.stream().filter(role -> role.getName().equals(roleName)).findFirst().orElse(null);
     }
 
     /**
-     * Checks if the {@link ThreadMember Thread Member} has the {@link Role Role} with the ID you specified.
+     * Checks if the {@link Member thread member} has the {@link Role role} with the id you specified.
      *
-     * @param roleId The ID of the {@link Role Role}, which should be checked
-     * @return <b>true</b> If the {@link ThreadMember Thread Member} has the {@link Role Role} <br>
-     * <b>false</b> If the {@link ThreadMember Thread Member} has not the {@link Role Role}
+     * @param roleId The id of the {@link Role role}, which should be checked
+     * @return
+     * <b>true -</b> If the {@link Member thread member} has the {@link Role role}
+     * <br><b>false -</b> If the {@link Member thread member} has not the {@link Role role}
      */
-    public boolean hasRoleWithId(long roleId) {
+    public boolean hasRoleWithId(long roleId)
+    {
         return findRoleById(roleId) != null;
     }
 
     /**
-     * Checks if the {@link ThreadMember Thread Member} has the {@link Role Role} with the ID you specified.
+     * Checks if the {@link Member thread member} has the {@link Role role} with the id you specified.
      *
-     * @param roleId The ID of the {@link Role Role}, which should be checked
-     * @return <b>true</b> If the {@link ThreadMember Thread Member} has the {@link Role Role} <br>
-     * <b>false</b> If the {@link ThreadMember Thread Member} has not the {@link Role Role}
+     * @param roleId The id of the {@link Role role}, which should be checked
+     * @return
+     * <b>true -</b> If the {@link Member thread member} has the {@link Role role}
+     * <br><b>false -</b> If the {@link Member thread member} has not the {@link Role role}
      */
-    public boolean hasRoleWithId(@NotNull String roleId) {
+    public boolean hasRoleWithId(@NotNull String roleId)
+    {
         return findRoleById(roleId) != null;
     }
 
     /**
-     * Checks if the {@link ThreadMember Thread Member} has the {@link Role Role} with the name you specified.
+     * Checks if the {@link Member thread member} has the {@link Role role} with the name you specified.
      *
-     * @param roleName The name of the {@link Role Role}, which should be checked
-     * @return <b>true</b> If the {@link ThreadMember Thread Member} has the {@link Role Role} <br>
-     * <b>false</b> If the {@link ThreadMember Thread Member} has not the {@link Role Role}
+     * @param roleName The name of the {@link Role role}, which should be checked
+     * @return
+     * <b>true -</b> If the {@link Member thread member} has the {@link Role role}
+     * <br><b>false -</b> If the {@link Member thread member} has not the {@link Role role}
      */
-    public boolean hasRoleWithName(@NotNull String roleName) {
+    public boolean hasRoleWithName(@NotNull String roleName)
+    {
         return findRoleByName(roleName) != null;
     }
 
     /**
-     * Checks if a {@link ThreadMember Thread Member} is a Server Booster.
+     * Checks if a {@link Member thread member} is a server booster.
      *
-     * @return <b>true</b> If the {@link ThreadMember Thread Member} is boosting the server <br>
-     * <b>false</b> If the {@link ThreadMember Thread Member} is not boosting the server
+     * @return
+     * <b>true -</b> If the {@link Member thread member} is boosting the server
+     * <br><b>false -</b> If the {@link Member thread member} is not boosting the server
      */
-    public boolean isServerBooster() {
+    public boolean isServerBooster()
+    {
         return member.getMember().getTimeBoosted() != null;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object o)
+    {
+        if (this == o)
+        {
             return true;
         }
 
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null || getClass() != o.getClass())
+        {
             return false;
         }
 
@@ -186,12 +213,14 @@ public class GuildThreadMember {
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         return Objects.hash(member);
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "GuildThreadMember{" +
                 "member=" + member +
                 '}';

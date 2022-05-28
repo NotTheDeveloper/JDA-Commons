@@ -32,56 +32,59 @@ import java.io.InputStreamReader;
 import java.util.EnumSet;
 
 /**
- * This is the main class of the Discord bot.
+ * This is the main class of the Discord-Bot.
  *
  * @author BlockyDotJar
- * @version v2.0.1
+ * @version v2.1.0
  * @since v1.0.0-alpha.1
  */
-public class DiscordBotExample {
+public class DiscordBotExample
+{
     private static final Logger logger = LoggerFactory.getLogger(DiscordBotExample.class);
     private static final CommandManager cmdMan = new CommandManager();
     private static JDA jda;
 
     /**
-     * This is the main method of the Discord bot.
+     * This is the main method of the Discord-Bot.
      *
      * @param args An {@link java.lang.reflect.Array array} of string arguments
      * @throws LoginException If an login failure occurs
      */
-    public static void main(@NotNull String[] args) throws LoginException {
+    public static void main(@NotNull String[] args) throws LoginException
+    {
         new DiscordBotExample();
     }
 
     /**
-     * Constructs a <b>new</b> {@link DiscordBotExample Discord Bot Example}.
+     * Constructs a <b>new</b> {@link DiscordBotExample Discord-Bot example}.
      *
      * @throws LoginException If an login failure occurs
      */
-    public DiscordBotExample() throws LoginException {
+    public DiscordBotExample() throws LoginException
+    {
         jda = JDABuilder
-                .createDefault("BOT_TOKEN", // Replace BOT_TOKEN with the token of your Bot
+                .createDefault("BOT_TOKEN", // Replace BOT_TOKEN with the token of your bot.
                         EnumSet.of(
-                                // All needed intents
+                                // All needed intents.
                                 GatewayIntent.GUILD_MESSAGES,
                                 GatewayIntent.GUILD_MEMBERS
                         )
                 )
                 .disableCache(
                         EnumSet.of(
-                                // Disables all not needed cache flags
+                                // Disables all not needed cache flags.
                                 CacheFlag.CLIENT_STATUS,
                                 CacheFlag.ACTIVITY,
                                 CacheFlag.EMOTE,
                                 CacheFlag.VOICE_STATE
                         )
                 )
-                // Policy which decides whether a member (and respective user) should be kept in cache
+                // Policy which decides whether a member (and respective user) should be kept in cache.
                 .setMemberCachePolicy(MemberCachePolicy.ALL)
-                // Adds all provided listeners to the list of listeners that will be used to populate the JDA object
+                // Adds all provided listeners to the list of listeners that will be used to populate the JDA object.
                 .addEventListeners(cmdMan)
                 .build();
-        // Adds all provided listeners to the event-listeners that will be used to handle events
+        // Adds all provided listeners to the event listeners that will be used to handle events.
         jda.addEventListener(new ApplicationCommandManager());
 
         shutdown();
@@ -91,42 +94,55 @@ public class DiscordBotExample {
      * Shutdowns the system and the {@link DiscordBotExample#jda JDA} instance after five seconds, when the exit
      * command was typed.
      */
-    private static void shutdown() {
-        new Thread(() -> {
+    private static void shutdown()
+    {
+        new Thread(() ->
+        {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            try {
+            try
+            {
                 String line = reader.readLine();
-                while (line != null) {
-                    if (line.equalsIgnoreCase("exit") && jda != null) {
-                        for (int i = 5; i > 0; i--) {
-                            if (i != 1) {
+                while (line != null)
+                {
+                    if (line.equalsIgnoreCase("exit") && jda != null)
+                    {
+                        for (int i = 5; i > 0; i--)
+                        {
+                            if (i != 1)
+                            {
                                 logger.info("Bot stops in " + i + " seconds.");
-                            } else if (i == 1) {
+                            }
+                            else if (i == 1)
+                            {
                                 logger.info("Bot stops in " + i + " second.");
                             }
                             Thread.sleep(1000);
                         }
-                        // Sets the Presence of the Bot to OFFLINE
+                        // Sets the presence of the bot to OFFLINE.
                         jda.getPresence().setStatus(OnlineStatus.OFFLINE);
-                        // Shuts down this JDA instance, closing all its connections.
+                        // Shuts this JDA instance down and closes all its connections.
                         jda.shutdown();
-                        // Terminates the currently running Java Virtual Machine.
+                        // Terminates the currently running Java virtual machine.
                         System.exit(0);
                     }
                 }
-            } catch (IOException | InterruptedException e) {
+            }
+            catch (IOException | InterruptedException e)
+            {
                 e.printStackTrace();
             }
-        }).start(); // Causes this thread to begin execution
+        }
+        ).start(); // Causes this thread to begin execution.
     }
 
     /**
-     * The {@link JDA JDA} instance from the {@link DiscordBotExample Discord Bot Example} class.
+     * The {@link DiscordBotExample#jda JDA} instance from the {@link DiscordBotExample Discord-Bot example} class.
      *
      * @return {@link DiscordBotExample#jda DiscordBotExample#jda}
      */
     @NotNull
-    public static JDA getJDA() {
+    public static JDA getJDA()
+    {
         return jda;
     }
 }

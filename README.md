@@ -225,10 +225,6 @@ This project requires **Java 8+**
   * Version: **v1.2.11**
   * [Github](https://github.com/qos-ch/logback)
 
-* trove4j
-  * Version: **v3.0.3**
-  * [Bitbucket](https://bitbucket.org/trove4j/trove)
-
 * json
   * Version: **v20220320** 
   * [Github](https://github.com/stleary/JSON-java)
@@ -242,4 +238,5 @@ These are only the libraries, which we have in our [pom.xml](https://github.com/
 - [discord.py](https://github.com/Rapptz/discord.py)
 - [serenity](https://github.com/serenity-rs/serenity)
 
-**See also:** https://discord.com/developers/docs/topics/community-resources#libraries
+**See also:** https://discord.com/developers/docs/topics/community-resources#libraries 
+

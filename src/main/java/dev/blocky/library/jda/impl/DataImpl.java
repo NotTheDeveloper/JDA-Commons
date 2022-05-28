@@ -22,27 +22,29 @@ import java.util.HashMap;
  * Implements some data.
  *
  * @author BlockyDotJar
- * @version v1.0.1
+ * @version v1.1.0
  * @since v1.0.0-alpha.3
  */
-public class DataImpl {
-    private final static HashMap<Long, Long> map = new HashMap<>();
+public class DataImpl
+{
+    private static final HashMap<Long, Long> map = new HashMap<>();
 
     /**
-     * Constructs a <b>new</b> {@link DataImpl Data Implementation}.
-     * <br>
-     * This is a private constructor, because it should not be accessed for other classes.
+     * Constructs a <b>new</b> {@link DataImpl Data implementation}.
+     * <br> This is a private constructor, because it should not be accessed for other classes.
      */
-    private DataImpl() {
+    private DataImpl()
+    {
     }
 
     /**
-     * The {@link HashMap Hash Map} instance from the {@link DataImpl Data Implementation} class.
+     * The {@link DataImpl#map hash map} instance from the {@link DataImpl data implementation} class.
      *
      * @return {@link DataImpl#map DataImpl#map}
      */
     @NotNull
-    public static HashMap<Long, Long> getHashMap() {
+    public static HashMap<Long, Long> getHashMap()
+    {
         return map;
     }
 }

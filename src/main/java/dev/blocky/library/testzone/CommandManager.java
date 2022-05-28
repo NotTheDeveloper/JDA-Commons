@@ -35,27 +35,19 @@ import java.util.regex.Pattern;
  * This is a class, which manages default {@link net.dv8tion.jda.api.entities.Message message} commands.
  *
  * @author BlockyDotJar
- * @version v2.0.1
+ * @version v2.1.0
  * @since v1.0.0-alpha.3
  */
-public class CommandManager extends ListenerAdapter {
-    private static final Logger logger = LoggerFactory.getLogger(CommandManager.class);
+public class CommandManager extends ListenerAdapter
+{
+    private final Logger logger = LoggerFactory.getLogger(CommandManager.class);
     private static ConcurrentHashMap<String, ICommand> commands;
-
-    @Override
-    public void onReady(@NotNull ReadyEvent event) {
-        logger.info("{} successfully connected to the discord network and finally logged in.", event.getJDA().getSelfUser().getAsTag());
-    }
-
-    @Override
-    public void onShutdown(@NotNull ShutdownEvent event) {
-        logger.info("{} successfully disconnected from the discord network and finally logged out.", event.getJDA().getSelfUser().getAsTag());
-    }
 
     /**
      * Constructs a <b>new</b> {@link CommandManager Command Manager}.
      */
-    public CommandManager() {
+    public CommandManager()
+    {
         commands = new ConcurrentHashMap<>();
 
         /*
@@ -69,33 +61,56 @@ public class CommandManager extends ListenerAdapter {
      * Checks if {@link ICommand the command interface} equals null.
      *
      * @param command The string of the command
-     * @param event   The {@link MessageReceivedEvent Message Received Event}, which should used for the commands
+     * @param event   The {@link MessageReceivedEvent message received event}, which should used for the commands
      * @param args    The array of strings
-     * @return <b>true -</b> If {@link ICommand the Command Interface} does not equal to null <br>
-     * <b>false -</b> If {@link ICommand the Command Interface} equals to null
+     * @return
+     * <b>true -</b> If {@link ICommand the command interface} does not equal to null
+     * <br> <b>false -</b> If {@link ICommand the command interface} equals to null
      */
-    public boolean onMessage(@Nullable String command, @NotNull MessageReceivedEvent event, @NotNull String[] args) {
+    public boolean onMessage(@Nullable String command, @NotNull MessageReceivedEvent event, @NotNull String[] args)
+    {
         ICommand cmd = commands.get(command.toLowerCase());
-        if (cmd != null) {
+        if (cmd != null)
+        {
             cmd.onCommand(event, args);
         }
         return cmd != null;
     }
 
     @Override
-    public void onMessageReceived(@NotNull MessageReceivedEvent event) {
+    public void onReady(@NotNull ReadyEvent event)
+    {
+        logger.info("{} successfully connected to the discord network and finally logged in.",
+                event.getJDA().getSelfUser().getAsTag());
+    }
+
+    @Override
+    public void onShutdown(@NotNull ShutdownEvent event)
+    {
+        logger.info("{} successfully disconnected from the discord network and finally logged out.",
+                event.getJDA().getSelfUser().getAsTag());
+    }
+
+    @Override
+    public void onMessageReceived(@NotNull MessageReceivedEvent event)
+    {
         String message = event.getMessage().getContentDisplay();
 
-        if (event.isFromType(ChannelType.TEXT)) {
-            if (message.startsWith("!")) {
+        if (event.isFromType(ChannelType.TEXT))
+        {
+            if (message.startsWith("!"))
+            {
                 String[] args = message.substring(1).split(" ");
-                String[] split = event.getMessage().getContentRaw()
+                String[] split =
+                        event.getMessage().getContentRaw()
                         .replaceFirst("(?i)" + Pattern.quote("!"), "")
                         .split("\\s+");
 
-                if (args.length > 0) {
-                    if (!this.onMessage(args[0], event, split)) {
-                        logger.info("Command " + Arrays.toString(args) + " was not found");
+                if (args.length > 0)
+                {
+                    if (!this.onMessage(args[0], event, split))
+                    {
+                        logger.info("Command " + Arrays.toString(args) + " was not found.");
                     }
                 }
             }

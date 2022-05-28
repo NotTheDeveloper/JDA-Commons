@@ -27,29 +27,33 @@ import org.jetbrains.annotations.NotNull;
  * This is a simple modal slash command.
  *
  * @author BlockyDotJar
- * @version v1.0.0
+ * @version v1.1.0
  * @since v1.1.1
  */
-public class ModalSlashCommand implements ISlashCommand {
-
+public class SupportModalCommand implements ISlashCommand
+{
     @Override
-    public void onSlashCommand(@NotNull SlashCommandInteractionEvent event) {
-        TextInput email = TextInput.create("email", "Email", TextInputStyle.SHORT) // Creates a TextInput with the SHORT InputStyle
+    public void onSlashCommand(@NotNull SlashCommandInteractionEvent event)
+    {
+        TextInput email =
+                TextInput.create("email", "Email", TextInputStyle.SHORT) // Creates a text input with a SHORT input style.
                 .setPlaceholder("Enter your E-mail")
-                .setRequiredRange(10, 100) // Sets a minimum of 10 and a maximum of 100 required characters
+                .setRequiredRange(10, 100) // Sets a minimum of 10 and a maximum of 100 required characters.
                 .build();
 
-        TextInput body = TextInput.create("body", "Body", TextInputStyle.PARAGRAPH) // Creates a TextInput with the PARAGRAPH InputStyle
+        TextInput body =
+                TextInput.create("body", "Body", TextInputStyle.PARAGRAPH) // Creates a text input with a PARAGRAPH input style.
                 .setPlaceholder("Your concerns go here")
-                .setRequiredRange(30, 1000) // Sets a minimum of 30 and a maximum of 1000 required characters
+                .setRequiredRange(30, 1000) // Sets a minimum of 30 and a maximum of 1000 required characters.
                 .build();
 
-        // Creates the modal, by simply pasting the two TextInputs into two different action rows
-        Modal modal = Modal.create("support", "Support")
+        // Creates the modal, by simply pasting the two TextInputs into two different action rows.
+        Modal modal =
+                Modal.create("support", "Support")
                 .addActionRows(ActionRow.of(email), ActionRow.of(body))
                 .build();
 
-        // Sends the modal
+        // Sends the modal.
         event.replyModal(modal).queue();
     }
 }

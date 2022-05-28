@@ -22,18 +22,16 @@ import org.jetbrains.annotations.NotNull;
  * A simple slash command interface, which you can use to easily program some slash commands.
  *
  * @author BlockyDotJar
- * @version v2.0.1
+ * @version v2.1.0
  * @since v1.0.0
  */
-public interface ISlashCommand {
-
+public interface ISlashCommand
+{
     /**
      * A simple slash command interface, which you can use to easily program some slash commands.
-     * <br>
-     * This contains a
-     * <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/main/java/dev/blocky/library/testzone/ApplicationCommandManager.java">Application Command Manager</a>.
+     * <br> This contains a {@link dev.blocky.library.testzone.ApplicationCommandManager application command manager}.
      *
-     * @param event Indicates that a slash command was used in a {@link net.dv8tion.jda.api.entities.MessageChannel Message Channel}.
+     * @param event Indicates that a slash command was used in a {@link net.dv8tion.jda.api.entities.MessageChannel message channel}
      */
     void onSlashCommand(@NotNull SlashCommandInteractionEvent event);
 }

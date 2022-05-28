@@ -24,15 +24,15 @@ import java.lang.annotation.Target;
  * This is an annotation, which tells the developers since when a method/class is deprecated.
  *
  * @author BlockyDotJar
- * @version v1.0.1
+ * @version v1.1.0
  * @since v1.0.0-alpha.1
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE, ElementType.METHOD})
-public @interface DeprecatedSince {
-
+@Target( { ElementType.TYPE, ElementType.METHOD } )
+public @interface DeprecatedSince
+{
     /**
-     * @return The version, since when the method/class is deprecated.
+     * @return The version, since when the method/class is deprecated
      */
     String version();
 }

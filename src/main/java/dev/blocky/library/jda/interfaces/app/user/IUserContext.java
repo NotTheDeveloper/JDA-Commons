@@ -22,16 +22,14 @@ import org.jetbrains.annotations.NotNull;
  * A simple user context menu interface, which you can use to easily program some user context menus.
  *
  * @author BlockyDotJar
- * @version v1.0.1
+ * @version v1.1.0
  * @since v1.0.0
  */
-public interface IUserContext {
-
+public interface IUserContext
+{
     /**
      * A simple user context menu interface, which you can use to easily program some user context menus.
-     * <br>
-     * This contains a
-     * <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/main/java/dev/blocky/library/testzone/ApplicationCommandManager.java">Application Command Manager</a>.
+     * <br> This contains a {@link dev.blocky.library.testzone.ApplicationCommandManager application command manager}.
      *
      * @param event Indicates that a message context command was used
      */

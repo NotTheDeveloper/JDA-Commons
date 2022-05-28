@@ -19,7 +19,7 @@ import dev.blocky.library.jda.interfaces.app.message.IMessageContext;
 import dev.blocky.library.jda.interfaces.app.slash.ISlashCommand;
 import dev.blocky.library.jda.interfaces.app.user.IUserContext;
 import dev.blocky.library.testzone.commands.app.message.RickrollMessageContextCommand;
-import dev.blocky.library.testzone.commands.app.slash.ModalSlashCommand;
+import dev.blocky.library.testzone.commands.app.slash.SupportModalCommand;
 import dev.blocky.library.testzone.commands.app.slash.PingSlashCommand;
 import dev.blocky.library.testzone.commands.app.user.AvatarUserContextCommand;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -42,46 +42,48 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * This is a class, which manages
- * {@link SlashCommandInteractionEvent Slash Commands},
- * {@link MessageContextInteractionEvent Message Context Menus},
- * {@link UserContextInteractionEvent User Context Menus},
- * {@link ModalInteractionEvent Modal Interactions},
- * {@link ButtonInteractionEvent Button Interactions} and
- * {@link SelectMenuInteractionEvent Select Menu Interactions}.
+ * {@link SlashCommandInteractionEvent slash commands},
+ * {@link MessageContextInteractionEvent message context menus},
+ * {@link UserContextInteractionEvent user context menus},
+ * {@link ModalInteractionEvent modal interactions},
+ * {@link ButtonInteractionEvent button interactions} and
+ * {@link SelectMenuInteractionEvent select menu interactions}.
  *
  * @author BlockyDotJar
  * @version v2.1.0
  * @since v1.0.0
  */
-public class ApplicationCommandManager extends ListenerAdapter {
-    private static final Logger logger = LoggerFactory.getLogger(ApplicationCommandManager.class);
+public class ApplicationCommandManager extends ListenerAdapter
+{
+    private final Logger logger = LoggerFactory.getLogger(ApplicationCommandManager.class);
     private final Map<String, ISlashCommand> slashMap;
     private final Map<String, IMessageContext> messageMap;
     private final Map<String, IUserContext> userMap;
 
     /**
-     * Constructs a <b>new</b> {@link ApplicationCommandManager Application Command Manager}.
+     * Constructs a <b>new</b> {@link ApplicationCommandManager application command manager}.
      */
-    public ApplicationCommandManager() {
+    public ApplicationCommandManager()
+    {
         slashMap = new ConcurrentHashMap<>();
         messageMap = new ConcurrentHashMap<>();
         userMap = new ConcurrentHashMap<>();
 
         /*
-         * Here you can import your slash commands
+         * Here you can import your slash commands.
          */
 
         slashMap.put("ping", new PingSlashCommand());
-        slashMap.put("support", new ModalSlashCommand());
+        slashMap.put("support", new SupportModalCommand());
 
         /*
-         * Here you can import your user context commands
+         * Here you can import your user context commands.
          */
 
         userMap.put("avatar", new AvatarUserContextCommand());
 
         /*
-         * Here you can import your message context commands
+         * Here you can import your message context commands.
          */
 
         messageMap.put("rickroll", new RickrollMessageContextCommand());
@@ -95,37 +97,41 @@ public class ApplicationCommandManager extends ListenerAdapter {
     }
 
     @Override
-    public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
+    public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event)
+    {
         String commandName = event.getName();
         ISlashCommand command = slashMap.get(commandName);
 
         command.onSlashCommand(event);
 
-        logger.debug(event.getGuild() == null ? "The specified Guild equals null" : "Successfully found guild");
+        logger.debug(event.getGuild() == null ? "The specified guild equals null." : "Successfully found guild.");
     }
 
     @Override
-    public void onMessageContextInteraction(@NotNull MessageContextInteractionEvent event) {
+    public void onMessageContextInteraction(@NotNull MessageContextInteractionEvent event)
+    {
         String commandName = event.getName();
         IMessageContext command = messageMap.get(commandName);
 
         command.onMessageContext(event);
 
-        logger.debug(event.getGuild() == null ? "The specified Guild equals null" : "Successfully found guild");
+        logger.debug(event.getGuild() == null ? "The specified guild equals null." : "Successfully found guild.");
     }
 
     @Override
-    public void onUserContextInteraction(@NotNull UserContextInteractionEvent event) {
+    public void onUserContextInteraction(@NotNull UserContextInteractionEvent event)
+    {
         String commandName = event.getName();
         IUserContext command = userMap.get(commandName);
 
         command.onUserContext(event);
 
-        logger.debug(event.getGuild() == null ? "The specified Guild equals null" : "Successfully found guild");
+        logger.debug(event.getGuild() == null ? "The specified guild equals null." : "Successfully found guild.");
     }
 
     @Override
-    public void onButtonInteraction(@NotNull ButtonInteractionEvent event) {
+    public void onButtonInteraction(@NotNull ButtonInteractionEvent event)
+    {
         String[] id = event.getButton().getId().split(":");
         String authorId = id[0];
         String type = id[1];
@@ -138,18 +144,21 @@ public class ApplicationCommandManager extends ListenerAdapter {
         builder.setFooter(event.getMember().getUser().getAsTag());
         builder.setTimestamp(OffsetDateTime.now());
 
-        if (!authorId.equals(event.getUser().getId())) {
+        if (!authorId.equals(event.getUser().getId()))
+        {
             event.replyEmbeds(builder.build()).setEphemeral(true).queue();
             return;
         }
 
-        if (type.equals("delete")) {
+        if (type.equals("delete"))
+        {
             event.getMessage().delete().queue();
         }
     }
 
     @Override
-    public void onSelectMenuInteraction(@NotNull SelectMenuInteractionEvent event) {
+    public void onSelectMenuInteraction(@NotNull SelectMenuInteractionEvent event)
+    {
         String[] id = event.getSelectedOptions().get(0).getValue().split(":");
         String authorId = id[0];
         String type = id[1];
@@ -157,17 +166,19 @@ public class ApplicationCommandManager extends ListenerAdapter {
         EmbedBuilder builder = new EmbedBuilder();
 
         builder.setTitle("An error occurred ⚠️");
-        builder.setDescription("Only <@" + authorId + "> can use this Select Menu!");
+        builder.setDescription("Only <@" + authorId + "> can use this select menu!");
         builder.setColor(0xf22613);
         builder.setFooter(event.getMember().getUser().getAsTag());
         builder.setTimestamp(OffsetDateTime.now());
 
-        if (!authorId.equals(event.getUser().getId())) {
+        if (!authorId.equals(event.getUser().getId()))
+        {
             event.replyEmbeds(builder.build()).setEphemeral(true).queue();
             return;
         }
 
-        switch (type) {
+        switch (type)
+        {
             case "yes":
                 event.getMessage().delete().queue();
                 event.getChannel().sendMessage("Right choice!")
@@ -185,7 +196,8 @@ public class ApplicationCommandManager extends ListenerAdapter {
     }
 
     @Override
-    public void onModalInteraction(@NotNull ModalInteractionEvent event) {
+    public void onModalInteraction(@NotNull ModalInteractionEvent event)
+    {
         String email = event.getValue("email").getAsString();
         String body = event.getValue("body").getAsString();
 
@@ -198,7 +210,8 @@ public class ApplicationCommandManager extends ListenerAdapter {
         success.setFooter(event.getUser().getAsTag());
         success.setDescription("Thanks for your request!");
 
-        if (!email.contains("@")) {
+        if (!email.contains("@"))
+        {
             builder.setTitle("An error occurred ⚠️");
             builder.setDescription("Invalid Email! Email must contain a `@`!");
             builder.setColor(0xf22613);

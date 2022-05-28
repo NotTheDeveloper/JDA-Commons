@@ -29,97 +29,108 @@ import java.util.Objects;
 
 /**
  * This is a controller you can control guilds with.
- * <br>
- * The exact use is still unknown.
+ * <br> The exact use is still unknown.
  *
  * @author BlockyDotJar
- * @version v1.0.0-alpha.2
+ * @version v1.0.0-alpha.3
  * @since v1.0.0
  */
 @Deadline(version = "v1.5.0")
-public class GuildController {
-    private static final Logger logger = LoggerFactory.getLogger(GuildController.class);
+public class GuildController
+{
+    private final Logger logger = LoggerFactory.getLogger(GuildController.class);
     private Guild guild;
 
     /**
-     * Constructs a <b>new</b> {@link GuildController Guild Controller}.
-     * <br>
-     * This is a private constructor, because it should not be accessed for other classes.
+     * Constructs a <b>new</b> {@link GuildController guild controller}.
+     * <br> This is a private constructor, because it should not be accessed for other classes.
      */
-    private GuildController() {
+    private GuildController()
+    {
     }
 
     /**
-     * Constructs a <b>new</b> {@link GuildController Guild Controller}.
-     * <br>
-     * This is a private constructor, because it should not be accessed for other classes
+     * Constructs a <b>new</b> {@link GuildController guild controller}.
+     * <br> This is a private constructor, because it should not be accessed for other classes.
      *
-     * @param guild The {@link Guild Guild}, which should be used to get {@link GuildController Guild Controller}
+     * @param guild The {@link Guild guild}, which should be used to get {@link GuildController guild controller}
      */
-    private GuildController(@Nullable Guild guild) {
+    private GuildController(@Nullable Guild guild)
+    {
         this.guild = guild;
 
-        if(JDALogger.SLF4J_ENABLED) {
-            if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES) && !guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS)) {
-                logger.warn("The GUILD_MESSAGES and GUILD_MEMBERS Intents are not enabled, which means, that some stuff could not work.");
+        if(JDALogger.SLF4J_ENABLED)
+        {
+            if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES) && !guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
+            {
+                logger.warn("Both the GUILD_MESSAGES and the GUILD_MEMBERS intents are not enabled, which means, that some stuff could not work.");
                 return;
             }
 
-            if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES)) {
-                logger.warn("The GUILD_MESSAGES Intent is not enabled, which means, that some stuff could not work.");
+            if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES))
+            {
+                logger.warn("The GUILD_MESSAGES intent is not enabled, which means, that some stuff could not work.");
                 return;
             }
 
-            if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS)) {
-                logger.warn("The GUILD_MEMBERS Intent is not enabled, which means, that some stuff could not work.");
+            if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
+            {
+                logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
                 return;
             }
 
-            if (guild == null) {
-                logger.error("The Guild you specify equals null.", new NullPointerException());
+            if (guild == null)
+            {
+                logger.error("The guild you specify equals null.", new NullPointerException());
             }
         }
     }
 
     /**
-     * Constructs a <b>new</b> {@link GuildController Guild Controller} instance. If you don't
-     * initialize a {@link Guild Guild}, {@link GuildController Guild Controller} always will be <b>null</b>.
+     * Constructs a <b>new</b> {@link GuildController guild controller} instance. If you don't
+     * initialize a {@link Guild guild}, {@link GuildController guild controller} always will be <b>null</b>.
      *
-     * @param guild The {@link Guild Guild}, which should be used to get {@link GuildController Guild Controller}
-     * @return A <b>new</b> {@link GuildController Guild Controller} instance
+     * @param guild The {@link Guild guild}, which should be used to get {@link GuildController guild controller}
+     * @return A <b>new</b> {@link GuildController guild controller} instance
      */
     @NotNull
-    public static GuildController set(@Nullable Guild guild) {
+    public static GuildController set(@Nullable Guild guild)
+    {
         return new GuildController(guild);
     }
 
     /**
-     * The {@link Guild Guild} the Message was received in.
+     * The {@link Guild guild} the message was received in.
      *
-     * @return The {@link Guild Guild} the Message was received in
+     * @return The {@link Guild guild} the message was received in
      */
     @NotNull
-    public Guild getGuild() {
+    public Guild getGuild()
+    {
         return guild;
     }
 
     /**
-     * Gets a <b>new</b> {@link SelfMember Self Member}, by initializing a specific {@link Guild Guild}.
+     * Gets a <b>new</b> {@link SelfMember self member}, by initializing a specific {@link Guild guild}.
      *
-     * @return A <b>new</b> {@link SelfMember Self Member} instance
+     * @return A <b>new</b> {@link SelfMember self member} instance
      */
     @NotNull
-    public SelfMember getSelfMember() {
+    public SelfMember getSelfMember()
+    {
         return SelfMember.set(guild);
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object o)
+    {
+        if (this == o)
+        {
             return true;
         }
 
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null || getClass() != o.getClass())
+        {
             return false;
         }
 
@@ -129,12 +140,14 @@ public class GuildController {
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         return Objects.hash(guild);
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "GuildController{" +
                 "guild=" + guild +
                 '}';

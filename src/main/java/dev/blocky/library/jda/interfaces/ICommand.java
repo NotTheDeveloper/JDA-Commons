@@ -22,17 +22,16 @@ import org.jetbrains.annotations.NotNull;
  * A simple command interface, which you can use to easily program message commands.
  *
  * @author BlockyDotJar
- * @version v2.0.1
+ * @version v2.1.0
  * @since v1.0.0-alpha.3
  */
-public interface ICommand {
-
+public interface ICommand
+{
     /**
      *  A simple command interface, which you can use to easily program message commands.
-     * <br>
-     * This contains a {@link dev.blocky.library.testzone.CommandManager Command Manager}.
+     * <br> This contains a {@link dev.blocky.library.testzone.CommandManager command manager}.
      *
-     * @param event The {@link MessageReceivedEvent Message Received Event} for performing a command
+     * @param event The {@link MessageReceivedEvent message received event} for performing a command
      * @param args  An array of strings for performing a command
      */
     void onCommand(@NotNull MessageReceivedEvent event, @NotNull String[] args);

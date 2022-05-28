@@ -27,14 +27,15 @@ import java.time.OffsetDateTime;
  * This is a simple ping slash command.
  *
  * @author BlockyDotJar
- * @version v2.0.1
+ * @version v2.1.0
  * @since v1.0.0
  */
-public class PingSlashCommand implements ISlashCommand {
-
+public class PingSlashCommand implements ISlashCommand
+{
     @Override
-    public void onSlashCommand(@NotNull SlashCommandInteractionEvent event) {
-        //Gets the rest api ping
+    public void onSlashCommand(@NotNull SlashCommandInteractionEvent event)
+    {
+        //Gets the rest API ping.
         long restPing = event.getJDA().getRestPing().complete();
 
         EmbedBuilder builder = new EmbedBuilder();
@@ -42,22 +43,27 @@ public class PingSlashCommand implements ISlashCommand {
         builder.setTimestamp(OffsetDateTime.now());
         builder.setFooter(event.getMember().getUser().getAsTag());
         builder.setTitle("Ping? Pong! 🏓");
-        builder.addField("Discord API Gateway Ping:",
+        builder.addField("Discord API gateway ping:",
                 "```yml\n" + event.getJDA().getGatewayPing() + "ms ```\n", true);
-        builder.addField("Discord API REST Ping:", "```yml\n" + restPing + "ms ```", true);
+        builder.addField("Discord API REST ping:", "```yml\n" + restPing + "ms ```", true);
 
-        // If the Discord gateway ping is higher than/equal to 200, the embed color should be red
-        // If the Discord gateway ping is higher than/equal to 100 and between/equal to 199, the embed color should be yellow
-        // If the Discord gateway ping is higher than/equal to 99, the embed color should be green
-        if (event.getJDA().getGatewayPing() >= 200) {
+        // If the Discord gateway ping is higher than/equal to 200, the embed color should be red.
+        // If the Discord gateway ping is higher than/equal to 100 and between/equal to 199, the embed color should be yellow.
+        // If the Discord gateway ping is higher than/equal to 99, the embed color should be green.
+        if (event.getJDA().getGatewayPing() >= 200)
+        {
             builder.setColor(Color.RED);
-        } else if (event.getJDA().getGatewayPing() >= 100 && event.getJDA().getGatewayPing() <= 199) {
+        }
+        else if (event.getJDA().getGatewayPing() >= 100 && event.getJDA().getGatewayPing() <= 199)
+        {
             builder.setColor(Color.YELLOW);
-        } else if (event.getJDA().getGatewayPing() <= 99) {
+        }
+        else if (event.getJDA().getGatewayPing() <= 99)
+        {
             builder.setColor(Color.GREEN);
         }
 
-        // Sends the embed
+        // Sends the embed.
         event.replyEmbeds(builder.build()).queue();
     }
 }

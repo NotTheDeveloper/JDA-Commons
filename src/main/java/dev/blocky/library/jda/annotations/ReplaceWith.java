@@ -24,15 +24,15 @@ import java.lang.annotation.Target;
  * This is an annotation, which tells the developers, with which method/class a deprecated method/class should be replaced.
  *
  * @author BlockyDotJar
- * @version v1.0.1
+ * @version v1.1.0
  * @since v1.0.0-alpha.1
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE, ElementType.METHOD})
-public @interface ReplaceWith {
-
+@Target( { ElementType.TYPE, ElementType.METHOD } )
+public @interface ReplaceWith
+{
     /**
-     * @return The method/class, which should used instead.
+     * @return The method/class, which should used instead
      */
     String method();
 }

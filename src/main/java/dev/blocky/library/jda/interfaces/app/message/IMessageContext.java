@@ -22,15 +22,14 @@ import org.jetbrains.annotations.NotNull;
  * A simple message context menu interface, which you can use to easily program some message context menus.
  *
  * @author BlockyDotJar
- * @version v1.0.1
+ * @version v1.1.0
  * @since v1.0.0
  */
-public interface IMessageContext {
-
+public interface IMessageContext
+{
     /**
      *  A simple message context menu interface, which you can use to easily program some message context menus.
-     * <br>
-     * This contains a {@link dev.blocky.library.testzone.ApplicationCommandManager Application Command Manager}.
+     * <br> This contains a {@link dev.blocky.library.testzone.ApplicationCommandManager application command manager}.
      *
      * @param event Indicates that a message context command was used
      */

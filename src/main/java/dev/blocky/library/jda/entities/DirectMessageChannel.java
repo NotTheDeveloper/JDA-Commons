@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
  * Represents the connection used for direct messaging.
  *
  * @author BlockyDotJar
- * @version v1.0.0
+ * @version v1.1.0
  * @since v1.1.1
  */
 public class DirectMessageChannel extends Utility {
@@ -49,20 +49,20 @@ public class DirectMessageChannel extends Utility {
     private Member member;
 
     /**
-     * Constructs a <b>new</b> {@link DirectMessageChannel Direct Message Channel}
+     * Constructs a <b>new</b> {@link DirectMessageChannel direct message channel}.
      * <br>
-     * This is a private constructor, because it should not be accessed for other classes
+     * This is a private constructor, because it should not be accessed for other classes.
      */
     private DirectMessageChannel() {
     }
 
     /**
-     * Constructs a <b>new</b> {@link DirectMessageChannel Direct Message Channel}
+     * Constructs a <b>new</b> {@link DirectMessageChannel Direct Message Channel}.
      * <br>
-     * This is a private constructor, because it should not be accessed for other classes
+     * This is a private constructor, because it should not be accessed for other classes.
      *
-     * @param channel The {@link PrivateChannel Private Channel}, which should be used to get {@link DirectMessageChannel Direct Message Channel}
-     * @param member  The {@link Member Member}, which should be used to get {@link DirectMessageChannel Direct Message Channel}
+     * @param channel The {@link PrivateChannel private channel}, which should be used to get {@link DirectMessageChannel direct message channel}
+     * @param member  The {@link Member member}, which should be used to get {@link DirectMessageChannel direct message channel}
      */
     private DirectMessageChannel(@NotNull PrivateChannel channel, @Nullable Member member) {
         this.channel = channel;
@@ -70,62 +70,62 @@ public class DirectMessageChannel extends Utility {
 
         if (JDALogger.SLF4J_ENABLED) {
             if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES) && !member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS)) {
-                logger.warn("The GUILD_MESSAGES and GUILD_MEMBERS Intents are not enabled, which means, that some stuff could not work.");
+                logger.warn("Both the GUILD_MESSAGES and the GUILD_MEMBERS intents are not enabled, which means, that some stuff could not work.");
                 return;
             }
 
             if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES)) {
-                logger.warn("The GUILD_MESSAGES Intent is not enabled, which means, that some stuff could not work.");
+                logger.warn("The GUILD_MESSAGES intent is not enabled, which means, that some stuff could not work.");
                 return;
             }
 
             if (!member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS)) {
-                logger.warn("The GUILD_MEMBERS Intent is not enabled, which means, that some stuff could not work.");
+                logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
                 return;
             }
 
             if (channel == null) {
-                logger.error("The Private Channel you specify equals null.", new NullPointerException());
+                logger.error("The private channel you specify equals null.", new NullPointerException());
             }
 
             if (member == null) {
-                logger.error("The Member you specify equals null.", new NullPointerException());
+                logger.error("The member you specify equals null.", new NullPointerException());
             }
         }
     }
 
     /**
-     * Constructs a <b>new</b> {@link DirectMessageChannel Direct Message Channel}
+     * Constructs a <b>new</b> {@link DirectMessageChannel direct message channel}.
      * <br>
-     * This is a private constructor, because it should not be accessed for other classes
+     * This is a private constructor, because it should not be accessed for other classes.
      *
-     * @param channel The {@link PrivateChannel Private Channel}, which should be used to get {@link DirectMessageChannel Direct Message Channel}
+     * @param channel The {@link PrivateChannel private channel}, which should be used to get {@link DirectMessageChannel direct message channel}
      */
     private DirectMessageChannel(@NotNull PrivateChannel channel) {
         this.channel = channel;
 
         if (JDALogger.SLF4J_ENABLED) {
             if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES)) {
-                logger.warn("The GUILD_MESSAGES Intent is not enabled, which means, that some stuff could not work.");
+                logger.warn("The GUILD_MESSAGES intent is not enabled, which means, that some stuff could not work.");
                 return;
             }
 
             if (channel == null) {
-                logger.error("The Private Channel you specify equals null", new NullPointerException());
+                logger.error("The private channel you specify equals null.", new NullPointerException());
             }
         }
     }
 
     /**
-     * Constructs a <b>new</b> {@link DirectMessageChannel Direct Message Channel} instance. If you don't
-     * initialize a {@link PrivateChannel Private Channel} or a {@link net.dv8tion.jda.api.entities.Member Member},
-     * {@link DirectMessageChannel Direct Message Channel} always will be <b>null</b>.
+     * Constructs a <b>new</b> {@link DirectMessageChannel direct message channel} instance. If you don't
+     * initialize a {@link PrivateChannel private channel} or a {@link net.dv8tion.jda.api.entities.Member member},
+     * {@link DirectMessageChannel direct message channel} always will be <b>null</b>.
      *
-     * @param channel The {@link PrivateChannel Private Channel}, which
-     *                should be initialized.
-     * @param member  The {@link net.dv8tion.jda.api.entities.Member Member}, which
-     *                should be initialized.
-     * @return A <b>new</b> {@link DirectMessageChannel Direct Message Channel} instance
+     * @param channel The {@link PrivateChannel private channel}, which
+     *                should be initialized
+     * @param member  The {@link net.dv8tion.jda.api.entities.Member member}, which
+     *                should be initialized
+     * @return A <b>new</b> {@link DirectMessageChannel direct message channel} instance
      */
     @NotNull
     public static DirectMessageChannel set(@NotNull PrivateChannel channel, @Nullable Member member) {
@@ -133,13 +133,13 @@ public class DirectMessageChannel extends Utility {
     }
 
     /**
-     * Constructs a <b>new</b> {@link DirectMessageChannel Direct Message Channel} instance. If you don't
-     * initialize a {@link PrivateChannel Private Channel},
-     * {@link DirectMessageChannel Direct Message Channel} always will be <b>null</b>.
+     * Constructs a <b>new</b> {@link DirectMessageChannel direct message channel} instance. If you don't
+     * initialize a {@link PrivateChannel private channel},
+     * {@link DirectMessageChannel direct message channel} always will be <b>null</b>.
      *
-     * @param channel The {@link PrivateChannel Private Channel}, which
-     *                should be initialized.
-     * @return A <b>new</b> {@link DirectMessageChannel Direct Message Channel} instance
+     * @param channel The {@link PrivateChannel private channel}, which
+     *                should be initialized
+     * @return A <b>new</b> {@link DirectMessageChannel direct message channel} instance
      */
     @NotNull
     public static DirectMessageChannel set(@NotNull PrivateChannel channel) {
@@ -147,9 +147,9 @@ public class DirectMessageChannel extends Utility {
     }
 
     /**
-     * The Author of the {@link net.dv8tion.jda.api.entities.Message Message} received as {@link Member Member} object.
+     * The author of the {@link net.dv8tion.jda.api.entities.Message message} received as {@link Member member} object.
      *
-     * @return The Author of the {@link net.dv8tion.jda.api.entities.Message Message} as null-able Member object.
+     * @return The author of the {@link net.dv8tion.jda.api.entities.Message message} as null-able member object
      */
     @Nullable
     public Member getMember() {
@@ -157,9 +157,9 @@ public class DirectMessageChannel extends Utility {
     }
 
     /**
-     * The {@link PrivateChannel Private Channel} for this {@link Message Message}.
+     * The {@link PrivateChannel private channel} for this {@link Message message}.
      *
-     * @return The {@link PrivateChannel Private Channel}
+     * @return The {@link PrivateChannel private channel}
      */
     @NotNull
     public PrivateChannel getChannel() {
@@ -167,367 +167,364 @@ public class DirectMessageChannel extends Utility {
     }
 
     /**
-     * First sends a normal message and then make the message a reply to the referenced message.
-     * <br>
-     * You can only reply to messages from the same channel!
-     * <p>
-     * This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission.MESSAGE_HISTORY} in the channel!
-     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD}
-     * and similar.
+     * Make the message a reply to the referenced message.
+     * <br> You can only reply to messages from the same channel!
+     * <br> This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission#MESSAGE_HISTORY} in the channel!
+     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD
+     * CHANNEL_PINNED_AD MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD} and similar.
      *
      * @param content The message content
      * @param message The target message
-     * @return Updated {@link MessageAction Message Action} for chaining convenience
+     * @return Updated {@link MessageAction message action} for chaining convenience
      */
     @NotNull
-    public MessageAction reply(@NotNull CharSequence content, @NotNull Message message) {
+    public MessageAction reply(@NotNull CharSequence content, @NotNull Message message)
+    {
         MessageAction action = channel.sendMessage(content);
         return action.reference(message);
     }
 
     /**
-     * First sends a normal message and then make the message a reply to the referenced message.
-     * <br>
-     * You can only reply to messages from the same channel!
-     * <p>
-     * This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission.MESSAGE_HISTORY} in the channel!
-     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD}
-     * and similar.
+     * Make the message a reply to the referenced message.
+     * <br> You can only reply to messages from the same channel!
+     * <br> This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission#MESSAGE_HISTORY} in the channel!
+     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD
+     * CHANNEL_PINNED_AD MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD} and similar.
      *
      * @param content   The message content
      * @param messageId The target message
-     * @return Updated {@link MessageAction Message Action} for chaining convenience
+     * @return Updated {@link MessageAction message action} for chaining convenience
      */
     @NotNull
-    public MessageAction replyById(@NotNull CharSequence content, @NotNull String messageId) {
+    public MessageAction replyById(@NotNull CharSequence content, @NotNull String messageId)
+    {
         MessageAction action = channel.sendMessage(content);
         return action.referenceById(messageId);
     }
 
     /**
-     * First sends a normal message and then make the message a reply to the referenced message.
-     * <br>
-     * You can only reply to messages from the same channel!
-     * <p>
-     * This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission.MESSAGE_HISTORY} in the channel!
-     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD}
-     * and similar.
+     * Make the message a reply to the referenced message.
+     * <br> You can only reply to messages from the same channel!
+     * <br> This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission#MESSAGE_HISTORY} in the channel!
+     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD
+     * CHANNEL_PINNED_AD MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD} and similar.
      *
      * @param content   The message content
      * @param messageId The target message
-     * @return Updated {@link MessageAction Message Action} for chaining convenience
+     * @return Updated {@link MessageAction message action} for chaining convenience
      */
     @NotNull
-    public MessageAction replyById(@NotNull CharSequence content, long messageId) {
+    public MessageAction replyById(@NotNull CharSequence content, long messageId)
+    {
         MessageAction action = channel.sendMessage(content);
         return action.referenceById(messageId);
     }
 
     /**
-     * First sends an embedded message and then make the message a reply to the referenced message.
-     * <br>
-     * You can only reply to messages from the same channel!
-     * <p>
-     * This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission.MESSAGE_HISTORY} in the channel!
-     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD}
-     * and similar.
+     * Make the message a reply to the referenced message.
+     * <br> You can only reply to messages from the same channel!
+     * <br> This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission#MESSAGE_HISTORY} in the channel!
+     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD
+     * CHANNEL_PINNED_AD MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD} and similar.
      *
-     * @param embed   The {@link MessageEmbed Message Embed} to send
+     * @param embed   The {@link MessageEmbed message embed} to send
      * @param message The target message
-     * @return Updated {@link MessageAction Message Action} for chaining convenience
+     * @return Updated {@link MessageAction message action} for chaining convenience
      */
     @NotNull
-    public MessageAction replyEmbeds(@NotNull MessageEmbed embed, @NotNull Message message) {
+    public MessageAction replyEmbeds(@NotNull MessageEmbed embed, @NotNull Message message)
+    {
         MessageAction action = channel.sendMessageEmbeds(embed);
         return action.reference(message);
     }
 
     /**
-     * First sends an embedded message and then make the message a reply to the referenced message.
-     * <br>
-     * You can only reply to messages from the same channel!
-     * <p>
-     * This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission.MESSAGE_HISTORY} in the channel!
-     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD}
-     * and similar.
+     * Make the message a reply to the referenced message.
+     * <br> You can only reply to messages from the same channel!
+     * <br> This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission#MESSAGE_HISTORY} in the channel!
+     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD
+     * CHANNEL_PINNED_AD MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD} and similar.
      *
-     * @param embed     The {@link MessageEmbed Message Embed} to send
+     * @param embed     The {@link MessageEmbed message embed} to send
      * @param messageId The target message
-     * @return Updated {@link MessageAction Message Action} for chaining convenience
+     * @return Updated {@link MessageAction message action} for chaining convenience
      */
     @NotNull
-    public MessageAction replyEmbedsById(@NotNull MessageEmbed embed, @NotNull String messageId) {
+    public MessageAction replyEmbedsById(@NotNull MessageEmbed embed, @NotNull String messageId)
+    {
         MessageAction action = channel.sendMessageEmbeds(embed);
         return action.referenceById(messageId);
     }
 
     /**
-     * First sends an embedded message and then make the message a reply to the referenced message.
-     * <br>
-     * You can only reply to messages from the same channel!
-     * <p>
-     * This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission.MESSAGE_HISTORY} in the channel!
-     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD}
-     * and similar.
+     * Make the message a reply to the referenced message.
+     * <br> You can only reply to messages from the same channel!
+     * <br> This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission#MESSAGE_HISTORY} in the channel!
+     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD
+     * CHANNEL_PINNED_AD MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD} and similar.
      *
-     * @param embed     The {@link MessageEmbed Message Embed} to send
+     * @param embed     The {@link MessageEmbed message embed} to send
      * @param messageId The target message
-     * @return Updated {@link MessageAction Message Action} for chaining convenience
+     * @return Updated {@link MessageAction message action} for chaining convenience
      */
     @NotNull
-    public MessageAction replyEmbedsById(@NotNull MessageEmbed embed, long messageId) {
+    public MessageAction replyEmbedsById(@NotNull MessageEmbed embed, long messageId)
+    {
         MessageAction action = channel.sendMessageEmbeds(embed);
         return action.referenceById(messageId);
     }
 
     /**
-     * First sends a formatted message and then make the message a reply to the referenced message.
-     * <br>
-     * You can only reply to messages from the same channel!
-     * <p>
-     * This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission.MESSAGE_HISTORY} in the channel!
-     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD}
-     * and similar.
+     * Make the message a reply to the referenced message.
+     * <br>  You can only reply to messages from the same channel!
+     * <br> This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission#MESSAGE_HISTORY} in the channel!
+     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD
+     * CHANNEL_PINNED_AD MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD} and similar.
      *
-     * @param format  The string that should be formatted, if this is null or empty the content of the Message would be empty and cause a builder exception.
+     * @param format  The string that should be formatted, if this is null or empty the content of the message would be
+     *               empty and cause a builder exception
      * @param args    The arguments for your format
      * @param message The target message
-     * @return Updated {@link MessageAction Message Action} for chaining convenience
+     * @return Updated {@link MessageAction message action} for chaining convenience
      */
     @NotNull
-    public MessageAction replyFormat(@NotNull String format, @NotNull Object args, @NotNull Message message) {
+    public MessageAction replyFormat(@NotNull String format, @NotNull Object args, @NotNull Message message)
+    {
         MessageAction action = channel.sendMessageFormat(format, args);
         return action.reference(message);
     }
 
     /**
-     * First sends a formatted message and then make the message a reply to the referenced message.
-     * <br>
-     * You can only reply to messages from the same channel!
-     * <p>
-     * This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission.MESSAGE_HISTORY} in the channel!
-     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD}
-     * and similar.
+     * Make the message a reply to the referenced message.
+     * <br>  You can only reply to messages from the same channel!
+     * <br> This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission#MESSAGE_HISTORY} in the channel!
+     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD
+     * CHANNEL_PINNED_AD MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD} and similar.
      *
-     * @param format    The string that should be formatted, if this is null or empty the content of the Message would be empty and cause a builder exception.
+     * @param format    The string that should be formatted, if this is null or empty the content of the message would
+     *                  be empty and cause a builder exception
      * @param args      The arguments for your format
      * @param messageId The target message
-     * @return Updated {@link MessageAction Message Action} for chaining convenience
+     * @return Updated {@link MessageAction message action} for chaining convenience
      */
     @NotNull
-    public MessageAction replyFormatById(@NotNull String format, @NotNull Object args, @NotNull String messageId) {
+    public MessageAction replyFormatById(@NotNull String format, @NotNull Object args, @NotNull String messageId)
+    {
         MessageAction action = channel.sendMessageFormat(format, args);
         return action.referenceById(messageId);
     }
 
     /**
-     * First sends a formatted message and then make the message a reply to the referenced message.
-     * <br>
-     * You can only reply to messages from the same channel!
-     * <p>
-     * This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission.MESSAGE_HISTORY} in the channel!
-     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD}
-     * and similar.
+     * Make the message a reply to the referenced message.
+     * <br> You can only reply to messages from the same channel!
+     * <br> This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission#MESSAGE_HISTORY} in the channel!
+     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD
+     * CHANNEL_PINNED_AD MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD} and similar.
      *
-     * @param format    The string that should be formatted, if this is null or empty the content of the Message would be empty and cause a builder exception.
+     * @param format    The string that should be formatted, if this is null or empty the content of the message would
+     *                  be empty and cause a builder exception
      * @param args      The arguments for your format
      * @param messageId The target message
-     * @return Updated {@link MessageAction Message Action} for chaining convenience
+     * @return Updated {@link MessageAction message action} for chaining convenience
      */
     @NotNull
-    public MessageAction replyFormatById(@NotNull String format, @NotNull Object args, long messageId) {
+    public MessageAction replyFormatById(@NotNull String format, @NotNull Object args, long messageId)
+    {
         MessageAction action = channel.sendMessageFormat(format, args);
         return action.referenceById(messageId);
     }
 
     /**
-     * First sends a normal message and then make the message a reply to the referenced message.
-     * <br>
-     * You can only reply to messages from the same channel!
-     * This will mention the author of the target message. You can disable this through setting <b>pingEnabled</b> to <b>false</b>.
-     * <p>
-     * This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission.MESSAGE_HISTORY} in the channel!
-     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD}
-     * and similar.
+     * Make the message a reply to the referenced message.
+     * <br> You can only reply to messages from the same channel!
+     * This will mention the author of the target message. You can disable this through setting the boolean parameter
+     * <b>ping enabled</b> to <b>false</b>.
+     * <br> This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission#MESSAGE_HISTORY} in the channel!
+     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD
+     * CHANNEL_PINNED_AD MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD} and similar.
      *
      * @param content     The message content
      * @param message     The target message
      * @param pingEnabled If the member of the written target message should get pinged
-     * @return Updated {@link MessageAction Message Action} for chaining convenience
+     * @return Updated {@link MessageAction message action} for chaining convenience
      */
     @NotNull
-    public MessageAction reply(@NotNull CharSequence content, @NotNull Message message, boolean pingEnabled) {
+    public MessageAction reply(@NotNull CharSequence content, @NotNull Message message, boolean pingEnabled)
+    {
         MessageAction action = channel.sendMessage(content);
         return action.reference(message).mentionRepliedUser(pingEnabled);
     }
 
     /**
-     * First sends a normal message and then make the message a reply to the referenced message.
-     * <br>
-     * You can only reply to messages from the same channel!
-     * This will mention the author of the target message. You can disable this through setting <b>pingEnabled</b> to <b>false</b>.
-     * <p>
-     * This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission.MESSAGE_HISTORY} in the channel!
-     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD}
-     * and similar.
+     * Make the message a reply to the referenced message.
+     * <br> You can only reply to messages from the same channel!
+     * This will mention the author of the target message. You can disable this through setting the boolean parameter
+     * <b>ping enabled</b> to <b>false</b>.
+     * <br> This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission#MESSAGE_HISTORY} in the channel!
+     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD
+     * CHANNEL_PINNED_AD MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD} and similar.
      *
      * @param content     The message content
      * @param messageId   The target message
      * @param pingEnabled If the member of the written target message should get pinged
-     * @return Updated {@link MessageAction Message Action} for chaining convenience
+     * @return Updated {@link MessageAction message action} for chaining convenience
      */
     @NotNull
-    public MessageAction replyById(@NotNull CharSequence content, @NotNull String messageId, boolean pingEnabled) {
+    public MessageAction replyById(@NotNull CharSequence content, @NotNull String messageId, boolean pingEnabled)
+    {
         MessageAction action = channel.sendMessage(content);
         return action.referenceById(messageId).mentionRepliedUser(pingEnabled);
     }
 
     /**
-     * First sends a normal message and then make the message a reply to the referenced message.
-     * <br>
-     * You can only reply to messages from the same channel!
-     * This will mention the author of the target message. You can disable this through setting <b>pingEnabled</b> to <b>false</b>.
-     * <p>
-     * This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission.MESSAGE_HISTORY} in the channel!
-     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD}
-     * and similar.
+     * Make the message a reply to the referenced message.
+     * <br> You can only reply to messages from the same channel!
+     * This will mention the author of the target message. You can disable this through setting the boolean parameter
+     * <b>ping enabled</b> to <b>false</b>.
+     * <br> This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission#MESSAGE_HISTORY} in the channel!
+     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD
+     * CHANNEL_PINNED_AD MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD} and similar.
      *
      * @param content     The message content
      * @param messageId   The target message
      * @param pingEnabled If the member of the written target message should get pinged
-     * @return Updated {@link MessageAction Message Action} for chaining convenience
+     * @return Updated {@link MessageAction message action} for chaining convenience
      */
     @NotNull
-    public MessageAction replyById(@NotNull CharSequence content, long messageId, boolean pingEnabled) {
+    public MessageAction replyById(@NotNull CharSequence content, long messageId, boolean pingEnabled)
+    {
         MessageAction action = channel.sendMessage(content);
         return action.referenceById(messageId).mentionRepliedUser(pingEnabled);
     }
 
     /**
-     * First sends an embedded message and then make the message a reply to the referenced message.
-     * <br>
-     * You can only reply to messages from the same channel!
-     * This will mention the author of the target message. You can disable this through setting <b>pingEnabled</b> to <b>false</b>.
-     * <p>
-     * This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission.MESSAGE_HISTORY} in the channel!
-     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD}
-     * and similar.
+     * Make the message a reply to the referenced message.
+     * <br> You can only reply to messages from the same channel!
+     * This will mention the author of the target message. You can disable this through setting the boolean parameter
+     * <b>ping enabled</b> to <b>false</b>.
+     * <br>  This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission#MESSAGE_HISTORY} in the channel!
+     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD
+     * CHANNEL_PINNED_AD MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD} and similar.
      *
-     * @param embed       The {@link MessageEmbed Message Embed} to send
+     * @param embed       The {@link MessageEmbed message embed} to send
      * @param message     The target message
      * @param pingEnabled If the member of the written target message should get pinged
-     * @return Updated {@link MessageAction Message Action} for chaining convenience
+     * @return Updated {@link MessageAction message action} for chaining convenience
      */
     @NotNull
-    public MessageAction replyEmbeds(@NotNull MessageEmbed embed, @NotNull Message message, boolean pingEnabled) {
+    public MessageAction replyEmbeds(@NotNull MessageEmbed embed, @NotNull Message message, boolean pingEnabled)
+    {
         MessageAction action = channel.sendMessageEmbeds(embed);
         return action.reference(message).mentionRepliedUser(pingEnabled);
     }
 
     /**
-     * First sends an embedded message and then make the message a reply to the referenced message.
-     * <br>
-     * You can only reply to messages from the same channel!
-     * This will mention the author of the target message. You can disable this through setting <b>pingEnabled</b> to <b>false</b>.
-     * <p>
-     * This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission.MESSAGE_HISTORY} in the channel!
-     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD}
-     * and similar.
+     * Make the message a reply to the referenced message.
+     * <br> You can only reply to messages from the same channel!
+     * This will mention the author of the target message. You can disable this through setting the boolean parameter
+     * <b>ping enabled</b> to <b>false</b>.
+     * <br> This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission#MESSAGE_HISTORY} in the channel!
+     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD
+     * CHANNEL_PINNED_AD MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD} and similar.
      *
-     * @param embed       The {@link MessageEmbed Message Embed} to send
+     * @param embed       The {@link MessageEmbed message embed} to send
      * @param messageId   The target message
      * @param pingEnabled If the member of the written target message should get pinged
-     * @return Updated {@link MessageAction Message Action} for chaining convenience
+     * @return Updated {@link MessageAction message action} for chaining convenience
      */
     @NotNull
-    public MessageAction replyEmbedsById(@NotNull MessageEmbed embed, @NotNull String messageId, boolean pingEnabled) {
+    public MessageAction replyEmbedsById(@NotNull MessageEmbed embed, @NotNull String messageId, boolean pingEnabled)
+    {
         MessageAction action = channel.sendMessageEmbeds(embed);
         return action.referenceById(messageId).mentionRepliedUser(pingEnabled);
     }
 
     /**
-     * First sends an embedded message and then make the message a reply to the referenced message.
-     * <br>
-     * You can only reply to messages from the same channel!
-     * This will mention the author of the target message. You can disable this through setting <b>pingEnabled</b> to <b>false</b>.
-     * <p>
-     * This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission.MESSAGE_HISTORY} in the channel!
-     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD}
-     * and similar.
+     * Make the message a reply to the referenced message.
+     * <br> You can only reply to messages from the same channel!
+     * This will mention the author of the target message. You can disable this through setting the boolean parameter
+     * <b>ping enabled</b> to <b>false</b>.
+     * <br> This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission#MESSAGE_HISTORY} in the channel!
+     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD
+     * CHANNEL_PINNED_AD MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD} and similar.
      *
-     * @param embed       The {@link MessageEmbed Message Embed} to send
+     * @param embed       The {@link MessageEmbed message embed} to send
      * @param messageId   The target message
      * @param pingEnabled If the member of the written target message should get pinged
-     * @return Updated {@link MessageAction Message Action} for chaining convenience
+     * @return Updated {@link MessageAction message action} for chaining convenience
      */
     @NotNull
-    public MessageAction replyEmbedsById(@NotNull MessageEmbed embed, long messageId, boolean pingEnabled) {
+    public MessageAction replyEmbedsById(@NotNull MessageEmbed embed, long messageId, boolean pingEnabled)
+    {
         MessageAction action = channel.sendMessageEmbeds(embed);
         return action.referenceById(messageId).mentionRepliedUser(pingEnabled);
     }
 
     /**
-     * First sends a formatted message and then make the message a reply to the referenced message.
-     * <br>
-     * You can only reply to messages from the same channel!
-     * This will mention the author of the target message. You can disable this through setting <b>pingEnabled</b> to <b>false</b>.
-     * <p>
-     * This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission.MESSAGE_HISTORY} in the channel!
-     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD}
-     * and similar.
+     * Make the message a reply to the referenced message.
+     * <br> You can only reply to messages from the same channel!
+     * This will mention the author of the target message. You can disable this through setting the boolean parameter
+     * <b>ping enabled</b> to <b>false</b>.
+     * <br> This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission#MESSAGE_HISTORY} in the channel!
+     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD
+     * CHANNEL_PINNED_AD MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD} and similar.
      *
-     * @param format      The string that should be formatted, if this is null or empty the content of the Message would be empty and cause a builder exception.
+     * @param format      The string that should be formatted, if this is null or empty the content of the message would
+     *                    be empty and cause a builder exception
      * @param args        The arguments for your format
      * @param message     The target message
      * @param pingEnabled If the member of the written target message should get pinged
-     * @return Updated {@link MessageAction Message Action} for chaining convenience
+     * @return Updated {@link MessageAction message action} for chaining convenience
      */
     @NotNull
-    public MessageAction replyFormat(@NotNull String format, @NotNull Object args, @NotNull Message message, boolean pingEnabled) {
+    public MessageAction replyFormat(@NotNull String format, @NotNull Object args, @NotNull Message message, boolean pingEnabled)
+    {
         MessageAction action = channel.sendMessageFormat(format, args);
         return action.reference(message).mentionRepliedUser(pingEnabled);
     }
 
     /**
-     * First sends a formatted message and then make the message a reply to the referenced message.
-     * <br>
-     * You can only reply to messages from the same channel!
-     * This will mention the author of the target message. You can disable this through setting <b>pingEnabled</b> to <b>false</b>.
-     * <p>
-     * This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission.MESSAGE_HISTORY} in the channel!
-     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD}
-     * and similar.
+     * Make the message a reply to the referenced message.
+     * <br> You can only reply to messages from the same channel!
+     * This will mention the author of the target message. You can disable this through setting the boolean parameter
+     * <b>ping enabled</b> to <b>false</b>.
+     * <br> This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission#MESSAGE_HISTORY} in the channel!
+     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD
+     * CHANNEL_PINNED_AD MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD} and similar.
      *
-     * @param format      The string that should be formatted, if this is null or empty the content of the Message would be empty and cause a builder exception.
+     * @param format      The string that should be formatted, if this is null or empty the content of the message would
+     *                    be empty and cause a builder exception
      * @param args        The arguments for your format
      * @param messageId   The target message
      * @param pingEnabled If the member of the written target message should get pinged
-     * @return Updated {@link MessageAction Message Action} for chaining convenience
+     * @return Updated {@link MessageAction message action} for chaining convenience
      */
     @NotNull
-    public MessageAction replyFormatById(@NotNull String format, @NotNull Object args, @NotNull String messageId, boolean pingEnabled) {
+    public MessageAction replyFormatById(@NotNull String format, @NotNull Object args, @NotNull String messageId, boolean pingEnabled)
+    {
         MessageAction action = channel.sendMessageFormat(format, args);
         return action.referenceById(messageId).mentionRepliedUser(pingEnabled);
     }
 
     /**
-     * First sends a formatted message and then make the message a reply to the referenced message.
-     * <br>
-     * You can only reply to messages from the same channel!
-     * This will mention the author of the target message. You can disable this through setting <b>pingEnabled</b> to <b>false</b>.
-     * <p>
-     * This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission.MESSAGE_HISTORY} in the channel!
-     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD}
-     * and similar.
+     * Make the message a reply to the referenced message.
+     * <br> You can only reply to messages from the same channel!
+     * This will mention the author of the target message. You can disable this through setting the boolean parameter
+     * <b>ping enabled</b> to <b>false</b>.
+     * <br> This requires {@link net.dv8tion.jda.api.Permission#MESSAGE_HISTORY Permission#MESSAGE_HISTORY} in the channel!
+     * You cannot reply to system messages such as {@link net.dv8tion.jda.api.entities.MessageType#CHANNEL_PINNED_ADD
+     * CHANNEL_PINNED_AD MessageType#CHANNEL_PINNED_ADD CHANNEL_PINNED_AD} and similar.
      *
-     * @param format      The string that should be formatted, if this is null or empty the content of the Message would be empty and cause a builder exception.
+     * @param format      The string that should be formatted, if this is null or empty the content of the message would
+     *                    be empty and cause a builder exception
      * @param args        The arguments for your format
      * @param messageId   The target message
      * @param pingEnabled If the member of the written target message should get pinged
-     * @return Updated {@link MessageAction Message Action} for chaining convenience
+     * @return Updated {@link MessageAction message action} for chaining convenience
      */
     @NotNull
-    public MessageAction replyFormatById(@NotNull String format, @NotNull Object args, long messageId, boolean pingEnabled) {
+    public MessageAction replyFormatById(@NotNull String format, @NotNull Object args, long messageId, boolean pingEnabled)
+    {
         MessageAction action = channel.sendMessageFormat(format, args);
         return action.referenceById(messageId).mentionRepliedUser(pingEnabled);
     }
@@ -535,56 +532,65 @@ public class DirectMessageChannel extends Utility {
     /**
      * Convenience method to delete messages in the most efficient way available.
      * No checks will be done to prevent failures, use {@link java.util.concurrent.CompletionStage#exceptionally(Function)
-     * CompletionStage.exceptionally(Function)} to handle failures.
+     * CompletionStage#exceptionally(Function)} to handle failures.
      *
      * @param amount The amount of messages to delete
-     * @param clear  The {@link SafetyClear Safety Clear} option, which helps for specifying different message types, which will not be deleted
-     * @return {@link List List} of futures representing all deletion task
+     * @param clear  The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
+     * @return A list of futures representing all deletion task
      */
     @Nullable
-    public List<CompletableFuture<Void>> purgeMessages(int amount, @Nullable SafetyClear clear) {
+    public List<CompletableFuture<Void>> purgeMessages(int amount, @Nullable SafetyClear clear)
+    {
         return channel.purgeMessages(checkClearSafety(clear, channel, amount));
     }
 
     /**
-     * Convenience method to delete a complete {@link TextChannel Text Channel} in the most efficient way available.
+     * Convenience method to delete a complete {@link PrivateChannel private channel} in the most efficient way available.
      * No checks will be done to prevent failures, use {@link java.util.concurrent.CompletionStage#exceptionally(Function)
-     * CompletionStage.exceptionally(Function)} to handle failures.
+     * CompletionStage#exceptionally(Function)} to handle failures.
      *
-     * @param clear The {@link SafetyClear Safety Clear} option, which helps for specifying different message types, which will not be deleted
-     * @return {@link List List} of futures representing all deletion task
+     * @param clear The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
+     * @return A list of futures representing all deletion task
      */
     @Nullable
-    public List<CompletableFuture<Void>> purgeChannel(@Nullable SafetyClear clear) {
+    public List<CompletableFuture<Void>> purgeChannel(@Nullable SafetyClear clear)
+    {
         return channel.purgeMessages(checkChannelClearSafety(clear, channel));
     }
 
     /**
-     * Convenience method to delete a complete {@link TextChannel Text Channel} in the most efficient way available.
+     * Convenience method to delete a complete {@link PrivateChannel private channel} in the most efficient way available.
      * No checks will be done to prevent failures, use {@link java.util.concurrent.CompletionStage#exceptionally(Function)
-     * CompletionStage.exceptionally(Function)} to handle failures.
+     * CompletionStage#exceptionally(Function)} to handle failures.
      *
-     * @return {@link List List} of futures representing all deletion task
+     * @return A list of futures representing all deletion task
      */
     @NotNull
-    public List<CompletableFuture<Void>> purgeChannel() {
+    public List<CompletableFuture<Void>> purgeChannel()
+    {
         return channel.purgeMessages(checkChannelClearSafety(null, channel));
     }
 
     /**
-     * Checks if the content, you specified, is written in this channel
+     * Checks if the content, you specified, is written in this channel.
      *
      * @param content     The message content, which should be checked
-     * @param checkAmount The Amount of messages, which should be checked
-     * @return <b>true -</b> If the content, you specified, is written in this channel <br>
-     * <b>false -</b> If the content, you specified, is not written in this channel
+     * @param checkAmount The amount of messages, which should be checked
+     * @return
+     * <b>true -</b> If the content, you specified, is written in this channel
+     * <br><b>false -</b> If the content, you specified, is not written in this channel
      */
-    public boolean containsMessage(@NotNull CharSequence content, int checkAmount) {
-        for (Message message : channel.getIterableHistory().cache(false)) {
-            if (message.getContentRaw().contentEquals(content)) {
+    public boolean containsMessage(@NotNull CharSequence content, int checkAmount)
+    {
+        for (Message message : channel.getIterableHistory().cache(false))
+        {
+            if (message.getContentRaw().contentEquals(content))
+            {
                 return true;
             }
-            if (checkAmount-- <= 0) {
+
+            if (checkAmount-- <= 0)
+            {
                 break;
             }
         }
@@ -592,253 +598,284 @@ public class DirectMessageChannel extends Utility {
     }
 
     /**
-     * Gets all the messages from a specific member in this channel (max. 1000 messages per channel)
+     * Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
      *
      * @return The written messages of the specified member in this channel
      */
     @NotNull
-    public List<Message> getMessagesByUser() {
-        return channel.getIterableHistory().stream()
+    public List<Message> getMessagesByUser()
+    {
+        return channel.getIterableHistory()
+                .stream()
                 .limit(1000)
                 .filter(m -> m.getAuthor().equals(member.getUser()))
                 .collect(Collectors.toList());
     }
 
     /**
-     * This works like a normal Message sending, but with more given options and a delay between using this.
-     * <br>
-     * You must specify a delay to time out a command. (the long delayInSeconds <b>must not equal to 0</b>. If this
-     * is true a {@link IllegalArgumentException IllegalArgumentException} will be thrown).
-     * (The same is applicable for numbers under 0)
-     * <br>
-     * You also can specify a delay message, which will be sent if you are under a delay. (if delayMessage
-     * equals null, there will be sent a default error message)
-     * <br>
-     * Another option you can use a specified {@link TimeUnit Time Unit} like {@link TimeUnit#MINUTES minutes},
-     * {@link TimeUnit#HOURS hours} or even {@link TimeUnit#DAYS days} (if {@link TimeUnit Time Unit} equals null,
-     * there will be used a default {@link TimeUnit Time Unit}: {@link TimeUnit#SECONDS TimeUnit.SECONDS})
+     * This works like a normal message sending, but with more given options and a delay between using this.
+     * <br> You must specify a delay to time out a command. (the long delay in seconds <b>must not equal to 0</b>. If this
+     * is true a {@link IllegalArgumentException illegal argument exception} will be thrown).
+     * <br> (The same is applicable for numbers under 0)
+     * <br> You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
+     * equals null, there will be sent a default error message.
+     * <br> Another option you can use a specified {@link TimeUnit time} like {@link TimeUnit#MINUTES minutes},
+     * {@link TimeUnit#HOURS hours} or even {@link TimeUnit#DAYS days}.
+     * <br> (if {@link TimeUnit the time unit} equals null, there will be used a default {@link TimeUnit time unit}: {@link TimeUnit#SECONDS TimeUnit#SECONDS})
      *
-     * @param action         The {@link MessageAction Message Action}, which should be used
+     * @param message         The {@link MessageAction message action}, which should be used
      * @param delayInSeconds The delay for the executing command in seconds
      * @param delayMessage   The error message, which should appear, if the member has not waited for the delay yet
-     * @param unit           The {@link TimeUnit TimeUnit}, which is used for specifying the type of time for the delay
-     * @return The specified {@link MessageAction Message Actions}
+     * @param unit           The {@link TimeUnit time unit}, which is used for specifying the type of time for the delay
+     * @return The specified {@link MessageAction message action}
      */
     @NotNull
-    public MessageAction sendTimeoutedMessage(@NotNull MessageAction action, long delayInSeconds, @Nullable MessageAction delayMessage,
-                                              @Nullable TimeUnit unit) {
-        if (delayInSeconds == 0) {
-            logger.error("The Time, which you are specifying, equals 0, so it makes no sense that you chose a Timeouted Message.", new IllegalArgumentException());
+    public MessageAction sendTimeoutedMessage(@NotNull MessageAction message, long delayInSeconds, @Nullable MessageAction delayMessage,
+                                              @Nullable TimeUnit unit)
+    {
+        if (message == null)
+        {
+            logger.error("The default message, which you are specifying, equals null.", new NullPointerException());
         }
 
-        if (delayInSeconds < 0) {
-            logger.error("The Time, which you are specifying can not be under 0.", new IllegalArgumentException());
-        }
-
-        try {
+        try
+        {
             long id = member.getIdLong();
             long time;
-            if (DataImpl.getHashMap().containsKey(id)) {
+            if (DataImpl.getHashMap().containsKey(id))
+            {
                 time = DataImpl.getHashMap().get(id);
 
-                if ((System.currentTimeMillis() - time) >= calculateDelay(unit, delayInSeconds)) {
+                if ((System.currentTimeMillis() - time) >= calculateDelay(unit, delayInSeconds))
+                {
                     DataImpl.getHashMap().put(id, System.currentTimeMillis());
-                    return action;
-                } else {
-                    if (delayMessage == null) {
+                    return message;
+                }
+                else
+                {
+                    if (delayMessage == null)
+                    {
                         DecimalFormat df = new DecimalFormat("0.00");
                         delayMessage = channel.sendMessage(member.getEffectiveName() + ", you must wait "
                                 + df.format((calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛");
-                    } else {
+                    }
+                    else
+                    {
                         return delayMessage;
                     }
                 }
-            } else {
-                DataImpl.getHashMap().put(id, System.currentTimeMillis());
-                return action;
             }
-        } catch (NullPointerException e) {
-            logger.error("The Message Action, which you are specifying, equals null.", e);
+            else
+            {
+                DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                return message;
+            }
         }
-
+        catch (NullPointerException e)
+        {
+            logger.error("The message Action, which you are specifying, equals null.", e);
+        }
         return delayMessage;
     }
 
     /**
-     * This works like a normal Message sending, but with more given options and a delay between using this.
-     * <br>
-     * You must specify a delay to time out a command. (the long delayInSeconds <b>must not equal to 0</b>. If this
-     * is true a {@link IllegalArgumentException IllegalArgumentException} will be thrown).
-     * (The same is applicable for numbers under 0)
-     * <br>
-     * You also can specify a delay message, which will be sent if you are under a delay. (if delayMessage
-     * equals null, there will be sent a default error message)
+     * This works like a normal message sending, but with more given options and a delay between using this.
+     * <br> You must specify a delay to time out a command. (the long delay in seconds <b>must not equal to 0</b>. If this
+     * is true a {@link IllegalArgumentException illegal argument exception} will be thrown).
+     * <br> (The same is applicable for numbers under 0)
+     * <br> You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
+     * equals null, there will be sent a default error message.
      *
-     * @param action         The {@link MessageAction Message Action}, which should be used
+     * @param message         The {@link MessageAction message action}, which should be used
      * @param delayInSeconds The delay for the executing command in seconds
      * @param delayMessage   The error message, which should appear, if the member has not waited for the delay yet
-     * @return The specified {@link MessageAction Message Actions}
+     * @return The specified {@link MessageAction message action}
      */
     @NotNull
-    public MessageAction sendTimeoutedMessage(@NotNull MessageAction action, long delayInSeconds, @Nullable MessageAction delayMessage) {
-        if (delayInSeconds == 0) {
-            logger.error("The Time, which you are specifying, equals 0, so it makes no sense that you chose a Timeouted Message.", new IllegalArgumentException());
+    public MessageAction sendTimeoutedMessage(@NotNull MessageAction message, long delayInSeconds, @Nullable MessageAction delayMessage)
+    {
+        if (message == null)
+        {
+            logger.error("The default message, which you are specifying, equals null.", new NullPointerException());
         }
 
-        if (delayInSeconds < 0) {
-            logger.error("The Time, which you are specifying can not be under 0.", new IllegalArgumentException());
-        }
-
-        try {
+        try
+        {
             long id = member.getIdLong();
             long time;
-            if (DataImpl.getHashMap().containsKey(id)) {
+            if (DataImpl.getHashMap().containsKey(id))
+            {
                 time = DataImpl.getHashMap().get(id);
 
-                if ((System.currentTimeMillis() - time) >= calculateDelay(null, delayInSeconds)) {
+                if ((System.currentTimeMillis() - time) >= calculateDelay(null, delayInSeconds))
+                {
                     DataImpl.getHashMap().put(id, System.currentTimeMillis());
-                    return action;
-                } else {
-                    if (delayMessage == null) {
+                    return message;
+                }
+                else
+                {
+                    if (delayMessage == null)
+                    {
                         DecimalFormat df = new DecimalFormat("0.00");
                         delayMessage = channel.sendMessage(member.getEffectiveName() + ", you must wait "
                                 + df.format((calculateDelay(null, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛");
-                    } else {
+                    }
+                    else
+                    {
                         return delayMessage;
                     }
                 }
-            } else {
-                DataImpl.getHashMap().put(id, System.currentTimeMillis());
-                return action;
             }
-        } catch (NullPointerException e) {
-            logger.error("The Message Action, which you are specifying, equals null.", e);
+            else
+            {
+                DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                return message;
+            }
         }
-
+        catch (NullPointerException e)
+        {
+            logger.error("The message action, which you are specifying, equals null.", e);
+        }
         return delayMessage;
     }
 
     /**
-     * This works like a normal Message sending, but with more given options and a delay between using this.
-     * <br>
-     * You must specify a delay to time out a command. (the long delayInSeconds <b>must not equal to 0</b>. If this
-     * is true a {@link IllegalArgumentException IllegalArgumentException} will be thrown).
-     * (The same is applicable for numbers under 0)
-     * <br>
-     * You also can specify a delay message, which will be sent if you are under a delay. (if delayMessage
-     * equals null, there will be sent a default error message)
-     * <br>
-     * Another option you can use a specified {@link TimeUnit Time Unit} like {@link TimeUnit#MINUTES minutes},
-     * {@link TimeUnit#HOURS hours} or even {@link TimeUnit#DAYS days} (if {@link TimeUnit Time Unit} equals null,
-     * there will be used a default {@link TimeUnit Time Unit}: {@link TimeUnit#SECONDS TimeUnit.SECONDS})
+     * This works like a normal message sending, but with more given options and a delay between using this.
+     * <br> You must specify a delay to time out a command. (the long delay in seconds <b>must not equal to 0</b>. If this
+     * is true a {@link IllegalArgumentException illegal argument exception} will be thrown).
+     * <br> (The same is applicable for numbers under 0)
+     * <br> You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
+     * equals null, there will be sent a default error message.
+     * <br> Another option you can use a specified {@link TimeUnit time} like {@link TimeUnit#MINUTES minutes},
+     * {@link TimeUnit#HOURS hours} or even {@link TimeUnit#DAYS days}.
+     * <br> (if {@link TimeUnit the time unit} equals null, there will be used a default {@link TimeUnit time unit}: {@link TimeUnit#SECONDS TimeUnit#SECONDS})
      *
-     * @param action         The {@link ReplyCallbackAction Reply Callback Action}, which should be used
+     * @param message         The {@link ReplyCallbackAction reply callback action}, which should be used
      * @param delayInSeconds The delay for the executing command in seconds
      * @param delayMessage   The error message, which should appear, if the member has not waited for the delay yet
-     * @param unit           The {@link TimeUnit TimeUnit}, which is used for specifying the type of time for the delay
-     * @return The specified {@link MessageAction Message Actions}
+     * @param unit           The {@link TimeUnit time unit}, which is used for specifying the type of time for the delay
+     * @return The specified {@link MessageAction message action}
      */
     @NotNull
-    public ReplyCallbackAction replyTimeoutedMessage(@NotNull ReplyCallbackAction action, long delayInSeconds, @Nullable ReplyCallbackAction delayMessage,
-                                                     @Nullable TimeUnit unit) {
-        if (delayInSeconds == 0) {
-            logger.error("The Time, which you are specifying, equals 0, so it makes no sense that you chose a Timeouted Message.", new IllegalArgumentException());
+    public ReplyCallbackAction replyTimeoutedMessage(@NotNull ReplyCallbackAction message, long delayInSeconds, @Nullable ReplyCallbackAction delayMessage,
+                                                     @Nullable TimeUnit unit)
+    {
+        if (message == null)
+        {
+            logger.error("The default message, which you are specifying, equals null.", new NullPointerException());
         }
 
-        if (delayInSeconds < 0) {
-            logger.error("The Time, which you are specifying can not be under 0.", new IllegalArgumentException());
-        }
-
-        try {
+        try
+        {
             long id = member.getIdLong();
             long time;
-            if (DataImpl.getHashMap().containsKey(id)) {
+            if (DataImpl.getHashMap().containsKey(id))
+            {
                 time = DataImpl.getHashMap().get(id);
 
-                if ((System.currentTimeMillis() - time) >= calculateDelay(unit, delayInSeconds)) {
+                if ((System.currentTimeMillis() - time) >= calculateDelay(unit, delayInSeconds))
+                {
                     DataImpl.getHashMap().put(id, System.currentTimeMillis());
-                    return action;
-                } else {
-                    if (delayMessage == null) {
+                    return message;
+                }
+                else
+                {
+                    if (delayMessage == null)
+                    {
                         DecimalFormat df = new DecimalFormat("0.00");
                         channel.sendMessage(member.getEffectiveName() + ", you must wait "
                                 + df.format((calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛").queue();
-                    } else {
+                    }
+                    else
+                    {
                         return delayMessage;
                     }
                 }
-            } else {
-                DataImpl.getHashMap().put(id, System.currentTimeMillis());
-                return action;
             }
-        } catch (NullPointerException e) {
-            logger.error("The Reply Callback Action, which you are specifying, equals null.", e);
+            else
+            {
+                DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                return message;
+            }
         }
-
+        catch (NullPointerException e)
+        {
+            logger.error("The reply callback action, which you are specifying, equals null.", e);
+        }
         return delayMessage;
     }
 
     /**
-     * This works like a normal Message sending, but with more given options and a delay between using this.
-     * <br>
-     * You must specify a delay to time out a command. (the long delayInSeconds <b>must not equal to 0</b>. If this
-     * is true a {@link IllegalArgumentException IllegalArgumentException} will be thrown).
-     * (The same is applicable for numbers under 0)
-     * <br>
-     * You also can specify a delay message, which will be sent if you are under a delay. (if delayMessage
-     * equals null, there will be sent a default error message)
+     * This works like a normal message sending, but with more given options and a delay between using this.
+     * <br> You must specify a delay to time out a command. (the long delay in seconds <b>must not equal to 0</b>. If this
+     * is true a {@link IllegalArgumentException illegal argument exception} will be thrown).
+     * <br> (The same is applicable for numbers under 0)
+     * <br> You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
+     * equals null, there will be sent a default error message.
      *
-     * @param action         The {@link ReplyCallbackAction Reply Callback Action}, which should be used
+     * @param message         The {@link ReplyCallbackAction reply callback action}, which should be used
      * @param delayInSeconds The delay for the executing command in seconds
      * @param delayMessage   The error message, which should appear, if the member has not waited for the delay yet
-     * @return The specified {@link MessageAction Message Actions}
+     * @return The specified {@link MessageAction message action}
      */
     @NotNull
-    public ReplyCallbackAction replyTimeoutedMessage(@NotNull ReplyCallbackAction action, long delayInSeconds, @Nullable ReplyCallbackAction delayMessage) {
-        if (delayInSeconds == 0) {
-            logger.error("The Time, which you are specifying, equals 0, so it makes no sense that you chose a Timeouted Message.", new IllegalArgumentException());
+    public ReplyCallbackAction replyTimeoutedMessage(@NotNull ReplyCallbackAction message, long delayInSeconds, @Nullable ReplyCallbackAction delayMessage)
+    {
+        if (message == null)
+        {
+            logger.error("The default message, which you are specifying, equals null.", new NullPointerException());
         }
 
-        if (delayInSeconds < 0) {
-            logger.error("The Time, which you are specifying can not be under 0.", new IllegalArgumentException());
-        }
-
-        try {
+        try
+        {
             long id = member.getIdLong();
             long time;
-            if (DataImpl.getHashMap().containsKey(id)) {
+            if (DataImpl.getHashMap().containsKey(id))
+            {
                 time = DataImpl.getHashMap().get(id);
 
-                if ((System.currentTimeMillis() - time) >= calculateDelay(null, delayInSeconds)) {
+                if ((System.currentTimeMillis() - time) >= calculateDelay(null, delayInSeconds))
+                {
                     DataImpl.getHashMap().put(id, System.currentTimeMillis());
-                    return action;
-                } else {
-                    if (delayMessage == null) {
+                    return message;
+                }
+                else
+                {
+                    if (delayMessage == null)
+                    {
                         DecimalFormat df = new DecimalFormat("0.00");
                         channel.sendMessage(member.getEffectiveName() + ", you must wait "
                                 + df.format((calculateDelay(null, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛").queue();
-                    } else {
+                    }
+                    else
+                    {
                         return delayMessage;
                     }
                 }
-            } else {
-                DataImpl.getHashMap().put(id, System.currentTimeMillis());
-                return action;
             }
-        } catch (NullPointerException e) {
-            logger.error("The Reply Callback Action, which you are specifying, equals null.", e);
+            else
+            {
+                DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                return message;
+            }
         }
-
+        catch (NullPointerException e)
+        {
+            logger.error("The reply callback action, which you are specifying, equals null.", e);
+        }
         return delayMessage;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object o)
+    {
+        if (this == o)
+        {
             return true;
         }
 
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null || getClass() != o.getClass())
+        {
             return false;
         }
 
@@ -849,13 +886,15 @@ public class DirectMessageChannel extends Utility {
 
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         return Objects.hash(channel, member);
     }
 
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "DirectMessageChannel{" +
                 "channel=" + channel +
                 ", member=" + member +

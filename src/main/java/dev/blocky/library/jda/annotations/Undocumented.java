@@ -24,10 +24,11 @@ import java.lang.annotation.Target;
  * This is an annotation, which tells the developers that a method/class/constructor/package is not documented yet.
  *
  * @author BlockyDotJar
- * @version v1.0.1
+ * @version v1.1.0
  * @since v1.0.0
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.PACKAGE, ElementType.TYPE, ElementType.METHOD, ElementType.CONSTRUCTOR})
-public @interface Undocumented {
+@Target( { ElementType.PACKAGE, ElementType.TYPE, ElementType.METHOD, ElementType.CONSTRUCTOR } )
+public @interface Undocumented
+{
 }

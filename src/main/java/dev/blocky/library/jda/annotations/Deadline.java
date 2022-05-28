@@ -24,15 +24,15 @@ import java.lang.annotation.Target;
  * This is an annotation, which tells the developers that a method/class should be finish in the future.
  *
  * @author BlockyDotJar
- * @version v1.0.1
+ * @version v1.1.0
  * @since v1.0.0-alpha.1
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE, ElementType.METHOD})
-public @interface Deadline {
-
+@Target( { ElementType.TYPE, ElementType.METHOD } )
+public @interface Deadline
+{
     /**
-     * @return The version, in which the <b>new</b> method/class should be finished.
+     * @return The version, in which the <b>new</b> method/class should be finished
      */
     String version();
 }

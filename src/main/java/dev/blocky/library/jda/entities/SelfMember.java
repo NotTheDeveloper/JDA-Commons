@@ -27,96 +27,109 @@ import org.slf4j.LoggerFactory;
 import java.util.Objects;
 
 /**
- * Represents the Self Member (aka. the bot itself) of a specific {@link Guild Guild}.
+ * Represents the self member (aka. the bot itself) of a specific {@link Guild guild}.
  *
  * @author BlockyDotJar
  * @version v1.1.0
  * @since v1.0.1
  */
-public class SelfMember {
+public class SelfMember
+{
     private static final Logger logger = LoggerFactory.getLogger(SelfMember.class);
     private Guild guild;
 
     /**
-     * Constructs a <b>new</b> {@link SelfMember Self Member}
-     * <br>
-     * This is a private constructor, because it should not be accessed for other classes
+     * Constructs a <b>new</b> {@link SelfMember self member}.
+     * <br> This is a private constructor, because it should not be accessed for other classes.
      */
-    private SelfMember() {
+    private SelfMember()
+    {
     }
 
     /**
-     * Constructs a <b>new</b> {@link SelfMember Self Member}
-     * <br>
-     * This is a private constructor, because it should not be accessed for other classes
+     * Constructs a <b>new</b> {@link SelfMember self member}.
+     * <br> This is a private constructor, because it should not be accessed for other classes.
      *
-     * @param guild The {@link Guild Guild}, which should be used to get {@link SelfMember Self Member}
+     * @param guild The {@link Guild guild}, which should be used to get {@link SelfMember self member}
      */
-    private SelfMember(@NotNull Guild guild) {
+    private SelfMember(@NotNull Guild guild)
+    {
         this.guild = guild;
 
-        if (JDALogger.SLF4J_ENABLED) {
-            if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES) && !guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS)) {
-                logger.warn("The GUILD_MESSAGES and GUILD_MEMBERS Intents are not enabled, which means, that some stuff could not work.");
+        if (JDALogger.SLF4J_ENABLED)
+        {
+            if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES) && !guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
+            {
+                logger.warn("Both the GUILD_MESSAGES and the GUILD_MEMBERS intents are not enabled, which means, that some stuff could not work.");
                 return;
             }
 
-            if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES)) {
-                logger.warn("The GUILD_MESSAGES Intent is not enabled, which means, that some stuff could not work.");
+            if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES))
+            {
+                logger.warn("The GUILD_MESSAGES intent is not enabled, which means, that some stuff could not work.");
                 return;
             }
 
-            if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS)) {
-                logger.warn("The GUILD_MEMBERS Intent is not enabled, which means, that some stuff could not work.");
+            if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
+            {
+                logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
                 return;
             }
 
-            if (guild == null) {
-                logger.error("The Guild you specify equals null.", new NullPointerException());
+            if (guild == null)
+            {
+                logger.error("The guild you specify equals null.", new NullPointerException());
             }
         }
     }
 
     /**
-     * Constructs a <b>new</b> {@link SelfMember Self Member} instance. If you don't
-     * initialize a {@link Guild Guild}, {@link SelfMember Self Member} always will be <b>null</b>.
+     * Constructs a <b>new</b> {@link SelfMember self member} instance. If you don't
+     * initialize a {@link Guild guild}, {@link SelfMember self member} always will be <b>null</b>.
      *
-     * @param guild The {@link Guild Guild}, which should be used to get {@link SelfMember Self Member}
-     * @return A <b>new</b> {@link SelfMember Self Member} instance
+     * @param guild The {@link Guild guild}, which should be used to get {@link SelfMember self member}
+     * @return A <b>new</b> {@link SelfMember self member} instance
      */
     @NotNull
-    public static SelfMember set(@Nullable Guild guild) {
+    public static SelfMember set(@Nullable Guild guild)
+    {
         return new SelfMember(guild);
     }
 
     /**
-     * The {@link Guild Guild} the Message was received in.
+     * The {@link Guild guild} the Message was received in.
      *
-     * @return The {@link Guild Guild} the Message was received in
+     * @return The {@link Guild guild} the message was received in
      */
     @NotNull
-    public Guild getGuild() {
+    public Guild getGuild()
+    {
         return guild;
     }
 
     /**
-     * Checks if {@link SelfMember Self Member} was pinged in a specified message.
+     * Checks if {@link SelfMember self member} was pinged in a specified message.
      *
-     * @param message The {@link Message Message}, which should checked, if there is a {@link SelfMember Self Member} ping in it
-     * @return <b>true -</b> If the {@link SelfMember Self Member} was pinged <br>
-     * <b>false -</b> If the {@link SelfMember Self Member} was not pinged
+     * @param message The {@link Message message}, which should checked, if there is a {@link SelfMember self member} ping in it
+     * @return
+     * <b>true -</b> If the {@link SelfMember self member} was pinged <br>
+     * <b>false -</b> If the {@link SelfMember self member} was not pinged
      */
-    public boolean isPinged(@NotNull Message message) {
-        return message.getContentDisplay().startsWith("<@" + guild.getSelfMember().getId() + ">");
+    public boolean isPinged(@NotNull Message message)
+    {
+        return message.getMentions().isMentioned(guild.getSelfMember(), Message.MentionType.USER);
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object o)
+    {
+        if (this == o)
+        {
             return true;
         }
 
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null || getClass() != o.getClass())
+        {
             return false;
         }
 
@@ -126,12 +139,14 @@ public class SelfMember {
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         return Objects.hash(guild);
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "SelfMember{" +
                 "guild=" + guild +
                 '}';
