@@ -16,6 +16,7 @@
 package dev.blocky.library.jda.entities;
 
 import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.ThreadMember;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -25,6 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.CheckReturnValue;
 import java.util.List;
 import java.util.Objects;
 
@@ -33,21 +35,13 @@ import java.util.Objects;
  * {@link net.dv8tion.jda.api.entities.ThreadChannel thread channel}.
  *
  * @author BlockyDotJar
- * @version v1.1.0
+ * @version v1.1.1
  * @since v1.1.1
  */
 public class GuildThreadMember
 {
     private static final Logger logger = LoggerFactory.getLogger(GuildThreadMember.class);
-    private ThreadMember member;
-
-    /**
-     * Constructs a <b>new</b> {@link GuildThreadMember guild thread member}.
-     * <br> This is a private constructor, because it should not be accessed for other classes.
-     */
-    private GuildThreadMember()
-    {
-    }
+    private final ThreadMember member;
 
     /**
      * Constructs a <b>new</b> {@link GuildThreadMember guild thread member}.
@@ -55,7 +49,7 @@ public class GuildThreadMember
      *
      * @param member The {@link ThreadMember thread member}, which should be used to get {@link GuildThreadMember guild thread member}
      */
-    private GuildThreadMember(@NotNull ThreadMember member)
+    private GuildThreadMember(@Nullable ThreadMember member)
     {
         this.member = member;
 
@@ -64,19 +58,18 @@ public class GuildThreadMember
             if (!member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
             {
                 logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
-                return;
             }
 
             if (member == null)
             {
-                logger.error("The thread member you specify equals null.", new NullPointerException());
+                logger.error("The thread member, which you are specifying, equals null.", new NullPointerException());
             }
         }
     }
 
     /**
      * Constructs a <b>new</b> {@link GuildThreadMember guild thread member} instance. If you don't
-     * initialize a {@link ThreadMember thread member}, {@link GuildThreadMember guild thread member} always will be <b>null</b>.
+     * initialize a {@link ThreadMember thread member}, the {@link GuildThreadMember guild thread member} always will be <b>null</b>.
      *
      * @param member The {@link ThreadMember thread member}, which should be used to get {@link GuildThreadMember guild thread member}
      * @return A <b>new</b> {@link GuildThreadMember guild thread member} instance
@@ -90,7 +83,7 @@ public class GuildThreadMember
     /**
      * The author of the {@link net.dv8tion.jda.api.entities.Message message} received as {@link ThreadMember thread member} object.
      *
-     * @return The author of the {@link net.dv8tion.jda.api.entities.Message message} as null-able member object
+     * @return The author of the {@link net.dv8tion.jda.api.entities.Message message} as null-able thread member object
      */
     @Nullable
     public ThreadMember getMember()
@@ -102,11 +95,10 @@ public class GuildThreadMember
      * Checks if the {@link Role role} with the id you specified, is found on the role board of the {@link Member thread member}.
      *
      * @param roleId The id of the {@link Role role}, which should be checked
-     * @return
-     * <b>not-null -</b> If the {@link Role role} is found on the role board of the {@link Member thread member}
-     * <br><b>null -</b> If the {@link Role role} is not found on the role board of the {@link Member thread member}
+     * @return The {@link Role role} with the id you specified
      */
     @Nullable
+    @CheckReturnValue
     public Role findRoleById(long roleId)
     {
         List<Role> roles = member.getMember().getRoles();
@@ -117,11 +109,10 @@ public class GuildThreadMember
      * Checks if the {@link Role role} with the id you specified, is found on the role board of the {@link Member thread member}.
      *
      * @param roleId The id of the {@link Role role}, which should be checked
-     * @return
-     * <b>not-null -</b> If the {@link Role role} is found on the role board of the {@link Member thread member}
-     * <br><b>null -</b> If the {@link Role role} is not found on the role board of the {@link Member thread member}
+     * @return The {@link Role role} with the id you specified
      */
     @Nullable
+    @CheckReturnValue
     public Role findRoleById(@NotNull String roleId)
     {
         List<Role> roles = member.getMember().getRoles();
@@ -132,11 +123,10 @@ public class GuildThreadMember
      * Checks if the {@link Role role} with the name you specified, is found on the role board of the {@link Member thread member}.
      *
      * @param roleName The name of the {@link Role role}, which should be checked
-     * @return
-     * <b>not-null -</b> If the {@link Role role} is found on the role board of the {@link Member thread member}
-     * <br><b>null -</b> If the {@link Role role} is not found on the role board of the {@link Member thread member}
+     * @return The {@link Role role} with the name you specified
      */
     @Nullable
+    @CheckReturnValue
     public Role findRoleByName(@NotNull String roleName)
     {
         List<Role> roles = member.getMember().getRoles();
@@ -183,19 +173,20 @@ public class GuildThreadMember
     }
 
     /**
-     * Checks if a {@link Member thread member} is a server booster.
+     * Checks if the {@link Member thread member} was pinged in a specified {@link Message message}.
      *
+     * @param message The {@link Message message}, which should checked, if the {@link Member thread member} got pinged in the {@link Message message}
      * @return
-     * <b>true -</b> If the {@link Member thread member} is boosting the server
-     * <br><b>false -</b> If the {@link Member thread member} is not boosting the server
+     * <b>true -</b> If the {@link Member thread member} got pinged in the {@link Message message} <br>
+     * <b>false -</b> If the {@link Member thread member} got pinged in the {@link Message message}
      */
-    public boolean isServerBooster()
+    public boolean isMentioned(@NotNull Message message)
     {
-        return member.getMember().getTimeBoosted() != null;
+        return message.getMentions().isMentioned(member, Message.MentionType.USER);
     }
 
     @Override
-    public boolean equals(Object o)
+    public boolean equals(@Nullable Object o)
     {
         if (this == o)
         {

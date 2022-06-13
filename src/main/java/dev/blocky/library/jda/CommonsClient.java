@@ -42,12 +42,21 @@ public final class CommonsClient
      * This is the builder for the {@link CommonsClient commons client}.
      *
      * @author BlockyDotJar
-     * @version v1.0.0-alpha.2
+     * @version v1.0.0-alpha.4
      * @since v1.0.0
      */
     @Deadline(version = "v1.6.0")
     public static class Builder
     {
+
+        /**
+         * Constructs a <br>new</b> {@link CommonsClient.Builder commons client builder}.
+         * <br> This is a private constructor, because it should not be accessed for other classes.
+         */
+        private Builder()
+        {
+        }
+
         /**
          * Represents a <b>new</b> {@link CommonsClient commons client} instance.
          *

@@ -18,7 +18,7 @@
  * {@link net.dv8tion.jda.api.entities.NewsChannel news channels}. The Discord client may refer to these as announcement channels.
  * Members can subscribe channels in their own {@link net.dv8tion.jda.api.entities.Guild guilds} to receive
  * {@link net.dv8tion.jda.api.entities.Message messages} cross-posted from this channel. This is referred to as following this channel.
- * {@link net.dv8tion.jda.api.entities.Message messages} sent in this channel can be cross-posted, at which point they will be sent
+ * {@link net.dv8tion.jda.api.entities.Message Messages} sent in this channel can be cross-posted, at which point they will be sent
  * (via {@link net.dv8tion.jda.api.entities.Webhook webhook}) to all subscribed channels. </li>
  *
  * <li>{@link dev.blocky.library.jda.entities.GuildTargetMember  Guild target member}
@@ -29,7 +29,7 @@
  * <br> Represents a Discord text {@link net.dv8tion.jda.api.entities.GuildChannel guild channel}. </li>
  *
  * <li>{@link dev.blocky.library.jda.entities.GuildThreadChannel  Guild thread channel}
- * <br> Represents private/public/news {@link net.dv8tion.jda.api.entities.ThreadChannel thread channels}. </li>
+ * <br> Represents private/public/news Discord {@link net.dv8tion.jda.api.entities.ThreadChannel thread channel}. </li>
  *
  * <li>{@link dev.blocky.library.jda.entities.GuildThreadMember  Guild thread member}
  * <br> Represents a {@link net.dv8tion.jda.api.entities.Member member}, who joined a

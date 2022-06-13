@@ -32,22 +32,14 @@ import java.util.Objects;
  * <br> The exact use is still unknown.
  *
  * @author BlockyDotJar
- * @version v1.0.0-alpha.3
+ * @version v1.0.0-alpha.4
  * @since v1.0.0
  */
 @Deadline(version = "v1.5.0")
 public class GuildController
 {
     private final Logger logger = LoggerFactory.getLogger(GuildController.class);
-    private Guild guild;
-
-    /**
-     * Constructs a <b>new</b> {@link GuildController guild controller}.
-     * <br> This is a private constructor, because it should not be accessed for other classes.
-     */
-    private GuildController()
-    {
-    }
+    private final Guild guild;
 
     /**
      * Constructs a <b>new</b> {@link GuildController guild controller}.
@@ -81,16 +73,16 @@ public class GuildController
 
             if (guild == null)
             {
-                logger.error("The guild you specify equals null.", new NullPointerException());
+                logger.error("The guild, which you are specifying, equals null.", new NullPointerException());
             }
         }
     }
 
     /**
      * Constructs a <b>new</b> {@link GuildController guild controller} instance. If you don't
-     * initialize a {@link Guild guild}, {@link GuildController guild controller} always will be <b>null</b>.
+     * initialize a {@link Guild guild}, the {@link GuildController guild controller} always will be <b>null</b>.
      *
-     * @param guild The {@link Guild guild}, which should be used to get {@link GuildController guild controller}
+     * @param guild The {@link Guild guild}, which should be used to get the {@link GuildController guild controller}
      * @return A <b>new</b> {@link GuildController guild controller} instance
      */
     @NotNull
@@ -102,7 +94,7 @@ public class GuildController
     /**
      * The {@link Guild guild} the message was received in.
      *
-     * @return The {@link Guild guild} the message was received in
+     * @return The {@link Guild guild}, the message was received in
      */
     @NotNull
     public Guild getGuild()
@@ -122,7 +114,7 @@ public class GuildController
     }
 
     @Override
-    public boolean equals(Object o)
+    public boolean equals(@Nullable Object o)
     {
         if (this == o)
         {

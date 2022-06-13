@@ -25,6 +25,7 @@ import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.CheckReturnValue;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -33,7 +34,7 @@ import java.util.concurrent.TimeUnit;
  * This is a class, which has many utility methods in it.
  *
  * @author BlockyDotJar
- * @version v1.1.0
+ * @version v1.1.1
  * @since v1.0.0
  */
 public class Utility
@@ -49,15 +50,16 @@ public class Utility
     }
 
     /**
-     * Checks, which {@link SafetyClear safety clear} enum is given. (if clear equals null, the
-     * {@link SafetyClear safety clear} enum  will be set to {@link SafetyClear#NONE SafetyClear#NONE}).
+     * Checks, which {@link SafetyClear safety clear} enum is given. (if <b>clear</b> equals null, the
+     * {@link SafetyClear safety clear} enum  will be set to {@link SafetyClear#NONE SafetyClear#NONE})
      *
      * @param clear   The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
      * @param channel The {@link TextChannel text channel}, which should be initialized
      * @param amount  The amount of messages to delete
-     * @return A list of futures representing all deletion task
+     * @return A list of messages representing the precursor of all deletion tasks
      */
     @Nullable
+    @CheckReturnValue
     protected static List<Message> checkClearSafety(@Nullable SafetyClear clear, @NotNull TextChannel channel, int amount)
     {
         List<Message> messages = new ArrayList<>();
@@ -77,12 +79,13 @@ public class Utility
 
             if (amount < 0)
             {
-                logger.error("The amount of messages, which you are specifying can not be under 0.",
+                logger.error("The amount of messages, which you are specifying, can not be under 0.",
                         new IllegalArgumentException());
             }
         }
 
         int i = amount + 1;
+
         for (Message message : channel.getIterableHistory().cache(false))
         {
             switch (clear)
@@ -130,15 +133,16 @@ public class Utility
     }
 
     /**
-     * Checks, which {@link SafetyClear safety clear} enum is given. (if clear equals null, the
-     * {@link SafetyClear safety clear} enum  will be set to {@link SafetyClear#NONE SafetyClear#NONE}).
+     * Checks, which {@link SafetyClear safety clear} enum is given. (if <b>clear</b> equals null, the
+     * {@link SafetyClear safety clear} enum  will be set to {@link SafetyClear#NONE SafetyClear#NONE})
      *
      * @param clear   The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
      * @param channel The {@link MessageChannel message channel}, which  should be initialized
      * @param amount  The amount of messages to delete
-     * @return A list of futures representing all deletion task
+     * @return A list of messages representing the precursor of all deletion tasks
      */
     @Nullable
+    @CheckReturnValue
     protected static List<Message> checkClearSafety(@Nullable SafetyClear clear, @NotNull MessageChannel channel, int amount)
     {
         List<Message> messages = new ArrayList<>();
@@ -158,12 +162,13 @@ public class Utility
 
             if (amount < 0)
             {
-                logger.error("The amount of messages, which you are specifying can not be under 0.",
+                logger.error("The amount of messages, which you are specifying, can not be under 0.",
                         new IllegalArgumentException());
             }
         }
 
         int i = amount + 1;
+
         for (Message message : channel.getIterableHistory().cache(false))
         {
             switch (clear)
@@ -211,14 +216,15 @@ public class Utility
     }
 
     /**
-     * Checks, which {@link SafetyClear safety clear} enum is given. (if clear equals null, the
+     * Checks, which {@link SafetyClear safety clear} enum is given. (if <b>clear</b> equals null, the
      * {@link SafetyClear safety clear} enum will be set to {@link SafetyClear#NONE SafetyClear#NONE}).
      *
      * @param clear   The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
      * @param channel The {@link TextChannel text channel}, which should be initialized
-     * @return A list of futures representing all deletion task
+     * @return A list of messages representing the precursor of all deletion tasks
      */
     @Nullable
+    @CheckReturnValue
     protected static List<Message> checkChannelClearSafety(@Nullable SafetyClear clear, @NotNull TextChannel channel)
     {
         List<Message> messages = new ArrayList<>();
@@ -270,14 +276,15 @@ public class Utility
     }
 
     /**
-     * Checks, which {@link SafetyClear safety clear} enum is given. (if clear equals null, the
+     * Checks, which {@link SafetyClear safety clear} enum is given. (if <b>clear</b> equals null, the
      * {@link SafetyClear safety clear} enum will be set to {@link SafetyClear#NONE SafetyClear#NONE}).
      *
      * @param clear   The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
      * @param channel The {@link MessageChannel message channel}, which should be initialized
-     * @return A list of futures representing all deletion task
+     * @return A list of messages representing the precursor of all deletion tasks
      */
     @Nullable
+    @CheckReturnValue
     protected static List<Message> checkChannelClearSafety(@Nullable SafetyClear clear, @NotNull MessageChannel channel)
     {
         List<Message> messages = new ArrayList<>();
@@ -353,7 +360,7 @@ public class Utility
 
             if (delayInSeconds < 0)
             {
-                logger.error("The delay in seconds, which you are specifying can not be under 0.",
+                logger.error("The delay in seconds, which you are specifying, can not be under 0.",
                         new IllegalArgumentException());
             }
         }

@@ -24,5 +24,43 @@ package dev.blocky.library.jda.enums;
  */
 public enum SafetyClear
 {
-    NONE, ALL, PINNED_MESSAGES, WEBHOOK_MESSAGES, EDITED_MESSAGES
+    /**
+     * The clear process will be done normally without any checks.
+     */
+    NONE,
+
+    /**
+     * The clear process will be done with all possible checks.
+     */
+    ALL,
+
+    /**
+     * The clear process will be done with the following check:
+     * <ul>
+     *     <li>
+     *         If the message is pinned
+     *     </li>
+     * </ul>
+     */
+    PINNED_MESSAGES,
+
+    /**
+     * The clear process will be done with the following check:
+     * <ul>
+     *     <li>
+     *         If the message is a webhook message
+     *     </li>
+     * </ul>
+     */
+    WEBHOOK_MESSAGES,
+
+    /**
+     * The clear process will be done with the following check:
+     * <ul>
+     *     <li>
+     *         If the message is edited
+     *     </li>
+     * </ul>
+     */
+    EDITED_MESSAGES
 }

@@ -16,6 +16,7 @@
 package dev.blocky.library.jda.entities;
 
 import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.internal.utils.JDALogger;
@@ -24,6 +25,7 @@ import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.CheckReturnValue;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,21 +33,13 @@ import java.util.Objects;
  * Represents a guild-specific {@link net.dv8tion.jda.api.entities.User user}.
  *
  * @author BlockyDotJar
- * @version v2.1.0
+ * @version v2.1.1
  * @since v1.0.0-alpha.1
  */
 public class GuildMember
 {
     private static final Logger logger = LoggerFactory.getLogger(GuildMember.class);
-    private Member member;
-
-    /**
-     * Constructs a <b>new</b> {@link GuildMember guild member}.
-     * <br> This is a private constructor, because it should not be accessed for other classes.
-     */
-    private GuildMember()
-    {
-    }
+    private final Member member;
 
     /**
      * Constructs a <b>new</b> {@link GuildMember guild member}.
@@ -53,7 +47,7 @@ public class GuildMember
      *
      * @param member The {@link Member member}, which should be used to get {@link GuildMember guild member}
      */
-    private GuildMember(@NotNull Member member)
+    private GuildMember(@Nullable Member member)
     {
         this.member = member;
 
@@ -62,19 +56,18 @@ public class GuildMember
             if (!member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
             {
                 logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
-                return;
             }
 
             if (member == null)
             {
-                logger.error("The member you specify equals null.", new NullPointerException());
+                logger.error("The member, which you are specifying, equals null.", new NullPointerException());
             }
         }
     }
 
     /**
      * Constructs a <b>new</b> {@link GuildMember guild member} instance. If you don't
-     * initialize a {@link Member member}, {@link GuildMember guild member} always will be <b>null</b>.
+     * initialize a {@link Member member}, the {@link GuildMember guild member} always will be <b>null</b>.
      *
      * @param member The {@link Member member}, which should be used to get {@link GuildMember guild member}
      * @return A <b>new</b> {@link GuildMember guild member} instance
@@ -100,11 +93,10 @@ public class GuildMember
      * Checks if the {@link Role role} with the id you specified, is found on the role board of the {@link Member member}.
      *
      * @param roleId The id of the {@link Role role}, which should be checked
-     * @return
-     * <b>not-null -</b> If the {@link Role role} is found on the role board of the {@link Member member}
-     * <br><b>null -</b> If the {@link Role role} is not found on the role board of the {@link Member member}
+     * @return The {@link Role role} with the id you specified
      */
     @Nullable
+    @CheckReturnValue
     public Role findRoleById(long roleId)
     {
         List<Role> roles = member.getRoles();
@@ -115,11 +107,10 @@ public class GuildMember
      * Checks if the {@link Role role} with the id you specified, is found on the role board of the {@link Member member}.
      *
      * @param roleId The id of the {@link Role role}, which should be checked
-     * @return
-     * <b>not-null -</b> If the {@link Role role} is found on the role board of the {@link Member member}
-     * <br><b>null -</b> If the {@link Role role} is not found on the role board of the {@link Member member}
+     * @return The {@link Role role} with the id you specified
      */
     @Nullable
+    @CheckReturnValue
     public Role findRoleById(@NotNull String roleId)
     {
         List<Role> roles = member.getRoles();
@@ -130,11 +121,10 @@ public class GuildMember
      * Checks if the {@link Role role} with the name you specified, is found on the role board of the {@link Member member}.
      *
      * @param roleName The name of the {@link Role role}, which should be checked
-     * @return
-     * <b>not-null -</b> If the {@link Role role} is found on the role board of the {@link Member member}
-     * <br><b>null -</b> If the {@link Role role} is not found on the role board of the {@link Member member}
+     * @return The {@link Role role} with the name you specified
      */
     @Nullable
+    @CheckReturnValue
     public Role findRoleByName(@NotNull String roleName)
     {
         List<Role> roles = member.getRoles();
@@ -181,19 +171,20 @@ public class GuildMember
     }
 
     /**
-     * Checks if a {@link Member member} is a server booster.
+     * Checks if the {@link Member member} was pinged in a specified {@link Message message}.
      *
+     * @param message The {@link Message message}, which should checked, if the {@link Member member} got pinged in the {@link Message message}
      * @return
-     * <b>true -</b> If the {@link Member member} is boosting the server
-     * <br><b>false -</b> If the {@link Member member} is not boosting the server
+     * <b>true -</b> If the {@link Member member} got pinged in the {@link Message message}
+     * <br><b>false -</b> If the {@link Member member} got pinged in the {@link Message message}
      */
-    public boolean isServerBooster()
+    public boolean isMentioned(@NotNull Message message)
     {
-        return member.getTimeBoosted() != null;
+        return message.getMentions().isMentioned(member, Message.MentionType.USER);
     }
 
     @Override
-    public boolean equals(Object o)
+    public boolean equals(@Nullable Object o)
     {
         if (this == o)
         {

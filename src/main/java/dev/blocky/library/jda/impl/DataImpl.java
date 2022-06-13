@@ -16,13 +16,15 @@
 package dev.blocky.library.jda.impl;
 
 import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.CheckReturnValue;
 import java.util.HashMap;
 
 /**
  * Implements some data.
  *
  * @author BlockyDotJar
- * @version v1.1.0
+ * @version v1.1.1
  * @since v1.0.0-alpha.3
  */
 public class DataImpl
@@ -37,14 +39,20 @@ public class DataImpl
     {
     }
 
-    /**
-     * The {@link DataImpl#map hash map} instance from the {@link DataImpl data implementation} class.
+    /**     * The {@link DataImpl#map hash map} instance from the {@link DataImpl data implementation} class.
      *
      * @return {@link DataImpl#map DataImpl#map}
+
      */
     @NotNull
+    @CheckReturnValue
     public static HashMap<Long, Long> getHashMap()
     {
         return map;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }

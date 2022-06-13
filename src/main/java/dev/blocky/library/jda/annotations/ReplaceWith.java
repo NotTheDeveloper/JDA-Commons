@@ -32,7 +32,12 @@ import java.lang.annotation.Target;
 public @interface ReplaceWith
 {
     /**
-     * @return The method/class, which should used instead
+     * @return The method, which should used instead
      */
     String method();
+
+    /**
+     * @return The class, which should used instead
+     */
+    String clazz();
 }

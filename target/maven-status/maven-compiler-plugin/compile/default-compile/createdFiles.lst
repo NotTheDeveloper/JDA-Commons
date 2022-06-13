@@ -31,10 +31,10 @@ dev\blocky\library\jda\entities\GuildMember.class
 dev\blocky\library\jda\entities\GuildNewsChannel.class
 dev\blocky\library\jda\entities\DirectMessageChannel.class
 dev\blocky\library\testzone\CommandManager.class
-dev\blocky\library\testzone\commands\app\slash\ModalSlashCommand.class
 dev\blocky\library\testzone\commands\app\user\package-info.class
 dev\blocky\library\jda\manager\GuildController.class
 dev\blocky\library\jda\CommonsClient$1.class
+dev\blocky\library\testzone\commands\app\slash\SupportModalCommand.class
 dev\blocky\library\jda\impl\package-info.class
 dev\blocky\library\jda\CommonsClient$Builder.class
 dev\blocky\library\jda\annotations\Undocumented.class

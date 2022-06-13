@@ -16,6 +16,7 @@
 package dev.blocky.library.jda.entities;
 
 import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent;
@@ -26,6 +27,7 @@ import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.CheckReturnValue;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,7 +36,7 @@ import java.util.Objects;
  * {@link net.dv8tion.jda.api.entities.User user}.
  *
  * @author BlockyDotJar
- * @version v1.1.0
+ * @version v1.1.1
  * @since v1.0.0-alpha.4
  */
 public class GuildTargetMember
@@ -42,14 +44,6 @@ public class GuildTargetMember
     private static final Logger logger = LoggerFactory.getLogger(GuildTargetMember.class);
     private UserContextInteractionEvent userEvent;
     private MessageContextInteractionEvent messageEvent;
-
-    /**
-     * Constructs a new {@link GuildTargetMember guild target member}.
-     * <br> This is a private constructor, because it should not be accessed for other classes.
-     */
-    private GuildTargetMember()
-    {
-    }
 
     /**
      * Constructs a new {@link GuildTargetMember guild target member}.
@@ -67,12 +61,11 @@ public class GuildTargetMember
             if (!userEvent.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
             {
                 logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
-                return;
             }
 
             if (userEvent == null)
             {
-                logger.error("The user context interaction event you specify equals null.", new NullPointerException());
+                logger.error("The user context interaction event, which you are specifying, equals null.", new NullPointerException());
             }
         }
     }
@@ -94,40 +87,39 @@ public class GuildTargetMember
             if (!messageEvent.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
             {
                 logger.warn("The GUILD_MEMBERS Intent is not enabled, which means, that some stuff could not work.");
-                return;
             }
 
             if (messageEvent == null)
             {
-                logger.error("The message context interaction event you specify equals null.", new NullPointerException());
+                logger.error("The message context interaction event, which you are specifying, equals null.", new NullPointerException());
             }
         }
     }
 
     /**
      * Constructs a <b>new</b> {@link GuildTargetMember guild target member} instance. If you don't
-     * initialize a {@link UserContextInteractionEvent user context interaction event},
+     * initialize a {@link UserContextInteractionEvent user context interaction event}, the
      * {@link GuildTargetMember Guild Target Member} always will be <b>null</b>.
      *
      * @param userEvent The {@link UserContextInteractionEvent user context interaction event}, which should be initialized
      * @return A <b>new</b> {@link GuildTargetMember guild target member} instance
      */
     @NotNull
-    public static GuildTargetMember set(@Nullable UserContextInteractionEvent userEvent)
+    public static GuildTargetMember set(@NotNull UserContextInteractionEvent userEvent)
     {
         return new GuildTargetMember(userEvent);
     }
 
     /**
      * Constructs a <b>new</b> {@link GuildTargetMember guild target member} instance. If you don't
-     * initialize a {@link MessageContextInteractionEvent message context interaction event},
+     * initialize a {@link MessageContextInteractionEvent message context interaction event}, the
      * {@link GuildTargetMember guild target member} always will be <b>null</b>.
      *
      * @param messageEvent The {@link MessageContextInteractionEvent message context interaction event}, which should be initialized
      * @return A <b>new</b> {@link GuildTargetMember guild target member} instance
      */
     @NotNull
-    public static GuildTargetMember set(@Nullable MessageContextInteractionEvent messageEvent)
+    public static GuildTargetMember set(@NotNull MessageContextInteractionEvent messageEvent)
     {
         return new GuildTargetMember(messageEvent);
     }
@@ -137,7 +129,7 @@ public class GuildTargetMember
      *
      * @return The {@link UserContextInteractionEvent user context interaction event}
      */
-    @Nullable
+    @NotNull
     public UserContextInteractionEvent getUserContext()
     {
         return userEvent;
@@ -148,7 +140,7 @@ public class GuildTargetMember
      *
      * @return The {@link MessageContextInteractionEvent message context interaction event}
      */
-    @Nullable
+    @NotNull
     public MessageContextInteractionEvent getMessageContext()
     {
         return messageEvent;
@@ -158,11 +150,10 @@ public class GuildTargetMember
      * Checks if the {@link Role role} with the id you specified, is found on the role board of the {@link Member target member}.
      *
      * @param roleId The id of the {@link Role role}, which should be checked
-     * @return
-     * <b>not-null -</b> If the {@link Role role} is found on the role board of the {@link Member target member}
-     * <br><b>null -</b> If the {@link Role role} is not found on the role board of the {@link Member target member}
+     * @return The {@link Role role} with the id you specified
      */
     @Nullable
+    @CheckReturnValue
     public Role findRoleById(long roleId)
     {
         List<Role> roles = userEvent != null ? userEvent.getTargetMember().getRoles() : messageEvent.getTarget().getMember().getRoles();
@@ -173,11 +164,10 @@ public class GuildTargetMember
      * Checks if the {@link Role role} with the id you specified, is found on the role board of the {@link Member target member}.
      *
      * @param roleId The id of the {@link Role role}, which should be checked
-     * @return
-     * <b>not-null -</b> If the {@link Role role} is found on the role board of the {@link Member target member}
-     * <br><b>null -</b> If the {@link Role role} is not found on the role board of the {@link Member target member}
+     * @return The {@link Role role} with the id you specified
      */
     @Nullable
+    @CheckReturnValue
     public Role findRoleById(@NotNull String roleId)
     {
         List<Role> roles = userEvent != null ? userEvent.getTargetMember().getRoles() : messageEvent.getTarget().getMember().getRoles();
@@ -188,11 +178,10 @@ public class GuildTargetMember
      * Checks if the {@link Role role} with the name you specified, is found on the role board of the {@link Member target member}.
      *
      * @param roleName The name of the {@link Role role}, which should be checked
-     * @return
-     * <b>not-null -</b> If the {@link Role role} is found on the role board of the {@link Member target member}
-     * <br><b>null -</b> If the {@link Role role} is not found on the role board of the {@link Member target member}
+     * @return The {@link Role role} with the name you specified
      */
     @Nullable
+    @CheckReturnValue
     public Role findRoleByName(@NotNull String roleName)
     {
         List<Role> roles = userEvent != null ? userEvent.getTargetMember().getRoles() : messageEvent.getTarget().getMember().getRoles();
@@ -239,20 +228,20 @@ public class GuildTargetMember
     }
 
     /**
-     * Checks if a {@link Member target member} is a server booster.
+     * Checks if the {@link Member target member} was pinged in a specified {@link Message message}.
      *
+     * @param message The {@link Message message}, which should checked, if the {@link Member target member} got pinged in the {@link Message message}
      * @return
-     * <b>true -</b> If the {@link Member target member} is boosting the server
-     * <br><b>false -</b> If the {@link Member target member} is not boosting the server
+     * <b>true -</b> If the {@link Member target member} got pinged in the {@link Message message} <br>
+     * <b>false -</b> If the {@link Member target member} got pinged in the {@link Message message}
      */
-    public boolean isServerBooster()
+    public boolean isMentioned(@NotNull Message message)
     {
-        return userEvent != null ? userEvent.getTargetMember().getTimeBoosted() != null :
-                messageEvent.getTarget().getMember().getTimeBoosted() != null;
+        return message.getMentions().isMentioned(userEvent != null ? userEvent.getTargetMember(): messageEvent.getTarget().getMember(), Message.MentionType.USER);
     }
 
     @Override
-    public boolean equals(Object o)
+    public boolean equals(@Nullable Object o)
     {
         if (this == o)
         {
