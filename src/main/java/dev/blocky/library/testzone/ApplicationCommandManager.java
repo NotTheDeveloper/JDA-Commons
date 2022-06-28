@@ -18,9 +18,9 @@ package dev.blocky.library.testzone;
 import dev.blocky.library.jda.interfaces.app.message.IMessageContext;
 import dev.blocky.library.jda.interfaces.app.slash.ISlashCommand;
 import dev.blocky.library.jda.interfaces.app.user.IUserContext;
-import dev.blocky.library.testzone.commands.app.message.RickrollMessageContextCommand;
-import dev.blocky.library.testzone.commands.app.slash.SupportModalCommand;
+import dev.blocky.library.testzone.commands.app.message.RickRollMessageContextCommand;
 import dev.blocky.library.testzone.commands.app.slash.PingSlashCommand;
+import dev.blocky.library.testzone.commands.app.slash.SupportModalCommand;
 import dev.blocky.library.testzone.commands.app.user.AvatarUserContextCommand;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent;
@@ -30,11 +30,12 @@ import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEven
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.SelectMenuInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
+import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -55,7 +56,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ApplicationCommandManager extends ListenerAdapter
 {
-    private final Logger logger = LoggerFactory.getLogger(ApplicationCommandManager.class);
+    private final Logger logger = JDALogger.getLog(ApplicationCommandManager.class);
     private final Map<String, ISlashCommand> slashMap;
     private final Map<String, IMessageContext> messageMap;
     private final Map<String, IUserContext> userMap;
@@ -86,13 +87,26 @@ public class ApplicationCommandManager extends ListenerAdapter
          * Here you can import your message context commands.
          */
 
-        messageMap.put("rickroll", new RickrollMessageContextCommand());
+        messageMap.put("rick-roll", new RickRollMessageContextCommand());
 
         DiscordBotExample.getJDA().updateCommands()
-                .addCommands(Commands.slash("ping", "Shows the ping of the bot!"))
-                .addCommands(Commands.slash("support", "Sends an modal with different questions!"))
-                .addCommands(Commands.user("avatar"))
-                .addCommands(Commands.message("rickroll"))
+                .addCommands(
+                        Commands.slash("ping", "Shows the ping of the bot!")
+                                .setGuildOnly(false)
+                )
+                .addCommands(
+                        Commands.slash("support", "Sends an modal with different questions!")
+                                .setGuildOnly(false)
+                )
+                .addCommands(
+                        Commands.user("avatar")
+                                .setGuildOnly(false)
+                )
+                .addCommands(
+                        Commands.message("rick-roll")
+                                .setGuildOnly(true)
+                                .setDefaultPermissions(DefaultMemberPermissions.ENABLED)
+                )
                 .queue();
     }
 

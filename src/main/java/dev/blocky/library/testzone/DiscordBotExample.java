@@ -19,11 +19,12 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
+import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
 import java.io.BufferedReader;
@@ -40,7 +41,7 @@ import java.util.EnumSet;
  */
 public class DiscordBotExample
 {
-    private static final Logger logger = LoggerFactory.getLogger(DiscordBotExample.class);
+    private static final Logger logger = JDALogger.getLog(DiscordBotExample.class);
     private static final CommandManager cmdMan = new CommandManager();
     private static JDA jda;
 
@@ -75,12 +76,13 @@ public class DiscordBotExample
                                 // Disables all not needed cache flags.
                                 CacheFlag.CLIENT_STATUS,
                                 CacheFlag.ACTIVITY,
-                                CacheFlag.EMOTE,
+                                CacheFlag.EMOJI,
                                 CacheFlag.VOICE_STATE
                         )
                 )
                 // Policy which decides whether a member (and respective user) should be kept in cache.
                 .setMemberCachePolicy(MemberCachePolicy.ALL)
+                .setChunkingFilter(ChunkingFilter.ALL)
                 // Adds all provided listeners to the list of listeners that will be used to populate the JDA object.
                 .addEventListeners(cmdMan)
                 .build();
@@ -112,7 +114,7 @@ public class DiscordBotExample
                             {
                                 logger.info("Bot stops in " + i + " seconds.");
                             }
-                            else if (i == 1)
+                            else
                             {
                                 logger.info("Bot stops in " + i + " second.");
                             }

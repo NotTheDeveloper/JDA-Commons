@@ -25,7 +25,6 @@ import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.annotation.CheckReturnValue;
 import java.util.List;
@@ -41,7 +40,7 @@ import java.util.Objects;
  */
 public class GuildTargetMember
 {
-    private static final Logger logger = LoggerFactory.getLogger(GuildTargetMember.class);
+    private static final Logger logger = JDALogger.getLog(GuildTargetMember.class);
     private UserContextInteractionEvent userEvent;
     private MessageContextInteractionEvent messageEvent;
 
@@ -56,17 +55,9 @@ public class GuildTargetMember
     {
         this.userEvent = userEvent;
 
-        if (JDALogger.SLF4J_ENABLED)
+        if (!userEvent.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
         {
-            if (!userEvent.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
-            {
-                logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
-            }
-
-            if (userEvent == null)
-            {
-                logger.error("The user context interaction event, which you are specifying, equals null.", new NullPointerException());
-            }
+            logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
         }
     }
 
@@ -82,17 +73,9 @@ public class GuildTargetMember
     {
         this.messageEvent = messageEvent;
 
-        if (JDALogger.SLF4J_ENABLED)
+        if (!messageEvent.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
         {
-            if (!messageEvent.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
-            {
-                logger.warn("The GUILD_MEMBERS Intent is not enabled, which means, that some stuff could not work.");
-            }
-
-            if (messageEvent == null)
-            {
-                logger.error("The message context interaction event, which you are specifying, equals null.", new NullPointerException());
-            }
+            logger.warn("The GUILD_MEMBERS Intent is not enabled, which means, that some stuff could not work.");
         }
     }
 

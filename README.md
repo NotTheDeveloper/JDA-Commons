@@ -32,7 +32,7 @@ The JDA-Commons lib is only a little extension to the JDA library, which adds lo
 6. [Dependencies](#dependencies)
 7. [Other libraries](#jda-related-projects)
 
-## User- and Selfbots
+## User- and Self- bots
 
 Discord is currently prohibiting creation and usage of automated client accounts. <br>
 Because of this, this library will never support this kind of client accounts. <br>
@@ -93,7 +93,25 @@ After that you add this repository and dependency to your `pom.xml`:
 
 **Gradle**
 
-Gradle is **not supported yet**, but this will be changed **in the future**.
+Be sure to replace the **`GITHUB_USERNAME`** key below with your GitHub username and **`TOKEN`** with a [GitHub token](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)!
+
+```gradle
+repositories {
+    maven {
+        url = uri("https://maven.pkg.github.com/BlockyDotJar/JDA-Commons")
+        credentials {
+            username = project.findProperty("gpr.user") ?: "GITHUB_USERNAME"
+            password = project.findProperty("gpr.key") ?: "TOKEN"
+        }
+    }
+}
+```
+
+```gradle
+dependencies {
+    implementation("dev.blocky.library:jda-commons:${VERSION}")
+}
+```
 
 ### Logging framework - SLF4J
 
@@ -200,7 +218,7 @@ More can be found in the GitHub organization: [JDA-Applications](https://github.
 This project requires **Java 8+**
 
 * JDA (Java Discord API)
-    * Version: **v5.0.0-alpha.12**
+    * Version: **v5.0.0-alpha.13**
     * [Github](https://github.com/DV8FromTheWorld/JDA)
 * slf4j-api
     * Version: **v1.7.36**

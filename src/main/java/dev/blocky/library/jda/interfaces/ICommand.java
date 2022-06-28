@@ -29,7 +29,7 @@ public interface ICommand
 {
     /**
      *  A simple command interface, which you can use to easily program message commands.
-     * <br> This contains a {@link dev.blocky.library.testzone.CommandManager command manager}.
+     * <br> This contains an {@link dev.blocky.library.testzone.CommandManager command manager}.
      *
      * @param event The {@link MessageReceivedEvent message received event} for performing a command
      * @param args  An array of strings for performing a command

@@ -27,7 +27,6 @@ import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.annotation.CheckReturnValue;
 import java.text.DecimalFormat;
@@ -50,8 +49,9 @@ import java.util.stream.Collectors;
  * @version v1.1.1
  * @since v1.1.1
  */
-public class GuildNewsChannel extends Utility {
-    private static final Logger logger = LoggerFactory.getLogger(GuildNewsChannel.class);
+public class GuildNewsChannel extends Utility
+{
+    private static final Logger logger = JDALogger.getLog(GuildNewsChannel.class);
     private final NewsChannel channel;
     private Member member;
 
@@ -67,32 +67,19 @@ public class GuildNewsChannel extends Utility {
         this.channel = channel;
         this.member = member;
 
-        if (JDALogger.SLF4J_ENABLED)
+        if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES) && !member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
         {
-            if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES) && !member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
-            {
-                logger.warn("Both the GUILD_MESSAGES and the GUILD_MEMBERS intents are not enabled, which means, that some stuff could not work.");
-            }
+            logger.warn("Both the GUILD_MESSAGES and the GUILD_MEMBERS intents are not enabled, which means, that some stuff could not work.");
+        }
 
-            if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES))
-            {
-                logger.warn("The GUILD_MESSAGES intent is not enabled, which means, that some stuff could not work.");
-            }
+        if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES))
+        {
+            logger.warn("The GUILD_MESSAGES intent is not enabled, which means, that some stuff could not work.");
+        }
 
-            if (!member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
-            {
-                logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
-            }
-
-            if (channel == null)
-            {
-                logger.error("The news channel, which you are specifying, equals null.", new NullPointerException());
-            }
-
-            if (member == null)
-            {
-                logger.error("The member, which you are specifying, equals null.", new NullPointerException());
-            }
+        if (!member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
+        {
+            logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
         }
     }
 
@@ -106,17 +93,9 @@ public class GuildNewsChannel extends Utility {
     {
         this.channel = channel;
 
-        if (JDALogger.SLF4J_ENABLED)
+        if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES))
         {
-            if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES))
-            {
                 logger.warn("The GUILD_MESSAGES intent is not enabled, which means, that some stuff could not work.");
-            }
-
-            if (channel == null)
-            {
-                logger.error("The news channel, which you are specifying,equals null.", new NullPointerException());
-            }
         }
     }
 
@@ -279,11 +258,6 @@ public class GuildNewsChannel extends Utility {
     public MessageAction sendTimeoutedMessage(@NotNull MessageAction message, long delayInSeconds, @Nullable MessageAction delayMessage,
                                               @Nullable TimeUnit unit)
     {
-        if (message == null)
-        {
-            logger.error("The default message, which you are specifying, equals null.", new NullPointerException());
-        }
-
         try
         {
             long id = member.getIdLong();
@@ -340,11 +314,6 @@ public class GuildNewsChannel extends Utility {
     @CheckReturnValue
     public MessageAction sendTimeoutedMessage(@NotNull MessageAction message, long delayInSeconds, @Nullable MessageAction delayMessage)
     {
-        if (message == null)
-        {
-            logger.error("The default message, which you are specifying, equals null.", new NullPointerException());
-        }
-
         try
         {
             long id = member.getIdLong();
@@ -407,11 +376,6 @@ public class GuildNewsChannel extends Utility {
     public ReplyCallbackAction replyTimeoutedMessage(@NotNull ReplyCallbackAction message, long delayInSeconds, @Nullable ReplyCallbackAction delayMessage,
                                                      @Nullable TimeUnit unit)
     {
-        if (message == null)
-        {
-            logger.error("The default message, which you are specifying, equals null.", new NullPointerException());
-        }
-
         try
         {
             long id = member.getIdLong();
@@ -468,11 +432,6 @@ public class GuildNewsChannel extends Utility {
     @CheckReturnValue
     public ReplyCallbackAction replyTimeoutedMessage(@NotNull ReplyCallbackAction message, long delayInSeconds, @Nullable ReplyCallbackAction delayMessage)
     {
-        if (message == null)
-        {
-            logger.error("The default message, which you are specifying, equals null.", new NullPointerException());
-        }
-
         try
         {
             long id = member.getIdLong();

@@ -22,10 +22,10 @@ import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.ShutdownEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.concurrent.ConcurrentHashMap;
@@ -40,7 +40,7 @@ import java.util.regex.Pattern;
  */
 public class CommandManager extends ListenerAdapter
 {
-    private final Logger logger = LoggerFactory.getLogger(CommandManager.class);
+    private final Logger logger = JDALogger.getLog(CommandManager.class);
     private static ConcurrentHashMap<String, ICommand> commands;
 
     /**

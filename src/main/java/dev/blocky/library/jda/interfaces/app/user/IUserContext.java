@@ -29,7 +29,7 @@ public interface IUserContext
 {
     /**
      * A simple user context menu interface, which you can use to easily program some user context menus.
-     * <br> This contains a {@link dev.blocky.library.testzone.ApplicationCommandManager application command manager}.
+     * <br> This contains an {@link dev.blocky.library.testzone.ApplicationCommandManager application command manager}.
      *
      * @param event Indicates that a message context command was used
      */

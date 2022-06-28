@@ -18,7 +18,9 @@ package dev.blocky.library.jda.entities;
 import dev.blocky.library.jda.Utility;
 import dev.blocky.library.jda.enums.SafetyClear;
 import dev.blocky.library.jda.impl.DataImpl;
-import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.ThreadChannel;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.requests.restaction.MessageAction;
 import net.dv8tion.jda.api.requests.restaction.interactions.ReplyCallbackAction;
@@ -26,7 +28,6 @@ import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.annotation.CheckReturnValue;
 import java.text.DecimalFormat;
@@ -46,7 +47,7 @@ import java.util.stream.Collectors;
  */
 public class GuildThreadChannel extends Utility
 {
-    private static final Logger logger = LoggerFactory.getLogger(GuildThreadChannel.class);
+    private static final Logger logger = JDALogger.getLog(GuildThreadChannel.class);
     private final ThreadChannel channel;
     private Member member;
 
@@ -62,33 +63,19 @@ public class GuildThreadChannel extends Utility
         this.channel = channel;
         this.member = member;
 
-        if (JDALogger.SLF4J_ENABLED)
+        if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES) && !member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
         {
-            if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES) && !member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
-            {
-                logger.warn("Both the GUILD_MESSAGES and the GUILD_MEMBERS intents are not enabled, which means, that some stuff could not work.");
-            }
+            logger.warn("Both the GUILD_MESSAGES and the GUILD_MEMBERS intents are not enabled, which means, that some stuff could not work.");
+        }
 
-            if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES))
-            {
-                logger.warn("The GUILD_MESSAGES intent is not enabled, which means, that some stuff could not work.");
-            }
+        if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES))
+        {
+            logger.warn("The GUILD_MESSAGES intent is not enabled, which means, that some stuff could not work.");
+        }
 
-            if (!member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
-            {
-                logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
-            }
-
-            if (channel == null)
-            {
-
-                logger.error("The thread channel, which you are specifying, equals null.", new NullPointerException());
-            }
-
-            if (member == null)
-            {
-                logger.error("The member, which you are specifying, equals null.", new NullPointerException());
-            }
+        if (!member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
+        {
+            logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
         }
     }
 
@@ -102,17 +89,9 @@ public class GuildThreadChannel extends Utility
     {
         this.channel = channel;
 
-        if (JDALogger.SLF4J_ENABLED)
+        if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES))
         {
-            if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES))
-            {
                 logger.warn("The GUILD_MESSAGES intent is not enabled, which means, that some stuff could not work.");
-            }
-
-            if (channel == null)
-            {
-                logger.error("The thread channel, which you are specifying, equals null.", new NullPointerException());
-            }
         }
     }
 
@@ -275,11 +254,6 @@ public class GuildThreadChannel extends Utility
     public MessageAction sendTimeoutedMessage(@NotNull MessageAction message, long delayInSeconds, @Nullable MessageAction delayMessage,
                                               @Nullable TimeUnit unit)
     {
-        if (message == null)
-        {
-            logger.error("The default message, which you are specifying, equals null.", new NullPointerException());
-        }
-
         try
         {
             long id = member.getIdLong();
@@ -336,11 +310,6 @@ public class GuildThreadChannel extends Utility
     @CheckReturnValue
     public MessageAction sendTimeoutedMessage(@NotNull MessageAction message, long delayInSeconds, @Nullable MessageAction delayMessage)
     {
-        if (message == null)
-        {
-            logger.error("The default message, which you are specifying, equals null.", new NullPointerException());
-        }
-
         try
         {
             long id = member.getIdLong();
@@ -403,11 +372,6 @@ public class GuildThreadChannel extends Utility
     public ReplyCallbackAction replyTimeoutedMessage(@NotNull ReplyCallbackAction message, long delayInSeconds, @Nullable ReplyCallbackAction delayMessage,
                                                      @Nullable TimeUnit unit)
     {
-        if (message == null)
-        {
-            logger.error("The default message, which you are specifying, equals null.", new NullPointerException());
-        }
-
         try
         {
             long id = member.getIdLong();
@@ -464,11 +428,6 @@ public class GuildThreadChannel extends Utility
     @CheckReturnValue
     public ReplyCallbackAction replyTimeoutedMessage(@NotNull ReplyCallbackAction message, long delayInSeconds, @Nullable ReplyCallbackAction delayMessage)
     {
-        if (message == null)
-        {
-            logger.error("The default message, which you are specifying, equals null.", new NullPointerException());
-        }
-
         try
         {
             long id = member.getIdLong();

@@ -23,7 +23,6 @@ import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.annotation.CheckReturnValue;
 import java.util.List;
@@ -38,7 +37,7 @@ import java.util.Objects;
  */
 public class GuildMember
 {
-    private static final Logger logger = LoggerFactory.getLogger(GuildMember.class);
+    private static final Logger logger = JDALogger.getLog(GuildMember.class);
     private final Member member;
 
     /**
@@ -51,17 +50,9 @@ public class GuildMember
     {
         this.member = member;
 
-        if (JDALogger.SLF4J_ENABLED)
+        if (!member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
         {
-            if (!member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
-            {
                 logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
-            }
-
-            if (member == null)
-            {
-                logger.error("The member, which you are specifying, equals null.", new NullPointerException());
-            }
         }
     }
 

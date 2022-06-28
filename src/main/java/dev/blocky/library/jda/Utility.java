@@ -23,7 +23,6 @@ import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.annotation.CheckReturnValue;
 import java.util.ArrayList;
@@ -39,7 +38,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class Utility
 {
-    private final static Logger logger = LoggerFactory.getLogger(Utility.class);
+    private final static Logger logger = JDALogger.getLog(Utility.class);
 
     /**
      * Constructs a <b>new</b> {@link Utility utility}.
@@ -58,7 +57,7 @@ public class Utility
      * @param amount  The amount of messages to delete
      * @return A list of messages representing the precursor of all deletion tasks
      */
-    @Nullable
+    @NotNull
     @CheckReturnValue
     protected static List<Message> checkClearSafety(@Nullable SafetyClear clear, @NotNull TextChannel channel, int amount)
     {
@@ -69,20 +68,18 @@ public class Utility
             clear = SafetyClear.NONE;
         }
 
-        if(JDALogger.SLF4J_ENABLED)
+        if (amount == 0)
         {
-            if (amount == 0)
-            {
-                logger.error("The amount of messages, which you are specifying, equals 0, so it makes no sense that you use this method.",
-                        new IllegalArgumentException());
-            }
-
-            if (amount < 0)
-            {
-                logger.error("The amount of messages, which you are specifying, can not be under 0.",
-                        new IllegalArgumentException());
-            }
+            logger.error("The amount of messages, which you are specifying, equals 0, so it makes no sense that you use this method.",
+                    new IllegalArgumentException());
         }
+
+        if (amount < 0)
+        {
+            logger.error("The amount of messages, which you are specifying, can not be under 0.",
+                    new IllegalArgumentException());
+        }
+
 
         int i = amount + 1;
 
@@ -141,7 +138,7 @@ public class Utility
      * @param amount  The amount of messages to delete
      * @return A list of messages representing the precursor of all deletion tasks
      */
-    @Nullable
+    @NotNull
     @CheckReturnValue
     protected static List<Message> checkClearSafety(@Nullable SafetyClear clear, @NotNull MessageChannel channel, int amount)
     {
@@ -152,19 +149,16 @@ public class Utility
             clear = SafetyClear.NONE;
         }
 
-        if(JDALogger.SLF4J_ENABLED)
+        if (amount == 0)
         {
-            if (amount == 0)
-            {
-                logger.error("The amount of messages, which you are specifying, equals 0, so it makes no sense that you use this method.",
-                        new IllegalArgumentException());
-            }
+            logger.error("The amount of messages, which you are specifying, equals 0, so it makes no sense that you use this method.",
+                    new IllegalArgumentException());
+        }
 
-            if (amount < 0)
-            {
-                logger.error("The amount of messages, which you are specifying, can not be under 0.",
-                        new IllegalArgumentException());
-            }
+        if (amount < 0)
+        {
+            logger.error("The amount of messages, which you are specifying, can not be under 0.",
+                    new IllegalArgumentException());
         }
 
         int i = amount + 1;
@@ -223,7 +217,7 @@ public class Utility
      * @param channel The {@link TextChannel text channel}, which should be initialized
      * @return A list of messages representing the precursor of all deletion tasks
      */
-    @Nullable
+    @NotNull
     @CheckReturnValue
     protected static List<Message> checkChannelClearSafety(@Nullable SafetyClear clear, @NotNull TextChannel channel)
     {
@@ -283,7 +277,7 @@ public class Utility
      * @param channel The {@link MessageChannel message channel}, which should be initialized
      * @return A list of messages representing the precursor of all deletion tasks
      */
-    @Nullable
+    @NotNull
     @CheckReturnValue
     protected static List<Message> checkChannelClearSafety(@Nullable SafetyClear clear, @NotNull MessageChannel channel)
     {
@@ -350,20 +344,18 @@ public class Utility
             unit = TimeUnit.SECONDS;
         }
 
-        if(JDALogger.SLF4J_ENABLED)
+        if (delayInSeconds == 0)
         {
-            if (delayInSeconds == 0)
-            {
-                logger.error("The delay in seconds, which you are specifying, equals 0, so it makes no sense that you chose a timeouted message.",
-                        new IllegalArgumentException());
-            }
-
-            if (delayInSeconds < 0)
-            {
-                logger.error("The delay in seconds, which you are specifying, can not be under 0.",
-                        new IllegalArgumentException());
-            }
+            logger.error("The delay in seconds, which you are specifying, equals 0, so it makes no sense that you chose a timeouted message.",
+                    new IllegalArgumentException());
         }
+
+        if (delayInSeconds < 0)
+        {
+            logger.error("The delay in seconds, which you are specifying, can not be under 0.",
+                    new IllegalArgumentException());
+        }
+
 
         long delay = 0;
         switch (unit)

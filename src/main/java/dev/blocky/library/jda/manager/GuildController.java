@@ -23,9 +23,6 @@ import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.Objects;
 
 /**
  * This is a controller you can control guilds with.
@@ -38,7 +35,7 @@ import java.util.Objects;
 @Deadline(version = "v1.5.0")
 public class GuildController
 {
-    private final Logger logger = LoggerFactory.getLogger(GuildController.class);
+    private final Logger logger = JDALogger.getLog(GuildController.class);
     private final Guild guild;
 
     /**
@@ -51,30 +48,19 @@ public class GuildController
     {
         this.guild = guild;
 
-        if(JDALogger.SLF4J_ENABLED)
+        if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES) && !guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
         {
-            if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES) && !guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
-            {
-                logger.warn("Both the GUILD_MESSAGES and the GUILD_MEMBERS intents are not enabled, which means, that some stuff could not work.");
-                return;
-            }
+            logger.warn("Both the GUILD_MESSAGES and the GUILD_MEMBERS intents are not enabled, which means, that some stuff could not work.");
+        }
 
-            if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES))
-            {
-                logger.warn("The GUILD_MESSAGES intent is not enabled, which means, that some stuff could not work.");
-                return;
-            }
+        if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES))
+        {
+            logger.warn("The GUILD_MESSAGES intent is not enabled, which means, that some stuff could not work.");
+        }
 
-            if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
-            {
-                logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
-                return;
-            }
-
-            if (guild == null)
-            {
-                logger.error("The guild, which you are specifying, equals null.", new NullPointerException());
-            }
+        if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
+        {
+            logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
         }
     }
 
@@ -126,15 +112,8 @@ public class GuildController
             return false;
         }
 
-        SelfMember that = (SelfMember) o;
-
-        return guild.equals(that.getGuild());
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return Objects.hash(guild);
+        GuildController that = (GuildController) o;
+        return guild.equals(that.guild);
     }
 
     @Override

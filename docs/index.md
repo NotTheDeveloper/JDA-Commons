@@ -56,9 +56,9 @@ CommonsClient client = CommonsClient.Builder.getCommonsClient();
 
 `N/A` No method found in this class.
 
-### Overriden methods
+### Overridden methods
 
-`N/A` No overriden method found in this class.
+`N/A` No overridden method found in this class.
 
 ## Builder
 
@@ -88,9 +88,9 @@ Since: v1.0.0
 getCommonsClient()
 ```
 
-### Overriden methods
+### Overridden methods
 
-`N/A` No overriden method found in this class.
+`N/A` No overridden method found in this class.
 
 <hr>
 
@@ -117,7 +117,7 @@ Since: v1.0.0
 > **channel** - The text channel, which should be initialized <br>
 > **amount** - The amount of messages to delete <br>
 > Returns: A list of messages representing the precursor of all deletion tasks <br>
-> Annotation: **Nullable**, **CheckReturnValue**
+> Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 checkClearSafety(@Nullable SafetyClear, @NotNull TextChannel, int)
 ```
@@ -130,7 +130,7 @@ checkClearSafety(@Nullable SafetyClear, @NotNull TextChannel, int)
 > **channel** - The message channel, which should be initialized <br>
 > **amount** - The amount of messages to delete <br>
 > Returns: A list of messages representing the precursor of all deletion tasks <br>
-> Annotation: **Nullable**, **CheckReturnValue**
+> Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 checkClearSafety(@Nullable SafetyClear, @NotNull MessageChannel, int)
 ```
@@ -142,7 +142,7 @@ checkClearSafety(@Nullable SafetyClear, @NotNull MessageChannel, int)
 > **clear**   The safety clear option, which helps for specifying different message types, which will not be deleted <br>
 > **channel** The text channel, which should be initialized <br>
 > Returns: A list of messages representing the precursor of all deletion tasks <br>
-> Annotation: **Nullable**, **CheckReturnValue**
+> Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 checkChannelClearSafety(@Nullable SafetyClear, @NotNull TextChannel)
 ```
@@ -154,7 +154,7 @@ checkChannelClearSafety(@Nullable SafetyClear, @NotNull TextChannel)
 > **clear**   The safety clear option, which helps for specifying different message types, which will not be deleted <br>
 > **channel** The message channel, which should be initialized <br>
 > Returns: A list of messages representing the precursor of all deletion tasks <br>
-> Annotation: **Nullable**, **CheckReturnValue**
+> Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 checkChannelClearSafety(@Nullable SafetyClear, @NotNull MessageChannel)
 ```
@@ -170,9 +170,9 @@ checkChannelClearSafety(@Nullable SafetyClear, @NotNull MessageChannel)
 calculateDelay(@Nullable TimeUnit, long)
 ```
 
-### Overriden methods
+### Overridden methods
 
-`N/A` No overriden method found in this class.
+`N/A` No overridden method found in this class.
 
 <hr>
 
@@ -226,7 +226,7 @@ getGuild()
 getSelfMember()
 ```
 
-### Overriden methods
+### Overridden methods
 
 ```swift
 equals(@Nullable Object)
@@ -257,7 +257,7 @@ Since: v1.0.0-alpha.3
 
 ### Getting ICommand:
 
-Of course you can not get a interface. <br>
+Of course you can not get an interface. <br>
 Because of this you need a [command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/main/java/dev/blocky/library/testzone/CommandManager.java) to use this interface.
 
 ### Methods
@@ -272,9 +272,9 @@ Because of this you need a [command manager](https://github.com/BlockyDotJar/JDA
 onCommand(@NotNull MessageReceivedEvent, @NotNull String[])
 ```
 
-### Overriden methods
+### Overridden methods
 
-`N/A` No overriden method found in this interface.
+`N/A` No overridden method found in this interface.
 
 <hr>
 
@@ -290,22 +290,22 @@ Since: v1.0.0
 
 ### Getting ISlashCommand:
 
-Of course you can not get a interface. <br>
-Because of this you need a [application command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/main/java/dev/blocky/library/testzone/ApplicationCommandManager.java) to use this interface.
+Of course you can not get an interface. <br>
+Because of this you need an [application command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/main/java/dev/blocky/library/testzone/ApplicationCommandManager.java) to use this interface.
 
 ### Methods
 
 > A simple slash command interface, which you can use to easily program some slash commands. <br>
-> This contains a application command manager.
+> This contains an application command manager.
 >
 > Parameter: **event** - Indicates that a slash command was used in a message channel
 ```swift
 onSlashCommand(@NotNull SlashCommandInteractionEvent)
 ```
 
-### Overriden methods
+### Overridden methods
 
-`N/A` No overriden method found in this interface.
+`N/A` No overridden method found in this interface.
 
 <hr>
 
@@ -321,22 +321,22 @@ Since: v1.0.0
 
 ### Getting IMessageContext:
 
-Of course you can not get a interface. <br>
-Because of this you need a [application command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/main/java/dev/blocky/library/testzone/ApplicationCommandManager.java) to use this interface.
+Of course you can not get an interface. <br>
+Because of this you need an [application command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/main/java/dev/blocky/library/testzone/ApplicationCommandManager.java) to use this interface.
 
 ### Methods
 
 > A simple message context menu interface, which you can use to easily program some message context menus. <br>
-> This contains a  application command manager.
+> This contains an  application command manager.
 >
 > Parameter: **event** - Indicates that a message context command was used
 ```swift
 onMessageContext(@NotNull MessageContextInteractionEvent)
 ```
 
-### Overriden methods
+### Overridden methods
 
-`N/A` No overriden method found in this interface.
+`N/A` No overridden method found in this interface.
 
 <hr>
 
@@ -352,22 +352,22 @@ Since: v1.0.0
 
 ### Getting IUserContext:
 
-Of course you can not get a interface. <br>
-Because of this you need a [application command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/main/java/dev/blocky/library/testzone/ApplicationCommandManager.java) to use this interface.
+Of course you can not get an interface. <br>
+Because of this you need an [application command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/main/java/dev/blocky/library/testzone/ApplicationCommandManager.java) to use this interface.
 
 ### Methods
 
 > A simple user context menu interface, which you can use to easily program some user context menus. <br>
-> This contains a application command manager.
+> This contains an application command manager.
 >
 > Parameter: **event** - Indicates that a message context command was used
 ```swift
 onUserContext(@NotNull UserContextInteractionEvent)
 ``` 
 
-### Overriden methods
+### Overridden methods
 
-`N/A` No overriden method found in this interface.
+`N/A` No overridden method found in this interface.
 
 <hr>
 
@@ -395,11 +395,9 @@ Since: v1.0.0-alpha.3
 getHashMap()
 ```
 
-### Overriden methods
+### Overridden methods
 
-```swift
-hashCode()
-```
+`N/A` No overridden method found in this class.
 
 <hr>
 
@@ -456,9 +454,9 @@ WEBHOOK_MESSAGES
 EDITED_MESSAGES
 ```
 
-### Overriden methods
+### Overridden methods
 
-`N/A` No overriden method found in this enum.
+`N/A` No overridden method found in this enum.
 
 <hr>
 
@@ -484,7 +482,7 @@ Since: v1.0.0-alpha.1
 
 ### Getting GuildTextChannel:
 
-**Recommed:**
+**Recommended:**
 ```java
 GuildTextChannel channel = GuildTextChannel.set(@NotNull TextChannel, @Nullable Member);
 ```
@@ -667,7 +665,7 @@ replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallback
 replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction)
 ```
 
-### Overriden methods
+### Overridden methods
 
 ```swift
 equals(@Nullable Object)
@@ -689,7 +687,7 @@ Since: v1.0.0-alpha.1
 
 ### Getting GuildMessageChannel:
 
-**Recommed:**
+**Recommended:**
 ```java
 GuildMessageChannel channel = GuildMessageChannel.set(@NotNull MessageChannel, @Nullable Member);
 ```
@@ -872,7 +870,7 @@ replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallback
 replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction)
 ```
 
-### Overriden methods
+### Overridden methods
 
 ```swift
 equals(@Nullable Object)
@@ -894,7 +892,7 @@ Since: v1.1.1
 
 ### Getting GuildNewsChannel:
 
-**Recommed:**
+**Recommended:**
 ```java
 GuildNewsChannel channel = GuildNewsChannel.set(@NotNull NewsChannel, @Nullable Member);
 ```
@@ -1107,7 +1105,7 @@ replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbac
 autoPublish()
 ```
 
-### Overriden methods
+### Overridden methods
 
 ```swift
 equals(@Nullable Object)
@@ -1129,7 +1127,7 @@ Since: v1.1.1
 
 ### Getting GuildThreadChannel:
 
-**Recommed:**
+**Recommended:**
 ```java
 GuildThreadChannel channel = GuildThreadChannel.set(@NotNull ThreadChannel, @Nullable Member);
 ```
@@ -1312,7 +1310,7 @@ replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallback
 replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction)
 ```
 
-### Overriden methods
+### Overridden methods
 
 ```swift
 equals(@Nullable Object)
@@ -1335,7 +1333,7 @@ Since: v1.1.1
 
 ### Getting DirectMessageChannel:
 
-**Recommed:**
+**Recommended:**
 ```java
 DirectMessageChannel channel = DirectMessageChannel.set(@NotNull PrivateChannel, @Nullable Member);
 ```
@@ -1518,7 +1516,7 @@ replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallback
 replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction)
 ```
 
-### Overriden methods
+### Overridden methods
 
 ```swift
 equals(@Nullable Object)
@@ -1558,7 +1556,7 @@ GuildMember member = GuildMember.set(@Nullable Member);
 > Constructs a <b>new</b> guild member instance. If you don't
 > initialize a member, the guild member always will be <b>null</b>.
 >
-> Paramter: **member** - The member, which should be used to get guild member <br>
+> Parameter: **member** - The member, which should be used to get guild member <br>
 > Returns: A <b>new</b> guild member instance <br>
 > Annotation: **NotNull**
 ```swift
@@ -1607,7 +1605,7 @@ findRoleByName(@NotNull String)
 
 > Checks if the member has the role with the id you specified.
 >
-> Paramenter: **roleId** - The id of the role, which should be checked <br>
+> Parameter: **roleId** - The id of the role, which should be checked <br>
 > Returns: <br>
 > **true** - If the member has the role <br>
 > **false** - If the member has not the role <br>
@@ -1618,7 +1616,7 @@ hasRoleWithId(long)
 
 > Checks if the member has the role with the id you specified.
 >
-> Paramenter: **roleId** - The id of the role, which should be checked <br>
+> Parameter: **roleId** - The id of the role, which should be checked <br>
 > Returns: <br>
 > **true** - If the member has the role <br>
 > **false** - If the member has not the role <br>
@@ -1629,7 +1627,7 @@ hasRoleWithId(@NotNull String)
 
 > Checks if the member has the role with the name you specified.
 >
-> Paramenter: **roleName** - The name of the role, which should be checked <br>
+> Parameter: **roleName** - The name of the role, which should be checked <br>
 > Returns: <br>
 > **true** - If the member has the role <br>
 > **false** - If the member has not the role <br>
@@ -1648,7 +1646,7 @@ hasRoleWithName(@NotNull String)
 isMentioned(@NotNull Message)
 ```
 
-### Overriden methods
+### Overridden methods
 
 ```swift
 equals(@Nullable Object)
@@ -1683,7 +1681,7 @@ GuildTargetMember target = GuildTargetMember.set(@NotNull MessageContextInteract
 > Constructs a <b>new</b> guild target member instance. If you don't
 > initialize a user context interaction event, the guild target member always will be <b>null</b>.
 >
-> Paramter: **userEvent** - The user context interaction event, which should be initialized
+> Parameter: **userEvent** - The user context interaction event, which should be initialized
 > Returns: A <b>new</b> guild target member instance <br>
 > Annotation: **NotNull**
 ```swift
@@ -1694,7 +1692,7 @@ set(@NotNull UserContextInteractionEvent)
 > Constructs a <b>new</b> guild target member instance. If you don't
 > initialize a message context interaction event, the guild target member always will be <b>null</b>.
 >
-> Paramter: **messageEvent** - The message context interaction event, which should be initialized
+> Parameter: **messageEvent** - The message context interaction event, which should be initialized
 > Returns: A <b>new</b> guild target member instance <br>
 > Annotation: **NotNull**
 ```swift
@@ -1752,7 +1750,7 @@ findRoleByName(@NotNull String)
 
 > Checks if the target member has the role with the id you specified.
 >
-> Paramenter: **roleId** - The id of the role, which should be checked <br>
+> Parameter: **roleId** - The id of the role, which should be checked <br>
 > Returns: <br>
 > **true** - If the target member has the role <br>
 > **false** - If the target member has not the role <br>
@@ -1763,7 +1761,7 @@ hasRoleWithId(long)
 
 > Checks if the target member has the role with the id you specified.
 >
-> Paramenter: **roleId** - The id of the role, which should be checked <br>
+> Parameter: **roleId** - The id of the role, which should be checked <br>
 > Returns: <br>
 > **true** - If the target member has the role <br>
 > **false** - If the target member has not the role <br>
@@ -1774,7 +1772,7 @@ hasRoleWithId(@NotNull String)
 
 > Checks if the target member has the role with the name you specified.
 >
-> Paramenter: **roleName** - The name of the role, which should be checked <br>
+> Parameter: **roleName** - The name of the role, which should be checked <br>
 > Returns: <br>
 > **true** - If the target member has the role <br>
 > **false** - If the target member has not the role <br>
@@ -1793,7 +1791,7 @@ hasRoleWithName(@NotNull String)
 isMentioned(@NotNull Message)
 ```
 
-### Overriden methods
+### Overridden methods
 
 ```swift
 equals(@Nullable Object)
@@ -1824,7 +1822,7 @@ GuildThreadMember member = GuildThreadMember.set(@Nullable ThreadMember);
 > Constructs a <b>new</b> guild thread member instance. If you don't
 > initialize a thread member, the guild thread member always will be <b>null</b>.
 >
-> Paramter: **member** - The thread member, which should be used to get guild thread member <br>
+> Parameter: **member** - The thread member, which should be used to get guild thread member <br>
 > Returns: A <b>new</b> guild thread member instance <br>
 > Annotation: **NotNull**
 ```swift
@@ -1873,7 +1871,7 @@ findRoleByName(@NotNull String)
 
 > Checks if the thread member has the role with the id you specified.
 >
-> Paramenter: **roleId** - The id of the role, which should be checked <br>
+> Parameter: **roleId** - The id of the role, which should be checked <br>
 > Returns: <br>
 > **true** - If the thread member has the role <br>
 > **false** - If the thread member has not the role <br>
@@ -1884,7 +1882,7 @@ hasRoleWithId(long)
 
 > Checks if the thread member has the role with the id you specified.
 >
-> Paramenter: **roleId** - The id of the role, which should be checked <br>
+> Parameter: **roleId** - The id of the role, which should be checked <br>
 > Returns: <br>
 > **true** - If the thread member has the role <br>
 > **false** - If the thread member has not the role <br>
@@ -1895,7 +1893,7 @@ hasRoleWithId(@NotNull String)
 
 > Checks if the thread member has the role with the name you specified.
 >
-> Paramenter: **roleName** - The name of the role, which should be checked <br>
+> Parameter: **roleName** - The name of the role, which should be checked <br>
 > Returns: <br>
 > **true** - If the thread member has the role <br>
 > **false** - If the thread member has not the role <br>
@@ -1914,7 +1912,7 @@ hasRoleWithName(@NotNull String)
 isMentioned(@NotNull Message)
 ```
 
-### Overriden methods
+### Overridden methods
 
 ```swift
 equals(@Nullable Object)
@@ -1938,7 +1936,7 @@ Since: v1.0.1
 
 ```java
 GuildController controller = GuildController.set(@Nullable Guild);
-SelfMember self = controller.getSelfMember();
+        SelfMember self = controller.getSelfMember();
 ```
 
 ### Methods
@@ -1995,7 +1993,7 @@ findRoleByName(@NotNull String)
 
 > Checks if the self member has the role with the id you specified.
 >
-> Paramenter: **roleId** - The id of the role, which should be checked <br>
+> Parameter: **roleId** - The id of the role, which should be checked <br>
 > Returns: <br>
 > **true** - If the self member has the role <br>
 > **false** - If the self member has not the role <br>
@@ -2006,7 +2004,7 @@ hasRoleWithId(long)
 
 > Checks if the self member has the role with the id you specified.
 >
-> Paramenter: **roleId** - The id of the role, which should be checked <br>
+> Parameter: **roleId** - The id of the role, which should be checked <br>
 > Returns: <br>
 > **true** - If the self member has the role <br>
 > **false** - If the self member has not the role <br>
@@ -2017,7 +2015,7 @@ hasRoleWithId(@NotNull String)
 
 > Checks if the self member has the role with the name you specified.
 >
-> Paramenter: **roleName** - The name of the role, which should be checked <br>
+> Parameter: **roleName** - The name of the role, which should be checked <br>
 > Returns: <br>
 > **true** - If the self member has the role <br>
 > **false** - If the self member has not the role <br>
@@ -2036,7 +2034,7 @@ hasRoleWithName(@NotNull String)
 isMentioned(@NotNull Message)
 ```
 
-### Overriden methods
+### Overridden methods
 
 ```swift
 equals(@Nullable Object)

@@ -50,9 +50,4 @@ public class DataImpl
     {
         return map;
     }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
 }
