@@ -32,7 +32,7 @@ import java.util.Objects;
  * Represents a guild-specific {@link net.dv8tion.jda.api.entities.User user}.
  *
  * @author BlockyDotJar
- * @version v2.1.1
+ * @version v2.1.2
  * @since v1.0.0-alpha.1
  */
 public class GuildMember

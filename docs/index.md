@@ -22,13 +22,12 @@ If you want some examples for JDA too than check out the [example directory](htt
 2. [Utility](#utility)
 3. [GuildController](#guildcontroller)
 4. [Interfaces](#interfaces)
-5. [DataImpl](#dataimpl)
-6. [SafetyClear](#safetyclear)
-7. [XYChannel](#xychannel)
-8. [XYMember](#xymember)
-9. [Annotations](#annotations)
-10. [Download](#download)
-11. [Support](#getting-help)
+5. [SafetyClear](#safetyclear)
+6. [XYChannel](#xychannel)
+7. [XYMember](#xymember)
+8. [Annotations](#annotations)
+9. [Download](#download)
+10. [Support](#getting-help)
 
 <hr>
 
@@ -98,7 +97,7 @@ getCommonsClient()
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.1
+Version: v1.1.2
 Since: v1.0.0
 ```
 
@@ -169,6 +168,15 @@ checkChannelClearSafety(@Nullable SafetyClear, @NotNull MessageChannel)
 ```swift
 calculateDelay(@Nullable TimeUnit, long)
 ```
+<br>
+
+> The hash map instance from the utility class.
+>
+> Returns: **Utility#map** <br>
+> Annotation: **NotNull**, **CheckReturnValue**
+```swift
+getHashMap()
+```
 
 ### Overridden methods
 
@@ -184,7 +192,7 @@ calculateDelay(@Nullable TimeUnit, long)
 
 ```yml
 Author: BlockyDotJar
-Version: v1.0.0-alpha.4
+Version: v1.0.0-alpha.5
 Since: v1.0.0
 ```
 
@@ -242,14 +250,15 @@ toString()
 
 1. [ICommand](#icommand)
 2. [ISlashCommand](#islashcommand)
-3. [IMessageContext](#imessagecontext)
-4. [IUserContext](#iusercontext)
+3. [ISlashCommand](#iautocompletable)
+4. [IMessageContext](#imessagecontext)
+5. [IUserContext](#iusercontext)
 
 ## ICommand
 
 ```yml
 Author: BlockyDotJar
-Version: v2.1.0
+Version: v2.1.1
 Since: v1.0.0-alpha.3
 ```
 
@@ -282,7 +291,7 @@ onCommand(@NotNull MessageReceivedEvent, @NotNull String[])
 
 ```yml
 Author: BlockyDotJar
-Version: v2.1.0
+Version: v2.1.1
 Since: v1.0.0
 ```
 
@@ -309,11 +318,42 @@ onSlashCommand(@NotNull SlashCommandInteractionEvent)
 
 <hr>
 
+## IAutoCompletable
+
+```yml
+Author: BlockyDotJar
+Version: v1.0.0
+Since: v1.1.4
+```
+
+**Description:** A simple slash command interface, which you can use to easily program some slash commands with auto-complete. <br>
+
+### Getting IAutoCompletable:
+
+Of course you can not get an interface. <br>
+Because of this you need an [application command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/main/java/dev/blocky/library/testzone/ApplicationCommandManager.java) to use this interface.
+
+### Methods
+
+> A simple slash command interface, which you can use to easily program some slash commands with auto-complete. <br>
+> This contains an application command manager.
+>
+> Parameter: **event** - Indicates that a slash command with auto-complete was used in a message channel
+```swift
+onCommandAutoComplete(@NotNull CommandAutoCompleteInteractionEvent)
+```
+
+### Overridden methods
+
+`N/A` No overridden method found in this interface.
+
+<hr>
+
 ## IMessageContext
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.0
+Version: v1.1.1
 Since: v1.0.0
 ```
 
@@ -344,7 +384,7 @@ onMessageContext(@NotNull MessageContextInteractionEvent)
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.0
+Version: v1.1.1
 Since: v1.0.0
 ```
 
@@ -368,36 +408,6 @@ onUserContext(@NotNull UserContextInteractionEvent)
 ### Overridden methods
 
 `N/A` No overridden method found in this interface.
-
-<hr>
-
-## DataImpl
-
-```yml
-Author: BlockyDotJar
-Version: v1.1.1
-Since: v1.0.0-alpha.3
-```
-
-**Description:** Implements some data. <br>
-
-### Getting DataImpl:
-
-`N/A` You can not get this class.
-
-### Methods
-
-> The hash map instance from the data implementation class.
->
-> Returns: **DataImpl#map** <br>
-> Annotation: **NotNull**, **CheckReturnValue**
-```swift
-getHashMap()
-```
-
-### Overridden methods
-
-`N/A` No overridden method found in this class.
 
 <hr>
 
@@ -474,7 +484,7 @@ EDITED_MESSAGES
 
 ```yml
 Author: BlockyDotJar
-Version: v2.1.1
+Version: v2.1.2
 Since: v1.0.0-alpha.1
 ```
 
@@ -679,7 +689,7 @@ toString()
 
 ```yml
 Author: BlockyDotJar
-Version: v2.1.1
+Version: v2.1.2
 Since: v1.0.0-alpha.1
 ```
 
@@ -884,7 +894,7 @@ toString()
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.1
+Version: v1.1.2
 Since: v1.1.1
 ```
 
@@ -1119,7 +1129,7 @@ toString()
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.1
+Version: v1.1.2
 Since: v1.1.1
 ```
 
@@ -1325,7 +1335,7 @@ toString()
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.1
+Version: v1.1.2
 Since: v1.1.1
 ```
 
@@ -1539,7 +1549,7 @@ toString()
 
 ```yml
 Author: BlockyDotJar
-Version: v2.1.1
+Version: v2.1.2
 Since: v1.0.0-alpha.1
 ```
 
@@ -1660,7 +1670,7 @@ toString()
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.1
+Version: v1.1.2
 Since: v1.0.0-alpha.4
 ```
 
@@ -1805,7 +1815,7 @@ toString()
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.1
+Version: v1.1.2
 Since: v1.1.1
 ```
 
@@ -1926,7 +1936,7 @@ toString()
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.1
+Version: v1.1.2
 Since: v1.0.1
 ```
 

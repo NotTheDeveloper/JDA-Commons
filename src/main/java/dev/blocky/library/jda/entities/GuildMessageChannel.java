@@ -17,7 +17,6 @@ package dev.blocky.library.jda.entities;
 
 import dev.blocky.library.jda.Utility;
 import dev.blocky.library.jda.enums.SafetyClear;
-import dev.blocky.library.jda.impl.DataImpl;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageChannel;
@@ -43,7 +42,7 @@ import java.util.stream.Collectors;
  * and files sent to it.
  *
  * @author BlockyDotJar
- * @version v2.1.1
+ * @version v2.1.2
  * @since v1.0.0-alpha.1
  */
 public class GuildMessageChannel extends Utility
@@ -259,13 +258,13 @@ public class GuildMessageChannel extends Utility
         {
             long id = member.getIdLong();
             long time;
-            if (DataImpl.getHashMap().containsKey(id))
+            if (getHashMap().containsKey(id))
             {
-                time = DataImpl.getHashMap().get(id);
+                time = getHashMap().get(id);
 
                 if ((System.currentTimeMillis() - time) >= calculateDelay(unit, delayInSeconds))
                 {
-                    DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                    getHashMap().put(id, System.currentTimeMillis());
                     return message;
                 }
                 else
@@ -284,7 +283,7 @@ public class GuildMessageChannel extends Utility
             }
             else
             {
-                DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                getHashMap().put(id, System.currentTimeMillis());
                 return message;
             }
         }
@@ -315,13 +314,13 @@ public class GuildMessageChannel extends Utility
         {
             long id = member.getIdLong();
             long time;
-            if (DataImpl.getHashMap().containsKey(id))
+            if (getHashMap().containsKey(id))
             {
-                time = DataImpl.getHashMap().get(id);
+                time = getHashMap().get(id);
 
                 if ((System.currentTimeMillis() - time) >= calculateDelay(null, delayInSeconds))
                 {
-                    DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                    getHashMap().put(id, System.currentTimeMillis());
                     return message;
                 }
                 else
@@ -340,7 +339,7 @@ public class GuildMessageChannel extends Utility
             }
             else
             {
-                DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                getHashMap().put(id, System.currentTimeMillis());
                 return message;
             }
         }
@@ -377,13 +376,13 @@ public class GuildMessageChannel extends Utility
         {
             long id = member.getIdLong();
             long time;
-            if (DataImpl.getHashMap().containsKey(id))
+            if (getHashMap().containsKey(id))
             {
-                time = DataImpl.getHashMap().get(id);
+                time = getHashMap().get(id);
 
                 if ((System.currentTimeMillis() - time) >= calculateDelay(unit, delayInSeconds))
                 {
-                    DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                    getHashMap().put(id, System.currentTimeMillis());
                     return message;
                 }
                 else
@@ -402,7 +401,7 @@ public class GuildMessageChannel extends Utility
             }
             else
             {
-                DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                getHashMap().put(id, System.currentTimeMillis());
                 return message;
             }
         }
@@ -433,13 +432,13 @@ public class GuildMessageChannel extends Utility
         {
             long id = member.getIdLong();
             long time;
-            if (DataImpl.getHashMap().containsKey(id))
+            if (getHashMap().containsKey(id))
             {
-                time = DataImpl.getHashMap().get(id);
+                time = getHashMap().get(id);
 
                 if ((System.currentTimeMillis() - time) >= calculateDelay(null, delayInSeconds))
                 {
-                    DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                    getHashMap().put(id, System.currentTimeMillis());
                     return message;
                 }
                 else
@@ -458,7 +457,7 @@ public class GuildMessageChannel extends Utility
             }
             else
             {
-                DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                getHashMap().put(id, System.currentTimeMillis());
                 return message;
             }
         }

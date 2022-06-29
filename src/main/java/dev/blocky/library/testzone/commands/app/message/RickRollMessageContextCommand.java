@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
  * This is a simple command, which definitely is not going to rick-roll you ;D
  *
  * @author BlockyDotJar
- * @version v2.1.0
+ * @version v2.1.1
  * @since v1.0.0
  */
 public class RickRollMessageContextCommand implements IMessageContext

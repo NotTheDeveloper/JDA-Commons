@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
  * A simple slash command interface, which you can use to easily program some slash commands.
  *
  * @author BlockyDotJar
- * @version v2.1.0
+ * @version v2.1.1
  * @since v1.0.0
  */
 public interface ISlashCommand

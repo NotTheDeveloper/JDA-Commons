@@ -4,6 +4,9 @@
  * <br>  From here you can navigate to all slash command tests. <br>
  *
  * <ul>
+ * <li>{@link dev.blocky.library.testzone.commands.app.slash.FruitSlashCommand Fruit slash command}
+ * <br> This is the implementation class of {@link dev.blocky.library.testzone.commands.app.slash.autocomplete.FruitAutoCompletable}.</li>
+ *
  * <li>{@link dev.blocky.library.testzone.commands.app.slash.SupportModalCommand Modal slash command}
  * <br> This is a simple modal slash command.</li>
  *

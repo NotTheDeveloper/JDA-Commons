@@ -36,7 +36,7 @@ import java.util.EnumSet;
  * This is the main class of the Discord-Bot.
  *
  * @author BlockyDotJar
- * @version v2.1.0
+ * @version v2.1.1
  * @since v1.0.0-alpha.1
  */
 public class DiscordBotExample
@@ -77,6 +77,7 @@ public class DiscordBotExample
                                 CacheFlag.CLIENT_STATUS,
                                 CacheFlag.ACTIVITY,
                                 CacheFlag.EMOJI,
+                                CacheFlag.STICKER,
                                 CacheFlag.VOICE_STATE
                         )
                 )

@@ -17,7 +17,6 @@ package dev.blocky.library.jda.entities;
 
 import dev.blocky.library.jda.Utility;
 import dev.blocky.library.jda.enums.SafetyClear;
-import dev.blocky.library.jda.impl.DataImpl;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.requests.RestAction;
@@ -46,7 +45,7 @@ import java.util.stream.Collectors;
  * (via {@link Webhook webhook}) to all subscribed channels.
  *
  * @author BlockyDotJar
- * @version v1.1.1
+ * @version v1.1.2
  * @since v1.1.1
  */
 public class GuildNewsChannel extends Utility
@@ -262,13 +261,13 @@ public class GuildNewsChannel extends Utility
         {
             long id = member.getIdLong();
             long time;
-            if (DataImpl.getHashMap().containsKey(id))
+            if (getHashMap().containsKey(id))
             {
-                time = DataImpl.getHashMap().get(id);
+                time = getHashMap().get(id);
 
                 if ((System.currentTimeMillis() - time) >= calculateDelay(unit, delayInSeconds))
                 {
-                    DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                    getHashMap().put(id, System.currentTimeMillis());
                     return message;
                 }
                 else
@@ -287,7 +286,7 @@ public class GuildNewsChannel extends Utility
             }
             else
             {
-                DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                getHashMap().put(id, System.currentTimeMillis());
                 return message;
             }
         }
@@ -318,13 +317,13 @@ public class GuildNewsChannel extends Utility
         {
             long id = member.getIdLong();
             long time;
-            if (DataImpl.getHashMap().containsKey(id))
+            if (getHashMap().containsKey(id))
             {
-                time = DataImpl.getHashMap().get(id);
+                time = getHashMap().get(id);
 
                 if ((System.currentTimeMillis() - time) >= calculateDelay(null, delayInSeconds))
                 {
-                    DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                    getHashMap().put(id, System.currentTimeMillis());
                     return message;
                 }
                 else
@@ -343,7 +342,7 @@ public class GuildNewsChannel extends Utility
             }
             else
             {
-                DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                getHashMap().put(id, System.currentTimeMillis());
                 return message;
             }
         }
@@ -380,13 +379,13 @@ public class GuildNewsChannel extends Utility
         {
             long id = member.getIdLong();
             long time;
-            if (DataImpl.getHashMap().containsKey(id))
+            if (getHashMap().containsKey(id))
             {
-                time = DataImpl.getHashMap().get(id);
+                time = getHashMap().get(id);
 
                 if ((System.currentTimeMillis() - time) >= calculateDelay(unit, delayInSeconds))
                 {
-                    DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                    getHashMap().put(id, System.currentTimeMillis());
                     return message;
                 }
                 else
@@ -405,7 +404,7 @@ public class GuildNewsChannel extends Utility
             }
             else
             {
-                DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                getHashMap().put(id, System.currentTimeMillis());
                 return message;
             }
         }
@@ -436,13 +435,13 @@ public class GuildNewsChannel extends Utility
         {
             long id = member.getIdLong();
             long time;
-            if (DataImpl.getHashMap().containsKey(id))
+            if (getHashMap().containsKey(id))
             {
-                time = DataImpl.getHashMap().get(id);
+                time = getHashMap().get(id);
 
                 if ((System.currentTimeMillis() - time) >= calculateDelay(null, delayInSeconds))
                 {
-                    DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                    getHashMap().put(id, System.currentTimeMillis());
                     return message;
                 }
                 else
@@ -461,7 +460,7 @@ public class GuildNewsChannel extends Utility
             }
             else
             {
-                DataImpl.getHashMap().put(id, System.currentTimeMillis());
+                getHashMap().put(id, System.currentTimeMillis());
                 return message;
             }
         }

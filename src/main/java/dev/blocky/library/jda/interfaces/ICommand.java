@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
  * A simple command interface, which you can use to easily program message commands.
  *
  * @author BlockyDotJar
- * @version v2.1.0
+ * @version v2.1.1
  * @since v1.0.0-alpha.3
  */
 public interface ICommand

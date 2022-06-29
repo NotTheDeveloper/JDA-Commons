@@ -35,7 +35,7 @@ import java.util.Objects;
  * {@link net.dv8tion.jda.api.entities.User user}.
  *
  * @author BlockyDotJar
- * @version v1.1.1
+ * @version v1.1.2
  * @since v1.0.0-alpha.4
  */
 public class GuildTargetMember

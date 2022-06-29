@@ -34,7 +34,7 @@ import java.util.Objects;
  * {@link net.dv8tion.jda.api.entities.ThreadChannel thread channel}.
  *
  * @author BlockyDotJar
- * @version v1.1.1
+ * @version v1.1.2
  * @since v1.1.1
  */
 public class GuildThreadMember

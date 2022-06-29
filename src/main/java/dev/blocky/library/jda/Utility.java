@@ -26,6 +26,7 @@ import org.slf4j.Logger;
 
 import javax.annotation.CheckReturnValue;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -33,12 +34,13 @@ import java.util.concurrent.TimeUnit;
  * This is a class, which has many utility methods in it.
  *
  * @author BlockyDotJar
- * @version v1.1.1
+ * @version v1.1.2
  * @since v1.0.0
  */
 public class Utility
 {
     private final static Logger logger = JDALogger.getLog(Utility.class);
+    private static final HashMap<Long, Long> map = new HashMap<>();
 
     /**
      * Constructs a <b>new</b> {@link Utility utility}.
@@ -385,5 +387,17 @@ public class Utility
                 break;
         }
         return delay;
+    }
+
+    /**
+     * The {@link Utility#map hash map} instance from the {@link Utility utility} class.
+     *
+     * @return {@link Utility#map Utility#map}
+     */
+    @NotNull
+    @CheckReturnValue
+    public static HashMap<Long, Long> getHashMap()
+    {
+        return map;
     }
 }

@@ -35,7 +35,7 @@ import java.util.regex.Pattern;
  * This is a class, which manages default {@link net.dv8tion.jda.api.entities.Message message} commands.
  *
  * @author BlockyDotJar
- * @version v2.1.0
+ * @version v2.1.1
  * @since v1.0.0-alpha.3
  */
 public class CommandManager extends ListenerAdapter

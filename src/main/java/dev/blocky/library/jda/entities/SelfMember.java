@@ -32,7 +32,7 @@ import java.util.Objects;
  * Represents the self member (aka. the bot itself) of a specific {@link Guild guild}.
  *
  * @author BlockyDotJar
- * @version v1.1.1
+ * @version v1.1.2
  * @since v1.0.1
  */
 public class SelfMember

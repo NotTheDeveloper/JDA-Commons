@@ -16,14 +16,18 @@
 package dev.blocky.library.testzone;
 
 import dev.blocky.library.jda.interfaces.app.message.IMessageContext;
+import dev.blocky.library.jda.interfaces.app.slash.IAutoCompletable;
 import dev.blocky.library.jda.interfaces.app.slash.ISlashCommand;
 import dev.blocky.library.jda.interfaces.app.user.IUserContext;
 import dev.blocky.library.testzone.commands.app.message.RickRollMessageContextCommand;
+import dev.blocky.library.testzone.commands.app.slash.FruitSlashCommand;
 import dev.blocky.library.testzone.commands.app.slash.PingSlashCommand;
 import dev.blocky.library.testzone.commands.app.slash.SupportModalCommand;
+import dev.blocky.library.testzone.commands.app.slash.autocomplete.FruitAutoCompletable;
 import dev.blocky.library.testzone.commands.app.user.AvatarUserContextCommand;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent;
+import net.dv8tion.jda.api.events.interaction.command.CommandAutoCompleteInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent;
@@ -31,7 +35,9 @@ import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.SelectMenuInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
+import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
@@ -44,6 +50,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * This is a class, which manages
  * {@link SlashCommandInteractionEvent slash commands},
+ * {@link CommandAutoCompleteInteractionEvent auto-completable slash commands},
  * {@link MessageContextInteractionEvent message context menus},
  * {@link UserContextInteractionEvent user context menus},
  * {@link ModalInteractionEvent modal interactions},
@@ -51,12 +58,13 @@ import java.util.concurrent.ConcurrentHashMap;
  * {@link SelectMenuInteractionEvent select menu interactions}.
  *
  * @author BlockyDotJar
- * @version v2.1.0
+ * @version v2.2.0
  * @since v1.0.0
  */
 public class ApplicationCommandManager extends ListenerAdapter
 {
     private final Logger logger = JDALogger.getLog(ApplicationCommandManager.class);
+    private final Map<String, IAutoCompletable> autoCompletableMap;
     private final Map<String, ISlashCommand> slashMap;
     private final Map<String, IMessageContext> messageMap;
     private final Map<String, IUserContext> userMap;
@@ -66,9 +74,16 @@ public class ApplicationCommandManager extends ListenerAdapter
      */
     public ApplicationCommandManager()
     {
+        autoCompletableMap = new ConcurrentHashMap<>();
         slashMap = new ConcurrentHashMap<>();
         messageMap = new ConcurrentHashMap<>();
         userMap = new ConcurrentHashMap<>();
+
+        /*
+         * Here you can import your auto-completable slash commands.
+         */
+
+        autoCompletableMap.put("fruit", new FruitAutoCompletable());
 
         /*
          * Here you can import your slash commands.
@@ -76,6 +91,7 @@ public class ApplicationCommandManager extends ListenerAdapter
 
         slashMap.put("ping", new PingSlashCommand());
         slashMap.put("support", new SupportModalCommand());
+        slashMap.put("fruit", new FruitSlashCommand());
 
         /*
          * Here you can import your user context commands.
@@ -90,6 +106,13 @@ public class ApplicationCommandManager extends ListenerAdapter
         messageMap.put("rick-roll", new RickRollMessageContextCommand());
 
         DiscordBotExample.getJDA().updateCommands()
+                .addCommands(
+                        Commands.slash("fruit", "Find a given fruit!")
+                                .addOptions(new OptionData(OptionType.STRING, "name", "The fruit to find!")
+                                        .setRequired(true)
+                                        .setAutoComplete(true))
+                                .setGuildOnly(false)
+                )
                 .addCommands(
                         Commands.slash("ping", "Shows the ping of the bot!")
                                 .setGuildOnly(false)
@@ -117,6 +140,17 @@ public class ApplicationCommandManager extends ListenerAdapter
         ISlashCommand command = slashMap.get(commandName);
 
         command.onSlashCommand(event);
+
+        logger.debug(event.getGuild() == null ? "The specified guild equals null." : "Successfully found guild.");
+    }
+
+    @Override
+    public void onCommandAutoCompleteInteraction(@NotNull CommandAutoCompleteInteractionEvent event)
+    {
+        String commandName = event.getName();
+        IAutoCompletable command = autoCompletableMap.get(commandName);
+
+        command.onCommandAutoComplete(event);
 
         logger.debug(event.getGuild() == null ? "The specified guild equals null." : "Successfully found guild.");
     }

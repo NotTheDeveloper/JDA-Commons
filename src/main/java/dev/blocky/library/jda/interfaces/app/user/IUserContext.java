@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
  * A simple user context menu interface, which you can use to easily program some user context menus.
  *
  * @author BlockyDotJar
- * @version v1.1.0
+ * @version v1.1.1
  * @since v1.0.0
  */
 public interface IUserContext
