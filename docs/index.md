@@ -250,7 +250,7 @@ toString()
 
 1. [ICommand](#icommand)
 2. [ISlashCommand](#islashcommand)
-3. [ISlashCommand](#iautocompletable)
+3. [IAutoCompletable](#iautocompletable)
 4. [IMessageContext](#imessagecontext)
 5. [IUserContext](#iusercontext)
 
