@@ -1,4 +1,5 @@
-[github-packages]: https://img.shields.io/github/v/release/BlockyDotJar/JDA-Commons
+[github-packages-shield]: https://img.shields.io/github/v/release/BlockyDotJar/JDA-Commons
+[github-packages]: https://github.com/BlockyDotJar/JDA-Commons/packages/1365003
 
 [license-shield]: https://img.shields.io/badge/License-Apache%202.0-white.svg
 [license]: https://github.com/BlockyDotJar/JDA-Commons/tree/main/LICENSE
@@ -8,19 +9,19 @@
 
 [download]: #download
 
-# JDA-C (Java Discord API-Commons)
+# JDA-C (JDA-Commons)
 
-[ ![github-packages][] ][download]
+[ ![github-packages-shield][] ][download]
 [ ![license-shield][] ][license]
 [ ![discord-invite-shield][] ][discord-invite]
 
-**What is the Java Discord API (JDA)?**
-<br>
+**What is the JDA (Java Discord API)?**
+
 JDA strives to provide a clean and full wrapping of the Discord REST API and its websocket-events for Java. This library is a helpful tool that provides the functionality to create a Discord bot in Java.
-<br><br>
-**OK but what is the Java Discord API-Commons (JDA-C) library now?**
-<br>
-The JDA-Commons lib is only a little extension to the JDA library, which adds lots of utility methods to the original library.
+
+**OK but what is the JDA-C (JDA-Commons) library now?**
+
+The JDA-Commons library is only a little extension to the JDA library, which adds lots of utility methods to the original library.
 
 ## Summary
 
@@ -34,37 +35,36 @@ The JDA-Commons lib is only a little extension to the JDA library, which adds lo
 
 ## User- and Self- bots
 
-Discord is currently prohibiting creation and usage of automated client accounts. <br>
-Because of this, this library will never support this kind of client accounts. <br>
-If you need a bot, use a bot account from the [application dashboard](https://discord.com/developers/applications).
+Discord is currently prohibiting creation and usage of automated client accounts.
+<br> Because of this, this library will never support this kind of client accounts.
+<br> If you need a bot, use a bot account from the [application dashboard](https://discord.com/developers/applications).
 
-[Read more](https://support.discord.com/hc/en-us/articles/115002192352-Automated-user-accounts-self-bots-)
+[Read more here](https://support.discord.com/hc/en-us/articles/115002192352-Automated-user-accounts-self-bots-).
 
 ## Introduction
 
-There is not much to write about introducing you to this library, because this is only an extension to the original library, but you should read [the introduction to JDA](https://github.com/DV8FromTheWorld/JDA#creating-the-jda-object).
-
-[Click here](https://github.com/BlockyDotJar/JDA-Commons/wiki/JDA-Commons-Documentation) to get to the wiki, where you can find, all the documentations of JDA-C.
+This is only an extension to the original library, but you should definitely read [the introduction to JDA](https://jda.wiki/introduction/jda/).
+<br> [Click here](https://BlockyDotJar.github.io/JDA-Commons) to get to the github.io page, where you can find, all the documentations of JDA-C.
 
 ## Download
 
-[ ![github-packages][] ](https://github.com/BlockyDotJar/JDA-Commons/packages/1365003)
+[ ![github-packages-shield][] ][github-packages]
 
-Latest release: [GitHub Release](https://github.com/BlockyDotJar/JDA-Commons/releases/latest) <br>
+Find the latest GitHub release [here](https://github.com/BlockyDotJar/JDA-Commons/releases/latest).
 
-Be sure to replace the **`${VERSION}`** key below with the one of the versions shown above!
+Be sure to replace the **`VERSION`** key below with the one of the versions shown above!
 
-**Maven**
+### Maven
 
-First you should create a `settings.xml` and add this to it: <br>
-Be sure to replace the **`GITHUB_USERNAME`** key below with your GitHub username and **`TOKEN`** with a [GitHub token](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)!
+First you should create a `settings.xml` and add this to it:
+<br> Be sure to replace the **`GITHUB_USERNAME`** key below with your GitHub username and **`GITHUB_TOKEN`** with a [GitHub token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)!
 
 ```xml
 <servers>
   <server>
     <id>github</id>
     <username>GITHUB_USERNAME</username>
-    <password>TOKEN</password>
+    <password>GITHUB_TOKEN</password>
   </server>
 </servers>
 ```
@@ -86,14 +86,14 @@ After that you add this repository and dependency to your `pom.xml`:
   <dependency>
     <groupId>dev.blocky.library</groupId>
     <artifactId>jda-commons</artifactId>
-    <version>${VERSION}</version>
+    <version>VERSION</version>
   </dependency>
 </dependencies>
 ```
 
-**Gradle**
+### Gradle
 
-Be sure to replace the **`GITHUB_USERNAME`** key below with your GitHub username and **`TOKEN`** with a [GitHub token](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)!
+Be sure to replace the **`GITHUB_USERNAME`** key below with your GitHub username and **`GITHUB_TOKEN`** with a [GitHub token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-tokenn)!
 
 ```gradle
 repositories {
@@ -101,7 +101,7 @@ repositories {
         url = uri("https://maven.pkg.github.com/BlockyDotJar/JDA-Commons")
         credentials {
             username = project.findProperty("gpr.user") ?: "GITHUB_USERNAME"
-            password = project.findProperty("gpr.key") ?: "TOKEN"
+            password = project.findProperty("gpr.key") ?: "GITHUB_TOKEN"
         }
     }
 }
@@ -109,7 +109,7 @@ repositories {
 
 ```gradle
 dependencies {
-    implementation("dev.blocky.library:jda-commons:${VERSION}")
+    implementation("dev.blocky.library:jda-commons:VERSION")
 }
 ```
 
@@ -129,43 +129,39 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 JDA and JDA-C are currently providing a fallback logger in case that no SLF4J implementation is present.
 We strongly recommend to use one though, as that can improve speed and allows you to customize the logger as well as logging to some files.
 
-There is a guide for `logback-classic` available in the JDA wiki: [Logging setup](https://github.com/DV8FromTheWorld/JDA/wiki/Logging-Setup)
+There is a guide for logback-classic available at the JDA wiki: [Logging Setup](https://jda.wiki/setup/logging/).
 
 ## Documentation
 
-Docs can be found on [our GitHub io page](https://BlockyDotJar.github.io/JDA-Commons) or in the [wiki](https://github.com/BlockyDotJar/JDA-Commons/wiki/JDA-Commons-Documentation).
-<br>
-A simple wiki about JDA can also be found in whose repository's [Wiki section](https://github.com/DV8FromTheWorld/JDA/wiki).
+Docs can be found on [our GitHub io page](https://BlockyDotJar.github.io/JDA-Commons).
+<br> A simple wiki of the JDA can also be found at [jda.wiki](https://jda.wiki/).
 
-## Getting Help
+## Getting help
 
-For general troubleshooting you can visit our wiki [troubleshooting](https://github.com/DV8FromTheWorld/JDA/wiki/19%29-Troubleshooting) and [FAQ](https://github.com/DV8FromTheWorld/JDA/wiki/10%29-FAQ).
-<br>
-If you need help, or just want to talk with the JDA-C or other devs, you can join the [support server][discord-invite].
+For general troubleshooting you can visit JDA's wiki [troubleshooting](https://jda.wiki/using-jda/troubleshooting/) and [FAQ](https://jda.wiki/introduction/faq/).
+<br> If you need help, or just want to talk with the JDA-C or other devs, you can join the [support server][discord-invite].
 
-For guides and setup help you can also take a look at the [JDA wiki](https://github.com/DV8FromTheWorld/JDA/wiki) or [our wiki](https://github.com/BlockyDotJar/JDA-Commons/wiki)
-<br>Especially interesting are the [getting started](https://github.com/DV8FromTheWorld/JDA/wiki/3%29-Getting-Started) and the [JDA setup](https://github.com/DV8FromTheWorld/JDA/wiki/2%29-Setup) pages, but also the [complete documentation](https://github.com/BlockyDotJar/JDA-Commons/wiki/JDA-Commons-Documentation) of JDA-C.
+For guides and setup help you can also take a look at the [JDA wiki](https://jda.wiki/) or [our github.io page](https://BlockyDotJar.github.io/JDA-Commons).
+<br>Especially interesting are the [getting started](https://jda.wiki/introduction/jda/) and the [JDA setup](https://jda.wiki/setup/intellij/) pages, but also the [complete documentation](https://BlockyDotJar.github.io/JDA-Commons) of JDA-C.
 
 ## Third party recommendations
 
 ### [LavaPlayer](https://github.com/sedmelluq/lavaplayer)
 
-Created and maintained by [sedmelluq](https://github.com/sedmelluq)
-<br>LavaPlayer is the most popular library used by music bots created in Java.
+Created and maintained by [sedmelluq](https://github.com/sedmelluq).
+<br> LavaPlayer is the most popular library used by music bots created in Java.
 It is highly compatible with JDA and Discord4J and allows to play audio from
 YouTube, SoundCloud, Twitch, Bandcamp and [more providers](https://github.com/sedmelluq/lavaplayer#supported-formats).
-<br>The library can easily be expanded to more services by implementing your own `AudioSourceManager` and registering it.
+<br> The library can easily be expanded to more services by implementing your own `AudioSourceManager` and registering it.
 
 It is recommended to read the [usage](https://github.com/sedmelluq/lavaplayer#usage) section of LavaPlayer
 to understand a proper implementation.
-<br>Sedmelluq provided a demo in his repository which presents an example implementation for JDA:
-https://github.com/sedmelluq/lavaplayer/tree/master/demo-jda
+<br> Sedmelluq provided a [demo](https://github.com/sedmelluq/lavaplayer/tree/master/demo-jda) in his repository which presents an example implementation for JDA.
 
 ### [Lavalink](https://github.com/freyacodes/Lavalink)
 
 Maintained by [Freya Arbjerg](https://github.com/freyacodes).
-
-Lavalink is a popular standalone audio sending node based on Lavaplayer. Lavalink was built with scalability in mind,
+<br> Lavalink is a popular standalone audio sending node based on Lavaplayer. Lavalink was built with scalability in mind,
 and allows streaming music via many servers. It supports most of Lavaplayer's features.
 
 Lavalink is used by many large bots, as well as bot developers who can not use a Java library like Lavaplayer.
@@ -178,7 +174,7 @@ as it is easier.
 ### [JDA-nas](https://github.com/sedmelluq/jda-nas)
 
 Created and maintained by [sedmelluq](https://github.com/sedmelluq).
-<br>Provides a native implementation for the JDA audio send-system to avoid GC pauses.
+<br> Provides a native implementation for the JDA audio send-system to avoid GC pauses.
 
 Note that this send-system creates an extra UDP-client which causes audio receive to no longer function properly
 since discord identifies the sending UDP-client as the receiver.
@@ -191,7 +187,7 @@ JDABuilder builder = JDABuilder.createDefault(BOT_TOKEN)
 ### [JDA-ktx](https://github.com/MinnDevelopment/jda-ktx)
 
 Created and maintained by [MinnDevelopment](https://github.com/MinnDevelopment).
-<br>Provides [Kotlin](https://kotlinlang.org/) extensions for `RestAction` and events that provide a more idiomatic Kotlin experience.
+<br> Provides [Kotlin](https://kotlinlang.org/) extensions for `RestAction` and events that provide a more idiomatic Kotlin experience.
 
 ```kotlin
 fun main() {
@@ -209,9 +205,11 @@ fun main() {
 
 There is a number of examples available in the [README](https://github.com/MinnDevelopment/jda-ktx/#jda-ktx).
 
-------
+<hr>
 
 More can be found in the GitHub organization: [JDA-Applications](https://github.com/JDA-Applications)
+
+<hr>
 
 ## Dependencies:
 
@@ -226,15 +224,19 @@ This project requires **Java 8+**
 * logback-classic
     * Version: **v1.2.11**
     * [Github](https://github.com/qos-ch/logback)
+    
+<hr>
 
 These are only the libraries, which we have in our [pom.xml](https://github.com/BlockyDotJar/JDA-Commons/blob/main/pom.xml), but we are using [all libraries](https://github.com/DV8FromTheWorld/JDA#dependencies), which the original JDA uses too.
+
+<hr>
 
 ## JDA related projects
 
 - [Discord.NET](https://github.com/discord-net/Discord.Net)
 - [discord.py](https://github.com/Rapptz/discord.py)
 - [discord.js](https://github.com/discordjs/discord.js)
-- [Serenity](https://github.com/serenity-rs/serenity)
+- [serenity](https://github.com/serenity-rs/serenity)
 
-**See also:** https://discord.com/developers/docs/topics/community-resources#libraries 
+**See also:** [Discord API community libraries](https://github.com/apacheli/discord-api-libs)
 
