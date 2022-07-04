@@ -11,9 +11,7 @@
 
 # JDA-C (JDA-Commons)
 
-[ ![github-packages-shield][] ][download]
-[ ![license-shield][] ][license]
-[ ![discord-invite-shield][] ][discord-invite]
+[ ![github-packages-shield][] ][download] [ ![license-shield][] ][license] [ ![discord-invite-shield][] ][discord-invite]
 
 **What is the JDA (Java Discord API)?**
 
