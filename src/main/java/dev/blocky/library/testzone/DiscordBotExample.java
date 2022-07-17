@@ -36,7 +36,7 @@ import java.util.EnumSet;
  * This is the main class of the Discord-Bot.
  *
  * @author BlockyDotJar
- * @version v2.1.1
+ * @version v2.1.2
  * @since v1.0.0-alpha.1
  */
 public class DiscordBotExample
@@ -68,7 +68,8 @@ public class DiscordBotExample
                         EnumSet.of(
                                 // All needed intents.
                                 GatewayIntent.GUILD_MESSAGES,
-                                GatewayIntent.GUILD_MEMBERS
+                                GatewayIntent.GUILD_MEMBERS,
+                                GatewayIntent.MESSAGE_CONTENT
                         )
                 )
                 .disableCache(

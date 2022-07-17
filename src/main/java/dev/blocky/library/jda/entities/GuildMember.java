@@ -32,7 +32,7 @@ import java.util.Objects;
  * Represents a guild-specific {@link net.dv8tion.jda.api.entities.User user}.
  *
  * @author BlockyDotJar
- * @version v2.1.2
+ * @version v2.1.3
  * @since v1.0.0-alpha.1
  */
 public class GuildMember
@@ -42,7 +42,7 @@ public class GuildMember
 
     /**
      * Constructs a <b>new</b> {@link GuildMember guild member}.
-     * <br> This is a private constructor, because it should not be accessed for other classes.
+     * <br>This is a private constructor, because it should not be accessed for other classes.
      *
      * @param member The {@link Member member}, which should be used to get {@link GuildMember guild member}
      */
@@ -57,8 +57,8 @@ public class GuildMember
     }
 
     /**
-     * Constructs a <b>new</b> {@link GuildMember guild member} instance. If you don't
-     * initialize a {@link Member member}, the {@link GuildMember guild member} always will be <b>null</b>.
+     * Constructs a <b>new</b> {@link GuildMember guild member} instance.
+     * <br>If you don't initialize a {@link Member member}, the {@link GuildMember guild member} always will be <b>null</b>.
      *
      * @param member The {@link Member member}, which should be used to get {@link GuildMember guild member}
      * @return A <b>new</b> {@link GuildMember guild member} instance
@@ -127,8 +127,8 @@ public class GuildMember
      *
      * @param roleId The id of the {@link Role role}, which should be checked
      * @return
-     * <b>true -</b> If the {@link Member member} has the {@link Role role}
-     * <br><b>false -</b> If the {@link Member member} has not the {@link Role role}
+     * <b>true</b> - If the {@link Member member} has the {@link Role role}
+     * <br><b>false</b> - If the {@link Member member} has not the {@link Role role}
      */
     public boolean hasRoleWithId(long roleId)
     {
@@ -140,8 +140,8 @@ public class GuildMember
      *
      * @param roleId The id of the {@link Role role}, which should be checked
      * @return
-     * <b>true -</b> If the {@link Member member} has the {@link Role role}
-     * <br><b>false -</b> If the {@link Member member} has not the {@link Role role}
+     * <b>true</b> - If the {@link Member member} has the {@link Role role}
+     * <br><b>false</b> - If the {@link Member member} has not the {@link Role role}
      */
     public boolean hasRoleWithId(@NotNull String roleId)
     {
@@ -153,8 +153,8 @@ public class GuildMember
      *
      * @param roleName The name of the {@link Role role}, which should be checked
      * @return
-     * <b>true -</b> If the {@link Member member} has the {@link Role role}
-     * <br><b>false -</b> If the {@link Member member} has not the {@link Role role}
+     * <b>true</b> If the {@link Member member} has the {@link Role role}
+     * <br><b>false</b> If the {@link Member member} has not the {@link Role role}
      */
     public boolean hasRoleWithName(@NotNull String roleName)
     {
@@ -166,8 +166,8 @@ public class GuildMember
      *
      * @param message The {@link Message message}, which should checked, if the {@link Member member} got pinged in the {@link Message message}
      * @return
-     * <b>true -</b> If the {@link Member member} got pinged in the {@link Message message}
-     * <br><b>false -</b> If the {@link Member member} got pinged in the {@link Message message}
+     * <b>true</b> If the {@link Member member} got pinged in the {@link Message message}
+     * <br><b>false</b> If the {@link Member member} got pinged in the {@link Message message}
      */
     public boolean isMentioned(@NotNull Message message)
     {

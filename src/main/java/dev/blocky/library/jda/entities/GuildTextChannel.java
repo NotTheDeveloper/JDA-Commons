@@ -41,7 +41,7 @@ import java.util.stream.Collectors;
  * Represents a Discord text {@link net.dv8tion.jda.api.entities.GuildChannel guild channel}.
  *
  * @author BlockyDotJar
- * @version v2.1.2
+ * @version v2.1.3
  * @since v1.0.0-alpha.1
  */
 public class GuildTextChannel extends Utility
@@ -52,7 +52,7 @@ public class GuildTextChannel extends Utility
 
     /**
      * Constructs a <b>new</b> {@link GuildTextChannel guild text channel}.
-     * <br> This is a private constructor, because it should not be accessed for other classes.
+     * <br>This is a private constructor, because it should not be accessed for other classes.
      *
      * @param channel The {@link TextChannel text channel}, which should be used to get {@link GuildTextChannel guild text channel}
      * @param member  The {@link Member member}, which should be used to get {@link GuildTextChannel guild text channel}
@@ -80,7 +80,7 @@ public class GuildTextChannel extends Utility
 
     /**
      * Constructs a <b>new</b> {@link GuildTextChannel guild text channel}.
-     * <br> This is a private constructor, because it should not be accessed for other classes.
+     * <br>This is a private constructor, because it should not be accessed for other classes.
      *
      * @param channel The {@link TextChannel text channel}, which should be used to get {@link GuildTextChannel guild text channel}
      */
@@ -96,7 +96,7 @@ public class GuildTextChannel extends Utility
 
     /**
      * Constructs a <b>new</b> {@link GuildTextChannel guild text channel} instance.
-     * <br> If you don't initialize a {@link TextChannel text channel} or a {@link net.dv8tion.jda.api.entities.Member member},
+     * <br>If you don't initialize a {@link TextChannel text channel} or a {@link net.dv8tion.jda.api.entities.Member member},
      * the {@link GuildTextChannel guild text channel} always will be <b>null</b>.
      *
      * @param channel The {@link TextChannel text channel}, which should be initialized
@@ -111,7 +111,7 @@ public class GuildTextChannel extends Utility
 
     /**
      * Constructs a <b>new</b> {@link GuildTextChannel guild text channel} instance.
-     * <br> If you don't initialize a {@link TextChannel text channel},
+     * <br>If you don't initialize a {@link TextChannel text channel},
      * the {@link GuildTextChannel guild text channel} always will be <b>null</b>.
      *
      * @param channel The {@link TextChannel text channel}, which should be initialized
@@ -147,7 +147,7 @@ public class GuildTextChannel extends Utility
 
     /**
      * Convenience method to delete messages in the most efficient way available.
-     * <br> No checks will be done to prevent failures, use {@link java.util.concurrent.CompletionStage#exceptionally(Function)
+     * <br>No checks will be done to prevent failures, use {@link java.util.concurrent.CompletionStage#exceptionally(Function)
      * CompletionStage#exceptionally(Function)} to handle failures.
      *
      * @param amount The amount of messages to delete
@@ -162,7 +162,7 @@ public class GuildTextChannel extends Utility
 
     /**
      * Convenience method to delete a complete {@link TextChannel text channel} in the most efficient way available.
-     * <br> No checks will be done to prevent failures, use {@link java.util.concurrent.CompletionStage#exceptionally(Function)
+     * <br>No checks will be done to prevent failures, use {@link java.util.concurrent.CompletionStage#exceptionally(Function)
      * CompletionStage#exceptionally(Function)} to handle failures.
      *
      * @param clear The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
@@ -176,7 +176,7 @@ public class GuildTextChannel extends Utility
 
     /**
      * Convenience method to delete a complete {@link TextChannel text channel} in the most efficient way available.
-     * <br> No checks will be done to prevent failures, use {@link java.util.concurrent.CompletionStage#exceptionally(Function)
+     * <br>No checks will be done to prevent failures, use {@link java.util.concurrent.CompletionStage#exceptionally(Function)
      * CompletionStage#exceptionally(Function)} to handle failures.
      *
      * @return A list of futures representing all deletion task
@@ -193,11 +193,16 @@ public class GuildTextChannel extends Utility
      * @param content     The message content, which should be checked
      * @param checkAmount The amount of messages, which should be checked
      * @return
-     * <b>true -</b> If the content, you specified, is written in this channel
-     * <br><b>false -</b> If the content, you specified, is not written in this channel
+     * <b>true</b> If the content, you specified, is written in this channel
+     * <br><b>false</b> If the content, you specified, is not written in this channel
      */
     public boolean containsMessage(@NotNull CharSequence content, int checkAmount)
     {
+        if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.MESSAGE_CONTENT))
+        {
+            logger.warn("The MESSAGE_CONTENT intent is not enabled, which means, that some stuff could not work.");
+        }
+
         for (Message message : channel.getIterableHistory().cache(false))
         {
             if (message.getContentRaw().contentEquals(content))
@@ -230,13 +235,13 @@ public class GuildTextChannel extends Utility
 
     /**
      * This works like a normal message sending, but with more given options and a delay between using this.
-     * <br> You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
+     * <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
      * If this is <b>true</b> a {@link IllegalArgumentException illegal argument exception} will be thrown. The same is applicable for numbers under 0)
-     * <br> You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
+     * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
-     * <br> Another option you can use a specified {@link TimeUnit time} like {@link TimeUnit#MINUTES minutes},
+     * <br>Another option you can use a specified {@link TimeUnit time} like {@link TimeUnit#MINUTES minutes},
      * {@link TimeUnit#HOURS hours} or even {@link TimeUnit#DAYS days}.
-     * <br> (if {@link TimeUnit the time unit} equals <b>null</b>, there will be used a default {@link TimeUnit time unit}:
+     * <br>(if {@link TimeUnit the time unit} equals <b>null</b>, there will be used a default {@link TimeUnit time unit}:
      * {@link TimeUnit#SECONDS TimeUnit#SECONDS})
      *
      * @param message         The {@link MessageAction message action}, which should be used
@@ -292,9 +297,9 @@ public class GuildTextChannel extends Utility
 
     /**
      * This works like a normal message sending, but with more given options and a delay between using this.
-     * <br> You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
+     * <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
      * If this is <b>true</b> a {@link IllegalArgumentException illegal argument exception} will be thrown. The same is applicable for numbers under 0)
-     * <br> You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
+     * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
      *
      * @param message         The {@link MessageAction message action}, which should be used
@@ -348,13 +353,13 @@ public class GuildTextChannel extends Utility
 
     /**
      * This works like a normal (message component) message sending, but with more given options and a delay between using this. <br>
-     * <br> You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
+     * <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
      * If this is <b>true</b> a {@link IllegalArgumentException illegal argument exception} will be thrown. The same is applicable for numbers under 0)
-     * <br> You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
+     * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
-     * <br> Another option you can use a specified {@link TimeUnit time} like {@link TimeUnit#MINUTES minutes},
+     * <br>Another option you can use a specified {@link TimeUnit time} like {@link TimeUnit#MINUTES minutes},
      * {@link TimeUnit#HOURS hours} or even {@link TimeUnit#DAYS days}.
-     * <br> (if {@link TimeUnit the time unit} equals <b>null</b>, there will be used a default {@link TimeUnit time unit}:
+     * <br>(if {@link TimeUnit the time unit} equals <b>null</b>, there will be used a default {@link TimeUnit time unit}:
      * {@link TimeUnit#SECONDS TimeUnit#SECONDS})
      *
      * @param message        The {@link ReplyCallbackAction reply callback action}, which should be used
@@ -410,9 +415,9 @@ public class GuildTextChannel extends Utility
 
     /**
      * This works like a normal (message component) message sending, but with more given options and a delay between using this.
-     * <br> You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
+     * <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
      * If this is <b>true</b> a {@link IllegalArgumentException illegal argument exception} will be thrown. The same is applicable for numbers under 0)
-     * <br> You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
+     * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
      *
      * @param message         The {@link ReplyCallbackAction reply callback action}, which should be used

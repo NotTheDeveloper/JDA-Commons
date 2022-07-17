@@ -17,6 +17,7 @@ package dev.blocky.library.testzone;
 
 import dev.blocky.library.jda.interfaces.ICommand;
 import dev.blocky.library.testzone.commands.HelloWorldCommand;
+import dev.blocky.library.testzone.commands.TextInVoiceCommand;
 import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.ShutdownEvent;
@@ -35,7 +36,7 @@ import java.util.regex.Pattern;
  * This is a class, which manages default {@link net.dv8tion.jda.api.entities.Message message} commands.
  *
  * @author BlockyDotJar
- * @version v2.1.1
+ * @version v2.1.2
  * @since v1.0.0-alpha.3
  */
 public class CommandManager extends ListenerAdapter
@@ -55,6 +56,8 @@ public class CommandManager extends ListenerAdapter
          */
 
         commands.put("hello-world", new HelloWorldCommand());
+
+        commands.put("text-in-voice", new TextInVoiceCommand());
     }
 
     /**
@@ -64,8 +67,8 @@ public class CommandManager extends ListenerAdapter
      * @param event   The {@link MessageReceivedEvent message received event}, which should used for the commands
      * @param args    The array of strings
      * @return
-     * <b>true -</b> If {@link ICommand the command interface} does not equal to null
-     * <br> <b>false -</b> If {@link ICommand the command interface} equals to null
+     * <b>true</b> - If {@link ICommand the command interface} does not equal to null
+     * <br><b>false</b> - If {@link ICommand the command interface} equals to null
      */
     public boolean onMessage(@Nullable String command, @NotNull MessageReceivedEvent event, @NotNull String[] args)
     {

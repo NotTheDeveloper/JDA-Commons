@@ -15,20 +15,22 @@
  */
 package dev.blocky.library.jda.annotations;
 
-import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * This is an annotation, which tells the developers, with which method/class a deprecated method/class should be replaced.
  *
  * @author BlockyDotJar
- * @version v1.1.0
+ * @version v1.1.1
  * @since v1.0.0-alpha.1
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target( { ElementType.TYPE, ElementType.METHOD } )
+@Retention(RUNTIME)
+@Target( { TYPE, METHOD } )
 public @interface ReplaceWith
 {
     /**

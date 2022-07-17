@@ -32,7 +32,7 @@ import java.util.Objects;
  * Represents the self member (aka. the bot itself) of a specific {@link Guild guild}.
  *
  * @author BlockyDotJar
- * @version v1.1.2
+ * @version v1.1.3
  * @since v1.0.1
  */
 public class SelfMember
@@ -42,7 +42,7 @@ public class SelfMember
 
     /**
      * Constructs a <b>new</b> {@link SelfMember self member}.
-     * <br> This is a private constructor, because it should not be accessed for other classes.
+     * <br>This is a private constructor, because it should not be accessed for other classes.
      *
      * @param guild The {@link Guild guild}, which should be used to get {@link SelfMember self member}
      */
@@ -67,8 +67,8 @@ public class SelfMember
     }
 
     /**
-     * Constructs a <b>new</b> {@link SelfMember self member} instance. If you don't
-     * initialize a {@link Guild guild}, the {@link SelfMember self member} always will be <b>null</b>.
+     * Constructs a <b>new</b> {@link SelfMember self member} instance.
+     * <br>If you don't  initialize a {@link Guild guild}, the {@link SelfMember self member} always will be <b>null</b>.
      *
      * @param guild The {@link Guild guild}, which should be used to get the {@link SelfMember self member}
      * @return A <b>new</b> {@link SelfMember self member} instance
@@ -137,8 +137,8 @@ public class SelfMember
      *
      * @param roleId The id of the {@link Role role}, which should be checked
      * @return
-     * <b>true -</b> If the {@link SelfMember self member} has the {@link Role role}
-     * <br><b>false -</b> If the {@link SelfMember self member} has not the {@link Role role}
+     * <b>true</b> If the {@link SelfMember self member} has the {@link Role role}
+     * <br><b>false</b> If the {@link SelfMember self member} has not the {@link Role role}
      */
     public boolean hasRoleWithId(long roleId)
     {
@@ -150,8 +150,8 @@ public class SelfMember
      *
      * @param roleId The id of the {@link Role role}, which should be checked
      * @return
-     * <b>true -</b> If the {@link SelfMember self member} has the {@link Role role}
-     * <br><b>false -</b> If the {@link SelfMember self member} has not the {@link Role role}
+     * <b>true</b> If the {@link SelfMember self member} has the {@link Role role}
+     * <br><b>false</b> If the {@link SelfMember self member} has not the {@link Role role}
      */
     public boolean hasRoleWithId(@NotNull String roleId)
     {
@@ -163,8 +163,8 @@ public class SelfMember
      *
      * @param roleName The name of the {@link Role role}, which should be checked
      * @return
-     * <b>true -</b> If the {@link SelfMember self member} has the {@link Role role}
-     * <br><b>false -</b> If the {@link SelfMember self member} has not the {@link Role role}
+     * <b>true</b> If the {@link SelfMember self member} has the {@link Role role}
+     * <br><b>false</b> If the {@link SelfMember self member} has not the {@link Role role}
      */
     public boolean hasRoleWithName(@NotNull String roleName)
     {
@@ -176,8 +176,8 @@ public class SelfMember
      *
      * @param message The {@link Message message}, which should checked, if the {@link SelfMember self member} got pinged in the {@link Message message}
      * @return
-     * <b>true -</b> If the {@link SelfMember self member} got pinged in the {@link Message message}
-     * <br><b>false -</b> If the {@link SelfMember self member} got pinged in the {@link Message message}
+     * <b>true</b> If the {@link SelfMember self member} got pinged in the {@link Message message}
+     * <br><b>false</b> If the {@link SelfMember self member} got pinged in the {@link Message message}
      */
     public boolean isMentioned(@NotNull Message message)
     {

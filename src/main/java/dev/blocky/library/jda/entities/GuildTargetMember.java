@@ -35,7 +35,7 @@ import java.util.Objects;
  * {@link net.dv8tion.jda.api.entities.User user}.
  *
  * @author BlockyDotJar
- * @version v1.1.2
+ * @version v1.1.3
  * @since v1.0.0-alpha.4
  */
 public class GuildTargetMember
@@ -46,7 +46,7 @@ public class GuildTargetMember
 
     /**
      * Constructs a new {@link GuildTargetMember guild target member}.
-     * <br> This is a private constructor, because it should not be accessed for other classes.
+     * <br>This is a private constructor, because it should not be accessed for other classes.
      *
      * @param userEvent The {@link UserContextInteractionEvent user context interaction event}, which should be
      *                  used to get {@link GuildTargetMember guild target member}
@@ -64,7 +64,7 @@ public class GuildTargetMember
 
     /**
      * Constructs a new {@link GuildTargetMember guild target member}.
-     * <br> This is a private constructor, because it should not be accessed for other classes.
+     * <br>This is a private constructor, because it should not be accessed for other classes.
      *
      * @param messageEvent The {@link MessageContextInteractionEvent message context interaction event}, which should be
      *                     used to get {@link GuildTargetMember guild target member}
@@ -80,8 +80,8 @@ public class GuildTargetMember
     }
 
     /**
-     * Constructs a <b>new</b> {@link GuildTargetMember guild target member} instance. If you don't
-     * initialize a {@link UserContextInteractionEvent user context interaction event}, the
+     * Constructs a <b>new</b> {@link GuildTargetMember guild target member} instance.
+     * <br>If you don't initialize a {@link UserContextInteractionEvent user context interaction event}, the
      * {@link GuildTargetMember Guild Target Member} always will be <b>null</b>.
      *
      * @param userEvent The {@link UserContextInteractionEvent user context interaction event}, which should be initialized
@@ -94,8 +94,8 @@ public class GuildTargetMember
     }
 
     /**
-     * Constructs a <b>new</b> {@link GuildTargetMember guild target member} instance. If you don't
-     * initialize a {@link MessageContextInteractionEvent message context interaction event}, the
+     * Constructs a <b>new</b> {@link GuildTargetMember guild target member} instance.
+     * <br>If you don't initialize a {@link MessageContextInteractionEvent message context interaction event}, the
      * {@link GuildTargetMember guild target member} always will be <b>null</b>.
      *
      * @param messageEvent The {@link MessageContextInteractionEvent message context interaction event}, which should be initialized
@@ -176,8 +176,8 @@ public class GuildTargetMember
      *
      * @param roleId The id of the {@link Role role}, which should be checked
      * @return
-     * <b>true -</b> If the {@link Member target member} has the {@link Role role}
-     * <br><b>false -</b> If the {@link Member target member} has not the {@link Role role}
+     * <b>true</b> If the {@link Member target member} has the {@link Role role}
+     * <br><b>false</b> If the {@link Member target member} has not the {@link Role role}
      */
     public boolean hasRoleWithId(long roleId)
     {
@@ -189,8 +189,8 @@ public class GuildTargetMember
      *
      * @param roleId The id of the {@link Role role}, which should be checked
      * @return
-     * <b>true -</b> If the {@link Member target member} has the {@link Role role}
-     * <br><b>false -</b> If the {@link Member target member} has not the {@link Role role}
+     * <b>true</b> If the {@link Member target member} has the {@link Role role}
+     * <br><b>false</b> If the {@link Member target member} has not the {@link Role role}
      */
     public boolean hasRoleWithId(@NotNull String roleId)
     {
@@ -202,8 +202,8 @@ public class GuildTargetMember
      *
      * @param roleName The name of the {@link Role role}, which should be checked
      * @return
-     * <b>true -</b> If the {@link Member target member} has the {@link Role role}
-     * <br><b>false -</b> If the {@link Member target member} has not the {@link Role role}
+     * <b>true</b> If the {@link Member target member} has the {@link Role role}
+     * <br><b>false</b> If the {@link Member target member} has not the {@link Role role}
      */
     public boolean hasRoleWithName(@NotNull String roleName)
     {
@@ -215,8 +215,8 @@ public class GuildTargetMember
      *
      * @param message The {@link Message message}, which should checked, if the {@link Member target member} got pinged in the {@link Message message}
      * @return
-     * <b>true -</b> If the {@link Member target member} got pinged in the {@link Message message} <br>
-     * <b>false -</b> If the {@link Member target member} got pinged in the {@link Message message}
+     * <b>true</b> If the {@link Member target member} got pinged in the {@link Message message}
+     * <br><b>false</b> If the {@link Member target member} got pinged in the {@link Message message}
      */
     public boolean isMentioned(@NotNull Message message)
     {

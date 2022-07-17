@@ -34,7 +34,7 @@ import java.util.Objects;
  * {@link net.dv8tion.jda.api.entities.ThreadChannel thread channel}.
  *
  * @author BlockyDotJar
- * @version v1.1.2
+ * @version v1.1.3
  * @since v1.1.1
  */
 public class GuildThreadMember
@@ -44,7 +44,7 @@ public class GuildThreadMember
 
     /**
      * Constructs a <b>new</b> {@link GuildThreadMember guild thread member}.
-     * <br> This is a private constructor, because it should not be accessed for other classes.
+     * <br>This is a private constructor, because it should not be accessed for other classes.
      *
      * @param member The {@link ThreadMember thread member}, which should be used to get {@link GuildThreadMember guild thread member}
      */
@@ -59,8 +59,8 @@ public class GuildThreadMember
     }
 
     /**
-     * Constructs a <b>new</b> {@link GuildThreadMember guild thread member} instance. If you don't
-     * initialize a {@link ThreadMember thread member}, the {@link GuildThreadMember guild thread member} always will be <b>null</b>.
+     * Constructs a <b>new</b> {@link GuildThreadMember guild thread member} instance.
+     * <br>If you don't initialize a {@link ThreadMember thread member}, the {@link GuildThreadMember guild thread member} always will be <b>null</b>.
      *
      * @param member The {@link ThreadMember thread member}, which should be used to get {@link GuildThreadMember guild thread member}
      * @return A <b>new</b> {@link GuildThreadMember guild thread member} instance
@@ -129,8 +129,8 @@ public class GuildThreadMember
      *
      * @param roleId The id of the {@link Role role}, which should be checked
      * @return
-     * <b>true -</b> If the {@link Member thread member} has the {@link Role role}
-     * <br><b>false -</b> If the {@link Member thread member} has not the {@link Role role}
+     * <b>true</b> If the {@link Member thread member} has the {@link Role role}
+     * <br><b>false</b> If the {@link Member thread member} has not the {@link Role role}
      */
     public boolean hasRoleWithId(long roleId)
     {
@@ -142,8 +142,8 @@ public class GuildThreadMember
      *
      * @param roleId The id of the {@link Role role}, which should be checked
      * @return
-     * <b>true -</b> If the {@link Member thread member} has the {@link Role role}
-     * <br><b>false -</b> If the {@link Member thread member} has not the {@link Role role}
+     * <b>true</b> If the {@link Member thread member} has the {@link Role role}
+     * <br><b>false</b> If the {@link Member thread member} has not the {@link Role role}
      */
     public boolean hasRoleWithId(@NotNull String roleId)
     {
@@ -155,8 +155,8 @@ public class GuildThreadMember
      *
      * @param roleName The name of the {@link Role role}, which should be checked
      * @return
-     * <b>true -</b> If the {@link Member thread member} has the {@link Role role}
-     * <br><b>false -</b> If the {@link Member thread member} has not the {@link Role role}
+     * <b>true</b> If the {@link Member thread member} has the {@link Role role}
+     * <br><b>false</b> If the {@link Member thread member} has not the {@link Role role}
      */
     public boolean hasRoleWithName(@NotNull String roleName)
     {
@@ -168,8 +168,8 @@ public class GuildThreadMember
      *
      * @param message The {@link Message message}, which should checked, if the {@link Member thread member} got pinged in the {@link Message message}
      * @return
-     * <b>true -</b> If the {@link Member thread member} got pinged in the {@link Message message} <br>
-     * <b>false -</b> If the {@link Member thread member} got pinged in the {@link Message message}
+     * <b>true</b> - If the {@link Member thread member} got pinged in the {@link Message message}
+     * <br><b>false</b> - If the {@link Member thread member} got pinged in the {@link Message message}
      */
     public boolean isMentioned(@NotNull Message message)
     {

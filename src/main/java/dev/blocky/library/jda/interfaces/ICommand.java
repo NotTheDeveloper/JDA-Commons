@@ -22,14 +22,14 @@ import org.jetbrains.annotations.NotNull;
  * A simple command interface, which you can use to easily program message commands.
  *
  * @author BlockyDotJar
- * @version v2.1.1
+ * @version v2.1.2
  * @since v1.0.0-alpha.3
  */
 public interface ICommand
 {
     /**
      *  A simple command interface, which you can use to easily program message commands.
-     * <br> This contains an {@link dev.blocky.library.testzone.CommandManager command manager}.
+     * <br>This contains an {@link dev.blocky.library.testzone.CommandManager command manager}.
      *
      * @param event The {@link MessageReceivedEvent message received event} for performing a command
      * @param args  An array of strings for performing a command

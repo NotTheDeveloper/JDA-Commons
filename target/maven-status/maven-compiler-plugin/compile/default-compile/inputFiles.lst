@@ -2,7 +2,6 @@ C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\i
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\testzone\commands\app\slash\SupportModalCommand.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\CommonsClient.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\testzone\commands\app\slash\PingSlashCommand.java
-C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\impl\package-info.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\interfaces\app\slash\ISlashCommand.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\testzone\commands\package-info.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\testzone\commands\app\user\package-info.java
@@ -14,8 +13,8 @@ C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\a
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\enums\package-info.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\manager\GuildController.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\package-info.java
+C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\interfaces\app\slash\IAutoCompletable.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\testzone\package-info.java
-C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\impl\DataImpl.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\entities\GuildMember.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\entities\GuildThreadMember.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\entities\GuildThreadChannel.java
@@ -34,12 +33,15 @@ C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\m
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\entities\SelfMember.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\interfaces\app\user\IUserContext.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\testzone\commands\app\message\RickRollMessageContextCommand.java
+C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\testzone\commands\app\slash\autocomplete\FruitAutoCompletable.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\interfaces\ICommand.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\interfaces\app\message\package-info.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\annotations\Deadline.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\testzone\commands\app\slash\package-info.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\testzone\DiscordBotExample.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\testzone\commands\HelloWorldCommand.java
+C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\testzone\commands\app\slash\autocomplete\package-info.java
+C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\testzone\commands\app\slash\FruitSlashCommand.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\entities\GuildMessageChannel.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\interfaces\app\message\IMessageContext.java
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java\dev\blocky\library\jda\Utility.java

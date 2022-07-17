@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
  * This is a class, which has many utility methods in it.
  *
  * @author BlockyDotJar
- * @version v1.1.2
+ * @version v1.1.3
  * @since v1.0.0
  */
 public class Utility
@@ -44,7 +44,7 @@ public class Utility
 
     /**
      * Constructs a <b>new</b> {@link Utility utility}.
-     * <br> This is a private constructor, because it should not be accessed for other classes.
+     * <br>This is a private constructor, because it should not be accessed for other classes.
      */
     protected Utility()
     {

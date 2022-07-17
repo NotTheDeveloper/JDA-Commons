@@ -30,7 +30,6 @@ dev.blocky.library.jda.annotations
 dev.blocky.library.jda
 dev.blocky.library.jda.entities
 dev.blocky.library.jda.enums
-dev.blocky.library.jda.impl
 dev.blocky.library.jda.interfaces.app.message
 dev.blocky.library.jda.interfaces.app.slash
 dev.blocky.library.jda.interfaces.app.user
@@ -38,6 +37,7 @@ dev.blocky.library.jda.interfaces
 dev.blocky.library.jda.manager
 dev.blocky.library.testzone
 dev.blocky.library.testzone.commands.app.message
+dev.blocky.library.testzone.commands.app.slash.autocomplete
 dev.blocky.library.testzone.commands.app.slash
 dev.blocky.library.testzone.commands.app.user
 dev.blocky.library.testzone.commands
@@ -60,10 +60,9 @@ dev.blocky.library.testzone.commands
 'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/jda/entities/SelfMember.java'
 'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/jda/enums/package-info.java'
 'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/jda/enums/SafetyClear.java'
-'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/jda/impl/DataImpl.java'
-'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/jda/impl/package-info.java'
 'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/jda/interfaces/app/message/IMessageContext.java'
 'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/jda/interfaces/app/message/package-info.java'
+'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/jda/interfaces/app/slash/IAutoCompletable.java'
 'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/jda/interfaces/app/slash/ISlashCommand.java'
 'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/jda/interfaces/app/slash/package-info.java'
 'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/jda/interfaces/app/user/IUserContext.java'
@@ -78,6 +77,9 @@ dev.blocky.library.testzone.commands
 'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/testzone/CommandManager.java'
 'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/testzone/commands/app/message/package-info.java'
 'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/testzone/commands/app/message/RickRollMessageContextCommand.java'
+'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/testzone/commands/app/slash/autocomplete/FruitAutoCompletable.java'
+'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/testzone/commands/app/slash/autocomplete/package-info.java'
+'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/testzone/commands/app/slash/FruitSlashCommand.java'
 'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/testzone/commands/app/slash/package-info.java'
 'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/testzone/commands/app/slash/PingSlashCommand.java'
 'C:/Users/Dominic/IdeaProjects/JDA-Commons/src/main/java/dev/blocky/library/testzone/commands/app/slash/SupportModalCommand.java'
@@ -100,17 +102,17 @@ C:\Users\Dominic\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar 
 C:\Users\Dominic\.m2\repository\ch\qos\logback\logback-classic\1.2.11\logback-classic-1.2.11.jar = 1648292599504
 C:\Users\Dominic\.m2\repository\ch\qos\logback\logback-core\1.2.11\logback-core-1.2.11.jar = 1648292600211
 C:\Users\Dominic\IdeaProjects\JDA-Commons\src\main\java = 1649929977084
-C:\Users\Dominic\IdeaProjects\JDA-Commons\target\generated-sources\annotations = 1656444704371
-C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\allclasses-frame.html = 1656444711742
-C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\allclasses-noframe.html = 1656444711744
-C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\constant-values.html = 1656444711489
-C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\deprecated-list.html = 1656444711739
-C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\help-doc.html = 1656444711752
-C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\index-all.html = 1656444711733
-C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\index.html = 1656444711746
-C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\overview-frame.html = 1656444711347
-C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\overview-summary.html = 1656444711749
-C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\overview-tree.html = 1656444711709
-C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\package-list = 1656444711344
-C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\script.js = 1656444711756
-C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\stylesheet.css = 1656444711755
+C:\Users\Dominic\IdeaProjects\JDA-Commons\target\generated-sources\annotations = 1656511007714
+C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\allclasses-frame.html = 1656511014586
+C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\allclasses-noframe.html = 1656511014589
+C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\constant-values.html = 1656511014337
+C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\deprecated-list.html = 1656511014583
+C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\help-doc.html = 1656511014597
+C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\index-all.html = 1656511014581
+C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\index.html = 1656511014591
+C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\overview-frame.html = 1656511014211
+C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\overview-summary.html = 1656511014593
+C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\overview-tree.html = 1656511014557
+C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\package-list = 1656511014208
+C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\script.js = 1656511014603
+C:\Users\Dominic\IdeaProjects\JDA-Commons\target\apidocs\stylesheet.css = 1656511014601

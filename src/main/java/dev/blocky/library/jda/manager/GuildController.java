@@ -26,10 +26,10 @@ import org.slf4j.Logger;
 
 /**
  * This is a controller you can control guilds with.
- * <br> The exact use is still unknown.
+ * <br>The exact use is still unknown.
  *
  * @author BlockyDotJar
- * @version v1.0.0-alpha.5
+ * @version v1.0.0-alpha.6
  * @since v1.0.0
  */
 @Deadline(version = "v1.5.0")
@@ -40,7 +40,7 @@ public class GuildController
 
     /**
      * Constructs a <b>new</b> {@link GuildController guild controller}.
-     * <br> This is a private constructor, because it should not be accessed for other classes.
+     * <br>This is a private constructor, because it should not be accessed for other classes.
      *
      * @param guild The {@link Guild guild}, which should be used to get {@link GuildController guild controller}
      */
