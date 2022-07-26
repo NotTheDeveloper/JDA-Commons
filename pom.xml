@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>dev.blocky.library</groupId>
     <artifactId>jda-commons</artifactId>
-    <version>1.1.5</version>
+    <version>1.1.6</version>
     <packaging>jar</packaging>
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
@@ -30,7 +30,7 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.4.0</version>
                 <configuration>
-                    <javadocExecutable>C:\Program Files\Java\jdk1.8.0_333\bin\javadoc</javadocExecutable>
+                    <javadocExecutable>C:\Program Files\Java\jdk1.8.0_341\bin\javadoc</javadocExecutable>
                 </configuration>
                 <executions>
                     <execution>
@@ -70,7 +70,7 @@
                     <source>1.8</source>
                     <target>1.8</target>
                     <fork>true</fork>
-                    <executable>C:\Program Files\Java\jdk1.8.0_333\bin\javac</executable>
+                    <executable>C:\Program Files\Java\jdk1.8.0_341\bin\javac</executable>
                 </configuration>
             </plugin>
             <plugin>
@@ -81,7 +81,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
-                <version>3.0.0-M2</version>
+                <version>3.0.0</version>
             </plugin>
             <plugin>
                 <groupId>net.nicoulaj.maven.plugins</groupId>
@@ -118,7 +118,7 @@
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>5.0.0-alpha.14</version>
+            <version>5.0.0-alpha.17</version>
             <exclusions>
                 <exclusion>
                     <groupId>club.minnced</groupId>
@@ -135,6 +135,11 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.11</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.errorprone</groupId>
+            <artifactId>error_prone_annotations</artifactId>
+            <version>2.14.0</version>
         </dependency>
     </dependencies>
 </project>

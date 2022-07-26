@@ -24,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
-import javax.annotation.CheckReturnValue;
+import com.google.errorprone.annotations.CheckReturnValue;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,7 +32,7 @@ import java.util.Objects;
  * Represents the self member (aka. the bot itself) of a specific {@link Guild guild}.
  *
  * @author BlockyDotJar
- * @version v1.1.3
+ * @version v1.1.4
  * @since v1.0.1
  */
 public class SelfMember
@@ -46,7 +46,7 @@ public class SelfMember
      *
      * @param guild The {@link Guild guild}, which should be used to get {@link SelfMember self member}
      */
-    private SelfMember(@Nullable Guild guild)
+    private SelfMember(@NotNull Guild guild)
     {
         this.guild = guild;
 
@@ -74,7 +74,7 @@ public class SelfMember
      * @return A <b>new</b> {@link SelfMember self member} instance
      */
     @NotNull
-    public static SelfMember set(@Nullable Guild guild)
+    public static SelfMember set(@NotNull Guild guild)
     {
         return new SelfMember(guild);
     }
@@ -84,7 +84,7 @@ public class SelfMember
      *
      * @return The {@link Guild guild}, the message was received in
      */
-    @NotNull
+    @Nullable
     public Guild getGuild()
     {
         return guild;
@@ -208,6 +208,7 @@ public class SelfMember
         return Objects.hash(guild);
     }
 
+    @NotNull
     @Override
     public String toString()
     {

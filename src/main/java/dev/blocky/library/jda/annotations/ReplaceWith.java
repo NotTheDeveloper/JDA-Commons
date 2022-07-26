@@ -26,7 +26,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * This is an annotation, which tells the developers, with which method/class a deprecated method/class should be replaced.
  *
  * @author BlockyDotJar
- * @version v1.1.1
+ * @version v1.1.2
  * @since v1.0.0-alpha.1
  */
 @Retention(RUNTIME)
@@ -34,12 +34,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface ReplaceWith
 {
     /**
-     * @return The method, which should used instead
+     * @return The method or class, which should used instead
      */
-    String method();
-
-    /**
-     * @return The class, which should used instead
-     */
-    String clazz();
+    String value();
 }

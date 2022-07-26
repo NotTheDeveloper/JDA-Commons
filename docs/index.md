@@ -97,7 +97,7 @@ getCommonsClient()
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.3
+Version: v1.1.4
 Since: v1.0.0
 ```
 
@@ -192,7 +192,7 @@ getHashMap()
 
 ```yml
 Author: BlockyDotJar
-Version: v1.0.0-alpha.6
+Version: v1.0.0-beta.1
 Since: v1.0.0
 ```
 
@@ -213,14 +213,14 @@ GuildController controller = GuildController.set(@Nullable Guild);
 > <br>Returns: A <b>new</b> guild controller instance
 > <br>Annotation: **NotNull**
 ```swift
-set(@Nullable Guild)
+set(@NotNull Guild)
 ```
 <br>
 
 > The guild, the message was received in.
 >
 > Returns: The guild the message was received in
-> <br>Annotation: **NotNull**
+> <br>Annotation: **Nullable**
 ```swift
 getGuild()
 ```
@@ -233,6 +233,25 @@ getGuild()
 ```swift
 getSelfMember()
 ```
+<br>
+
+> As the user is typing an argument that has autocomplete enabled for it, the bot will receive an
+> command-autocomplete-interaction-event.
+> This event isn't fired for each keystroke, but is sent when Discord determines the user has paused typing for a bit.
+>
+> Autocompletions can suggest up to 25 options, and users do not have to send a command with one of the options.
+> Maps the words to choices and only displays words that start with the user's current input.
+>
+> Parameter:
+> <br>**query** - The query input for an auto-complete interaction
+> <br>**words** - An array of words that can be displayed in the autocomplete menu
+>
+> Returns: A list of choices, you can use to display it with `replyChoices(Collection)`
+> <br>Annotation: **NotNull**, **CheckReturnValue**
+```swift
+upsertAutocompleteCommand(@NotNull AutoCompleteQuery, @NotNull String[])
+```
+
 
 ### Overridden methods
 
@@ -267,7 +286,7 @@ Since: v1.0.0-alpha.3
 ### Getting ICommand:
 
 Of course you can not get an interface. <br>
-Because of this you need a [command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/main/java/dev/blocky/library/testzone/CommandManager.java) to use this interface.
+Because of this you need a [command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/CommandManager.java) to use this interface.
 
 ### Methods
 
@@ -300,7 +319,7 @@ Since: v1.0.0
 ### Getting ISlashCommand:
 
 Of course you can not get an interface. <br>
-Because of this you need an [application command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/main/java/dev/blocky/library/testzone/ApplicationCommandManager.java) to use this interface.
+Because of this you need an [application command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
 
 ### Methods
 
@@ -331,7 +350,7 @@ Since: v1.1.4
 ### Getting IAutoCompletable:
 
 Of course you can not get an interface. <br>
-Because of this you need an [application command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/main/java/dev/blocky/library/testzone/ApplicationCommandManager.java) to use this interface.
+Because of this you need an [application command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
 
 ### Methods
 
@@ -362,7 +381,7 @@ Since: v1.0.0
 ### Getting IMessageContext:
 
 Of course you can not get an interface. <br>
-Because of this you need an [application command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/main/java/dev/blocky/library/testzone/ApplicationCommandManager.java) to use this interface.
+Because of this you need an [application command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
 
 ### Methods
 
@@ -393,7 +412,7 @@ Since: v1.0.0
 ### Getting IUserContext:
 
 Of course you can not get an interface. <br>
-Because of this you need an [application command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/main/java/dev/blocky/library/testzone/ApplicationCommandManager.java) to use this interface.
+Because of this you need an [application command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
 
 ### Methods
 
@@ -485,7 +504,7 @@ EDITED_MESSAGES
 
 ```yml
 Author: BlockyDotJar
-Version: v2.1.3
+Version: v2.1.4
 Since: v1.0.0-alpha.1
 ```
 
@@ -575,7 +594,7 @@ purgeChannel(@Nullable SafetyClear)
 > <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
 >
 > Returns: A list of futures representing all deletion task
-> <br>Annotation: **NotNull**
+> <br>Annotation: **Nullable**
 ```swift
 purgeChannel()
 ```
@@ -594,12 +613,33 @@ containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
+> Gets all the messages from the member, which was specified with the `set(@NotNull TextChannel, @Nullable Member)` method,
+> in this channel. (max. 1000 messages per channel)
 >
 > Returns: The written messages of the specified member in this channel
-> <br>Annotation: **NotNull**
+> <br>Annotation: **Nullable**
 ```swift
-getMessagesByUser()
+getMessagesByMember()
+```
+<br>
+
+> Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
+>
+> Parameter: **member** - The member, from which the messages should be retrieved 
+> <br>Returns: The written messages of the specified member in this channel
+> <br>Annotation: **Nullable**
+```swift
+getMessagesByMember(@Nullable Member)
+```
+<br>
+
+> Gets all the messages from a specific user in this channel. (max. 1000 messages per channel)
+>
+> Parameter: **user** - The member, from which the messages should be retrieved
+> <br>Returns: The written messages of the specified user in this channel
+> <br>Annotation: **Nullable**
+```swift
+getMessagesByUser(@Nullable User)
 ```
 <br>
 
@@ -690,7 +730,7 @@ toString()
 
 ```yml
 Author: BlockyDotJar
-Version: v2.1.3
+Version: v2.1.4
 Since: v1.0.0-alpha.1
 ```
 
@@ -780,7 +820,7 @@ purgeChannel(@Nullable SafetyClear)
 > <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
 >
 > Returns: A list of futures representing all deletion task
-> <br>Annotation: **NotNull**
+> <br>Annotation: **Nullable**
 ```swift
 purgeChannel()
 ```
@@ -799,12 +839,33 @@ containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
+> Gets all the messages from the member, which was specified with the `set(@NotNull MessageChannel, @Nullable Member)` method,
+> in this channel. (max. 1000 messages per channel)
 >
 > Returns: The written messages of the specified member in this channel
-> <br>Annotation: **NotNull**
+> <br>Annotation: **Nullable**
 ```swift
-getMessagesByUser()
+getMessagesByMember()
+```
+<br>
+
+> Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
+>
+> Parameter: **member** - The member, from which the messages should be retrieved
+> <br>Returns: The written messages of the specified member in this channel
+> <br>Annotation: **Nullable**
+```swift
+getMessagesByMember(@Nullable Member)
+```
+<br>
+
+> Gets all the messages from a specific user in this channel. (max. 1000 messages per channel)
+>
+> Parameter: **user** - The member, from which the messages should be retrieved
+> <br>Returns: The written messages of the specified user in this channel
+> <br>Annotation: **Nullable**
+```swift
+getMessagesByUser(@Nullable User)
 ```
 <br>
 
@@ -895,7 +956,7 @@ toString()
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.3
+Version: v1.1.4
 Since: v1.1.1
 ```
 
@@ -985,7 +1046,7 @@ purgeChannel(@Nullable SafetyClear)
 > <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
 >
 > Returns: A list of futures representing all deletion task
-> <br>Annotation: **NotNull**
+> <br>Annotation: **Nullable**
 ```swift
 purgeChannel()
 ```
@@ -1004,12 +1065,33 @@ containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
+> Gets all the messages from the member, which was specified with the `set(@NotNull NewsChannel, @Nullable Member)` method,
+> in this channel. (max. 1000 messages per channel)
 >
 > Returns: The written messages of the specified member in this channel
-> <br>Annotation: **NotNull**
+> <br>Annotation: **Nullable**
 ```swift
-getMessagesByUser()
+getMessagesByMember()
+```
+<br>
+
+> Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
+>
+> Parameter: **member** - The member, from which the messages should be retrieved
+> <br>Returns: The written messages of the specified member in this channel
+> <br>Annotation: **Nullable**
+```swift
+getMessagesByMember(@Nullable Member)
+```
+<br>
+
+> Gets all the messages from a specific user in this channel. (max. 1000 messages per channel)
+>
+> Parameter: **user** - The member, from which the messages should be retrieved
+> <br>Returns: The written messages of the specified user in this channel
+> <br>Annotation: **Nullable**
+```swift
+getMessagesByUser(@Nullable User)
 ```
 <br>
 
@@ -1110,7 +1192,7 @@ replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbac
 > </li>
 > </ul>
 >
-> Returns: A rest action - Type: message
+> Returns: A rest-action - Type: message
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 autoPublish()
@@ -1130,7 +1212,7 @@ toString()
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.3
+Version: v1.1.4
 Since: v1.1.1
 ```
 
@@ -1220,7 +1302,7 @@ purgeChannel(@Nullable SafetyClear)
 > <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
 >
 > Returns: A list of futures representing all deletion task
-> <br>Annotation: **NotNull**
+> <br>Annotation: **Nullable**
 ```swift
 purgeChannel()
 ```
@@ -1239,12 +1321,33 @@ containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
+> Gets all the messages from the member, which was specified with the `set(@NotNull ThreadChannel, @Nullable Member)` method,
+> in this channel. (max. 1000 messages per channel)
 >
 > Returns: The written messages of the specified member in this channel
-> <br>Annotation: **NotNull**
+> <br>Annotation: **Nullable**
 ```swift
-getMessagesByUser()
+getMessagesByMember()
+```
+<br>
+
+> Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
+>
+> Parameter: **member** - The member, from which the messages should be retrieved
+> <br>Returns: The written messages of the specified member in this channel
+> <br>Annotation: **Nullable**
+```swift
+getMessagesByMember(@Nullable Member)
+```
+<br>
+
+> Gets all the messages from a specific user in this channel. (max. 1000 messages per channel)
+>
+> Parameter: **user** - The member, from which the messages should be retrieved
+> <br>Returns: The written messages of the specified user in this channel
+> <br>Annotation: **Nullable**
+```swift
+getMessagesByUser(@Nullable User)
 ```
 <br>
 
@@ -1335,7 +1438,7 @@ toString()
 
 ```yml
 Author: BlockyDotJar
-Version: v1.0.0
+Version: v1.0.1
 Since: v1.1.5
 ```
 
@@ -1425,7 +1528,7 @@ purgeChannel(@Nullable SafetyClear)
 > <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
 >
 > Returns: A list of futures representing all deletion task
-> <br>Annotation: **NotNull**
+> <br>Annotation: **Nullable**
 ```swift
 purgeChannel()
 ```
@@ -1444,12 +1547,33 @@ containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
+> Gets all the messages from the member, which was specified with the `set(@NotNull VoiceChannel, @Nullable Member)` method,
+> in this channel. (max. 1000 messages per channel)
 >
 > Returns: The written messages of the specified member in this channel
-> <br>Annotation: **NotNull**
+> <br>Annotation: **Nullable**
 ```swift
-getMessagesByUser()
+getMessagesByMember()
+```
+<br>
+
+> Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
+>
+> Parameter: **member** - The member, from which the messages should be retrieved
+> <br>Returns: The written messages of the specified member in this channel
+> <br>Annotation: **Nullable**
+```swift
+getMessagesByMember(@Nullable Member)
+```
+<br>
+
+> Gets all the messages from a specific user in this channel. (max. 1000 messages per channel)
+>
+> Parameter: **user** - The member, from which the messages should be retrieved
+> <br>Returns: The written messages of the specified user in this channel
+> <br>Annotation: **Nullable**
+```swift
+getMessagesByUser(@Nullable User)
 ```
 <br>
 
@@ -1540,7 +1664,7 @@ toString()
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.3
+Version: v1.1.4
 Since: v1.1.1
 ```
 
@@ -1630,7 +1754,7 @@ purgeChannel(@Nullable SafetyClear)
 > <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
 >
 > Returns: A list of futures representing all deletion task
-> <br>Annotation: **NotNull**
+> <br>Annotation: **Nullable**
 ```swift
 purgeChannel()
 ```
@@ -1649,12 +1773,33 @@ containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
+> Gets all the messages from the member, which was specified with the `set(@NotNull PrivateChannel, @Nullable Member)` method,
+> in this channel. (max. 1000 messages per channel)
 >
 > Returns: The written messages of the specified member in this channel
-> <br>Annotation: **NotNull**
+> <br>Annotation: **Nullable**
 ```swift
-getMessagesByUser()
+getMessagesByMember()
+```
+<br>
+
+> Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
+>
+> Parameter: **member** - The member, from which the messages should be retrieved
+> <br>Returns: The written messages of the specified member in this channel
+> <br>Annotation: **Nullable**
+```swift
+getMessagesByMember(@Nullable Member)
+```
+<br>
+
+> Gets all the messages from a specific user in this channel. (max. 1000 messages per channel)
+>
+> Parameter: **user** - The member, from which the messages should be retrieved
+> <br>Returns: The written messages of the specified user in this channel
+> <br>Annotation: **Nullable**
+```swift
+getMessagesByUser(@Nullable User)
 ```
 <br>
 
@@ -1730,6 +1875,18 @@ replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallback
 ```swift
 replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction)
 ```
+<br>
+
+> Closes a private channel. After being closed successfully the private channel
+> is removed from the JDA mapping.
+> <br>As a note, this does not remove the history of the private channel. If the channel is
+> reopened the history will still be present.
+>
+> Returns: A rest-action - Type: void
+> <br>Annotation: **NotNull**, **CheckReturnValue**
+```swift 
+close()
+```
 
 ### Overridden methods
 
@@ -1754,7 +1911,7 @@ toString()
 
 ```yml
 Author: BlockyDotJar
-Version: v2.1.3
+Version: v2.1.4
 Since: v1.0.0-alpha.1
 ```
 
@@ -1875,7 +2032,7 @@ toString()
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.3
+Version: v1.1.4
 Since: v1.0.0-alpha.4
 ```
 
@@ -2020,7 +2177,7 @@ toString()
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.3
+Version: v1.1.4
 Since: v1.1.1
 ```
 
@@ -2141,7 +2298,7 @@ toString()
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.3
+Version: v1.1.4
 Since: v1.0.1
 ```
 
@@ -2163,14 +2320,14 @@ SelfMember self = controller.getSelfMember();
 > <br>Returns: A <b>new</b> self member instance
 > <br>Annotation: **NotNull**
 ```swift
-set(@Nullable Guild)
+set(@NotNull Guild)
 ```
 <br>
 
 > The guild, the message was received in.
 >
 > Returns: The guild, the message was received in
-> <br>Annotation: **NotNull**
+> <br>Annotation: **Nullable**
 ```swift
 getGuild()
 ```
@@ -2344,7 +2501,7 @@ deadline()
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.1
+Version: v1.1.2
 Since: v1.0.0-alpha.1
 ```
 
@@ -2352,15 +2509,9 @@ Since: v1.0.0-alpha.1
 
 ### Methods
 
-> Returns: The method, which should used instead
+> Returns: The method or class, which should used instead
 ```swift
-method()
-```
-<br>
-
-> Returns: The class, which should used instead
-```swift
-clazz()
+value()
 ```
 
 ## Undocumented

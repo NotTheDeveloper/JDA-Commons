@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
-import javax.annotation.CheckReturnValue;
+import com.google.errorprone.annotations.CheckReturnValue;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,7 +34,7 @@ import java.util.Objects;
  * {@link net.dv8tion.jda.api.entities.ThreadChannel thread channel}.
  *
  * @author BlockyDotJar
- * @version v1.1.3
+ * @version v1.1.4
  * @since v1.1.1
  */
 public class GuildThreadMember
@@ -200,6 +200,7 @@ public class GuildThreadMember
         return Objects.hash(member);
     }
 
+    @NotNull
     @Override
     public String toString()
     {

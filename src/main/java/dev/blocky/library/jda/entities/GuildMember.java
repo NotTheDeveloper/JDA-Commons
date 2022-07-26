@@ -24,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
-import javax.annotation.CheckReturnValue;
+import com.google.errorprone.annotations.CheckReturnValue;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,7 +32,7 @@ import java.util.Objects;
  * Represents a guild-specific {@link net.dv8tion.jda.api.entities.User user}.
  *
  * @author BlockyDotJar
- * @version v2.1.3
+ * @version v2.1.4
  * @since v1.0.0-alpha.1
  */
 public class GuildMember
@@ -198,6 +198,7 @@ public class GuildMember
         return Objects.hash(member);
     }
 
+    @NotNull
     @Override
     public String toString()
     {

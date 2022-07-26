@@ -15,10 +15,12 @@
  */
 package dev.blocky.library.jda.entities;
 
+import com.google.errorprone.annotations.CheckReturnValue;
 import dev.blocky.library.jda.Utility;
 import dev.blocky.library.jda.enums.SafetyClear;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.VoiceChannel;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.requests.restaction.MessageAction;
@@ -28,7 +30,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
-import javax.annotation.CheckReturnValue;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Objects;
@@ -42,7 +43,7 @@ import java.util.stream.Collectors;
  * <br>Adds additional information specific to voice channels in Discord.
  *
  * @author BlockyDotJar
- * @version v1.0.0
+ * @version v1.0.1
  * @since v1.1.5
  */
 public class GuildVoiceChannel extends Utility
@@ -185,10 +186,10 @@ public class GuildVoiceChannel extends Utility
      *
      * @return A list of futures representing all deletion task
      */
-    @NotNull
+    @Nullable
     public List<CompletableFuture<Void>> purgeChannel()
     {
-        return channel.purgeMessages(checkChannelClearSafety(null, channel));
+        return purgeChannel(null);
     }
 
     /**
@@ -223,18 +224,59 @@ public class GuildVoiceChannel extends Utility
     }
 
     /**
-     * Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
+     * Gets all the messages from the member, which was specified with the {@link #set(VoiceChannel, Member)} method,
+     * in this channel. (max. 1000 messages per channel)
      *
      * @return The written messages of the specified member in this channel
      */
-    @NotNull
-    public List<Message> getMessagesByUser()
+    @Nullable
+    public CompletableFuture<List<Message>> getMessagesByMember()
     {
+        return getMessagesByMember(member);
+    }
+
+    /**
+     * Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
+     *
+     * @param member The member, from which the messages should be retrieved
+     *
+     * @return The written messages of the specified member in this channel
+     */
+    @Nullable
+    public CompletableFuture<List<Message>> getMessagesByMember(@Nullable Member member)
+    {
+        return getMessagesByUser(member.getUser());
+    }
+
+    /**
+     * Gets all the messages from a specific user in this channel. (max. 1000 messages per channel)
+     *
+     * @param user The user, from which the messages should be retrieved
+     *
+     * @return The written messages of the specified user in this channel
+     */
+    @Nullable
+    public CompletableFuture<List<Message>> getMessagesByUser(@Nullable User user)
+    {
+        if (member == null)
+        {
+            throw new IllegalStateException("You must specify a member, which should be used for this command.");
+        }
+
+        if (user == null)
+        {
+            user = this.member.getUser();
+            logger.info("'member' equals null, defaulting to member, specified by 'set(PrivateChannel, Member)'");
+        }
+
+        final User finalUser = user;
         return channel.getIterableHistory()
-                .stream()
-                .limit(1000)
-                .filter(m -> m.getAuthor().equals(member.getUser()))
-                .collect(Collectors.toList());
+                .takeAsync(1000)
+                .thenApply(list ->
+                        list.stream()
+                                .filter(m -> m.getAuthor().equals(finalUser))
+                                .collect(Collectors.toList())
+                );
     }
 
     /**
@@ -259,6 +301,11 @@ public class GuildVoiceChannel extends Utility
     public MessageAction sendTimeoutedMessage(@NotNull MessageAction message, long delayInSeconds, @Nullable MessageAction delayMessage,
                                               @Nullable TimeUnit unit)
     {
+        if (member == null)
+        {
+            throw new IllegalStateException("You must specify a member, which should be used for this command.");
+        }
+
         try
         {
             long id = member.getIdLong();
@@ -315,44 +362,7 @@ public class GuildVoiceChannel extends Utility
     @CheckReturnValue
     public MessageAction sendTimeoutedMessage(@NotNull MessageAction message, long delayInSeconds, @Nullable MessageAction delayMessage)
     {
-        try
-        {
-            long id = member.getIdLong();
-            long time;
-            if (getHashMap().containsKey(id))
-            {
-                time = getHashMap().get(id);
-
-                if ((System.currentTimeMillis() - time) >= calculateDelay(null, delayInSeconds))
-                {
-                    getHashMap().put(id, System.currentTimeMillis());
-                    return message;
-                }
-                else
-                {
-                    if (delayMessage == null)
-                    {
-                        DecimalFormat df = new DecimalFormat("0.00");
-                        delayMessage = channel.sendMessage(member.getEffectiveName() + ", you must wait "
-                                + df.format((calculateDelay(null, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛");
-                    }
-                    else
-                    {
-                        return delayMessage;
-                    }
-                }
-            }
-            else
-            {
-                getHashMap().put(id, System.currentTimeMillis());
-                return message;
-            }
-        }
-        catch (NullPointerException e)
-        {
-            logger.error("The message action, which you are specifying, equals null.", e);
-        }
-        return delayMessage;
+        return sendTimeoutedMessage(message, delayInSeconds, delayMessage, null);
     }
 
     /**
@@ -377,6 +387,11 @@ public class GuildVoiceChannel extends Utility
     public ReplyCallbackAction replyTimeoutedMessage(@NotNull ReplyCallbackAction message, long delayInSeconds, @Nullable ReplyCallbackAction delayMessage,
                                                      @Nullable TimeUnit unit)
     {
+        if (member == null)
+        {
+            throw new IllegalStateException("You must specify a member, which should be used for this command.");
+        }
+
         try
         {
             long id = member.getIdLong();
@@ -433,44 +448,7 @@ public class GuildVoiceChannel extends Utility
     @CheckReturnValue
     public ReplyCallbackAction replyTimeoutedMessage(@NotNull ReplyCallbackAction message, long delayInSeconds, @Nullable ReplyCallbackAction delayMessage)
     {
-        try
-        {
-            long id = member.getIdLong();
-            long time;
-            if (getHashMap().containsKey(id))
-            {
-                time = getHashMap().get(id);
-
-                if ((System.currentTimeMillis() - time) >= calculateDelay(null, delayInSeconds))
-                {
-                    getHashMap().put(id, System.currentTimeMillis());
-                    return message;
-                }
-                else
-                {
-                    if (delayMessage == null)
-                    {
-                        DecimalFormat df = new DecimalFormat("0.00");
-                        channel.sendMessage(member.getEffectiveName() + ", you must wait "
-                                + df.format((calculateDelay(null, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛").queue();
-                    }
-                    else
-                    {
-                        return delayMessage;
-                    }
-                }
-            }
-            else
-            {
-                getHashMap().put(id, System.currentTimeMillis());
-                return message;
-            }
-        }
-        catch (NullPointerException e)
-        {
-            logger.error("The reply callback action, which you are specifying, equals null.", e);
-        }
-        return delayMessage;
+        return replyTimeoutedMessage(message, delayInSeconds, delayMessage, null);
     }
 
     @Override
@@ -497,6 +475,7 @@ public class GuildVoiceChannel extends Utility
         return Objects.hash(channel, member);
     }
 
+    @NotNull
     @Override
     public String toString()
     {

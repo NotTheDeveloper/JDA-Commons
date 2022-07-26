@@ -8,8 +8,10 @@ dev\blocky\library\testzone\commands\app\slash\package-info.class
 dev\blocky\library\testzone\package-info.class
 dev\blocky\library\testzone\commands\app\slash\autocomplete\FruitAutoCompletable.class
 dev\blocky\library\jda\interfaces\package-info.class
+dev\blocky\library\testzone\commands\TextInVoiceCommand.class
 dev\blocky\library\jda\interfaces\app\slash\ISlashCommand.class
 dev\blocky\library\jda\entities\GuildTextChannel.class
+dev\blocky\library\jda\entities\GuildVoiceChannel.class
 dev\blocky\library\jda\interfaces\ICommand.class
 dev\blocky\library\jda\enums\package-info.class
 dev\blocky\library\jda\entities\GuildThreadChannel.class
