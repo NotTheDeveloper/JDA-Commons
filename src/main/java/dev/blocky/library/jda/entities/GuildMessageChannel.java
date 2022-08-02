@@ -224,26 +224,13 @@ public class GuildMessageChannel extends Utility
     }
 
     /**
-     * Gets all the messages from the member, which was specified with the {@link #set(MessageChannel, Member)} method,
+     * Gets all the messages from the user, which was specified with the {@link #set(MessageChannel, Member)} method,
      * in this channel. (max. 1000 messages per channel)
      *
-     * @return The written messages of the specified member in this channel
+     * @return The written messages of the specified user in this channel
      */
     @Nullable
-    public CompletableFuture<List<Message>> getMessagesByMember()
-    {
-        return getMessagesByMember(member);
-    }
-
-    /**
-     * Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
-     *
-     * @param member The member, from which the messages should be retrieved
-     *
-     * @return The written messages of the specified member in this channel
-     */
-    @Nullable
-    public CompletableFuture<List<Message>> getMessagesByMember(@Nullable Member member)
+    public CompletableFuture<List<Message>> getMessagesByUser()
     {
         return getMessagesByUser(member.getUser());
     }
@@ -265,8 +252,9 @@ public class GuildMessageChannel extends Utility
 
         if (user == null)
         {
-            user = this.member.getUser();
-            logger.info("'member' equals null, defaulting to member, specified by 'set(PrivateChannel, Member)'");
+            user = member.getUser();
+            logger.info("'user' equals null, defaulting to member, specified by 'set(@NotNull MessageChannel, @Nullable Member)'");
+            logger.info("Because 'user' equals null you could use 'getMessagesByUser()' instead.");
         }
 
         final User finalUser = user;

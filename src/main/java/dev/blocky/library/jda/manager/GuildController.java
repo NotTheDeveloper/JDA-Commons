@@ -43,7 +43,7 @@ import java.util.stream.Stream;
  * @version v1.0.0-beta.1
  * @since v1.0.0
  */
-@Deadline(version = "v1.5.0")
+@Deadline(version = "v1.3.0")
 public class GuildController
 {
     private final Logger logger = JDALogger.getLog(GuildController.class);

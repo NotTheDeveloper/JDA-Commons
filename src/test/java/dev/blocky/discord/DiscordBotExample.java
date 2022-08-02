@@ -73,7 +73,7 @@ public class DiscordBotExample
                                 GatewayIntent.MESSAGE_CONTENT
                         )
                 )
-                // This CacheFlag is needed for the TextInVoiceCommand.
+                // This cache flag is needed for the text-in-voice command.
                 .enableCache(CacheFlag.VOICE_STATE)
                 .disableCache(
                         EnumSet.of(

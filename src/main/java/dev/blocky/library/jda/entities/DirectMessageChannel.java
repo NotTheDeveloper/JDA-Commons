@@ -245,8 +245,9 @@ public class DirectMessageChannel extends Utility
 
         if (user == null)
         {
-            user = this.member.getUser();
-            logger.info("'member' equals null, defaulting to member, specified by 'set(PrivateChannel, Member)'");
+            user = member.getUser();
+            logger.info("'user' equals null, defaulting to member, specified by 'set(@NotNull PrivateChannel, @Nullable Member)'");
+            logger.info("Because 'user' equals null you could use 'getMessagesByUser()' instead.");
         }
 
         final User finalUser = user;

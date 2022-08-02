@@ -27,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
  * @version v1.0.0-alpha.4
  * @since v1.0.0
  */
-@Deadline(version = "v1.5.0")
+@Deadline(version = "v1.3.0")
 public final class CommonsClient
 {
     /**
@@ -45,7 +45,7 @@ public final class CommonsClient
      * @version v1.0.0-alpha.5
      * @since v1.0.0
      */
-    @Deadline(version = "v1.6.0")
+    @Deadline(version = "v1.3.0")
     public static class Builder
     {
 

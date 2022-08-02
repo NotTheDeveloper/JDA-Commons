@@ -19,7 +19,7 @@ package dev.blocky.library.jda.enums;
  * This is an enum, which is used for a safer clearing process.
  *
  * @author BlockyDotJar
- * @version v1.1.0
+ * @version v1.1.1
  * @since v1.0.0
  */
 public enum SafetyClear
@@ -30,7 +30,19 @@ public enum SafetyClear
     NONE,
 
     /**
-     * The clear process will be done with all possible checks.
+     * The clear process will be done with all possible checks:
+     *
+     * <ul>
+     *     <li>
+     *         If the message is pinned
+     *     </li>
+     *     <li>
+     *         If the message is a webhook message
+     *     </li>
+     *     <li>
+     *         If the message is edited
+     *     </li>
+     * </ul>
      */
     ALL,
 

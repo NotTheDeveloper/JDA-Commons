@@ -14,7 +14,7 @@
 
 > Note: If you have any suggestions/questions/feedback for this wiki please contact Blocky.jar ツ#8117 via [Discord](https://discord.gg/FnGFbzCw2r)
 
-If you want some examples for JDA too than check out the [example directory](https://github.com/BlockyDotJar/JDA-Commons/tree/main/src/main/java/dev/blocky/library/testzone).
+If you want some examples for JDA too than check out the [example directory](https://github.com/BlockyDotJar/JDA-Commons/tree/main/src/test/java/dev/blocky/discord).
 
 ## Summary
 
@@ -34,7 +34,7 @@ If you want some examples for JDA too than check out the [example directory](htt
 ## CommonsClient
 
 ```swift
-@Deadline(version = "v1.5.0")
+@Deadline(version = "v1.3.0")
 ```
 
 ```yml
@@ -62,7 +62,7 @@ CommonsClient client = CommonsClient.Builder.getCommonsClient();
 ## Builder
 
 ```swift
-@Deadline(version = "v1.6.0")
+@Deadline(version = "v1.3.0")
 ```
 
 ```yml
@@ -97,7 +97,7 @@ getCommonsClient()
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.4
+Version: v1.1.5
 Since: v1.0.0
 ```
 
@@ -187,7 +187,7 @@ getHashMap()
 ## GuildController
 
 ```swift
-@Deadline(version = "v1.5.0")
+@Deadline(version = "v1.3.0")
 ```
 
 ```yml
@@ -454,7 +454,11 @@ NONE
 ``` 
 <br>
 
-> The clear process will be done with all possible checks.
+> The clear process will be done with all possible checks:
+>
+> * If the message is pinned
+> * If the message is a webhook message
+> * If the message is edited
 ```java
 ALL
 ```
@@ -613,23 +617,13 @@ containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from the member, which was specified with the `set(@NotNull TextChannel, @Nullable Member)` method,
+> Gets all the messages from the user, which was specified with the `set(@NotNull TextChannel, @Nullable Member)` method,
 > in this channel. (max. 1000 messages per channel)
 >
-> Returns: The written messages of the specified member in this channel
+> Returns: The written messages of the specified user in this channel
 > <br>Annotation: **Nullable**
 ```swift
-getMessagesByMember()
-```
-<br>
-
-> Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
->
-> Parameter: **member** - The member, from which the messages should be retrieved 
-> <br>Returns: The written messages of the specified member in this channel
-> <br>Annotation: **Nullable**
-```swift
-getMessagesByMember(@Nullable Member)
+getMessagesByUser()
 ```
 <br>
 
@@ -839,23 +833,13 @@ containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from the member, which was specified with the `set(@NotNull MessageChannel, @Nullable Member)` method,
+> Gets all the messages from the user, which was specified with the `set(@NotNull MessageChannel, @Nullable Member)` method,
 > in this channel. (max. 1000 messages per channel)
 >
-> Returns: The written messages of the specified member in this channel
+> Returns: The written messages of the specified user in this channel
 > <br>Annotation: **Nullable**
 ```swift
-getMessagesByMember()
-```
-<br>
-
-> Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
->
-> Parameter: **member** - The member, from which the messages should be retrieved
-> <br>Returns: The written messages of the specified member in this channel
-> <br>Annotation: **Nullable**
-```swift
-getMessagesByMember(@Nullable Member)
+getMessagesByUser()
 ```
 <br>
 
@@ -1065,23 +1049,13 @@ containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from the member, which was specified with the `set(@NotNull NewsChannel, @Nullable Member)` method,
+> Gets all the messages from the user, which was specified with the `set(@NotNull NewsChannel, @Nullable Member)` method,
 > in this channel. (max. 1000 messages per channel)
 >
-> Returns: The written messages of the specified member in this channel
+> Returns: The written messages of the specified user in this channel
 > <br>Annotation: **Nullable**
 ```swift
-getMessagesByMember()
-```
-<br>
-
-> Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
->
-> Parameter: **member** - The member, from which the messages should be retrieved
-> <br>Returns: The written messages of the specified member in this channel
-> <br>Annotation: **Nullable**
-```swift
-getMessagesByMember(@Nullable Member)
+getMessagesByUser()
 ```
 <br>
 
@@ -1321,23 +1295,13 @@ containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from the member, which was specified with the `set(@NotNull ThreadChannel, @Nullable Member)` method,
+> Gets all the messages from the user, which was specified with the `set(@NotNull ThreadChannel, @Nullable Member)` method,
 > in this channel. (max. 1000 messages per channel)
 >
-> Returns: The written messages of the specified member in this channel
+> Returns: The written messages of the specified user in this channel
 > <br>Annotation: **Nullable**
 ```swift
-getMessagesByMember()
-```
-<br>
-
-> Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
->
-> Parameter: **member** - The member, from which the messages should be retrieved
-> <br>Returns: The written messages of the specified member in this channel
-> <br>Annotation: **Nullable**
-```swift
-getMessagesByMember(@Nullable Member)
+getMessagesByUser()
 ```
 <br>
 
@@ -1547,23 +1511,13 @@ containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from the member, which was specified with the `set(@NotNull VoiceChannel, @Nullable Member)` method,
+> Gets all the messages from the user, which was specified with the `set(@NotNull VoiceChannel, @Nullable Member)` method,
 > in this channel. (max. 1000 messages per channel)
 >
-> Returns: The written messages of the specified member in this channel
+> Returns: The written messages of the specified user in this channel
 > <br>Annotation: **Nullable**
 ```swift
-getMessagesByMember()
-```
-<br>
-
-> Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
->
-> Parameter: **member** - The member, from which the messages should be retrieved
-> <br>Returns: The written messages of the specified member in this channel
-> <br>Annotation: **Nullable**
-```swift
-getMessagesByMember(@Nullable Member)
+getMessagesByUser()
 ```
 <br>
 
@@ -1773,23 +1727,13 @@ containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from the member, which was specified with the `set(@NotNull PrivateChannel, @Nullable Member)` method,
+> Gets all the messages from the user, which was specified with the `set(@NotNull PrivateChannel, @Nullable Member)` method,
 > in this channel. (max. 1000 messages per channel)
 >
-> Returns: The written messages of the specified member in this channel
+> Returns: The written messages of the specified user in this channel
 > <br>Annotation: **Nullable**
 ```swift
-getMessagesByMember()
-```
-<br>
-
-> Gets all the messages from a specific member in this channel. (max. 1000 messages per channel)
->
-> Parameter: **member** - The member, from which the messages should be retrieved
-> <br>Returns: The written messages of the specified member in this channel
-> <br>Annotation: **Nullable**
-```swift
-getMessagesByMember(@Nullable Member)
+getMessagesByUser()
 ```
 <br>
 

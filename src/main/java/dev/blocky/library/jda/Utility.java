@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
  * This is a class, which has many utility methods in it.
  *
  * @author BlockyDotJar
- * @version v1.1.4
+ * @version v1.1.5
  * @since v1.0.0
  */
 public class Utility
@@ -68,6 +68,7 @@ public class Utility
         if (clear == null)
         {
             clear = SafetyClear.NONE;
+            logger.info("'clear' equals null, defaulting to 'SafetyClear.NONE'");
         }
 
         if (amount == 0)
@@ -90,10 +91,7 @@ public class Utility
             switch (clear)
             {
                 case NONE:
-                    if (message.isFromGuild())
-                    {
-                        messages.add(message);
-                    }
+                    messages.add(message);
                     break;
                 case ALL:
                     if (!message.isEdited() && !message.isPinned() && !message.isWebhookMessage())
@@ -149,6 +147,7 @@ public class Utility
         if (clear == null)
         {
             clear = SafetyClear.NONE;
+            logger.info("'clear' equals null, defaulting to 'SafetyClear.NONE'");
         }
 
         if (amount == 0)
@@ -228,6 +227,7 @@ public class Utility
         if (clear == null)
         {
             clear = SafetyClear.NONE;
+            logger.info("'clear' equals null, defaulting to 'SafetyClear.NONE'");
         }
 
         for (Message message : channel.getIterableHistory().cache(false))
@@ -288,6 +288,7 @@ public class Utility
         if (clear == null)
         {
             clear = SafetyClear.NONE;
+            logger.info("'clear' equals null, defaulting to 'SafetyClear.NONE'");
         }
 
         for (Message message : channel.getIterableHistory().cache(false))
@@ -344,6 +345,7 @@ public class Utility
         if (unit == null)
         {
             unit = TimeUnit.SECONDS;
+            logger.info("'clear' equals null, defaulting to 'SafetyClear.NONE'");
         }
 
         if (delayInSeconds == 0)
@@ -358,8 +360,8 @@ public class Utility
                     new IllegalArgumentException());
         }
 
-
         long delay = 0;
+
         switch (unit)
         {
             case NANOSECONDS:
@@ -395,7 +397,6 @@ public class Utility
      * @return {@link Utility#map Utility#map}
      */
     @NotNull
-    @CheckReturnValue
     public static HashMap<Long, Long> getHashMap()
     {
         return map;
