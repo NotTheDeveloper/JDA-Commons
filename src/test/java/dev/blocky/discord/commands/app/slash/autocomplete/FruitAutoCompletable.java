@@ -24,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 /**
- * This is a simple slash command with auto-complete.
+ * This is a simple slash-command with auto-complete.
  *
  * @author BlockyDotJar
  * @version v1.1.0

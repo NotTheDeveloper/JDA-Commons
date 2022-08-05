@@ -54,9 +54,10 @@ public class Utility
      * Checks, which {@link SafetyClear safety clear} enum is given. (if <b>clear</b> equals null, the
      * {@link SafetyClear safety clear} enum  will be set to {@link SafetyClear#NONE SafetyClear#NONE})
      *
-     * @param clear   The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
+     * @param clear The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
      * @param channel The {@link TextChannel text channel}, which should be initialized
-     * @param amount  The amount of messages to delete
+     * @param amount The amount of messages to delete
+     *
      * @return A list of messages representing the precursor of all deletion tasks
      */
     @NotNull
@@ -133,9 +134,10 @@ public class Utility
      * Checks, which {@link SafetyClear safety clear} enum is given. (if <b>clear</b> equals null, the
      * {@link SafetyClear safety clear} enum  will be set to {@link SafetyClear#NONE SafetyClear#NONE})
      *
-     * @param clear   The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
+     * @param clear The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
      * @param channel The {@link MessageChannel message channel}, which  should be initialized
-     * @param amount  The amount of messages to delete
+     * @param amount The amount of messages to delete
+     *
      * @return A list of messages representing the precursor of all deletion tasks
      */
     @NotNull
@@ -214,8 +216,9 @@ public class Utility
      * Checks, which {@link SafetyClear safety clear} enum is given. (if <b>clear</b> equals null, the
      * {@link SafetyClear safety clear} enum will be set to {@link SafetyClear#NONE SafetyClear#NONE}).
      *
-     * @param clear   The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
+     * @param clear The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
      * @param channel The {@link TextChannel text channel}, which should be initialized
+     *
      * @return A list of messages representing the precursor of all deletion tasks
      */
     @NotNull
@@ -275,8 +278,9 @@ public class Utility
      * Checks, which {@link SafetyClear safety clear} enum is given. (if <b>clear</b> equals null, the
      * {@link SafetyClear safety clear} enum will be set to {@link SafetyClear#NONE SafetyClear#NONE}).
      *
-     * @param clear   The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
+     * @param clear The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
      * @param channel The {@link MessageChannel message channel}, which should be initialized
+     *
      * @return A list of messages representing the precursor of all deletion tasks
      */
     @NotNull
@@ -335,9 +339,10 @@ public class Utility
     /**
      * Calculates the delay, depending on which {@link TimeUnit time unit} is specified.
      *
-     * @param unit           The {@link TimeUnit time unit}, which should be used for calculating each time (if {@link TimeUnit time unit} equals null the
-     *                       default {@link TimeUnit time unit} will be used [{@link TimeUnit#SECONDS TimeUnit#SECONDS}])
+     * @param unit The {@link TimeUnit time unit}, which should be used for calculating each time (if {@link TimeUnit time unit} equals null the
+     *             default {@link TimeUnit time unit} will be used [{@link TimeUnit#SECONDS TimeUnit#SECONDS}])
      * @param delayInSeconds The delay in seconds which should be converted
+     *
      * @return The delay calculated to the specified {@link TimeUnit time unit}
      */
     protected static long calculateDelay(@Nullable TimeUnit unit, long delayInSeconds)
@@ -397,7 +402,7 @@ public class Utility
      * @return {@link Utility#map Utility#map}
      */
     @NotNull
-    public static HashMap<Long, Long> getHashMap()
+    protected static HashMap<Long, Long> getHashMap()
     {
         return map;
     }

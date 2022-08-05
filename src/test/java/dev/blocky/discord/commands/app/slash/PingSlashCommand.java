@@ -24,7 +24,7 @@ import java.awt.*;
 import java.time.OffsetDateTime;
 
 /**
- * This is a simple ping slash command.
+ * This is a simple ping slash-command.
  *
  * @author BlockyDotJar
  * @version v2.1.1

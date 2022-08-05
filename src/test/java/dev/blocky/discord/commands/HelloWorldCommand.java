@@ -15,7 +15,7 @@
  */
 package dev.blocky.discord.commands;
 
-import dev.blocky.library.jda.entities.GuildMessageChannel;
+import dev.blocky.library.jda.entities.channel.GuildMessageChannel;
 import dev.blocky.library.jda.interfaces.ICommand;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.requests.restaction.MessageAction;
@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
  * This is a simple hello world command.
  *
  * @author BlockyDotJar
- * @version v2.1.1
+ * @version v2.1.2
  * @since v1.0.0-alpha.3
  */
 public class HelloWorldCommand implements ICommand

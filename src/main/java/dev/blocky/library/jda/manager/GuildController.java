@@ -15,8 +15,8 @@
  */
 package dev.blocky.library.jda.manager;
 
+import com.google.errorprone.annotations.CheckReturnValue;
 import dev.blocky.library.jda.annotations.Deadline;
-import dev.blocky.library.jda.entities.SelfMember;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.events.interaction.command.CommandAutoCompleteInteractionEvent;
 import net.dv8tion.jda.api.interactions.AutoCompleteQuery;
@@ -28,7 +28,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
-import com.google.errorprone.annotations.CheckReturnValue;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -49,12 +48,6 @@ public class GuildController
     private final Logger logger = JDALogger.getLog(GuildController.class);
     private final Guild guild;
 
-    /**
-     * Constructs a <b>new</b> {@link GuildController guild controller}.
-     * <br>This is a private constructor, because it should not be accessed for other classes.
-     *
-     * @param guild The {@link Guild guild}, which should be used to get {@link GuildController guild controller}
-     */
     private GuildController(@NotNull Guild guild)
     {
         this.guild = guild;
@@ -101,22 +94,11 @@ public class GuildController
     }
 
     /**
-     * Gets a <b>new</b> {@link SelfMember self member}, by initializing a specific {@link Guild guild}.
-     *
-     * @return A <b>new</b> {@link SelfMember self member} instance
-     */
-    @NotNull
-    public SelfMember getSelfMember()
-    {
-        return SelfMember.set(guild);
-    }
-
-    /**
      * As the user is typing an argument that has autocomplete enabled for it, the bot will receive an
      * {@link CommandAutoCompleteInteractionEvent command-autocomplete-interaction-event}.
      * This event isn't fired for each keystroke, but is sent when Discord determines the user has paused typing for a bit.
      *
-     * Autocompletions can suggest up to 25 options, and users do not have to send a command with one of the options.
+     * An autocompletion can suggest up to 25 options, and users don't have to send a command with one of the options.
      * Maps the words to choices and only displays words that start with the user's current input.
      *
      * @param query The query input for an {@link IAutoCompleteCallback auto-complete interaction}

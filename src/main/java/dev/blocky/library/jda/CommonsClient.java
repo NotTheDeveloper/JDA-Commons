@@ -24,16 +24,12 @@ import org.jetbrains.annotations.NotNull;
  * <br>The exact use is still unknown.
  *
  * @author BlockyDotJar
- * @version v1.0.0-alpha.4
+ * @version v1.0.0-alpha.5
  * @since v1.0.0
  */
 @Deadline(version = "v1.3.0")
 public final class CommonsClient
 {
-    /**
-     * Constructs a <b>new</b> {@link CommonsClient commons client}.
-     * <br>This is a private constructor, because it should not be accessed for other classes.
-     */
     private CommonsClient()
     {
     }
@@ -42,17 +38,13 @@ public final class CommonsClient
      * This is the builder for the {@link CommonsClient commons client}.
      *
      * @author BlockyDotJar
-     * @version v1.0.0-alpha.5
+     * @version v1.0.0-alpha.6
      * @since v1.0.0
      */
     @Deadline(version = "v1.3.0")
     public static class Builder
     {
 
-        /**
-         * Constructs a <b>new</b> {@link CommonsClient.Builder commons client builder}.
-         * <br>This is a private constructor, because it should not be accessed for other classes.
-         */
         private Builder()
         {
         }

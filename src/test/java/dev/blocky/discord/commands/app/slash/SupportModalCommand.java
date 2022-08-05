@@ -24,7 +24,7 @@ import net.dv8tion.jda.api.interactions.components.text.TextInputStyle;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * This is a simple modal slash command.
+ * This is a simple modal slash-command.
  *
  * @author BlockyDotJar
  * @version v1.1.1

@@ -15,9 +15,12 @@
  */
 package dev.blocky.discord;
 
+import dev.blocky.discord.listener.VoiceRecordListener;
+import dev.blocky.library.jda.entities.voice.VoiceRecorder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
+import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
@@ -42,13 +45,16 @@ import java.util.EnumSet;
 public class DiscordBotExample
 {
     private static final Logger logger = JDALogger.getLog(DiscordBotExample.class);
+    private static final VoiceRecordListener recordListener = new VoiceRecordListener();
+    private static final VoiceRecorder recorder = VoiceRecorder.newRecorder();
     private static final CommandManager cmdMan = new CommandManager();
     private static JDA jda;
 
     /**
      * This is the main method of the Discord-Bot.
      *
-     * @param args An {@link java.lang.reflect.Array array} of string arguments
+     * @param args An array of string arguments
+     *
      * @throws LoginException If an login failure occurs
      */
     public static void main(@NotNull String[] args) throws LoginException
@@ -89,7 +95,11 @@ public class DiscordBotExample
                 // Since v5.0.0-alpha.13 we now can use a ChunkingFilter *AND* MemberCachePolicy at the same time.
                 .setChunkingFilter(ChunkingFilter.ALL)
                 // Adds all provided listeners to the list of listeners that will be used to populate the JDA object.
-                .addEventListeners(cmdMan)
+                .addEventListeners(cmdMan, recordListener)
+                // Sets the Activity to 'Playing with the voice recorder'
+                .setActivity(Activity.playing("with the voice recorder"))
+                // Sets the status of the bot to 'Do not disturb'
+                .setStatus(OnlineStatus.DO_NOT_DISTURB)
                 .build();
         // Adds all provided listeners to the event listeners that will be used to handle events.
         jda.addEventListener(new ApplicationCommandManager());
@@ -146,11 +156,22 @@ public class DiscordBotExample
     /**
      * The {@link DiscordBotExample#jda JDA} instance from the {@link DiscordBotExample Discord-Bot example} class.
      *
-     * @return {@link DiscordBotExample#jda dev.blocky.discord.DiscordBotExample#jda}
+     * @return {@link DiscordBotExample#jda}
      */
     @NotNull
     public static JDA getJDA()
     {
         return jda;
+    }
+
+    /**
+     * The {@link DiscordBotExample#recorder voice recorder} instance from the {@link DiscordBotExample Discord-Bot example} class.
+     *
+     * @return {@link DiscordBotExample#recorder}
+     */
+    @NotNull
+    public static VoiceRecorder getRecorder()
+    {
+        return recorder;
     }
 }

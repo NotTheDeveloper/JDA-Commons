@@ -19,6 +19,7 @@ import dev.blocky.discord.commands.HelloWorldCommand;
 import dev.blocky.discord.commands.TextInVoiceCommand;
 import dev.blocky.library.jda.interfaces.ICommand;
 import net.dv8tion.jda.api.entities.ChannelType;
+import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.ShutdownEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -33,10 +34,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
 /**
- * This is a class, which manages default {@link net.dv8tion.jda.api.entities.Message message} commands.
+ * This is a class, which manages default {@link Message message} commands.
  *
  * @author BlockyDotJar
- * @version v2.1.3
+ * @version v2.1.4
  * @since v1.0.0-alpha.3
  */
 public class CommandManager extends ListenerAdapter
@@ -64,11 +65,11 @@ public class CommandManager extends ListenerAdapter
      * Checks if {@link ICommand the command interface} equals null.
      *
      * @param command The string of the command
-     * @param event   The {@link MessageReceivedEvent message received event}, which should used for the commands
-     * @param args    The array of strings
-     * @return
-     * <b>true</b> - If {@link ICommand the command interface} does not equal to null
-     * <br><b>false</b> - If {@link ICommand the command interface} equals to null
+     * @param event The {@link MessageReceivedEvent message received event}, which should used for the commands
+     * @param args The array of strings
+     *
+     * @return <b>true</b> - If {@link ICommand the command interface} does not equal to null
+     *         <br><b>false</b> - If {@link ICommand the command interface} equals to null
      */
     public boolean onMessage(@Nullable String command, @NotNull MessageReceivedEvent event, @NotNull String[] args)
     {

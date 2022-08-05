@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
 import java.time.OffsetDateTime;
 
 /**
- * This is a simple avatar user context command.
+ * This is a simple avatar user context-command.
  *
  * @author BlockyDotJar
  * @version v2.1.1
@@ -40,7 +40,7 @@ public class AvatarUserContextCommand implements IUserContext
         builder.setColor(0x7289dd);
 
         builder.setTitle("Avatar of " + event.getTargetMember().getUser().getAsTag());
-        builder.setDescription("[Here you can download the avatar](" + event.getTargetMember().getUser().getAvatarUrl() + ")"); // Gets the avatar url of the user, the context menu was used on.
+        builder.setDescription("[Here you can download the avatar](" + event.getTargetMember().getUser().getAvatarUrl() + ")"); // Gets the avatar url of the user, the context-menu was used on.
         builder.setImage(event.getTargetMember().getUser().getAvatarUrl());
         event.replyEmbeds(builder.build()).queue(); // Sends the embed.
     }

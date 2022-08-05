@@ -15,7 +15,7 @@
  */
 package dev.blocky.discord.commands;
 
-import dev.blocky.library.jda.entities.GuildVoiceChannel;
+import dev.blocky.library.jda.entities.channel.GuildVoiceChannel;
 import dev.blocky.library.jda.interfaces.ICommand;
 import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.entities.VoiceChannel;
@@ -29,7 +29,7 @@ import org.jetbrains.annotations.NotNull;
  * <br>This command also represents text in voice.
  *
  * @author BlockyDotJar
- * @version v1.0.1
+ * @version v1.0.2
  * @since v1.1.5
  */
 public class TextInVoiceCommand implements ICommand

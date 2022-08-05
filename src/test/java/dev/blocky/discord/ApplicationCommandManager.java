@@ -49,10 +49,10 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * This is a class, which manages
- * {@link SlashCommandInteractionEvent slash commands},
- * {@link CommandAutoCompleteInteractionEvent auto-completable slash commands},
- * {@link MessageContextInteractionEvent message context menus},
- * {@link UserContextInteractionEvent user context menus},
+ * {@link SlashCommandInteractionEvent slash-commands},
+ * {@link CommandAutoCompleteInteractionEvent auto-completable slash-commands},
+ * {@link MessageContextInteractionEvent message context-menus},
+ * {@link UserContextInteractionEvent user context-menus},
  * {@link ModalInteractionEvent modal interactions},
  * {@link ButtonInteractionEvent button interactions} and
  * {@link SelectMenuInteractionEvent select menu interactions}.
@@ -70,7 +70,7 @@ public class ApplicationCommandManager extends ListenerAdapter
     private final Map<String, IUserContext> userMap;
 
     /**
-     * Constructs a <b>new</b> {@link ApplicationCommandManager application command manager}.
+     * Constructs a <b>new</b> {@link ApplicationCommandManager application-command manager}.
      */
     public ApplicationCommandManager()
     {
@@ -80,13 +80,13 @@ public class ApplicationCommandManager extends ListenerAdapter
         userMap = new ConcurrentHashMap<>();
 
         /*
-         * Here you can import your auto-completable slash commands.
+         * Here you can import your auto-completable slash-commands.
          */
 
         autoCompletableMap.put("fruit", new FruitAutoCompletable());
 
         /*
-         * Here you can import your slash commands.
+         * Here you can import your slash-commands.
          */
 
         slashMap.put("ping", new PingSlashCommand());
@@ -94,13 +94,13 @@ public class ApplicationCommandManager extends ListenerAdapter
         slashMap.put("fruit", new FruitSlashCommand());
 
         /*
-         * Here you can import your user context commands.
+         * Here you can import your user context-commands.
          */
 
         userMap.put("avatar", new AvatarUserContextCommand());
 
         /*
-         * Here you can import your message context commands.
+         * Here you can import your message context-commands.
          */
 
         messageMap.put("rick-roll", new RickRollMessageContextCommand());

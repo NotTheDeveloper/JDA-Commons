@@ -19,19 +19,19 @@ import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionE
 import org.jetbrains.annotations.NotNull;
 
 /**
- * A simple message context menu interface, which you can use to easily program some message context menus.
+ * A simple message context-menu interface, which you can use to easily program some message context-menus.
  *
  * @author BlockyDotJar
- * @version v1.1.2
+ * @version v1.1.3
  * @since v1.0.0
  */
 public interface IMessageContext
 {
     /**
-     *  A simple message context menu interface, which you can use to easily program some message context menus.
-     * <br>This contains an {@link dev.blocky.library.testzone.ApplicationCommandManager application command manager}.
+     *  A simple message context-menu interface, which you can use to easily program some message context-menus.
+     * <br>This contains an <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java">application-command manager</a>.
      *
-     * @param event Indicates that a message context command was used
+     * @param event Indicates that a message context-command was used
      */
     void onMessageContext(@NotNull MessageContextInteractionEvent event);
 }

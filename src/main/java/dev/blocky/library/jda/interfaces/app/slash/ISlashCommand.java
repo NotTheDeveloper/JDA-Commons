@@ -15,23 +15,24 @@
  */
 package dev.blocky.library.jda.interfaces.app.slash;
 
+import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * A simple slash command interface, which you can use to easily program some slash commands.
+ * A simple slash-command interface, which you can use to easily program some slash-commands.
  *
  * @author BlockyDotJar
- * @version v2.1.2
+ * @version v2.1.3
  * @since v1.0.0
  */
 public interface ISlashCommand
 {
     /**
-     * A simple slash command interface, which you can use to easily program some slash commands.
-     * <br>This contains an {@link dev.blocky.library.testzone.ApplicationCommandManager application command manager}.
+     * A simple slash-command interface, which you can use to easily program some slash-commands.
+     * <br>This contains an <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java">application-command manager</a>.
      *
-     * @param event Indicates that a slash command was used in a {@link net.dv8tion.jda.api.entities.MessageChannel message channel}
+     * @param event Indicates that a slash-command was used in a {@link MessageChannel message channel}
      */
     void onSlashCommand(@NotNull SlashCommandInteractionEvent event);
 }

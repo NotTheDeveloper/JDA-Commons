@@ -25,9 +25,10 @@ If you want some examples for JDA too than check out the [example directory](htt
 5. [SafetyClear](#safetyclear)
 6. [XYChannel](#xychannel)
 7. [XYMember](#xymember)
-8. [Annotations](#annotations)
-9. [Download](#download)
-10. [Support](#getting-help)
+8. [VoiceRecorder](#voicerecorder)
+9. [Annotations](#annotations)
+10. [Download](#download)
+11. [Support](#getting-help)
 
 <hr>
 
@@ -39,7 +40,7 @@ If you want some examples for JDA too than check out the [example directory](htt
 
 ```yml
 Author: BlockyDotJar
-Version: v1.0.0-alpha.4
+Version: v1.0.0-alpha.5
 Since: v1.0.0
 ```
 
@@ -67,7 +68,7 @@ CommonsClient client = CommonsClient.Builder.getCommonsClient();
 
 ```yml
 Author: BlockyDotJar
-Version: v1.0.0-alpha.5
+Version: v1.0.0-alpha.6
 Since: v1.0.0
 ```
 
@@ -75,7 +76,7 @@ Since: v1.0.0
 
 ### Getting CommonsClient.Builder:
 
-`N/A` You can not get this class.
+`N/A` You can't get this class.
 
 ### Methods
 
@@ -105,7 +106,7 @@ Since: v1.0.0
 
 ### Getting Utility:
 
-`N/A` You can not get this class.
+`N/A` You can't get this class.
 
 ### Methods
 
@@ -173,7 +174,7 @@ calculateDelay(@Nullable TimeUnit, long)
 > The hash map instance from the utility class.
 >
 > Returns: **Utility#map**
-> <br>Annotation: **NotNull**, **CheckReturnValue**
+> <br>Annotation: **NotNull**
 ```swift
 getHashMap()
 ```
@@ -201,7 +202,7 @@ Since: v1.0.0
 ### Getting GuildController:
 
 ```java
-GuildController controller = GuildController.set(@Nullable Guild);
+GuildController controller = GuildController.set(@NotNull Guild);
 ```
 
 ### Methods
@@ -226,20 +227,11 @@ getGuild()
 ```
 <br>
 
-> Gets a <b>new</b> self member, by initializing a specific guild.
->
-> Returns: A <b>new</b> self member instance
-> <br>Annotation: **NotNull**
-```swift
-getSelfMember()
-```
-<br>
-
 > As the user is typing an argument that has autocomplete enabled for it, the bot will receive an
 > command-autocomplete-interaction-event.
 > This event isn't fired for each keystroke, but is sent when Discord determines the user has paused typing for a bit.
 >
-> Autocompletions can suggest up to 25 options, and users do not have to send a command with one of the options.
+> An autocompletion can suggest up to 25 options, and users don't have to send a command with one of the options.
 > Maps the words to choices and only displays words that start with the user's current input.
 >
 > Parameter:
@@ -277,7 +269,7 @@ toString()
 
 ```yml
 Author: BlockyDotJar
-Version: v2.1.2
+Version: v2.1.3
 Since: v1.0.0-alpha.3
 ```
 
@@ -285,13 +277,13 @@ Since: v1.0.0-alpha.3
 
 ### Getting ICommand:
 
-Of course you can not get an interface. <br>
+Of course you can't get an interface. <br>
 Because of this you need a [command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/CommandManager.java) to use this interface.
 
 ### Methods
 
 > A simple command interface, which you can use to easily program message commands.
-> <br>This contains a command manager.
+> <br>This contains a <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/CommandManager.java">command manager</a>.
 >
 > Parameter:
 > <br>**event** - The message received event for performing a command
@@ -310,23 +302,23 @@ onCommand(@NotNull MessageReceivedEvent, @NotNull String[])
 
 ```yml
 Author: BlockyDotJar
-Version: v2.1.2
+Version: v2.1.3
 Since: v1.0.0
 ```
 
-**Description:** A simple slash command interface, which you can use to easily program some slash commands.
+**Description:** A simple slash-command interface, which you can use to easily program some slash-commands.
 
 ### Getting ISlashCommand:
 
-Of course you can not get an interface. <br>
-Because of this you need an [application command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
+Of course you can't get an interface. <br>
+Because of this you need an [application-command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
 
 ### Methods
 
-> A simple slash command interface, which you can use to easily program some slash commands.
-> <br>This contains an application command manager.
+> A simple slash-command interface, which you can use to easily program some slash-commands.
+> <br>This contains an <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java">application-command manager</a>.
 >
-> Parameter: **event** - Indicates that a slash command was used in a message channel
+> Parameter: **event** - Indicates that a slash-command was used in a message channel
 ```swift
 onSlashCommand(@NotNull SlashCommandInteractionEvent)
 ```
@@ -341,23 +333,23 @@ onSlashCommand(@NotNull SlashCommandInteractionEvent)
 
 ```yml
 Author: BlockyDotJar
-Version: v1.0.1
+Version: v1.0.2
 Since: v1.1.4
 ```
 
-**Description:** A simple slash command interface, which you can use to easily program some slash commands with auto-complete.
+**Description:** A simple slash-command interface, which you can use to easily program some slash-commands with auto-complete.
 
 ### Getting IAutoCompletable:
 
-Of course you can not get an interface. <br>
-Because of this you need an [application command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
+Of course you can't get an interface. <br>
+Because of this you need an [application-command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
 
 ### Methods
 
-> A simple slash command interface, which you can use to easily program some slash commands with auto-complete.
-> <br>This contains an application command manager.
+> A simple slash-command interface, which you can use to easily program some slash-commands with auto-complete.
+> <br>This contains an <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java">application-command manager</a>.
 >
-> Parameter: **event** - Indicates that a slash command with auto-complete was used in a message channel
+> Parameter: **event** - Indicates that a slash-command with auto-complete was used in a message channel
 ```swift
 onCommandAutoComplete(@NotNull CommandAutoCompleteInteractionEvent)
 ```
@@ -372,23 +364,23 @@ onCommandAutoComplete(@NotNull CommandAutoCompleteInteractionEvent)
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.2
+Version: v1.1.3
 Since: v1.0.0
 ```
 
-**Description:** A simple message context menu interface, which you can use to easily program some message context menus.
+**Description:** A simple message context-menu interface, which you can use to easily program some message context-menus.
 
 ### Getting IMessageContext:
 
-Of course you can not get an interface. <br>
-Because of this you need an [application command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
+Of course you can't get an interface. <br>
+Because of this you need an [application-command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
 
 ### Methods
 
-> A simple message context menu interface, which you can use to easily program some message context menus.
-> <br>This contains an  application command manager.
+> A simple message context-menu interface, which you can use to easily program some message context-menus.
+> <br>This contains an <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java">application-command manager</a>.
 >
-> Parameter: **event** - Indicates that a message context command was used
+> Parameter: **event** - Indicates that a message context-command was used
 ```swift
 onMessageContext(@NotNull MessageContextInteractionEvent)
 ```
@@ -403,23 +395,23 @@ onMessageContext(@NotNull MessageContextInteractionEvent)
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.2
+Version: v1.1.3
 Since: v1.0.0
 ```
 
-**Description:** A simple user context menu interface, which you can use to easily program some user context menus.
+**Description:** A simple user context-menu interface, which you can use to easily program some user context-menus.
 
 ### Getting IUserContext:
 
-Of course you can not get an interface. <br>
-Because of this you need an [application command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
+Of course you can't get an interface. <br>
+Because of this you need an [application-command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
 
 ### Methods
 
-> A simple user context menu interface, which you can use to easily program some user context menus.
-> <br>This contains an application command manager.
+> A simple user context-menu interface, which you can use to easily program some user context-menus.
+> <br>This contains an <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java">application-command manager</a>.
 >
-> Parameter: **event** - Indicates that a message context command was used
+> Parameter: **event** - Indicates that a message context-command was used
 ```swift
 onUserContext(@NotNull UserContextInteractionEvent)
 ``` 
@@ -633,7 +625,7 @@ getMessagesByUser()
 > <br>Returns: The written messages of the specified user in this channel
 > <br>Annotation: **Nullable**
 ```swift
-getMessagesByUser(@Nullable User)
+getMessagesByUser(@NotNull User)
 ```
 <br>
 
@@ -849,7 +841,7 @@ getMessagesByUser()
 > <br>Returns: The written messages of the specified user in this channel
 > <br>Annotation: **Nullable**
 ```swift
-getMessagesByUser(@Nullable User)
+getMessagesByUser(@NotNull User)
 ```
 <br>
 
@@ -1065,7 +1057,7 @@ getMessagesByUser()
 > <br>Returns: The written messages of the specified user in this channel
 > <br>Annotation: **Nullable**
 ```swift
-getMessagesByUser(@Nullable User)
+getMessagesByUser(@NotNull User)
 ```
 <br>
 
@@ -1311,7 +1303,7 @@ getMessagesByUser()
 > <br>Returns: The written messages of the specified user in this channel
 > <br>Annotation: **Nullable**
 ```swift
-getMessagesByUser(@Nullable User)
+getMessagesByUser(@NotNull User)
 ```
 <br>
 
@@ -1527,7 +1519,7 @@ getMessagesByUser()
 > <br>Returns: The written messages of the specified user in this channel
 > <br>Annotation: **Nullable**
 ```swift
-getMessagesByUser(@Nullable User)
+getMessagesByUser(@NotNull User)
 ```
 <br>
 
@@ -1622,7 +1614,7 @@ Version: v1.1.4
 Since: v1.1.1
 ```
 
-**Description:** Represents the connection used for direct messaging.
+**Description:** Represents the connection used for direct-messaging.
 
 ### Getting DirectMessageChannel:
 
@@ -1638,24 +1630,24 @@ DirectMessageChannel channel = DirectMessageChannel.set(@NotNull PrivateChannel)
 
 ### Methods
 
-> Constructs a <b>new</b> direct message channel instance.
-> <br>If you don't initialize a private channel or a member, the direct message channel always will be <b>null</b>.
+> Constructs a <b>new</b> direct-message channel instance.
+> <br>If you don't initialize a private channel or a member, the direct-message channel always will be <b>null</b>.
 >
 > Parameter:
 > <br>**channel** - The private channel, which should be initialized
 > <br>**member** - The member, which should be initialized
-> <br>Returns: A <b>new</b> direct message channel instance
+> <br>Returns: A <b>new</b> direct-message channel instance
 > <br>Annotation: **NotNull**
 ```swift
 set(@NotNull PrivateChannel, @Nullable Member)
 ```
 <br>
 
-> Constructs a <b>new</b> direct message channel instance.
-> <br>If you don't initialize a private channel, direct message channel always will be <b>null</b>.
+> Constructs a <b>new</b> direct-message channel instance.
+> <br>If you don't initialize a private channel, direct-message channel always will be <b>null</b>.
 >
 > Parameter: **channel** - The private channel, which should be initialized
-> <br>Returns: A <b>new</b> direct message channel instance
+> <br>Returns: A <b>new</b> direct-message channel instance
 > <br>Annotation: **NotNull**
 ```swift
 set(@NotNull PrivateChannel)
@@ -1743,7 +1735,7 @@ getMessagesByUser()
 > <br>Returns: The written messages of the specified user in this channel
 > <br>Annotation: **Nullable**
 ```swift
-getMessagesByUser(@Nullable User)
+getMessagesByUser(@NotNull User)
 ```
 <br>
 
@@ -1995,9 +1987,9 @@ GuildTargetMember target = GuildTargetMember.set(@NotNull MessageContextInteract
 ### Methods
 
 > Constructs a <b>new</b> guild target member instance. 
-> <br>If you don't initialize a user context interaction event, the guild target member always will be <b>null</b>.
+> <br>If you don't initialize a user-context-interaction-event, the guild target member always will be <b>null</b>.
 >
-> Parameter: **userEvent** - The user context interaction event, which should be initialized
+> Parameter: **userEvent** - The user-context-interaction-event, which should be initialized
 > <br>Returns: A <b>new</b> guild target member instance
 > <br>Annotation: **NotNull**
 ```swift
@@ -2006,9 +1998,9 @@ set(@NotNull UserContextInteractionEvent)
 <br>
 
 > Constructs a <b>new</b> guild target member instance. 
-> If you don't initialize a message context interaction event, the guild target member always will be <b>null</b>.
+> If you don't initialize a message-context-interaction-event, the guild target member always will be <b>null</b>.
 >
-> Parameter: **messageEvent** - The message context interaction event, which should be initialized
+> Parameter: **messageEvent** - The message-context-interaction-event, which should be initialized
 > <br>Returns: A <b>new</b> guild target member instance
 > <br>Annotation: **NotNull**
 ```swift
@@ -2016,18 +2008,18 @@ set(@NotNull MessageContextInteractionEvent)
 ```
 <br>
 
-> Indicates that a user context command was used.
+> Indicates that a user context-command was used.
 >
-> Returns: The user context interaction event
+> Returns: The user-context-interaction-event
 > <br>Annotation: **NotNull**
 ```swift
 getUserContext()
 ```
 <br>
 
-> Indicates that a message context command was used.
+> Indicates that a message context-command was used.
 >
-> Returns: The message context interaction event
+> Returns: The message-context-interaction-event
 > <br>Annotation: **NotNull**
 ```swift
 getMessageContext()
@@ -2251,8 +2243,7 @@ Since: v1.0.1
 ### Getting SelfMember:
 
 ```java
-GuildController controller = GuildController.set(@Nullable Guild);
-SelfMember self = controller.getSelfMember();
+SelfMember self = SelfMember.set(@NotNull Guild);
 ```
 
 ### Methods
@@ -2353,6 +2344,159 @@ isMentioned(@NotNull Message)
 ### Overridden methods
 
 ```swift
+equals(@Nullable Object)
+hashCode()
+toString()
+```
+
+<hr>
+
+## VoiceRecorder
+
+```yml
+Author: BlockyDotJar
+Version: v1.0.0
+Since: v1.1.6
+```
+
+
+**PLEASE NOTE: Only use this feature to record conversations with the consent of all users in the channel.
+<br>Recording a conversation against other users' consent is illegal, and you are violating the Discord Terms of Service.**
+
+**Description:**  
+This class is used to record audio from a voice channel.
+
+### Getting VoiceRecorder:
+
+```java
+VoiceRecorder recorder = VoiceRecorder.newRecorder();
+```
+
+### Methods
+
+> Represents a <b>new</b> voice recorder instance.
+>
+> Returns: A <b>new</b> voice recorder instance
+> <br>Annotation: **NotNull**
+```swift
+newRecorder()
+```
+<br>
+
+> Sets the volume of the recorded audio.
+> <br>If the volume isn't set the volume will be automatically set to 1.0.
+> <br>This method should only be used if the value is greater or smaller than 1.0.
+>
+> Parameter: **volume** - The volume of the audio to be recorded
+> <br>Returns: The current instance of the voice recorder class
+> <br>Annotation: **NotNull**
+```swift
+setVolume(double)
+```
+<br>
+
+> Sets the audio-receive-handler that the audio manager will use to
+> process audio data received from an audio connection.
+> <br>The handler provided here will persist between audio connection connect and disconnects.
+> <br>Furthermore, you don't need to have an audio connection to set a handler.
+> <br>When JDA sets up a <b>new</b> audio connection it will use the handler provided here.
+> <br>Setting this to <code>null</code> will remove the audio handler.
+>
+> Parameter: **guild** - The guild to receive the audio from
+> <br>Returns: The current instance of the voice recorder class
+> <br>Annotation: **NotNull**
+```swift
+setReceivingHandler(@NotNull Guild)
+```
+<br>
+
+> Sets if the audio should be stacked or not.
+> <br>This means that you set, if the audio will or will not be removed from the concurrent linked queue
+> when the recording is finished.
+> <br>This is useful if you want to record multiple conversations in one audio file.
+> <br>If you want that the audio will be removed from the queue and thus with each join the audio file will be reinitialized, set this to <code>false</code>.
+> <br>If the boolean isn't set this will be automatically set to <code>false</code>.
+> <br>This method should only be used if the value is <code>true</code>.
+>
+> Parameter: **shouldStack** - Whether the audio should be stacked
+> <br>Returns: The current instance of the voice recorder class
+> <br>Annotation: **NotNull**
+```swift
+shouldStack(boolean)
+```
+<br>
+
+> <b>PLEASE NOTE: Only use this feature to record conversations with the consent of all users in the channel.
+> <br>Recording a conversation against other users' consent is illegal, and you are violating the Discord Terms of Service.</b>
+> <br><br>This method will start recording audio from the voice channel that the bot is currently in.
+> <br>This method will return a file that contains the audio that was recorded.
+> <br><br>This is recommended to use in the **ListenerAdapter#onGuildVoiceLeave(GuildVoiceLeaveEvent)** method.
+> <br>Note that the audio connection should be closed before this method is called.
+> <br><br>This method supports any kind of audio file.
+> <br>Following audio file formats are tested:
+> <br>- <code>.wav</code>
+> <br>- <code>.mp3</code>
+> <br>- <code>.ogg</code>
+> <br>- <code>.opus</code>
+> <br>- <code>.m4a</code>
+>
+> Parameter: **file** - The file to save the audio to
+> <br>Returns: The file that the audio was saved to
+> <br>Annotation: **NotNull**
+```swift
+createRecording(@NotNull File)
+```
+<br>
+
+> Gets the current volume of the audio.
+> <br>This is the volume of the audio that will be recorded.
+> <br>If the volume isn't set the volume will be automatically set to 1.0.
+>
+> Returns: The current volume of the audio as a double
+```swift
+getVolume()
+```
+<br>
+
+> The audio manager that represents the audio connection for this guild.
+> <br>If no audio manager exists for this guild, this will create a <b>new</b> one.
+> <br>This operation is <code>synchronized</code> on all audio managers for this JDA instance, this means
+> that calling <code>getAudioManager()</code> on any other guild while a thread is accessing this method may be locked.
+>
+> Returns: The audio manager for this guild
+> <br>Annotation: **Nullable**, **CheckReturnValue**
+```swift
+getAudioManager()
+```
+<br>
+
+> The guild, the message was received in.
+>
+> Returns: The guild, the message was received in
+> <br>Annotation: **Nullable**, **CheckReturnValue**
+```swift
+getGuild()
+```
+<br>
+
+> If the audio should be stacked or not.
+> <br>This means that you set, if the audio will or will not be removed from the concurrent linked queue
+> when the recording is finished.
+>
+> Returns:
+> <br>**true** - If the audio should be stacked
+> <br>**false** - If the audio should be removed from the queue
+```swift
+stackEnabled()
+```
+
+### Overridden methods
+
+```swift
+canReceiveCombined()
+canReceiveUser()
+handleCombinedAudio(@NotNull CombinedAudio)
+
 equals(@Nullable Object)
 hashCode()
 toString()
