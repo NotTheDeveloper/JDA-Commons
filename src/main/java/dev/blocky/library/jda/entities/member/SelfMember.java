@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Represents the self member (aka. the bot itself) of a specific {@link Guild guild}.
+ * Represents the {@link SelfMember} (aka. the bot itself) of a specific {@link Guild}.
  *
  * @author BlockyDotJar
  * @version v1.1.4
@@ -61,12 +61,12 @@ public class SelfMember
     }
 
     /**
-     * Constructs a <b>new</b> {@link SelfMember self member} instance.
-     * <br>If you don't  initialize a {@link Guild guild}, the {@link SelfMember self member} always will be <b>null</b>.
+     * Constructs a <b>new</b> {@link SelfMember} instance.
+     * <br>If you don't  initialize a {@link Guild}, the {@link SelfMember} always will be <b>null</b>.
      *
-     * @param guild The {@link Guild guild}, which should be used to get the {@link SelfMember self member}
+     * @param guild The {@link Guild}, which should be used to get the {@link SelfMember}.
      *
-     * @return A <b>new</b> {@link SelfMember self member} instance
+     * @return A <b>new</b> {@link SelfMember} instance.
      */
     @NotNull
     public static SelfMember set(@NotNull Guild guild)
@@ -75,9 +75,9 @@ public class SelfMember
     }
 
     /**
-     * The {@link Guild guild}, the message was received in.
+     * The {@link Guild}, the message was received in.
      *
-     * @return The {@link Guild guild}, the message was received in
+     * @return The {@link Guild}, the message was received in
      */
     @Nullable
     public Guild getGuild()
@@ -86,11 +86,11 @@ public class SelfMember
     }
 
     /**
-     * Checks if the {@link Role role} with the id you specified, is found on the role board of the {@link SelfMember self member}.
+     * Checks if the {@link Role} with the id you specified, is found on the role board of the {@link SelfMember}.
      *
-     * @param roleId The id of the {@link Role role}, which should be checked
+     * @param roleId The id of the {@link Role}, which should be checked.
      *
-     * @return The {@link Role role} with the id you specified
+     * @return The {@link Role} with the id you specified.
      */
     @Nullable
     @CheckReturnValue
@@ -101,11 +101,11 @@ public class SelfMember
     }
 
     /**
-     * Checks if the {@link Role role} with the id you specified, is found on the role board of the {@link SelfMember self member}.
+     * Checks if the {@link Role} with the id you specified, is found on the role board of the {@link SelfMember}.
      *
-     * @param roleId The id of the {@link Role role}, which should be checked
+     * @param roleId The id of the {@link Role}, which should be checked.
      *
-     * @return The {@link Role role} with the id you specified
+     * @return The {@link Role} with the id you specified.
      */
     @Nullable
     @CheckReturnValue
@@ -116,11 +116,11 @@ public class SelfMember
     }
 
     /**
-     * Checks if the {@link Role role} with the name you specified, is found on the role board of the {@link SelfMember self member}.
+     * Checks if the {@link Role} with the name you specified, is found on the role board of the {@link SelfMember}.
      *
-     * @param roleName The name of the {@link Role role}, which should be checked
+     * @param roleName The name of the {@link Role}, which should be checked.
      *
-     * @return The {@link Role role} with the name you specified
+     * @return The {@link Role} with the name you specified.
      */
     @Nullable
     @CheckReturnValue
@@ -131,12 +131,12 @@ public class SelfMember
     }
 
     /**
-     * Checks if the {@link SelfMember self member} has the {@link Role role} with the id you specified.
+     * Checks if the {@link SelfMember} has the {@link Role} with the id you specified.
      *
-     * @param roleId The id of the {@link Role role}, which should be checked
+     * @param roleId The id of the {@link Role}, which should be checked.
      *
-     * @return <b>true</b> - If the {@link SelfMember self member} has the {@link Role role}
-     *         <br><b>false</b> - If the {@link SelfMember self member} has not the {@link Role role}
+     * @return <b>true</b> - If the {@link SelfMember} has the {@link Role}.
+     *         <br><b>false</b> - If the {@link SelfMember} has not the {@link Role}.
      */
     public boolean hasRoleWithId(long roleId)
     {
@@ -144,12 +144,12 @@ public class SelfMember
     }
 
     /**
-     * Checks if the {@link SelfMember self member} has the {@link Role role} with the id you specified.
+     * Checks if the {@link SelfMember} has the {@link Role} with the id you specified.
      *
-     * @param roleId The id of the {@link Role role}, which should be checked
+     * @param roleId The id of the {@link Role}, which should be checked.
      *
-     * @return <b>true</b> - If the {@link SelfMember self member} has the {@link Role role}
-     *         <br><b>false</b> - If the {@link SelfMember self member} has not the {@link Role role}
+     * @return <b>true</b> - If the {@link SelfMember} has the {@link Role}.
+     *         <br><b>false</b> - If the {@link SelfMember} has not the {@link Role}.
      */
     public boolean hasRoleWithId(@NotNull String roleId)
     {
@@ -157,12 +157,12 @@ public class SelfMember
     }
 
     /**
-     * Checks if the {@link SelfMember self member} has the {@link Role role} with the name you specified.
+     * Checks if the {@link SelfMember} has the {@link Role} with the name you specified.
      *
-     * @param roleName The name of the {@link Role role}, which should be checked
+     * @param roleName The name of the {@link Role}, which should be checked.
      *
-     * @return <b>true</b> - If the {@link SelfMember self member} has the {@link Role role}
-     *         <br><b>false</b> - If the {@link SelfMember self member} has not the {@link Role role}
+     * @return <b>true</b> - If the {@link SelfMember} has the {@link Role}.
+     *         <br><b>false</b> - If the {@link SelfMember} has not the {@link Role}.
      */
     public boolean hasRoleWithName(@NotNull String roleName)
     {
@@ -170,12 +170,12 @@ public class SelfMember
     }
 
     /**
-     * Checks if the {@link SelfMember self member} was pinged in a specified {@link Message message}.
+     * Checks if the {@link SelfMember} was pinged in a specified {@link Message}.
      *
-     * @param message The {@link Message message}, which should checked, if the {@link SelfMember self member} got pinged in the {@link Message message}
+     * @param message The {@link Message}, which should checked, if the {@link SelfMember} got pinged in the {@link Message}.
      *
-     * @return <b>true</b> - If the {@link SelfMember self member} got pinged in the {@link Message message}
-     *         <br><b>false</b> - If the {@link SelfMember self member} got pinged in the {@link Message message}
+     * @return <b>true</b> - If the {@link SelfMember} got pinged in the {@link Message}.
+     *         <br><b>false</b> - If the {@link SelfMember} got pinged in the {@link Message}.
      */
     public boolean isMentioned(@NotNull Message message)
     {

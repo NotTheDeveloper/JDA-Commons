@@ -36,7 +36,7 @@ import java.util.stream.Stream;
 
 /**
  * This is a controller you can control guilds with.
- * <br>The exact use is still unknown.
+ * <br>The exact use is still <b>unknown</b>.
  *
  * @author BlockyDotJar
  * @version v1.0.0-beta.1
@@ -69,12 +69,12 @@ public class GuildController
     }
 
     /**
-     * Constructs a <b>new</b> {@link GuildController guild controller} instance. If you don't
-     * initialize a {@link Guild guild}, the {@link GuildController guild controller} always will be <b>null</b>.
+     * Constructs a <b>new</b> {@link GuildController} instance.
+     * <br>If you don't initialize a {@link Guild}, the {@link GuildController} always will be <b>null</b>.
      *
-     * @param guild The {@link Guild guild}, which should be used to get the {@link GuildController guild controller}
+     * @param guild The {@link Guild}, which should be used to get the {@link GuildController}.
      *
-     * @return A <b>new</b> {@link GuildController guild controller} instance
+     * @return A <b>new</b> {@link GuildController} instance.
      */
     @NotNull
     public static GuildController set(@NotNull Guild guild)
@@ -83,9 +83,9 @@ public class GuildController
     }
 
     /**
-     * The {@link Guild guild} the message was received in.
+     * The {@link Guild} the message was received in.
      *
-     * @return The {@link Guild guild}, the message was received in
+     * @return The {@link Guild}, the message was received in.
      */
     @Nullable
     public Guild getGuild()
@@ -95,17 +95,16 @@ public class GuildController
 
     /**
      * As the user is typing an argument that has autocomplete enabled for it, the bot will receive an
-     * {@link CommandAutoCompleteInteractionEvent command-autocomplete-interaction-event}.
-     * This event isn't fired for each keystroke, but is sent when Discord determines the user has paused typing for a bit.
+     * {@link CommandAutoCompleteInteractionEvent}.
+     * <br>This event isn't fired for each keystroke, but is sent when Discord determines the user has paused typing for a bit.
+     * <br><br>An autocompletion can suggest up to 25 options, and users don't have to send a command with one of the options.
+     * <br>Maps the words to choices and only displays words that start with the user's current input.
      *
-     * An autocompletion can suggest up to 25 options, and users don't have to send a command with one of the options.
-     * Maps the words to choices and only displays words that start with the user's current input.
+     * @param query The query input for a {@link IAutoCompleteCallback}.
+     * @param words An array of words that can be displayed in the autocomplete menu.
      *
-     * @param query The query input for an {@link IAutoCompleteCallback auto-complete interaction}
-     * @param words An array of words that can be displayed in the autocomplete menu
-     *
-     * @return A list of {@link Command.Choice choices}, you can use to display it with
-     * {@link CommandAutoCompleteInteractionEvent#replyChoices(Collection) replyChoices(Collection)}
+     * @return A {@link List} of {@link Command.Choice}, you can use to display it with
+     * {@link CommandAutoCompleteInteractionEvent#replyChoices(Collection)}.
      */
     @NotNull
     @CheckReturnValue
@@ -131,6 +130,7 @@ public class GuildController
         }
 
         GuildController that = (GuildController) o;
+
         return guild.equals(that.guild);
     }
 

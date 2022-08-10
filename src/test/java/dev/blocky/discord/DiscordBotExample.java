@@ -53,9 +53,9 @@ public class DiscordBotExample
     /**
      * This is the main method of the Discord-Bot.
      *
-     * @param args An array of string arguments
+     * @param args An array of string arguments.
      *
-     * @throws LoginException If an login failure occurs
+     * @throws LoginException If an login failure occurs.
      */
     public static void main(@NotNull String[] args) throws LoginException
     {
@@ -63,23 +63,29 @@ public class DiscordBotExample
     }
 
     /**
-     * Constructs a <b>new</b> {@link DiscordBotExample Discord-Bot example}.
+     * Constructs a <b>new</b> {@link DiscordBotExample}.
      *
-     * @throws LoginException If an login failure occurs
+     * @throws LoginException If an login failure occurs.
      */
     public DiscordBotExample() throws LoginException
     {
         jda = JDABuilder
                 .createDefault("BOT_TOKEN", // Replace BOT_TOKEN with the token of your bot.
                         EnumSet.of(
-                                // All needed intents.
+                                // All needed intents for this project.
                                 GatewayIntent.GUILD_MESSAGES,
                                 GatewayIntent.GUILD_MEMBERS,
+                                // This intent is needed for the TextInVoiceCommand and for the VoiceRecordListener.
                                 GatewayIntent.GUILD_VOICE_STATES,
+                                // Since v5.0.0-alpha.14 this is a required intent, if you want to use these methods:
+                                //-- getContentRaw(), getContentDisplay(), getContentStripped() und getMentions().getCustomEmojis()
+                                //-- getAttachments()
+                                //-- getEmbeds()
+                                //-- getActionRows() und getButtons()
                                 GatewayIntent.MESSAGE_CONTENT
                         )
                 )
-                // This cache flag is needed for the text-in-voice command.
+                // This cache flag is needed for the TextInVoiceCommand and for the VoiceRecordListener.
                 .enableCache(CacheFlag.VOICE_STATE)
                 .disableCache(
                         EnumSet.of(
@@ -96,9 +102,9 @@ public class DiscordBotExample
                 .setChunkingFilter(ChunkingFilter.ALL)
                 // Adds all provided listeners to the list of listeners that will be used to populate the JDA object.
                 .addEventListeners(cmdMan, recordListener)
-                // Sets the Activity to 'Playing with the voice recorder'
+                // Sets the activity to 'Playing with the voice recorder'.
                 .setActivity(Activity.playing("with the voice recorder"))
-                // Sets the status of the bot to 'Do not disturb'
+                // Sets the status of the bot to 'Do not disturb'.
                 .setStatus(OnlineStatus.DO_NOT_DISTURB)
                 .build();
         // Adds all provided listeners to the event listeners that will be used to handle events.
@@ -109,7 +115,7 @@ public class DiscordBotExample
     }
 
     /**
-     * Shutdowns the system and the {@link DiscordBotExample#jda JDA} instance after five seconds, when the exit
+     * Shutdowns the system and the {@link DiscordBotExample#jda} instance after five seconds, when the exit
      * command was typed.
      */
     private static void shutdown()
@@ -140,7 +146,7 @@ public class DiscordBotExample
                         jda.getPresence().setStatus(OnlineStatus.OFFLINE);
                         // Shuts this JDA instance down and closes all its connections.
                         jda.shutdown();
-                        // Terminates the currently running Java virtual machine.
+                        // Terminates the currently running JVM.
                         System.exit(0);
                     }
                 }
@@ -154,9 +160,9 @@ public class DiscordBotExample
     }
 
     /**
-     * The {@link DiscordBotExample#jda JDA} instance from the {@link DiscordBotExample Discord-Bot example} class.
+     * The {@link DiscordBotExample#jda} instance from the {@link DiscordBotExample} class.
      *
-     * @return {@link DiscordBotExample#jda}
+     * @return {@link DiscordBotExample#jda}.
      */
     @NotNull
     public static JDA getJDA()
@@ -165,9 +171,9 @@ public class DiscordBotExample
     }
 
     /**
-     * The {@link DiscordBotExample#recorder voice recorder} instance from the {@link DiscordBotExample Discord-Bot example} class.
+     * The {@link DiscordBotExample#recorder} instance from the {@link DiscordBotExample} class.
      *
-     * @return {@link DiscordBotExample#recorder}
+     * @return {@link DiscordBotExample#recorder}.
      */
     @NotNull
     public static VoiceRecorder getRecorder()

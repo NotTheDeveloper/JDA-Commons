@@ -26,10 +26,10 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * This is a simple example for the <b>new</b> channel unions, which got added in JDA {@code v5.0.0-alpha.14}.
- * <br>This command also represents text in voice.
+ * <br>This command also represents text-in-voice.
  *
  * @author BlockyDotJar
- * @version v1.0.2
+ * @version v1.0.3
  * @since v1.1.5
  */
 public class TextInVoiceCommand implements ICommand
@@ -44,16 +44,17 @@ public class TextInVoiceCommand implements ICommand
         {
             VoiceChannel vc = channel.asVoiceChannel(); // Easy type conversion, just like casting, but with clear type information.
 
+            // This requires the GUILD_VOICE_STATES intent and the VOICE_STATE CacheFlag.
             if (!event.getGuild().getSelfMember().getVoiceState().inAudioChannel())
             {
                 vc.getGuild().getAudioManager().openAudioConnection(vc);
             }
 
-            // Creates a new guild voice channel, by initializing a voice channel and a member.
+            // Creates a *new* GuildVoiceChannel, by initializing a VoiceChannel and a member.
             GuildVoiceChannel voiceChannel = GuildVoiceChannel.set(vc, event.getMember());
-            // Creates a message action by simply sending a message.
+            // Creates a MessageAction by simply sending a message.
             MessageAction action = channel.sendMessage("Hello World!");
-            //Creates a timeouted message by handing over the message action above and setting a delay of 10 seconds.
+            //Creates a timeouted message by handing over the MessageAction above and setting a delay of 10 seconds.
             voiceChannel.sendTimeoutedMessage(action, 10L, null).queue();
         }
     }

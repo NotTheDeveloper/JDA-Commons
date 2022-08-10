@@ -43,7 +43,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * <b>PLEASE NOTE: Only use this feature to record conversations with the consent of all users in the channel.
  * <br>Recording a conversation against other users' consent is illegal, and you are violating the Discord Terms of Service.</b>
- * <br><br>This class is used to record audio from a {@link VoiceChannel voice channel}.
+ * <br><br>This class is used to record audio from a {@link VoiceChannel}.
  *
  * @author BlockyDotJar
  * @version v1.0.0
@@ -80,9 +80,9 @@ public class VoiceRecorder implements AudioReceiveHandler
     }
 
     /**
-     * Represents a <b>new</b> {@link VoiceRecorder voice recorder} instance.
+     * Represents a <b>new</b> {@link VoiceRecorder} instance.
      *
-     * @return A <b>new</b> {@link VoiceRecorder voice recorder} instance
+     * @return A <b>new</b> {@link VoiceRecorder} instance
      */
     @NotNull
     public static VoiceRecorder newRecorder()
@@ -95,9 +95,9 @@ public class VoiceRecorder implements AudioReceiveHandler
      * <br>If the volume isn't set the volume will be automatically set to 1.0.
      * <br>This method should only be used if the value is greater or smaller than 1.0.
      *
-     * @param volume The volume of the audio to be recorded
+     * @param volume The volume of the audio to be recorded.
      *
-     * @return The current instance of the {@link VoiceRecorder voice recorder} class
+     * @return The current instance of the {@link VoiceRecorder} class.
      */
     @NotNull
     public VoiceRecorder setVolume(double volume)
@@ -108,16 +108,16 @@ public class VoiceRecorder implements AudioReceiveHandler
     }
 
     /**
-     * Sets the {@link AudioReceiveHandler audio-receive-handler} that the {@link AudioManager audio manager} will use to
-     * process audio data received from an {@link AudioConnection audio connection}.
-     * <br>The handler provided here will persist between {@link AudioConnection audio connection} connect and disconnects.
-     * <br>Furthermore, you don't need to have an {@link AudioConnection audio connection} to set a handler.
-     * <br>When {@link JDA} sets up a <b>new</b> {@link AudioConnection audio connection} it will use the handler provided here.
-     * <br>Setting this to {@code null} will remove the {@link AudioReceiveHandler audio handler}.
+     * Sets the {@link AudioReceiveHandler} that the {@link AudioManager} will use to
+     * process audio data received from an {@link AudioConnection}.
+     * <br>The handler provided here will persist between {@link AudioConnection} connect and disconnects.
+     * <br>Furthermore, you don't need to have an {@link AudioConnection} to set a handler.
+     * <br>When {@link JDA} sets up a <b>new</b> {@link AudioConnection} it will use the handler provided here.
+     * <br>Setting this to {@code null} will remove the {@link AudioReceiveHandler}.
      *
-     * @param guild The guild to receive the audio from
+     * @param guild The {@link Guild} to receive the audio from.
      *
-     * @return The current instance of the {@link VoiceRecorder voice recorder} class
+     * @return The current instance of the {@link VoiceRecorder} class.
      */
     @NotNull
     public VoiceRecorder setReceivingHandler(@NotNull Guild guild)
@@ -133,16 +133,16 @@ public class VoiceRecorder implements AudioReceiveHandler
 
     /**
      * Sets if the audio should be stacked or not.
-     * <br>This means that you set, if the audio will or will not be removed from the {@link ConcurrentLinkedQueue concurrent linked queue}
+     * <br>This means that you set, if the audio will or will not be removed from the {@link ConcurrentLinkedQueue}
      * when the recording is finished.
      * <br>This is useful if you want to record multiple conversations in one audio file.
      * <br>If you want that the audio will be removed from the queue and thus with each join the audio file will be reinitialized, set this to {@code false}.
      * <br>If the boolean isn't set this will be automatically set to {@code false}.
      * <br>This method should only be used if the value is {@code true}.
      *
-     * @param shouldStack Whether the audio should be stacked
+     * @param shouldStack Whether the audio should be stacked.
      *
-     * @return The current instance of the {@link VoiceRecorder voice recorder} class
+     * @return The current instance of the {@link VoiceRecorder} class.
      */
     @NotNull
     public VoiceRecorder shouldStack(boolean shouldStack)
@@ -154,21 +154,21 @@ public class VoiceRecorder implements AudioReceiveHandler
     /**
      * <b>PLEASE NOTE: Only use this feature to record conversations with the consent of all users in the channel.
      * <br>Recording a conversation against other users' consent is illegal, and you are violating the Discord Terms of Service.</b>
-     * <br><br>This method will start recording audio from the {@link VoiceChannel voice channel} that the bot is currently in.
-     * <br>This method will return a {@link File file} that contains the audio that was recorded.
+     * <br><br>This method will start recording audio from the {@link VoiceChannel} that the bot is currently in.
+     * <br>This method will return a {@link File} that contains the audio that was recorded.
      * <br><br>This is recommended to use in the {@link ListenerAdapter#onGuildVoiceLeave(GuildVoiceLeaveEvent)} method.
-     * <br>Note that the {@link AudioConnection audio connection} should be closed before this method is called.
+     * <br>Note that the {@link AudioConnection} should be closed before this method is called.
      * <br><br>This method supports any kind of audio file.
-     * <br>Following audio file formats are tested:
+     * <br>Following audio file-formats are tested:
      * <br>- {@code .wav}
      * <br>- {@code .mp3}
      * <br>- {@code .ogg}
      * <br>- {@code .opus}
      * <br>- {@code .m4a}
      *
-     * @param file The file to save the audio to
+     * @param file The {@link File} to save the audio to.
      *
-     * @return The file that the audio was saved to
+     * @return The {@link File} that the audio was saved to.
      */
     @NotNull
     @CanIgnoreReturnValue
@@ -220,7 +220,7 @@ public class VoiceRecorder implements AudioReceiveHandler
      * <br>This is the volume of the audio that will be recorded.
      * <br>If the volume isn't set the volume will be automatically set to 1.0.
      *
-     * @return The current volume of the audio as a double
+     * @return The current volume of the audio as a double.
      */
     public double getVolume()
     {
@@ -228,12 +228,12 @@ public class VoiceRecorder implements AudioReceiveHandler
     }
 
     /**
-     * The {@link AudioManager audio manager} that represents the {@link AudioConnection audio connection} for this {@link Guild guild}.
-     * <br>If no {@link AudioManager audio manager} exists for this {@link Guild guild}, this will create a <b>new</b> one.
-     * <br>This operation is {@code synchronized} on all {@link AudioManager audio managers} for this {@link JDA} instance, this means
-     * that calling {@code getAudioManager()} on any other {@link Guild guild} while a thread is accessing this method may be locked.
+     * The {@link AudioManager} that represents the {@link AudioConnection} for this {@link Guild}.
+     * <br>If no {@link AudioManager} exists for this {@link Guild}, this will create a <b>new</b> one.
+     * <br>This operation is {@code synchronized} on all {@link AudioManager} for this {@link JDA} instance, this means
+     * that calling {@code getAudioManager()} on any other {@link Guild} while a thread is accessing this method may be locked.
      *
-     * @return The {@link AudioManager audio manager} for this {@link Guild guild}
+     * @return The {@link AudioManager} for this {@link Guild}.
      */
     @Nullable
     @CheckReturnValue
@@ -243,9 +243,9 @@ public class VoiceRecorder implements AudioReceiveHandler
     }
 
     /**
-     * The {@link Guild guild}, the message was received in.
+     * The {@link Guild}, the message was received in.
      *
-     * @return The {@link Guild guild}, the message was received in
+     * @return The {@link Guild}, the message was received in.
      */
     @Nullable
     @CheckReturnValue
@@ -256,11 +256,11 @@ public class VoiceRecorder implements AudioReceiveHandler
 
     /**
      * If the audio should be stacked or not.
-     * <br>This means that you set, if the audio will or will not be removed from the {@link ConcurrentLinkedQueue concurrent linked queue}
+     * <br>This means that you set, if the audio will or will not be removed from the {@link ConcurrentLinkedQueue}
      * when the recording is finished.
      *
-     * @return <b>true</b> - If the audio should be stacked
-     *         <br><b>false</b> - If the audio should be removed from the queue
+     * @return <b>true</b> - If the audio should be stacked.
+     *         <br><b>false</b> - If the audio should be removed from the queue.
      */
     public boolean stackEnabled()
     {

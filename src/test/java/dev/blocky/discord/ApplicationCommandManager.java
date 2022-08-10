@@ -18,7 +18,7 @@ package dev.blocky.discord;
 import dev.blocky.discord.commands.app.message.RickRollMessageContextCommand;
 import dev.blocky.discord.commands.app.slash.FruitSlashCommand;
 import dev.blocky.discord.commands.app.slash.PingSlashCommand;
-import dev.blocky.discord.commands.app.slash.SupportModalCommand;
+import dev.blocky.discord.commands.app.slash.modal.SupportModalCommand;
 import dev.blocky.discord.commands.app.slash.autocomplete.FruitAutoCompletable;
 import dev.blocky.discord.commands.app.user.AvatarUserContextCommand;
 import dev.blocky.library.jda.interfaces.app.message.IMessageContext;
@@ -70,7 +70,7 @@ public class ApplicationCommandManager extends ListenerAdapter
     private final Map<String, IUserContext> userMap;
 
     /**
-     * Constructs a <b>new</b> {@link ApplicationCommandManager application-command manager}.
+     * Constructs a <b>new</b> {@link ApplicationCommandManager}.
      */
     public ApplicationCommandManager()
     {
@@ -269,7 +269,7 @@ public class ApplicationCommandManager extends ListenerAdapter
             return;
         }
 
-        System.out.println("Email: " + email + "\nBody: " + body);
+        logger.info("Email: " + email + ", Body: " + body);
 
         event.replyEmbeds(success.build()).setEphemeral(true).queue();
     }

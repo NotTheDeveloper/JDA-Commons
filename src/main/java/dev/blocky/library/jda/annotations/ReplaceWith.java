@@ -34,7 +34,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface ReplaceWith
 {
     /**
-     * @return The method or class, which should used instead
+     * @return The method or class, which should used instead.
      */
     String value();
 }

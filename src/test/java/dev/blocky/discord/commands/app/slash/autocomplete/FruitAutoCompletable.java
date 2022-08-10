@@ -27,22 +27,25 @@ import java.util.List;
  * This is a simple slash-command with auto-complete.
  *
  * @author BlockyDotJar
- * @version v1.1.0
+ * @version v1.1.1
  * @since v1.1.4
  */
 public class FruitAutoCompletable implements IAutoCompletable
 {
     private final String[] words =
             {
+                    // An autocompletion can suggest up to 25 options.
                     "apple", "apricot", "banana", "cherry", "coconut", "cranberry"
             };
 
     @Override
     public void onCommandAutoComplete(@NotNull CommandAutoCompleteInteractionEvent event)
     {
+        // Checks if the current used option has the name 'name'.
         if (event.getFocusedOption().getName().equals("name"))
         {
             GuildController controller = GuildController.set(event.getGuild());
+            // Maps the words to choices and only displays words that start with the user's current input.
             List<Command.Choice> options = controller.upsertAutocompleteCommand(event.getFocusedOption(), words);
 
             event.replyChoices(options).queue();

@@ -27,7 +27,7 @@ import java.time.OffsetDateTime;
  * This is a simple ping slash-command.
  *
  * @author BlockyDotJar
- * @version v2.1.1
+ * @version v2.1.2
  * @since v1.0.0
  */
 public class PingSlashCommand implements ISlashCommand
@@ -35,7 +35,6 @@ public class PingSlashCommand implements ISlashCommand
     @Override
     public void onSlashCommand(@NotNull SlashCommandInteractionEvent event)
     {
-        //Gets the rest API ping.
         long restPing = event.getJDA().getRestPing().complete();
 
         EmbedBuilder builder = new EmbedBuilder();
@@ -44,8 +43,13 @@ public class PingSlashCommand implements ISlashCommand
         builder.setFooter(event.getMember().getUser().getAsTag());
         builder.setTitle("Ping? Pong! 🏓");
         builder.addField("Discord API gateway ping:",
-                "```yml\n" + event.getJDA().getGatewayPing() + "ms ```\n", true);
-        builder.addField("Discord API REST ping:", "```yml\n" + restPing + "ms ```", true);
+                         "```yml\n"
+                                 + event.getJDA().getGatewayPing() + "ms " +
+                                 "```\n", true);
+        builder.addField("Discord API REST ping:",
+                         "```yml\n"
+                                 + restPing + "ms " +
+                                 "```", true);
 
         // If the Discord gateway ping is higher than/equal to 200, the embed color should be red.
         // If the Discord gateway ping is higher than/equal to 100 and between/equal to 199, the embed color should be yellow.
@@ -63,7 +67,6 @@ public class PingSlashCommand implements ISlashCommand
             builder.setColor(Color.GREEN);
         }
 
-        // Sends the embed.
         event.replyEmbeds(builder.build()).queue();
     }
 }

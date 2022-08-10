@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
  * This is a simple command, which definitely is not going to rick-roll you ;D
  *
  * @author BlockyDotJar
- * @version v2.1.2
+ * @version v2.1.3
  * @since v1.0.0
  */
 public class RickRollMessageContextCommand implements IMessageContext
@@ -34,13 +34,12 @@ public class RickRollMessageContextCommand implements IMessageContext
     @Override
     public void onMessageContext(@NotNull MessageContextInteractionEvent event)
     {
-        // Gets the id of the user.
         String userID = event.getUser().getId();
 
-        // Replies a message with a select menu, which has two options (yes and no) and a button.
+        // Replies a message with a SelectMenu, which has two options (yes and no) and a button.
         event.reply("Do you want infinite money? A villa or a diamond?")
                 .addActionRow(
-                        SelectMenu.create("rick-roll") // Sets the id of this select menu.
+                        SelectMenu.create("rick-roll") // Sets the id of this SelectMenu.
                                 .addOption("Yes!", userID + ":yes", "GET IT NOW!!!!", Emoji.fromUnicode("U+1F440")) // Adds the option 'yes', which also has a description and an emoji.
                                 .addOption("No thank you.", userID + ":no") // Adds the second option 'no', which does not have a description or an emoji.
                                 .build()

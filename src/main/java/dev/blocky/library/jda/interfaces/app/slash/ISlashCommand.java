@@ -30,9 +30,9 @@ public interface ISlashCommand
 {
     /**
      * A simple slash-command interface, which you can use to easily program some slash-commands.
-     * <br>This contains an <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java">application-command manager</a>.
+     * <br>This contains an <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java">ApplicationCommandManager</a>.
      *
-     * @param event Indicates that a slash-command was used in a {@link MessageChannel message channel}
+     * @param event Indicates that a slash-command was used in a {@link MessageChannel}.
      */
     void onSlashCommand(@NotNull SlashCommandInteractionEvent event);
 }

@@ -4,10 +4,10 @@
  * <br>From here you can navigate to the slash-command interfaces.
  *
  * <ul>
- * <li>{@link dev.blocky.library.jda.interfaces.app.slash.ISlashCommand Default slash-command interface}
+ * <li>{@link dev.blocky.library.jda.interfaces.app.slash.ISlashCommand}
  * <br>A simple slash-command interface, which you can use to easily program some slash-commands.</li>
  *
- * <li>{@link dev.blocky.library.jda.interfaces.app.slash.IAutoCompletable Auto-completable slash-command interface}
+ * <li>{@link dev.blocky.library.jda.interfaces.app.slash.IAutoCompletable}
  * <br>A simple slash-command interface, which you can use to easily program some slash-commands with auto-complete.</li>
  * </ul>
  */

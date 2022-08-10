@@ -46,16 +46,19 @@ public class VoiceRecordListener extends ListenerAdapter
         Guild guild = event.getGuild();
         Member member = event.getMember();
 
-        // Checks if the bot has the permission to join the voice channel.
+        // Checks if the bot has the permission to join the VoiceChannel.
         if (!guild.getSelfMember().hasPermission(Permission.VOICE_CONNECT))
         {
-            logger.error("Cannot connect to voice channel, missing permission 'VOICE_CONNECT'.", new IllegalStateException());
+            logger.error("Cannot connect to VoiceChannel, missing permission 'VOICE_CONNECT'.", new IllegalStateException());
         }
 
         if (!member.getUser().isBot() && guild.getSelfMember().hasPermission(Permission.VOICE_CONNECT))
         {
-            // Joins a voice channel.
-            guild.getAudioManager().openAudioConnection(member.getVoiceState().getChannel());
+            // Joins a VoiceChannel.
+            guild.getAudioManager().openAudioConnection(
+                    // This requires the GUILD_VOICE_STATES intent and the VOICE_STATE CacheFlag.
+                    member.getVoiceState().getChannel()
+            );
         }
     }
 
@@ -66,14 +69,16 @@ public class VoiceRecordListener extends ListenerAdapter
         Member member = event.getMember();
 
         // Checks if the bot can receive audio from the user.
+        // This requires the GUILD_VOICE_STATES intent and the VOICE_STATE CacheFlag.
         if (guild.getSelfMember().getVoiceState().isGuildDeafened())
         {
             logger.warn("Deafened, cannot record.");
         }
 
+        // This requires the GUILD_VOICE_STATES intent and the VOICE_STATE CacheFlag.
         if (!member.getUser().isBot() && !guild.getSelfMember().getVoiceState().isGuildDeafened())
         {
-            // Leaves from the voice channel.
+            // Leaves from the VoiceChannel.
             guild.getAudioManager().closeAudioConnection();
 
             DiscordBotExample.getRecorder()

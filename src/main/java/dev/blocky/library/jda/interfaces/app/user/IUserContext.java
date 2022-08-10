@@ -29,9 +29,9 @@ public interface IUserContext
 {
     /**
      * A simple user context-menu interface, which you can use to easily program some user context-menus.
-     * <br>This contains an <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java">application-command manager</a>.
+     * <br>This contains an <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java">ApplicationCommandManager</a>.
      *
-     * @param event Indicates that a message context-command was used
+     * @param event Indicates that a message context-command was used.
      */
     void onUserContext(@NotNull UserContextInteractionEvent event);
 }

@@ -40,11 +40,12 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * Represents {@link StandardGuildMessageChannel standard guild message channel} that are {@link NewsChannel news channels}.
- * The Discord client may refer to these as announcement channels.
- * Members can subscribe channels in their own {@link Guild guilds} to receive {@link Message messages}
- * cross-posted from this channel. This is referred to as following this channel.
- * {@link Message Messages} sent in this channel can be cross-posted, at which point they will be sent
+ * Represents {@link StandardGuildMessageChannel} that are {@link NewsChannel}.
+ * <br>The Discord client may refer to these as announcement channels.
+ * <br>Members can subscribe channels in their own {@link Guild} to receive {@link Message messages}
+ * cross-posted from this channel. 
+ * <br>This is referred to as following this channel.
+ * <br>{@link Message Messages} sent in this channel can be cross-posted, at which point they will be sent
  * (via {@link Webhook webhook}) to all subscribed channels.
  *
  * @author BlockyDotJar
@@ -89,14 +90,14 @@ public class GuildNewsChannel extends Utility
     }
 
     /**
-     * Constructs a <b>new</b> {@link GuildNewsChannel guild news channel} instance.
-     * <br>If you don't initialize a {@link NewsChannel news channel} or a {@link Member member},
-     * the {@link GuildNewsChannel guild news channel} always will be <b>null</b>.
+     * Constructs a <b>new</b> {@link GuildNewsChannel} instance.
+     * <br>If you don't initialize a {@link NewsChannel} or a {@link Member},
+     * the {@link GuildNewsChannel} always will be <b>null</b>.
      *
-     * @param channel The {@link NewsChannel news channel}, which should be initialized
-     * @param member The {@link Member member}, which should be initialized
+     * @param channel The {@link NewsChannel}, which should be initialized.
+     * @param member The {@link Member}, which should be initialized.
      *               
-     * @return A <b>new</b> {@link GuildNewsChannel guild news channel} instance
+     * @return A <b>new</b> {@link GuildNewsChannel} instance.
      */
     @NotNull
     public static GuildNewsChannel set(@NotNull NewsChannel channel, @Nullable Member member)
@@ -105,13 +106,13 @@ public class GuildNewsChannel extends Utility
     }
 
     /**
-     * Constructs a <b>new</b> {@link GuildNewsChannel guild news channel} instance.
-     * <br>If you don't initialize a {@link NewsChannel news channel},
-     * the {@link GuildNewsChannel guild news channel} always will be <b>null</b>.
+     * Constructs a <b>new</b> {@link GuildNewsChannel} instance.
+     * <br>If you don't initialize a {@link NewsChannel},
+     * the {@link GuildNewsChannel} always will be <b>null</b>.
      *
-     * @param channel The {@link NewsChannel news channel}, which should be initialized
+     * @param channel The {@link NewsChannel}, which should be initialized.
      *                
-     * @return A <b>new</b> {@link GuildNewsChannel guild news channel} instance
+     * @return A <b>new</b> {@link GuildNewsChannel} instance.
      */
     @NotNull
     public static GuildNewsChannel set(@NotNull NewsChannel channel)
@@ -120,9 +121,9 @@ public class GuildNewsChannel extends Utility
     }
 
     /**
-     * The author of the {@link Message message} received as {@link Member member} object.
+     * The author of the {@link Message} received as {@link Member} object.
      *
-     * @return The author of the {@link Message message} as null-able member object
+     * @return The author of the {@link Message} as null-able {@link Member} object.
      */
     @Nullable
     public Member getMember()
@@ -131,9 +132,9 @@ public class GuildNewsChannel extends Utility
     }
 
     /**
-     * The {@link NewsChannel news channel} for this {@link Message message}.
+     * The {@link NewsChannel} for this {@link Message}.
      *
-     * @return The {@link NewsChannel news channel}
+     * @return The {@link NewsChannel}.
      */
     @NotNull
     public NewsChannel getChannel()
@@ -143,13 +144,12 @@ public class GuildNewsChannel extends Utility
 
     /**
      * Convenience method to delete messages in the most efficient way available.
-     * <br>No checks will be done to prevent failures, use {@link CompletionStage#exceptionally(Function)
-     * CompletionStage#exceptionally(Function)} to handle failures.
+     * <br>No checks will be done to prevent failures, use {@link CompletionStage#exceptionally(Function)} to handle failures.
      *
-     * @param amount The amount of messages to delete
-     * @param clear The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
+     * @param amount The amount of messages to delete.
+     * @param clear The {@link SafetyClear} option, which helps for specifying different message types, which will not be deleted.
      *              
-     * @return A list of futures representing all deletion task
+     * @return A {@link List} of futures representing all deletion task.
      */
     @Nullable
     public List<CompletableFuture<Void>> purgeMessages(int amount, @Nullable SafetyClear clear)
@@ -158,13 +158,12 @@ public class GuildNewsChannel extends Utility
     }
 
     /**
-     * Convenience method to delete a complete {@link NewsChannel news channel} in the most efficient way available.
-     * <br>No checks will be done to prevent failures, use {@link CompletionStage#exceptionally(Function)
-     * CompletionStage#exceptionally(Function)} to handle failures.
+     * Convenience method to delete a complete {@link NewsChannel} in the most efficient way available.
+     * <br>No checks will be done to prevent failures, use {@link CompletionStage#exceptionally(Function)} to handle failures.
      *
-     * @param clear The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
+     * @param clear The {@link SafetyClear} option, which helps for specifying different message types, which will not be deleted.
      *              
-     * @return A list of futures representing all deletion task
+     * @return A {@link List} of futures representing all deletion task.
      */
     @Nullable
     public List<CompletableFuture<Void>> purgeChannel(@Nullable SafetyClear clear)
@@ -173,11 +172,10 @@ public class GuildNewsChannel extends Utility
     }
 
     /**
-     * Convenience method to delete a complete {@link NewsChannel news channel} in the most efficient way available.
-     * <br>No checks will be done to prevent failures, use {@link CompletionStage#exceptionally(Function)
-     * CompletionStage#exceptionally(Function)} to handle failures.
+     * Convenience method to delete a complete {@link NewsChannel} in the most efficient way available.
+     * <br>No checks will be done to prevent failures, use {@link CompletionStage#exceptionally(Function)} to handle failures.
      *
-     * @return A list of futures representing all deletion task
+     * @return A {@link List} of futures representing all deletion task.
      */
     @Nullable
     public List<CompletableFuture<Void>> purgeChannel()
@@ -188,11 +186,11 @@ public class GuildNewsChannel extends Utility
     /**
      * Checks if the content, you specified, is written in this channel.
      *
-     * @param content The message content, which should be checked
-     * @param checkAmount The amount of messages, which should be checked
+     * @param content The message content, which should be checked.
+     * @param checkAmount The amount of messages, which should be checked.
      *                    
-     * @return <b>true</b> - If the content, you specified, is written in this channel
-     *         <br><b>false</b> - If the content, you specified, is not written in this channel
+     * @return <b>true</b> - If the content, you specified, is written in this channel.
+     *         <br><b>false</b> - If the content, you specified, is not written in this channel.
      */
     public boolean containsMessage(@NotNull CharSequence content, int checkAmount)
     {
@@ -217,10 +215,10 @@ public class GuildNewsChannel extends Utility
     }
 
     /**
-     * Gets all the messages from the user, which was specified with the {@link #set(NewsChannel, Member)} method,
+     * Gets all the messages from the {@link User}, which was specified with the {@link #set(NewsChannel, Member)} method,
      * in this channel. (max. 1000 messages per channel)
      *
-     * @return The written messages of the specified user in this channel
+     * @return The written messages of the specified {@link User} in this channel.
      */
     @Nullable
     public CompletableFuture<List<Message>> getMessagesByUser()
@@ -234,11 +232,11 @@ public class GuildNewsChannel extends Utility
     }
 
     /**
-     * Gets all the messages from a specific user in this channel. (max. 1000 messages per channel)
+     * Gets all the messages from a specific {@link User} in this channel. (max. 1000 messages per channel)
      *
-     * @param user The user, from which the messages should be retrieved
+     * @param user The {@link User}, from which the messages should be retrieved.
      *
-     * @return The written messages of the specified user in this channel
+     * @return The written messages of the specified {@link User} in this channel.
      */
     @Nullable
     public CompletableFuture<List<Message>> getMessagesByUser(@NotNull User user)
@@ -254,21 +252,20 @@ public class GuildNewsChannel extends Utility
 
     /**
      * This works like a normal message sending, but with more given options and a delay between using this.
-     * <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-     * If this is <b>true</b> a {@link IllegalArgumentException illegal argument exception} will be thrown. The same is applicable for numbers under 0)
+     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>.
+     * <br>If this is {@code true} a {@link IllegalArgumentException} will be thrown. The same is applicable for numbers under 0.
      * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
-     * <br>Another option you can use a specified {@link TimeUnit time} like {@link TimeUnit#MINUTES minutes},
-     * {@link TimeUnit#HOURS hours} or even {@link TimeUnit#DAYS days}.
-     * <br>(if {@link TimeUnit the time unit} equals <b>null</b>, there will be used a default {@link TimeUnit time unit}:
-     * {@link TimeUnit#SECONDS TimeUnit#SECONDS})
+     * <br>Another option is that you can use a specific {@link TimeUnit} like {@link TimeUnit#MINUTES},
+     * {@link TimeUnit#HOURS} or {@link TimeUnit#DAYS}.
+     * <br>(if the {@code unit} parameter equals <b>null</b>, {@link TimeUnit#SECONDS SECONDS} will be used)
      *
-     * @param message The {@link MessageAction message action}, which should be used
-     * @param delayInSeconds The delay for the executing command in seconds
-     * @param delayMessage The error message, which should appear, if the member has not waited for the delay yet
-     * @param unit The {@link TimeUnit time unit}, which is used for specifying the type of time for the delay
+     * @param message The {@link MessageAction}, which should be used.
+     * @param delayInSeconds The delay for the executing command in seconds.
+     * @param delayMessage The error message, which should appear, if the member has not waited for the delay yet.
+     * @param unit The {@link TimeUnit}, which is used for specifying the type of time for the delay.
      *             
-     * @return The specified {@link MessageAction message action}
+     * @return The specified {@link MessageAction}.
      */
     @NotNull
     @CheckReturnValue
@@ -322,16 +319,16 @@ public class GuildNewsChannel extends Utility
 
     /**
      * This works like a normal message sending, but with more given options and a delay between using this.
-     * <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-     * If this is <b>true</b> a {@link IllegalArgumentException illegal argument exception} will be thrown. The same is applicable for numbers under 0)
+     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>.
+     * <br>If this is {@code true} a {@link IllegalArgumentException} will be thrown. The same is applicable for numbers under 0.
      * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
      *
-     * @param message The {@link MessageAction message action}, which should be used
-     * @param delayInSeconds The delay for the executing command in seconds
-     * @param delayMessage The error message, which should appear, if the member has not waited for the delay yet
-     *                       
-     * @return The specified {@link MessageAction message action}
+     * @param message The {@link MessageAction}, which should be used.
+     * @param delayInSeconds The delay for the executing command in seconds.
+     * @param delayMessage The error message, which should appear, if the member has not waited for the delay yet.
+     *
+     * @return The specified {@link MessageAction}.
      */
     @NotNull
     @CheckReturnValue
@@ -341,22 +338,21 @@ public class GuildNewsChannel extends Utility
     }
 
     /**
-     * This works like a normal (message component) message sending, but with more given options and a delay between using this. <br>
-     * <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-     * If this is <b>true</b> a {@link IllegalArgumentException illegal argument exception} will be thrown. The same is applicable for numbers under 0)
+     * This works like a normal (interaction) message sending, but with more given options and a delay between using this.
+     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>.
+     * <br>If this is {@code true} a {@link IllegalArgumentException} will be thrown. The same is applicable for numbers under 0.
      * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
-     * <br>Another option you can use a specified {@link TimeUnit time} like {@link TimeUnit#MINUTES minutes},
-     * {@link TimeUnit#HOURS hours} or even {@link TimeUnit#DAYS days}.
-     * <br>(if {@link TimeUnit the time unit} equals <b>null</b>, there will be used a default {@link TimeUnit time unit}:
-     * {@link TimeUnit#SECONDS TimeUnit#SECONDS})
+     * <br>Another option is that you can use a specific {@link TimeUnit} like {@link TimeUnit#MINUTES},
+     * {@link TimeUnit#HOURS} or {@link TimeUnit#DAYS}.
+     * <br>(if the {@code unit} parameter equals <b>null</b>, {@link TimeUnit#SECONDS SECONDS} will be used)
      *
-     * @param message The {@link ReplyCallbackAction reply callback action}, which should be used
-     * @param delayInSeconds The delay for the executing command in seconds
-     * @param delayMessage The error message, which should appear, if the member has not waited for the delay yet
-     * @param unit The {@link TimeUnit time unit}, which is used for specifying the type of time for the delay
-     *                       
-     * @return The specified {@link MessageAction message action}
+     * @param message The {@link ReplyCallbackAction}, which should be used.
+     * @param delayInSeconds The delay for the executing command in seconds.
+     * @param delayMessage The error message, which should appear, if the member has not waited for the delay yet.
+     * @param unit The {@link TimeUnit}, which is used for specifying the type of time for the delay.
+     *
+     * @return The specified {@link ReplyCallbackAction}.
      */
     @NotNull
     @CheckReturnValue
@@ -409,17 +405,17 @@ public class GuildNewsChannel extends Utility
     }
 
     /**
-     * This works like a normal (message component) message sending, but with more given options and a delay between using this.
-     * <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-     * If this is <b>true</b> a {@link IllegalArgumentException illegal argument exception} will be thrown. The same is applicable for numbers under 0)
+     * This works like a normal (interaction) message sending, but with more given options and a delay between using this.
+     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>.
+     * <br>If this is {@code true} a {@link IllegalArgumentException} will be thrown. The same is applicable for numbers under 0.
      * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
      *
-     * @param message The {@link ReplyCallbackAction reply callback action}, which should be used
-     * @param delayInSeconds The delay for the executing command in seconds
-     * @param delayMessage The error message, which should appear, if the member has not waited for the delay yet
-     *                       
-     * @return The specified {@link MessageAction message action}
+     * @param message The {@link ReplyCallbackAction}, which should be used.
+     * @param delayInSeconds The delay for the executing command in seconds.
+     * @param delayMessage The error message, which should appear, if the member has not waited for the delay yet.
+     *
+     * @return The specified {@link ReplyCallbackAction}.
      */
     @NotNull
     @CheckReturnValue
@@ -431,30 +427,37 @@ public class GuildNewsChannel extends Utility
     /**
      * Attempts to cross post the provided message automatically.
      *
-     * The following {@link ErrorResponse error responses} are possible:
+     * The following {@link ErrorResponse ErrorResponses} are possible:
      * <ul>
      * <li>
-     * {@link ErrorResponse#ALREADY_CROSSPOSTED ALREADY_CROSSPOSTED}
-     * The target message has already been cross-posted.</li>
+     * {@link ErrorResponse#ALREADY_CROSSPOSTED} - The target message has already been cross-posted.
+     * </li>
+     *
      * <li>
-     * {@link ErrorResponse#MISSING_ACCESS MISSING_ACCESS} The request was attempted after
-     * the account lost access to the {@link Guild guild} typically due to being kicked
-     * or removed, or after {@link Permission#VIEW_CHANNEL Permission#VIEW_CHANNEL}
-     * was revoked in the {@link MessageChannel message channel}. </li>
+     * {@link ErrorResponse#MISSING_ACCESS} - The request was attempted after
+     * the account lost access to the {@link Guild} typically due to being kicked
+     * or removed, or after {@link Permission#VIEW_CHANNEL}
+     * was revoked in the {@link MessageChannel}.
+     * </li>
+     *
      * <li>
-     * {@link ErrorResponse#MISSING_PERMISSIONS MISSING_PERMISSIONS} The request was attempted
-     * after the account lost {@link Permission#MESSAGE_MANAGE Permission#MESSAGE_MANAGE} in the
-     * {@link MessageChannel message channel}. </li>
+     * {@link ErrorResponse#MISSING_PERMISSIONS} - The request was attempted
+     * after the account lost {@link Permission#MESSAGE_MANAGE} in the
+     * {@link MessageChannel}.
+     * </li>
+     *
      * <li>
-     * {@link ErrorResponse#UNKNOWN_MESSAGE UNKNOWN_MESSAGE} The provided messageId is unknown
-     * in this {@link MessageChannel message channel}, either due to the id being invalid, or
-     * the message it referred to has already been deleted. </li>
+     * {@link ErrorResponse#UNKNOWN_MESSAGE} - The provided messageId is unknown
+     * in this {@link MessageChannel}, either due to the id being invalid, or
+     * the message it referred to has already been deleted.
+     * </li>
+     *
      * <li>
-     * {@link ErrorResponse#UNKNOWN_CHANNEL UNKNOWN_CHANNEL} The request was attempted after
+     * {@link ErrorResponse#UNKNOWN_CHANNEL} - The request was attempted after
      * the channel was deleted. </li>
      * </ul>
      *
-     * @return {@link RestAction  A rest-action} - Type: {@link Message message}
+     * @return {@link RestAction} - Type: {@link Message}
      */
     @NotNull
     @CheckReturnValue

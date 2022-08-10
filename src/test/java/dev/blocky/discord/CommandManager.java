@@ -34,7 +34,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
 /**
- * This is a class, which manages default {@link Message message} commands.
+ * This is a class, which manages default {@link Message} commands.
  *
  * @author BlockyDotJar
  * @version v2.1.4
@@ -46,9 +46,9 @@ public class CommandManager extends ListenerAdapter
     private static ConcurrentHashMap<String, ICommand> commands;
 
     /**
-     * Constructs a <b>new</b> {@link CommandManager Command Manager}.
+     * Constructs a <b>new</b> {@link CommandManager}.
      */
-    public CommandManager()
+    protected CommandManager()
     {
         commands = new ConcurrentHashMap<>();
 
@@ -62,16 +62,16 @@ public class CommandManager extends ListenerAdapter
     }
 
     /**
-     * Checks if {@link ICommand the command interface} equals null.
+     * Checks if {@link ICommand} equals <b>null</b>.
      *
-     * @param command The string of the command
-     * @param event The {@link MessageReceivedEvent message received event}, which should used for the commands
-     * @param args The array of strings
+     * @param command The string of the command.
+     * @param event A {@link MessageReceivedEvent}, which should used for the commands.
+     * @param args An array of strings.
      *
-     * @return <b>true</b> - If {@link ICommand the command interface} does not equal to null
-     *         <br><b>false</b> - If {@link ICommand the command interface} equals to null
+     * @return <b>true</b> - If {@link ICommand} is not equal to <b>null</b>.
+     *         <br><b>false</b> - If {@link ICommand} equals <b>null</b>.
      */
-    public boolean onMessage(@Nullable String command, @NotNull MessageReceivedEvent event, @NotNull String[] args)
+    protected boolean onMessage(@Nullable String command, @NotNull MessageReceivedEvent event, @NotNull String[] args)
     {
         ICommand cmd = commands.get(command.toLowerCase());
         if (cmd != null)
@@ -84,14 +84,16 @@ public class CommandManager extends ListenerAdapter
     @Override
     public void onReady(@NotNull ReadyEvent event)
     {
-        logger.info("{} successfully connected to the discord network and finally logged in.",
+        // If the bot is ready to use, this message will be logged in the console.
+        logger.info("{} successfully connected to the Discord network and finally logged in.",
                 event.getJDA().getSelfUser().getAsTag());
     }
 
     @Override
     public void onShutdown(@NotNull ShutdownEvent event)
     {
-        logger.info("{} successfully disconnected from the discord network and finally logged out.",
+        // If the bot is getting a shutdown, this message will be logged in the console.
+        logger.info("{} successfully disconnected from the Discord network and finally logged out.",
                 event.getJDA().getSelfUser().getAsTag());
     }
 
@@ -100,24 +102,30 @@ public class CommandManager extends ListenerAdapter
     {
         String message = event.getMessage().getContentDisplay();
 
-        if (event.isFromType(ChannelType.TEXT) || event.isFromType(ChannelType.VOICE))
+        if (!event.isFromType(ChannelType.TEXT) || !event.isFromType(ChannelType.VOICE))
         {
-            if (message.startsWith("!"))
-            {
-                String[] args = message.substring(1).split(" ");
-                String[] split =
-                        event.getMessage().getContentRaw()
-                        .replaceFirst("(?i)" + Pattern.quote("!"), "")
-                        .split("\\s+");
+            return;
+        }
 
-                if (args.length > 0)
-                {
-                    if (!this.onMessage(args[0], event, split))
-                    {
-                        logger.info("Command " + Arrays.toString(args) + " was not found.");
-                    }
-                }
-            }
+        if (!message.startsWith("!"))
+        {
+            return;
+        }
+
+        // This will split the message into an array of strings, using " " as a delimiter.
+        // The first element of the array will be the command.
+        // The rest of the elements will be the arguments.
+        String[] args = message.substring(1).split(" ");
+        // This will get the first element of the array.
+        // This will be the command.
+        String[] split = event.getMessage().getContentRaw()
+                .replaceFirst("(?i)" + Pattern.quote("!"), "")
+                .split("\\s+");
+
+        // If the command is not found or ICommand equals *null*, this message will be logged in the console.
+        if (args.length > 0 && !onMessage(args[0], event, split))
+        {
+            logger.info("Command " + Arrays.toString(args) + " was not found.");
         }
     }
 }

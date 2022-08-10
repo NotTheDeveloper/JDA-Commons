@@ -1,7 +1,7 @@
 /**
  * Root package of the main features.
  *
- * <br>From here you can navigate to the main features of this library. <br>
+ * <br>From here you can navigate to the main features of this library.
  *
  * <ul>
  * <li>{@link dev.blocky.library.jda.CommonsClient Commons client}

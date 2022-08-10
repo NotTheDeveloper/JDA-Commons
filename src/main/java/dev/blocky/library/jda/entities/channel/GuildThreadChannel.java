@@ -40,7 +40,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * Represents private/public/news Discord {@link ThreadChannel thread channel}.
+ * Represents private/public/news Discord {@link ThreadChannel}.
  *
  * @author BlockyDotJar
  * @version v1.1.4
@@ -84,14 +84,14 @@ public class GuildThreadChannel extends Utility
     }
 
     /**
-     * Constructs a <b>new</b> {@link GuildThreadChannel guild thread channel} instance.
-     * <br>If you don't initialize a {@link ThreadChannel thread channel} or a {@link Member member},
-     * the {@link GuildThreadChannel guild thread channel} always will be <b>null</b>.
+     * Constructs a <b>new</b> {@link GuildThreadChannel} instance.
+     * <br>If you don't initialize a {@link ThreadChannel} or a {@link Member},
+     * the {@link GuildThreadChannel} always will be <b>null</b>.
      *
-     * @param channel The {@link ThreadChannel thread channel}, which  should be initialized
-     * @param member The {@link Member member}, which should be initialized
+     * @param channel The {@link ThreadChannel}, which  should be initialized.
+     * @param member The {@link Member}, which should be initialized.
      *
-     * @return A <b>new</b> {@link GuildThreadChannel guild thread channel} instance
+     * @return A <b>new</b> {@link GuildThreadChannel} instance.
      */
     @NotNull
     public static GuildThreadChannel set(@NotNull ThreadChannel channel, @Nullable Member member)
@@ -100,13 +100,13 @@ public class GuildThreadChannel extends Utility
     }
 
     /**
-     * Constructs a <b>new</b> {@link GuildThreadChannel guild thread channel} instance.
-     * <br>If you don't initialize a {@link ThreadChannel thread channel},
-     * the {@link GuildThreadChannel guild thread channel} always will be <b>null</b>.
+     * Constructs a <b>new</b> {@link GuildThreadChannel} instance.
+     * <br>If you don't initialize a {@link ThreadChannel},
+     * the {@link GuildThreadChannel} always will be <b>null</b>.
      *
-     * @param channel The {@link ThreadChannel thread channel}, which  should be initialized
+     * @param channel The {@link ThreadChannel}, which  should be initialized.
      *
-     * @return A <b>new</b> {@link GuildThreadChannel guild thread channel} instance
+     * @return A <b>new</b> {@link GuildThreadChannel} instance.
      */
     @NotNull
     public static GuildThreadChannel set(@NotNull ThreadChannel channel)
@@ -115,9 +115,9 @@ public class GuildThreadChannel extends Utility
     }
 
     /**
-     * The author of the {@link Message message} received as {@link Member member} object.
+     * The author of the {@link Message} received as {@link Member} object.
      *
-     * @return The author of the {@link Message message} as null-able member object
+     * @return The author of the {@link Message} as null-able member object.
      */
     @Nullable
     public Member getMember()
@@ -126,9 +126,9 @@ public class GuildThreadChannel extends Utility
     }
 
     /**
-     * The {@link ThreadChannel thread channel} for this {@link Message message}.
+     * The {@link ThreadChannel} for this {@link Message}.
      *
-     * @return The {@link ThreadChannel thread channel}
+     * @return The {@link ThreadChannel}.
      */
     @NotNull
     public ThreadChannel getChannel()
@@ -138,13 +138,12 @@ public class GuildThreadChannel extends Utility
 
     /**
      * Convenience method to delete messages in the most efficient way available.
-     * <br>No checks will be done to prevent failures, use {@link CompletionStage#exceptionally(Function)
-     * CompletionStage#exceptionally(Function)} to handle failures.
+     * <br>No checks will be done to prevent failures, use {@link CompletionStage#exceptionally(Function)} to handle failures.
      *
-     * @param amount The amount of messages to delete
-     * @param clear  The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
+     * @param amount The amount of messages to delete.
+     * @param clear  The {@link SafetyClear} option, which helps for specifying different message types, which will not be deleted.
      *
-     * @return A list of futures representing all deletion task
+     * @return A {@link List} of futures representing all deletion task.
      */
     @Nullable
     public List<CompletableFuture<Void>> purgeMessages(int amount, @Nullable SafetyClear clear)
@@ -153,13 +152,12 @@ public class GuildThreadChannel extends Utility
     }
 
     /**
-     * Convenience method to delete a complete {@link ThreadChannel thread channel} in the most efficient way available.
-     * <br>No checks will be done to prevent failures, use {@link CompletionStage#exceptionally(Function)
-     * CompletionStage#exceptionally(Function)} to handle failures.
+     * Convenience method to delete a complete {@link ThreadChannel} in the most efficient way available.
+     * <br>No checks will be done to prevent failures, use {@link CompletionStage#exceptionally(Function)} to handle failures.
      *
-     * @param clear The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
+     * @param clear The {@link SafetyClear} option, which helps for specifying different message types, which will not be deleted.
      *
-     * @return A list of futures representing all deletion task
+     * @return A {@link List} of futures representing all deletion task.
      */
     @Nullable
     public List<CompletableFuture<Void>> purgeChannel(@Nullable SafetyClear clear)
@@ -168,11 +166,10 @@ public class GuildThreadChannel extends Utility
     }
 
     /**
-     * Convenience method to delete a complete {@link ThreadChannel thread channel} in the most efficient way available.
-     * <br>No checks will be done to prevent failures, use {@link CompletionStage#exceptionally(Function)
-     * CompletionStage#exceptionally(Function)} to handle failures.
+     * Convenience method to delete a complete {@link ThreadChannel} in the most efficient way available.
+     * <br>No checks will be done to prevent failures, use {@link CompletionStage#exceptionally(Function)} to handle failures.
      *
-     * @return A list of futures representing all deletion task
+     * @return A {@link List} of futures representing all deletion task.
      */
     @Nullable
     public List<CompletableFuture<Void>> purgeChannel()
@@ -183,11 +180,11 @@ public class GuildThreadChannel extends Utility
     /**
      * Checks if the content, you specified, is written in this channel.
      *
-     * @param content     The message content, which should be checked
-     * @param checkAmount The amount of messages, which should be checked
+     * @param content The message content, which should be checked.
+     * @param checkAmount The amount of messages, which should be checked.
      *
-     * @return <b>true</b> If the content, you specified, is written in this channel
-     *         <br><b>false</b> If the content, you specified, is not written in this channel
+     * @return <b>true</b> If the content, you specified, is written in this channel.
+     *         <br><b>false</b> If the content, you specified, is not written in this channel.
      */
     public boolean containsMessage(@NotNull CharSequence content, int checkAmount)
     {
@@ -212,10 +209,10 @@ public class GuildThreadChannel extends Utility
     }
 
     /**
-     * Gets all the messages from the user, which was specified with the {@link #set(ThreadChannel, Member)} method,
+     * Gets all the messages from the {@link User}, which was specified with the {@link #set(ThreadChannel, Member)} method,
      * in this channel. (max. 1000 messages per channel)
      *
-     * @return The written messages of the specified user in this channel
+     * @return The written messages of the specified {@link User} in this channel.
      */
     @Nullable
     public CompletableFuture<List<Message>> getMessagesByUser()
@@ -229,11 +226,11 @@ public class GuildThreadChannel extends Utility
     }
 
     /**
-     * Gets all the messages from a specific user in this channel. (max. 1000 messages per channel)
+     * Gets all the messages from a specific {@link User} in this channel. (max. 1000 messages per channel)
      *
-     * @param user The user, from which the messages should be retrieved
+     * @param user The {@link User}, from which the messages should be retrieved.
      *
-     * @return The written messages of the specified user in this channel
+     * @return The written messages of the specified {@link User} in this channel.
      */
     @Nullable
     public CompletableFuture<List<Message>> getMessagesByUser(@NotNull User user)
@@ -249,21 +246,20 @@ public class GuildThreadChannel extends Utility
 
     /**
      * This works like a normal message sending, but with more given options and a delay between using this.
-     * <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-     * If this is <b>true</b> a {@link IllegalArgumentException illegal argument exception} will be thrown. The same is applicable for numbers under 0)
+     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>.
+     * <br>If this is {@code true} a {@link IllegalArgumentException} will be thrown. The same is applicable for numbers under 0.
      * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
-     * <br>Another option you can use a specified {@link TimeUnit time} like {@link TimeUnit#MINUTES minutes},
-     * {@link TimeUnit#HOURS hours} or even {@link TimeUnit#DAYS days}.
-     * <br>(if {@link TimeUnit the time unit} equals <b>null</b>, there will be used a default {@link TimeUnit time unit}:
-     * {@link TimeUnit#SECONDS TimeUnit#SECONDS})
+     * <br>Another option is that you can use a specific {@link TimeUnit} like {@link TimeUnit#MINUTES},
+     * {@link TimeUnit#HOURS} or {@link TimeUnit#DAYS}.
+     * <br>(if the {@code unit} parameter equals <b>null</b>, {@link TimeUnit#SECONDS SECONDS} will be used)
      *
-     * @param message The {@link MessageAction message action}, which should be used
-     * @param delayInSeconds The delay for the executing command in seconds
-     * @param delayMessage The error message, which should appear, if the member has not waited for the delay yet
-     * @param unit The {@link TimeUnit time unit}, which is used for specifying the type of time for the delay
+     * @param message The {@link MessageAction}, which should be used.
+     * @param delayInSeconds The delay for the executing command in seconds.
+     * @param delayMessage The error message, which should appear, if the member has not waited for the delay yet.
+     * @param unit The {@link TimeUnit}, which is used for specifying the type of time for the delay.
      *
-     * @return The specified {@link MessageAction message action}
+     * @return The specified {@link MessageAction}.
      */
     @NotNull
     @CheckReturnValue
@@ -317,16 +313,16 @@ public class GuildThreadChannel extends Utility
 
     /**
      * This works like a normal message sending, but with more given options and a delay between using this.
-     * <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-     * If this is <b>true</b> a {@link IllegalArgumentException illegal argument exception} will be thrown. The same is applicable for numbers under 0)
+     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>.
+     * <br>If this is {@code true} a {@link IllegalArgumentException} will be thrown. The same is applicable for numbers under 0.
      * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
      *
-     * @param message The {@link MessageAction message action}, which should be used
-     * @param delayInSeconds The delay for the executing command in seconds
-     * @param delayMessage The error message, which should appear, if the member has not waited for the delay yet
+     * @param message The {@link MessageAction}, which should be used.
+     * @param delayInSeconds The delay for the executing command in seconds.
+     * @param delayMessage The error message, which should appear, if the member has not waited for the delay yet.
      *
-     * @return The specified {@link MessageAction message action}
+     * @return The specified {@link MessageAction}.
      */
     @NotNull
     @CheckReturnValue
@@ -336,22 +332,21 @@ public class GuildThreadChannel extends Utility
     }
 
     /**
-     * This works like a normal (message component) message sending, but with more given options and a delay between using this. <br>
-     * <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-     * If this is <b>true</b> a {@link IllegalArgumentException illegal argument exception} will be thrown. The same is applicable for numbers under 0)
+     * This works like a normal (interaction) message sending, but with more given options and a delay between using this.
+     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>.
+     * <br>If this is {@code true} a {@link IllegalArgumentException} will be thrown. The same is applicable for numbers under 0.
      * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
-     * <br>Another option you can use a specified {@link TimeUnit time} like {@link TimeUnit#MINUTES minutes},
-     * {@link TimeUnit#HOURS hours} or even {@link TimeUnit#DAYS days}.
-     * <br>(if {@link TimeUnit the time unit} equals <b>null</b>, there will be used a default {@link TimeUnit time unit}:
-     * {@link TimeUnit#SECONDS TimeUnit#SECONDS})
+     * <br>Another option is that you can use a specific {@link TimeUnit} like {@link TimeUnit#MINUTES},
+     * {@link TimeUnit#HOURS} or {@link TimeUnit#DAYS}.
+     * <br>(if the {@code unit} parameter equals <b>null</b>, {@link TimeUnit#SECONDS SECONDS} will be used)
      *
-     * @param message The {@link ReplyCallbackAction reply callback action}, which should be used
-     * @param delayInSeconds The delay for the executing command in seconds
-     * @param delayMessage The error message, which should appear, if the member has not waited for the delay yet
-     * @param unit The {@link TimeUnit time unit}, which is used for specifying the type of time for the delay
+     * @param message The {@link ReplyCallbackAction}, which should be used.
+     * @param delayInSeconds The delay for the executing command in seconds.
+     * @param delayMessage The error message, which should appear, if the member has not waited for the delay yet.
+     * @param unit The {@link TimeUnit}, which is used for specifying the type of time for the delay.
      *
-     * @return The specified {@link MessageAction message action}
+     * @return The specified {@link ReplyCallbackAction}.
      */
     @NotNull
     @CheckReturnValue
@@ -404,17 +399,17 @@ public class GuildThreadChannel extends Utility
     }
 
     /**
-     * This works like a normal (message component) message sending, but with more given options and a delay between using this.
-     * <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-     * If this is <b>true</b> a {@link IllegalArgumentException illegal argument exception} will be thrown. The same is applicable for numbers under 0)
+     * This works like a normal (interaction) message sending, but with more given options and a delay between using this.
+     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>.
+     * <br>If this is {@code true} a {@link IllegalArgumentException} will be thrown. The same is applicable for numbers under 0.
      * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
      *
-     * @param message The {@link ReplyCallbackAction reply callback action}, which should be used
-     * @param delayInSeconds The delay for the executing command in seconds
-     * @param delayMessage The error message, which should appear, if the member has not waited for the delay yet
+     * @param message The {@link ReplyCallbackAction}, which should be used.
+     * @param delayInSeconds The delay for the executing command in seconds.
+     * @param delayMessage The error message, which should appear, if the member has not waited for the delay yet.
      *
-     * @return The specified {@link MessageAction message action}
+     * @return The specified {@link ReplyCallbackAction}.
      */
     @NotNull
     @CheckReturnValue

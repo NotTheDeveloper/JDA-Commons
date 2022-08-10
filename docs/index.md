@@ -26,9 +26,10 @@ If you want some examples for JDA too than check out the [example directory](htt
 6. [XYChannel](#xychannel)
 7. [XYMember](#xymember)
 8. [VoiceRecorder](#voicerecorder)
-9. [Annotations](#annotations)
-10. [Download](#download)
-11. [Support](#getting-help)
+9. [MessageMention](#messagemention)
+10. [Annotations](#annotations)
+11. [Download](#download)
+12. [Support](#getting-help)
 
 <hr>
 
@@ -72,7 +73,7 @@ Version: v1.0.0-alpha.6
 Since: v1.0.0
 ```
 
-**Description:** This is the builder for the commons client.
+**Description:** This is the builder for the **CommonsClient**.
 
 ### Getting CommonsClient.Builder:
 
@@ -80,9 +81,9 @@ Since: v1.0.0
 
 ### Methods
 
-> Represents a <b>new</b> commons client instance.
+> Represents a <b>new CommonsClient</b> instance.
 >
-> Returns: A <b>new</b> commons client instance 
+> Returns: A <b>new CommonsClient</b> instance 
 > <br>Annotation: **NotNull**
 ```swift
 getCommonsClient()
@@ -110,70 +111,70 @@ Since: v1.0.0
 
 ### Methods
 
-> Checks, which safety clear enum is given. (if **clear** equals null, the safety clear enum will be set to **SafetyClear#NONE**)
+> Checks, which **SafetyClear** enum is given. (if the <code>clear</code> parameter equals **null**, the **SafetyClear** enum will be set to <code>NONE</code>)
 >
 > Parameter:
-> <br>**clear** - The safety clear option, which helps for specifying different message types, which will not be deleted
-> <br>**channel** - The text channel, which should be initialized
-> <br>**amount** - The amount of messages to delete
-> <br>Returns: A list of messages representing the precursor of all deletion tasks
+> <br>**clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
+> <br>**channel** - The **TextChannel**, which should be initialized.
+> <br>**amount** - The amount of messages to delete.
+> <br>Returns: A **List** of messages representing the precursor of all deletion tasks.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 checkClearSafety(@Nullable SafetyClear, @NotNull TextChannel, int)
 ```
 <br>
 
-> Checks, which safety clear enum is given. (if **clear** equals null, the safety clear enum will be set to **SafetyClear#NONE**)
+> Checks, which **SafetyClear** enum is given. (if the <code>clear</code> parameter equals **null**, the **SafetyClear** enum will be set to <code>NONE</code>)
 >
 > Parameter:
-> <br>**clear** - The safety clear option, which helps for specifying different message types, which will not be deleted
-> <br>**channel** - The message channel, which should be initialized
-> <br>**amount** - The amount of messages to delete
-> <br>Returns: A list of messages representing the precursor of all deletion tasks
+> <br>**clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
+> <br>**channel** - The **MessageChannel**, which should be initialized.
+> <br>**amount** - The amount of messages to delete.
+> <br>Returns: A **List** of messages representing the precursor of all deletion tasks.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 checkClearSafety(@Nullable SafetyClear, @NotNull MessageChannel, int)
 ```
 <br>
 
-> Checks, which safety clear enum is given. (if **clear** equals null, the safety clear enum will be set to **SafetyClear#NONE**).
+> Checks, which **SafetyClear** enum is given. (if the <code>clear</code> parameter equals **null**, the **SafetyClear** enum will be set to <code>NONE</code>)
 >
 > Parameter:
-> <br>**clear**   The safety clear option, which helps for specifying different message types, which will not be deleted
-> <br>**channel** The text channel, which should be initialized
-> <br>Returns: A list of messages representing the precursor of all deletion tasks
+> <br>**clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
+> <br>**channel** - The **TextChannel**, which should be initialized.
+> <br>Returns: A **List** of messages representing the precursor of all deletion tasks.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 checkChannelClearSafety(@Nullable SafetyClear, @NotNull TextChannel)
 ```
 <br>
 
-> Checks, which safety clear enum is given. (if **clear** equals null, the safety clear enum will be set to **SafetyClear#NONE**).
+> Checks, which **SafetyClear** enum is given. (if the <code>clear</code> parameter equals **null**, the **SafetyClear** enum will be set to <code>NONE</code>)
 >
 > Parameter:
-> <br>**clear**   The safety clear option, which helps for specifying different message types, which will not be deleted
-> <br>**channel** The message channel, which should be initialized
-> <br>Returns: A list of messages representing the precursor of all deletion tasks
+> <br>**clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
+> <br>**channel** - The **MessageChannel**, which should be initialized.
+> <br>Returns: A **List** of messages representing the precursor of all deletion tasks.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 checkChannelClearSafety(@Nullable SafetyClear, @NotNull MessageChannel)
 ```
 <br>
 
-> Calculates the delay, depending on which time unit is specified.
+> Calculates the delay, depending on which **TimeUnit** is specified.
 >
 > Parameter:
-> <br>**unit** - The time unit, which should be used for calculating each time (if time unit equals null the default time unit will be used **[TimeUnit#SECONDS]**)
-> <br>**delayInSeconds** - The delay in seconds which should be converted
-> <br>Returns: The delay calculated to the specified time unit
+> <br>**unit** - The **TimeUnit**, which should be used for calculating each time. (if the <code>unit</code> parameter equals **null**, <code>SECONDS</code> will be used)
+> <br>**delayInSeconds** - The delay in seconds which should be converted.
+> <br>Returns: The delay calculated to the specified **TimeUnit**.
 ```swift
 calculateDelay(@Nullable TimeUnit, long)
 ```
 <br>
 
-> The hash map instance from the utility class.
+> The **HashMap** instance from the **Utility** class.
 >
-> Returns: **Utility#map**
+> Returns: **map**.
 > <br>Annotation: **NotNull**
 ```swift
 getHashMap()
@@ -197,7 +198,7 @@ Version: v1.0.0-beta.1
 Since: v1.0.0
 ```
 
-**Description:** This is a controller you can control guilds with. The exact use is still **unknown.**
+**Description:** This is a controller you can control guilds with. The exact use is still **unknown**.
 
 ### Getting GuildController:
 
@@ -207,38 +208,36 @@ GuildController controller = GuildController.set(@NotNull Guild);
 
 ### Methods
 
-> Constructs a <b>new</b> guild controller instance. If you don't initialize a guild,
-> the guild controller always will be <b>null</b>.
+> Constructs a <b>new GuildController</b> instance. 
+> <br>If you don't initialize a **Guild**,  the **GuildController** always will be <b>null</b>.
 >
-> Parameter: **guild** - The guild, which should be used to get guild controller
-> <br>Returns: A <b>new</b> guild controller instance
+> Parameter: **guild** - The **Guild**, which should be used to get the **GuildController**.
+> <br>Returns: A <b>new GuildController</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
 set(@NotNull Guild)
 ```
 <br>
 
-> The guild, the message was received in.
+> The **Guild**, the message was received in.
 >
-> Returns: The guild the message was received in
+> Returns: The **Guild** the message was received in.
 > <br>Annotation: **Nullable**
 ```swift
 getGuild()
 ```
 <br>
 
-> As the user is typing an argument that has autocomplete enabled for it, the bot will receive an
-> command-autocomplete-interaction-event.
-> This event isn't fired for each keystroke, but is sent when Discord determines the user has paused typing for a bit.
->
-> An autocompletion can suggest up to 25 options, and users don't have to send a command with one of the options.
-> Maps the words to choices and only displays words that start with the user's current input.
+> As the user is typing an argument that has autocomplete enabled for it, the bot will receive an **CommandAutoCompleteInteractionEvent**.
+> <br>This event isn't fired for each keystroke, but is sent when Discord determines the user has paused typing for a bit.
+> <br><br>An autocompletion can suggest up to 25 options, and users don't have to send a command with one of the options.
+> <br>Maps the words to choices and only displays words that start with the user's current input.
 >
 > Parameter:
-> <br>**query** - The query input for an auto-complete interaction
-> <br>**words** - An array of words that can be displayed in the autocomplete menu
+> <br>**query** - The query input for a **IAutoCompleteCallback**.
+> <br>**words** - An array of words that can be displayed in the autocomplete menu.
 >
-> Returns: A list of choices, you can use to display it with `replyChoices(Collection)`
+> Returns: A **List** of **Command.Choice**, you can use to display it with <code>CommandAutoCompleteInteractionEvent#replyChoices(Collection)</code>.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 upsertAutocompleteCommand(@NotNull AutoCompleteQuery, @NotNull String[])
@@ -277,17 +276,16 @@ Since: v1.0.0-alpha.3
 
 ### Getting ICommand:
 
-Of course you can't get an interface. <br>
-Because of this you need a [command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/CommandManager.java) to use this interface.
+You need a [CommandManager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/CommandManager.java) to use this interface.
 
 ### Methods
 
 > A simple command interface, which you can use to easily program message commands.
-> <br>This contains a <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/CommandManager.java">command manager</a>.
+> <br>This contains a **CommandManager**.
 >
 > Parameter:
-> <br>**event** - The message received event for performing a command
-> <br>**args** - An array of strings for performing a command
+> <br>**event** - The **MessageReceivedEvent** for performing a command.
+> <br>**args** - An array of strings for performing a command.
 ```swift
 onCommand(@NotNull MessageReceivedEvent, @NotNull String[])
 ```
@@ -310,15 +308,14 @@ Since: v1.0.0
 
 ### Getting ISlashCommand:
 
-Of course you can't get an interface. <br>
-Because of this you need an [application-command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
+You need an [ApplicationCommandManager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
 
 ### Methods
 
 > A simple slash-command interface, which you can use to easily program some slash-commands.
-> <br>This contains an <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java">application-command manager</a>.
+> <br>This contains an **ApplicationCommandManager**.
 >
-> Parameter: **event** - Indicates that a slash-command was used in a message channel
+> Parameter: **event** - Indicates that a slash-command was used in a **MessageChannel**.
 ```swift
 onSlashCommand(@NotNull SlashCommandInteractionEvent)
 ```
@@ -341,15 +338,14 @@ Since: v1.1.4
 
 ### Getting IAutoCompletable:
 
-Of course you can't get an interface. <br>
-Because of this you need an [application-command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
+You need an [ApplicationCommandManager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
 
 ### Methods
 
 > A simple slash-command interface, which you can use to easily program some slash-commands with auto-complete.
-> <br>This contains an <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java">application-command manager</a>.
+> <br>This contains an **ApplicationCommandManager**.
 >
-> Parameter: **event** - Indicates that a slash-command with auto-complete was used in a message channel
+> Parameter: **event** - Indicates that a slash-command with auto-complete was used in a **MessageChannel**.
 ```swift
 onCommandAutoComplete(@NotNull CommandAutoCompleteInteractionEvent)
 ```
@@ -372,15 +368,14 @@ Since: v1.0.0
 
 ### Getting IMessageContext:
 
-Of course you can't get an interface. <br>
-Because of this you need an [application-command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
+You need an [ApplicationCommandManager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
 
 ### Methods
 
 > A simple message context-menu interface, which you can use to easily program some message context-menus.
-> <br>This contains an <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java">application-command manager</a>.
+> <br>This contains an **ApplicationCommandManager**.
 >
-> Parameter: **event** - Indicates that a message context-command was used
+> Parameter: **event** - Indicates that a message context-command was used.
 ```swift
 onMessageContext(@NotNull MessageContextInteractionEvent)
 ```
@@ -403,15 +398,14 @@ Since: v1.0.0
 
 ### Getting IUserContext:
 
-Of course you can't get an interface. <br>
-Because of this you need an [application-command manager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
+You need an [ApplicationCommandManager](https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java) to use this interface.
 
 ### Methods
 
 > A simple user context-menu interface, which you can use to easily program some user context-menus.
-> <br>This contains an <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/ApplicationCommandManager.java">application-command manager</a>.
+> <br>This contains an **ApplicationCommandManager**.
 >
-> Parameter: **event** - Indicates that a message context-command was used
+> Parameter: **event** - Indicates that a message context-command was used.
 ```swift
 onUserContext(@NotNull UserContextInteractionEvent)
 ``` 
@@ -426,7 +420,7 @@ onUserContext(@NotNull UserContextInteractionEvent)
 
 ```yml
 Author: BlockyDotJar
-Version: v1.1.0
+Version: v1.1.1
 Since: v1.0.0
 ```
 
@@ -520,42 +514,42 @@ GuildTextChannel channel = GuildTextChannel.set(@NotNull TextChannel);
 
 ### Methods
 
-> Constructs a <b>new</b> guild text channel instance.
-> <br>If you don't initialize a text channel or a member, the guild text channel always will be <b>null</b>.
+> Constructs a <b>new GuildTextChannel</b> instance.
+> <br>If you don't initialize a **TextChannel** or a **Member**, the **GuildTextChannel** always will be <b>null</b>.
 >
 > Parameter:
-> <br>**channel** - The text channel, which should be initialized
-> <br>**member** - The member, which should be initialized
-> <br>Returns: A <b>new</b> guild text channel instance
+> <br>**channel** - The **TextChannel**, which should be initialized.
+> <br>**member** - The **Member**, which should be initialized.
+> <br>Returns: A <b>new GuildTextChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
 set(@NotNull TextChannel, @Nullable Member)
 ```
 <br>
 
-> Constructs a <b>new</b> guild text channel instance.
-> <br>If you don't initialize a text channel, the guild text channel always will be <b>null</b>.
+> Constructs a <b>new GuildTextChannel</b> instance.
+> <br>If you don't initialize a **TextChannel**, the **GuildTextChannel** always will be <b>null</b>.
 >
-> Parameter: **channel** - The text channel, which should be initialize
-> <br>Returns: A <b>new</b> guild text channel instance
+> Parameter: **channel** - The **TextChannel**, which should be initialize.
+> <br>Returns: A <b>new GuildTextChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
 set(@NotNull TextChannel)
 ```
 <br>
 
-> The author of the message received as member object.
+> The author of the **Message** received as **Member** object.
 >
-> Returns: The author of the message as null-able member object
+> Returns: The author of the **Message** as null-able **Member** object.
 > <br>Annotation: **Nullable**
 ```swift
 getMember()
 ```
 <br>
 
-> The text channel for this message.
+> The **TextChannel** for this **Message**.
 >
-> Returns: The text channel
+> Returns: The **TextChannel**.
 > <br>Annotation: **NotNull**
 ```swift
 getChannel()
@@ -563,33 +557,33 @@ getChannel()
 <br>
 
 > Convenience method to delete messages in the most efficient way available.
-> <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
+> <br>No checks will be done to prevent failures, use <code>CompletionStage#exceptionally(Function)</code> to handle failures.
 >
 > Parameter:
-> <br>**amount** - The amount of messages to delete
-> <br>**clear** - The safety clear option, which helps for specifying different message types, which will not be deleted
-> <br>Returns: A list of futures representing all deletion task
+> <br>**amount** - The amount of messages to delete.
+> <br>**clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
+> <br>Returns: A **List** of futures representing all deletion task.
 > <br>Annotation: **Nullable**
 ```swift
 purgeMessages(int, @Nullable SafetyClear)
 ```
 <br>
 
-> Convenience method to a complete text channel in the most efficient way available.
-> <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
+> Convenience method to a complete **TextChannel** in the most efficient way available.
+> <br>No checks will be done to prevent failures, use <code>CompletionStage#exceptionally(Function)</code> to handle failures.
 >
-> Parameter: **clear** - The safety clear option, which helps for specifying different message types, which will not be deleted
-> <br>Returns: A list of futures representing all deletion task
+> Parameter: **clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
+> <br>Returns: A **List** of futures representing all deletion task.
 > <br>Annotation: **Nullable**
 ```swift
 purgeChannel(@Nullable SafetyClear)
 ```
 <br>
 
-> Convenience method to a complete text channel in the most efficient way available.
-> <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
+> Convenience method to a complete **TextChannel** in the most efficient way available.
+> <br>No checks will be done to prevent failures, use <code>CompletionStage#exceptionally(Function)</code> to handle failures.
 >
-> Returns: A list of futures representing all deletion task
+> Returns: A **List** of futures representing all deletion task.
 > <br>Annotation: **Nullable**
 ```swift
 purgeChannel()
@@ -599,30 +593,30 @@ purgeChannel()
 > Checks if the content, you specified, is written in this channel.
 >
 > Parameter: 
-> <br>**content** - The message content, which should be checked 
-> <br>**checkAmount** - The amount of messages, which should be checked 
+> <br>**content** - The message content, which should be checked .
+> <br>**checkAmount** - The amount of messages, which should be checked.
 > <br>Returns: 
-> <br>**true** - If the content, you specified, is written in this channel
-> <br>**false** - If the content, you specified, is not written in this channel
+> <br>**true** - If the content, you specified, is written in this channel.
+> <br>**false** - If the content, you specified, is not written in this channel.
 ```swift
 containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from the user, which was specified with the `set(@NotNull TextChannel, @Nullable Member)` method,
+> Gets all the messages from the **User**, which was specified with the <code>set(@NotNull TextChannel, @Nullable Member)</code> method,
 > in this channel. (max. 1000 messages per channel)
 >
-> Returns: The written messages of the specified user in this channel
+> Returns: The written messages of the specified **User** in this channel.
 > <br>Annotation: **Nullable**
 ```swift
 getMessagesByUser()
 ```
 <br>
 
-> Gets all the messages from a specific user in this channel. (max. 1000 messages per channel)
+> Gets all the messages from a specific **User** in this channel. (max. 1000 messages per channel)
 >
-> Parameter: **user** - The member, from which the messages should be retrieved
-> <br>Returns: The written messages of the specified user in this channel
+> Parameter: **user** - The **User**, from which the messages should be retrieved
+> <br>Returns: The written messages of the specified **User** in this channel
 > <br>Annotation: **Nullable**
 ```swift
 getMessagesByUser(@NotNull User)
@@ -630,19 +624,20 @@ getMessagesByUser(@NotNull User)
 <br>
 
 > This works like a normal message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
-> <br>Another option you can use a specified time like minutes, hours or even days.
-> <br>(if the time unit equals <b>null</b>, there will be used a default time unit: <b>TimeUnit#SECONDS</b>)
+> <br>Another option is that you can use a specific **TimeUnit** like **TimeUnit#MINUTES**,
+> **TimeUnit#HOURS** or **TimeUnit#DAYS**.
+> <br>(if the <code>unit</code> parameter equals <b>null</b>, <code>SECONDS</code> will be used)
 >
 > Parameter:
-> <br>**message** - The message action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>**unit** - The time unit, which is used for specifying the type of time for the delay
-> <br>Returns: The specified message action
+> <br>**message** - The **MessageAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>**unit** - The **TimeUnit**, which is used for specifying the type of time for the delay.
+> <br>Returns: The specified **MessageAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nullable TimeUnit)
@@ -650,53 +645,54 @@ sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nul
 <br>
 
 > This works like a normal message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
 >
 > Parameter:
-> <br>**message** - The message action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>Returns: The specified message action
+> <br>**message** - The **MessageAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>Returns: The specified **MessageAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction)
 ```
 <br>
 
-> This works like a normal (message component) message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> This works like a normal (interaction) message sending, but with more given options and a delay between using this.
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
-> <br>Another option you can use a specified time like minutes, hours or even days.
-> <br>(if the time unit equals null, there will be used a default time unit: <b>TimeUnit#SECONDS</b>)
+> <br>Another option is that you can use a specific **TimeUnit** like **TimeUnit#MINUTES**,
+> **TimeUnit#HOURS** or **TimeUnit#DAYS**.
+> <br>(if the <code>unit</code> parameter equals <b>null</b>, <code>SECONDS</code> will be used)
 >
 > Parameter:
-> <br>**message** - The reply callback action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>**unit** - The time unit, which is used for specifying the type of time for the delay
-> <br>Returns: The specified message action
+> <br>**message** - The **ReplyCallbackAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>**unit** - The **TimeUnit**, which is used for specifying the type of time for the delay.
+> <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction, @Nullable TimeUnit)
 ```
 <br>
 
-> This works like a normal (message component) message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long delay in seconds <b>must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> This works like a normal (interaction) message sending, but with more given options and a delay between using this.
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
 >
 > Parameter:
-> <br>**message** - The reply callback action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>Returns: The specified message action
+> <br>**message** - The **ReplyCallbackAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction)
@@ -736,42 +732,42 @@ GuildMessageChannel channel = GuildMessageChannel.set(@NotNull MessageChannel);
 
 ### Methods
 
-> Constructs a <b>new</b> guild message channel instance.
-> <br>If you don't initialize a message channel or a member, the guild message channel always will be <b>null</b>.
+> Constructs a <b>new GuildMessageChannel</b> instance.
+> <br>If you don't initialize a **MessageChannel** or a **Member**, the **GuildMessageChannel** always will be <b>null</b>.
 >
 > Parameter:
-> <br>**channel** - The message channel, which should be initialized
-> <br>**member** - The member, which should be initialized
-> <br>Returns: A <b>new</b> guild message channel instance
+> <br>**channel** - The **MessageChannel**, which should be initialized.
+> <br>**member** - The **Member**, which should be initialized.
+> <br>Returns: A <b>new GuildMessageChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
 set(@NotNull MessageChannel, @Nullable Member)
 ```
 <br>
 
-> Constructs a <b>new</b> guild message channel instance.
-> <br>If you don't initialize a message channel, guild message channel always will be <b>null</b>.
+> Constructs a <b>new GuildMessageChannel</b> instance.
+> <br>If you don't initialize a **MessageChannel**, **Member** always will be <b>null</b>.
 >
-> Parameter: **channel** - The message channel, which should be initialized
-> <br>Returns: A <b>new</b> guild message channel instance
+> Parameter: **channel** - The **MessageChannel**, which should be initialized.
+> <br>Returns: A <b>new GuildMessageChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
 set(@NotNull MessageChannel)
 ```
 <br>
 
-> The author of the message received as member object.
+> The author of the **Message** received as **Member** object.
 >
-> Returns: The author of the message as null-able member object
+> Returns: The author of the **Message** as null-able **Member** object.
 > <br>Annotation: **Nullable**
 ```swift
 getMember()
 ```
 <br>
 
-> The message channel for this message.
+> The **MessageChannel** for this **Message**.
 >
-> Returns: The message channel
+> Returns: The **MessageChannel**.
 > <br>Annotation: **NotNull**
 ```swift
 getChannel()
@@ -779,33 +775,33 @@ getChannel()
 <br>
 
 > Convenience method to delete messages in the most efficient way available.
-> <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
+> <br>No checks will be done to prevent failures, use <code>CompletionStage#exceptionally(Function)</code> to handle failures.
 >
 > Parameter:
-> <br>**amount** - The amount of messages to delete
-> <br>**clear** - The safety clear option, which helps for specifying different message types, which will not be deleted
-> <br>Returns: A list of futures representing all deletion task
+> <br>**amount** - The amount of messages to delete.
+> <br>**clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
+> <br>Returns: A **List** of futures representing all deletion task.
 > <br>Annotation: **Nullable**
 ```swift
 purgeMessages(int, @Nullable SafetyClear)
 ```
 <br>
 
-> Convenience method to a complete message channel in the most efficient way available.
-> <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
+> Convenience method to a complete **MessageChannel** in the most efficient way available.
+> <br>No checks will be done to prevent failures, use <code>CompletionStage#exceptionally(Function)</code> to handle failures.
 >
-> Parameter: **clear** - The safety clear option, which helps for specifying different message types, which will not be deleted
-> <br>Returns: A list of futures representing all deletion task
+> Parameter: **clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
+> <br>Returns: A **List** of futures representing all deletion task.
 > <br>Annotation: **Nullable**
 ```swift
 purgeChannel(@Nullable SafetyClear)
 ```
 <br>
 
-> Convenience method to a complete message channel in the most efficient way available.
-> <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
+> Convenience method to a complete **MessageChannel** in the most efficient way available.
+> <br>No checks will be done to prevent failures, use <code>CompletionStage#exceptionally(Function)</code> to handle failures.
 >
-> Returns: A list of futures representing all deletion task
+> Returns: A **List** of futures representing all deletion task.
 > <br>Annotation: **Nullable**
 ```swift
 purgeChannel()
@@ -815,30 +811,30 @@ purgeChannel()
 > Checks if the content, you specified, is written in this channel.
 >
 > Parameter:
-> <br>**content** - The message content, which should be checked
-> <br>**checkAmount** - The amount of messages, which should be checked
+> <br>**content** - The message content, which should be checked.
+> <br>**checkAmount** - The amount of messages, which should be checked.
 > <br>Returns:
-> <br>**true** - If the content, you specified, is written in this channel
-> <br>**false** - If the content, you specified, is not written in this channel
+> <br>**true** - If the content, you specified, is written in this channel.
+> <br>**false** - If the content, you specified, is not written in this channel.
 ```swift
 containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from the user, which was specified with the `set(@NotNull MessageChannel, @Nullable Member)` method,
+> Gets all the messages from the **User**, which was specified with the <code>set(@NotNull MessageChannel, @Nullable Member)</code> method,
 > in this channel. (max. 1000 messages per channel)
 >
-> Returns: The written messages of the specified user in this channel
+> Returns: The written messages of the specified **User** in this channel
 > <br>Annotation: **Nullable**
 ```swift
 getMessagesByUser()
 ```
 <br>
 
-> Gets all the messages from a specific user in this channel. (max. 1000 messages per channel)
+> Gets all the messages from a specific **User** in this channel. (max. 1000 messages per channel)
 >
-> Parameter: **user** - The member, from which the messages should be retrieved
-> <br>Returns: The written messages of the specified user in this channel
+> Parameter: **user** - The **User**, from which the messages should be retrieved.
+> <br>Returns: The written messages of the specified **User** in this channel.
 > <br>Annotation: **Nullable**
 ```swift
 getMessagesByUser(@NotNull User)
@@ -846,19 +842,20 @@ getMessagesByUser(@NotNull User)
 <br>
 
 > This works like a normal message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
-> <br>Another option you can use a specified time like minutes, hours or even days.
-> <br>(if the time unit equals <b>null</b>, there will be used a default time unit: <b>TimeUnit#SECONDS</b>)
+> <br>Another option is that you can use a specific **TimeUnit** like **TimeUnit#MINUTES**,
+> **TimeUnit#HOURS** or **TimeUnit#DAYS**.
+> <br>(if the <code>unit</code> parameter equals <b>null</b>, <code>SECONDS</code> will be used)
 >
 > Parameter:
-> <br>**message** - The message action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>**unit** - The time unit, which is used for specifying the type of time for the delay
-> <br>Returns: The specified message action
+> <br>**message** - The **MessageAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>**unit** - The **TimeUnit**, which is used for specifying the type of time for the delay.
+> <br>Returns: The specified **MessageAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nullable TimeUnit)
@@ -866,53 +863,54 @@ sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nul
 <br>
 
 > This works like a normal message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
 >
 > Parameter:
-> <br>**message** - The message action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>Returns: The specified message action
+> <br>**message** - The **MessageAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>Returns: The specified **MessageAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction)
 ```
 <br>
 
-> This works like a normal (message component) message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> This works like a normal (interaction) message sending, but with more given options and a delay between using this.
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
-> <br>Another option you can use a specified time like minutes, hours or even days.
-> <br>(if the time unit equals null, there will be used a default time unit: <b>TimeUnit#SECONDS</b>)
+> <br>Another option is that you can use a specific **TimeUnit** like **TimeUnit#MINUTES**,
+> **TimeUnit#HOURS** or **TimeUnit#DAYS**.
+> <br>(if the <code>unit</code> parameter equals <b>null</b>, <code>SECONDS</code> will be used)
 >
 > Parameter:
-> <br>**message** - The reply callback action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>**unit** - The time unit, which is used for specifying the type of time for the delay
-> <br>Returns: The specified message action
+> <br>**message** - The **ReplyCallbackAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>**unit** - The **TimeUnit**, which is used for specifying the type of time for the delay.
+> <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction, @Nullable TimeUnit)
 ```
 <br>
 
-> This works like a normal (message component) message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long delay in seconds <b>must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> This works like a normal (interaction) message sending, but with more given options and a delay between using this.
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
 >
 > Parameter:
-> <br>**message** - The reply callback action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>Returns: The specified message action
+> <br>**message** - The **ReplyCallbackAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction)
@@ -936,7 +934,7 @@ Version: v1.1.4
 Since: v1.1.1
 ```
 
-**Description:** Represents standard guild message channel that are news channels. The Discord client may refer to these as announcement channels. Members can subscribe channels in their own guilds to receive messages cross-posted from this channel. This is referred to as following this channel. Messages sent in this channel can be cross-posted, at which point they will be sent (via webhook) to all subscribed channels.
+**Description:** Represents standard GuildMessageChannel that are **NewsChannel**. The Discord client may refer to these as announcement channels. Members can subscribe channels in their own guilds to receive messages cross-posted from this channel. This is referred to as following this channel. Messages sent in this channel can be cross-posted, at which point they will be sent (via webhook) to all subscribed channels.
 
 ### Getting GuildNewsChannel:
 
@@ -952,42 +950,42 @@ GuildNewsChannel channel = GuildNewsChannel.set(@NotNull NewsChannel);
 
 ### Methods
 
-> Constructs a <b>new</b> guild news channel instance.
-> <br>If you don't initialize a news channel or a member, the guild news channel always will be <b>null</b>.
+> Constructs a <b>new GuildNewsChannel</b> instance.
+> <br>If you don't initialize a **NewsChannel** or a **Member**, the **GuildNewsChannel** always will be <b>null</b>.
 >
 > Parameter:
-> <br>**channel** - The news channel, which should be initialized
-> <br>**member** - The member, which should be initialized
-> <br>Returns: A <b>new</b> guild news channel instance
+> <br>**channel** - The **NewsChannel**, which should be initialized.
+> <br>**member** - The **Member**,, which should be initialized.
+> <br>Returns: A <b>new GuildNewsChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
 set(@NotNull NewsChannel, @Nullable Member)
 ```
 <br>
 
-> Constructs a <b>new</b> guild news channel instance.
-> <br>If you don't initialize a news channel, guild news channel always will be <b>null</b>.
+> Constructs a <b>new GuildNewsChannel</b> instance.
+> <br>If you don't initialize a **NewsChannel**, **GuildNewsChannel** always will be <b>null</b>.
 >
-> Parameter: **channel** - The news channel, which should be initialized 
-> <br>Returns: A <b>new</b> guild news channel instance
+> Parameter: **channel** - The **NewsChannel**, which should be initialized .
+> <br>Returns: A <b>new GuildNewsChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
 set(@NotNull NewsChannel)
 ```
 <br>
 
-> The author of the message received as member object.
+> The author of the **Message** received as **Member** object.
 >
-> Returns: The author of the message as null-able member object
+> Returns: The author of the **Message** as null-able **Member** object.
 > <br>Annotation: **Nullable**
 ```swift
 getMember()
 ```
 <br>
 
-> The news channel for this message.
+> The **NewsChannel** for this **Message**.
 >
-> Returns: The news channel
+> Returns: The **NewsChannel**.
 > <br>Annotation: **NotNull**
 ```swift
 getChannel()
@@ -995,33 +993,33 @@ getChannel()
 <br>
 
 > Convenience method to delete messages in the most efficient way available.
-> <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
+> <br>No checks will be done to prevent failures, use <code>CompletionStage#exceptionally(Function)</code> to handle failures.
 >
 > Parameter: <br>
-> <br>**amount** - The amount of messages to delete
-> <br>**clear** - The safety clear option, which helps for specifying different message types, which will not be deleted
-> <br>Returns: A list of futures representing all deletion task
+> <br>**amount** - The amount of messages to delete.
+> <br>**clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
+> <br>Returns: A **List** of futures representing all deletion task.
 > <br>Annotation: **Nullable**
 ```swift
 purgeMessages(int, @Nullable SafetyClear)
 ```
 <br>
 
-> Convenience method to a complete news channel in the most efficient way available.
-> <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
+> Convenience method to a complete **NewsChannel** in the most efficient way available.
+> <br>No checks will be done to prevent failures, use <code>CompletionStage#exceptionally(Function)</code> to handle failures.
 >
-> Parameter: **clear** - The safety clear option, which helps for specifying different message types, which will not be deleted
-> <br>Returns: A list of futures representing all deletion task
+> Parameter: **clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
+> <br>Returns: A **List** of futures representing all deletion task.
 > <br>Annotation: **Nullable**
 ```swift
 purgeChannel(@Nullable SafetyClear)
 ```
 <br>
 
-> Convenience method to a complete news channel in the most efficient way available.
-> <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
+> Convenience method to a complete **NewsChannel** in the most efficient way available.
+> <br>No checks will be done to prevent failures, use <code>CompletionStage#exceptionally(Function)</code> to handle failures.
 >
-> Returns: A list of futures representing all deletion task
+> Returns: A **List** of futures representing all deletion task.
 > <br>Annotation: **Nullable**
 ```swift
 purgeChannel()
@@ -1031,30 +1029,30 @@ purgeChannel()
 > Checks if the content, you specified, is written in this channel.
 >
 > Parameter:
-> <br>**content** - The message content, which should be checked
-> <br>**checkAmount** - The amount of messages, which should be checked
+> <br>**content** - The message content, which should be checked.
+> <br>**checkAmount** - The amount of messages, which should be checked.
 > <br>Returns:
-> <br>**true** - If the content, you specified, is written in this channel
-> <br>**false** - If the content, you specified, is not written in this channel
+> <br>**true** - If the content, you specified, is written in this channel.
+> <br>**false** - If the content, you specified, is not written in this channel.
 ```swift
 containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from the user, which was specified with the `set(@NotNull NewsChannel, @Nullable Member)` method,
+> Gets all the messages from the **User**, which was specified with the <code>set(@NotNull NewsChannel, @Nullable Member)</code> method,
 > in this channel. (max. 1000 messages per channel)
 >
-> Returns: The written messages of the specified user in this channel
+> Returns: The written messages of the specified **User** in this channel.
 > <br>Annotation: **Nullable**
 ```swift
 getMessagesByUser()
 ```
 <br>
 
-> Gets all the messages from a specific user in this channel. (max. 1000 messages per channel)
+> Gets all the messages from a specific **User** in this channel. (max. 1000 messages per channel)
 >
-> Parameter: **user** - The member, from which the messages should be retrieved
-> <br>Returns: The written messages of the specified user in this channel
+> Parameter: **user** - The **User**, from which the messages should be retrieved.
+> <br>Returns: The written messages of the specified **User** in this channel.
 > <br>Annotation: **Nullable**
 ```swift
 getMessagesByUser(@NotNull User)
@@ -1062,19 +1060,20 @@ getMessagesByUser(@NotNull User)
 <br>
 
 > This works like a normal message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
-> <br>Another option you can use a specified time like minutes, hours or even days.
-> <br>(if the time unit equals <b>null</b>, there will be used a default time unit: <b>TimeUnit#SECONDS</b>)
+> <br>Another option is that you can use a specific **TimeUnit** like **TimeUnit#MINUTES**,
+> **TimeUnit#HOURS** or **TimeUnit#DAYS**.
+> <br>(if the <code>unit</code> parameter equals <b>null</b>, <code>SECONDS</code> will be used)
 >
 > Parameter:
-> <br>**message** - The message action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>**unit** - The time unit, which is used for specifying the type of time for the delay
-> <br>Returns: The specified message action
+> <br>**message** - The **MessageAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>**unit** - The **TimeUnit**, which is used for specifying the type of time for the delay.
+> <br>Returns: The specified **MessageAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nullable TimeUnit)
@@ -1082,53 +1081,54 @@ sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nul
 <br>
 
 > This works like a normal message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
 >
 > Parameter:
-> <br>**message** - The message action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>Returns: The specified message action
+> <br>**message** - The **MessageAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>Returns: The specified **MessageAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction)
 ```
 <br>
 
-> This works like a normal (message component) message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> This works like a normal (interaction) message sending, but with more given options and a delay between using this.
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
-> <br>Another option you can use a specified time like minutes, hours or even days.
-> <br>(if the time unit equals null, there will be used a default time unit: <b>TimeUnit#SECONDS</b>)
+> <br>Another option is that you can use a specific **TimeUnit** like **TimeUnit#MINUTES**,
+> **TimeUnit#HOURS** or **TimeUnit#DAYS**.
+> <br>(if the <code>unit</code> parameter equals <b>null</b>, <code>SECONDS</code> will be used)
 >
 > Parameter:
-> <br>**message** - The reply callback action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>**unit** - The time unit, which is used for specifying the type of time for the delay
-> <br>Returns: The specified message action
+> <br>**message** - The **ReplyCallbackAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>**unit** - The **TimeUnit**, which is used for specifying the type of time for the delay.
+> <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction, @Nullable TimeUnit)
 ```
 <br>
 
-> This works like a normal (message component) message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long delay in seconds <b>must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> This works like a normal (interaction) message sending, but with more given options and a delay between using this.
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
 >
 > Parameter:
-> <br>**message** - The reply callback action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>Returns: The specified message action
+> <br>**message** - The **ReplyCallbackAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction)
@@ -1137,28 +1137,32 @@ replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbac
 
 > Attempts to cross post the provided message automatically.
 >
-> The following error responses are possible:
+> The following **ErrorResponses** are possible:
 > <ul>
 > <li>
-> <b>ALREADY_CROSSPOSTED</b> - The target message has already been cross-posted.
+> <b>ErrorResponse#ALREADY_CROSSPOSTED</b> - The target message has already been cross-posted.
 > </li>
+> 
 > <li>
-> <b>MISSING_ACCESS</b> - The request was attempted after the account lost access to the guild typically due to being kicked
-> or removed, or after <b>Permission#VIEW_CHANNEL</b> was revoked in the message channel. 
+> <b>ErrorResponse#MISSING_ACCESS</b> - The request was attempted after the account lost access to the guild typically due to being kicked
+> or removed, or after <b>Permission#VIEW_CHANNEL</b> was revoked in the MessageChannel. 
 > </li>
+> 
 > <li>
-> <b>MISSING_PERMISSIONS</b> - The request was attempted after the account lost <b>Permission#MESSAGE_MANAGE</b> in the message channel. 
+> <b>ErrorResponse#MISSING_PERMISSIONS</b> - The request was attempted after the account lost <b>Permission#MESSAGE_MANAGE</b> in the MessageChannel. 
 > </li>
+> 
 > <li>
-> <b>UNKNOWN_MESSAGE</b> - The provided messageId is unknown in this message channel, either due to the id being invalid, or
+> <b>ErrorResponse#UNKNOWN_MESSAGE</b> - The provided messageId is unknown in this MessageChannel, either due to the id being invalid, or
 > the message it referred to has already been deleted. 
 > </li>
+> 
 > <li>
-> <b>UNKNOWN_CHANNEL</b> - The request was attempted after the channel was deleted. 
+> <b>ErrorResponse#UNKNOWN_CHANNEL</b> - The request was attempted after the channel was deleted. 
 > </li>
 > </ul>
 >
-> Returns: A rest-action - Type: message
+> Returns: **RestAction** - Type: **Message**
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 autoPublish()
@@ -1182,7 +1186,7 @@ Version: v1.1.4
 Since: v1.1.1
 ```
 
-**Description:** Represents private/public/news Discord thread channel.
+**Description:** Represents private/public/news Discord **ThreadChannel**.
 
 ### Getting GuildThreadChannel:
 
@@ -1198,42 +1202,42 @@ GuildThreadChannel channel = GuildThreadChannel.set(@NotNull ThreadChannel);
 
 ### Methods
 
-> Constructs a <b>new</b> guild thread channel instance.
-> <br>If you don't initialize a thread channel or a member, the guild thread channel always will be <b>null</b>.
+> Constructs a <b>new GuildThreadChannel</b> instance.
+> <br>If you don't initialize a **ThreadChannel** or a **Member**, the **GuildThreadChannel** always will be <b>null</b>.
 >
 > Parameter:
-> <br>**channel** - The thread channel, which should be initialized
-> <br>**member** - The member, which should be initialized
-> <br>Returns: A <b>new</b> guild thread channel instance
+> <br>**channel** - The **ThreadChannel**, which should be initialized.
+> <br>**member** - The **Member**, which should be initialized.
+> <br>Returns: A <b>new GuildThreadChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
 set(@NotNull ThreadChannel, @Nullable Member)
 ```
 <br>
 
-> Constructs a <b>new</b> guild thread channel instance.
-> <br>If you don't initialize a thread channel, guild thread channel always will be <b>null</b>.
+> Constructs a <b>new GuildThreadChannel</b> instance.
+> <br>If you don't initialize a **ThreadChannel**, **GuildThreadChannel** always will be <b>null</b>.
 >
-> Parameter: **channel** - The thread channel, which should be initialized
-> <br>Returns: A <b>new</b> guild thread channel instance
+> Parameter: **channel** - The **ThreadChannel**, which should be initialized.
+> <br>Returns: A <b>new GuildThreadChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
 set(@NotNull ThreadChannel)
 ```
 <br>
 
-> The author of the message received as member object.
+> The author of the **Message** received as **Member** object.
 >
-> Returns: The author of the message as null-able member object
+> Returns: The author of the **Message** as null-able **Member** object.
 > <br>Annotation: **Nullable**
 ```swift
 getMember()
 ```
 <br>
 
-> The thread channel for this message.
+> The **ThreadChannel** for this **Member**.
 >
-> Returns: The thread channel
+> Returns: The **ThreadChannel**.
 > <br>Annotation: **NotNull**
 ```swift
 getChannel()
@@ -1241,33 +1245,33 @@ getChannel()
 <br>
 
 > Convenience method to delete messages in the most efficient way available.
-> <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
+> <br>No checks will be done to prevent failures, use <code>CompletionStage#exceptionally(Function)</code> to handle failures.
 >
 > Parameter:
 > <br>**amount** - The amount of messages to delete
-> <br>**clear** - The safety clear option, which helps for specifying different message types, which will not be deleted
-> <br>Returns: A list of futures representing all deletion task
+> <br>**clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
+> <br>Returns: A **List** of futures representing all deletion task.
 > <br>Annotation: **Nullable**
 ```swift
 purgeMessages(int, @Nullable SafetyClear)
 ```
 <br>
 
-> Convenience method to a complete thread channel in the most efficient way available.
-> <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
+> Convenience method to a complete **ThreadChannel** in the most efficient way available.
+> <br>No checks will be done to prevent failures, use <code>CompletionStage#exceptionally(Function)</code> to handle failures.
 >
-> Parameter: **clear** - The safety clear option, which helps for specifying different message types, which will not be deleted
-> <br>Returns: A list of futures representing all deletion task
+> Parameter: **clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
+> <br>Returns: A **List** of futures representing all deletion task.
 > <br>Annotation: **Nullable**
 ```swift
 purgeChannel(@Nullable SafetyClear)
 ```
 <br>
 
-> Convenience method to a complete thread channel in the most efficient way available.
-> <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
+> Convenience method to a complete **ThreadChannel** in the most efficient way available.
+> <br>No checks will be done to prevent failures, use <code>CompletionStage#exceptionally(Function)</code> to handle failures.
 >
-> Returns: A list of futures representing all deletion task
+> Returns: A **List** of futures representing all deletion task.
 > <br>Annotation: **Nullable**
 ```swift
 purgeChannel()
@@ -1277,30 +1281,30 @@ purgeChannel()
 > Checks if the content, you specified, is written in this channel.
 >
 > Parameter:
-> <br>**content** - The message content, which should be checked
-> <br>**checkAmount** - The amount of messages, which should be checked
+> <br>**content** - The message content, which should be checked.
+> <br>**checkAmount** - The amount of messages, which should be checked.
 > <br>Returns:
-> <br>**true** - If the content, you specified, is written in this channel
-> <br>**false** - If the content, you specified, is not written in this channel
+> <br>**true** - If the content, you specified, is written in this channel.
+> <br>**false** - If the content, you specified, is not written in this channel.
 ```swift
 containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from the user, which was specified with the `set(@NotNull ThreadChannel, @Nullable Member)` method,
+> Gets all the messages from the **User**, which was specified with the <code>set(@NotNull ThreadChannel, @Nullable Member)</code> method,
 > in this channel. (max. 1000 messages per channel)
 >
-> Returns: The written messages of the specified user in this channel
+> Returns: The written messages of the specified **User** in this channel.
 > <br>Annotation: **Nullable**
 ```swift
 getMessagesByUser()
 ```
 <br>
 
-> Gets all the messages from a specific user in this channel. (max. 1000 messages per channel)
+> Gets all the messages from a specific **User** in this channel. (max. 1000 messages per channel)
 >
-> Parameter: **user** - The member, from which the messages should be retrieved
-> <br>Returns: The written messages of the specified user in this channel
+> Parameter: **user** - The **User**, from which the messages should be retrieved.
+> <br>Returns: The written messages of the specified **User** in this channel.
 > <br>Annotation: **Nullable**
 ```swift
 getMessagesByUser(@NotNull User)
@@ -1308,19 +1312,20 @@ getMessagesByUser(@NotNull User)
 <br>
 
 > This works like a normal message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
-> <br>Another option you can use a specified time like minutes, hours or even days.
-> <br>(if the time unit equals <b>null</b>, there will be used a default time unit: <b>TimeUnit#SECONDS</b>)
+> <br>Another option is that you can use a specific **TimeUnit** like **TimeUnit#MINUTES**,
+> **TimeUnit#HOURS** or **TimeUnit#DAYS**.
+> <br>(if the <code>unit</code> parameter equals <b>null</b>, <code>SECONDS</code> will be used)
 >
 > Parameter:
-> <br>**message** - The message action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>**unit** - The time unit, which is used for specifying the type of time for the delay
-> <br>Returns: The specified message action
+> <br>**message** - The **MessageAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>**unit** - The **TimeUnit**, which is used for specifying the type of time for the delay.
+> <br>Returns: The specified **MessageAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nullable TimeUnit)
@@ -1328,53 +1333,54 @@ sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nul
 <br>
 
 > This works like a normal message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
 >
 > Parameter:
-> <br>**message** - The message action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>Returns: The specified message action
+> <br>**message** - The **MessageAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>Returns: The specified **MessageAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction)
 ```
 <br>
 
-> This works like a normal (message component) message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> This works like a normal (interaction) message sending, but with more given options and a delay between using this.
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
-> <br>Another option you can use a specified time like minutes, hours or even days.
-> <br>(if the time unit equals null, there will be used a default time unit: <b>TimeUnit#SECONDS</b>)
+> <br>Another option is that you can use a specific **TimeUnit** like **TimeUnit#MINUTES**,
+> **TimeUnit#HOURS** or **TimeUnit#DAYS**.
+> <br>(if the <code>unit</code> parameter equals <b>null</b>, <code>SECONDS</code> will be used)
 >
 > Parameter:
-> <br>**message** - The reply callback action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>**unit** - The time unit, which is used for specifying the type of time for the delay
-> <br>Returns: The specified message action
+> <br>**message** - The **ReplyCallbackAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>**unit** - The **TimeUnit**, which is used for specifying the type of time for the delay.
+> <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction, @Nullable TimeUnit)
 ```
 <br>
 
-> This works like a normal (message component) message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long delay in seconds <b>must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> This works like a normal (interaction) message sending, but with more given options and a delay between using this.
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
 >
 > Parameter:
-> <br>**message** - The reply callback action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>Returns: The specified message action
+> <br>**message** - The **ReplyCallbackAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction)
@@ -1398,7 +1404,7 @@ Version: v1.0.1
 Since: v1.1.5
 ```
 
-**Description:** Represents a Discord voice guild channel. Adds additional information specific to voice channels in Discord.
+**Description:** Represents a Discord voice guild channel. Adds additional information specific to **VoiceChannels** in Discord.
 
 ### Getting GuildVoiceChannel:
 
@@ -1414,42 +1420,42 @@ GuildVoiceChannel channel = GuildVoiceChannel.set(@NotNull VoiceChannel);
 
 ### Methods
 
-> Constructs a <b>new</b> guild voice channel instance.
-> <br>If you don't initialize a voice channel or a member, the guild voice channel always will be <b>null</b>.
+> Constructs a <b>new GuildVoiceChannel</b> instance.
+> <br>If you don't initialize a **VoiceChannel** or a **Member**, the **GuildVoiceChannel** always will be <b>null</b>.
 >
 > Parameter:
-> <br>**channel** - The voice channel, which should be initialized
-> <br>**member** - The member, which should be initialized
-> <br>Returns: A <b>new</b> guild voice channel instance
+> <br>**channel** - The **VoiceChannel**, which should be initialized.
+> <br>**member** - The **Member**, which should be initialized.
+> <br>Returns: A <b>new GuildVoiceChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
 set(@NotNull VoiceChannel, @Nullable Member)
 ```
 <br>
 
-> Constructs a <b>new</b> guild voice channel instance.
-> <br>If you don't initialize a voice channel, guild voice channel always will be <b>null</b>.
+> Constructs a <b>new GuildVoiceChannel</b> instance.
+> <br>If you don't initialize a **VoiceChannel**, **GuildVoiceChannel** always will be <b>null</b>.
 >
-> Parameter: **channel** - The voice channel, which should be initialized <br>
-> <br>Returns: A <b>new</b> guild voice channel instance <br>
+> Parameter: **channel** - The **VoiceChannel**, which should be initialized.
+> <br>Returns: A <b>new GuildVoiceChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
 set(@NotNull VoiceChannel)
 ```
 <br>
 
-> The author of the message received as member object.
+> The author of the **Message** received as **Member** object.
 >
-> Returns: The author of the message as null-able member object
+> Returns: The author of the **Message** as null-able **Member** object.
 > <br>Annotation: **Nullable**
 ```swift
 getMember()
 ```
 <br>
 
-> The voice channel for this message.
+> The **VoiceChannel** for this **Message**.
 >
-> Returns: The voice channel
+> Returns: The **VoiceChannel**.
 > Annotation: **NotNull**
 ```swift
 getChannel()
@@ -1457,33 +1463,33 @@ getChannel()
 <br>
 
 > Convenience method to delete messages in the most efficient way available.
-> <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
+> <br>No checks will be done to prevent failures, use <code>CompletionStage#exceptionally(Function)</code> to handle failures.
 >
 > Parameter:
-> <br>**amount** - The amount of messages to delete
-> <br>**clear** - The safety clear option, which helps for specifying different message types, which will not be deleted
-> <br>Returns: A list of futures representing all deletion task
+> <br>**amount** - The amount of messages to delete.
+> <br>**clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
+> <br>Returns: A **List** of futures representing all deletion task.
 > <br>Annotation: **Nullable**
 ```swift
 purgeMessages(int, @Nullable SafetyClear)
 ```
 <br>
 
-> Convenience method to a complete voice channel in the most efficient way available.
-> <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
+> Convenience method to a complete **VoiceChannel** in the most efficient way available.
+> <br>No checks will be done to prevent failures, use <code>CompletionStage#exceptionally(Function)</code> to handle failures.
 >
-> Parameter: **clear** - The safety clear option, which helps for specifying different message types, which will not be deleted
-> <br>Returns: A list of futures representing all deletion task
+> Parameter: **clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
+> <br>Returns: A **List** of futures representing all deletion task.
 > <br>Annotation: **Nullable**
 ```swift
 purgeChannel(@Nullable SafetyClear)
 ```
 <br>
 
-> Convenience method to a complete voice channel in the most efficient way available.
-> <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
+> Convenience method to a complete **VoiceChannel** in the most efficient way available.
+> <br>No checks will be done to prevent failures, use <code>CompletionStage#exceptionally(Function)</code> to handle failures.
 >
-> Returns: A list of futures representing all deletion task
+> Returns: A **List** of futures representing all deletion task.
 > <br>Annotation: **Nullable**
 ```swift
 purgeChannel()
@@ -1493,30 +1499,30 @@ purgeChannel()
 > Checks if the content, you specified, is written in this channel.
 >
 > Parameter:
-> <br>**content** - The message content, which should be checked
-> <br>**checkAmount** - The amount of messages, which should be checked
+> <br>**content** - The message content, which should be checked.
+> <br>**checkAmount** - The amount of messages, which should be checked.
 > <br>Returns:
-> <br>**true** - If the content, you specified, is written in this channel
-> <br>**false** - If the content, you specified, is not written in this channel
+> <br>**true** - If the content, you specified, is written in this channel.
+> <br>**false** - If the content, you specified, is not written in this channel.
 ```swift
 containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from the user, which was specified with the `set(@NotNull VoiceChannel, @Nullable Member)` method,
+> Gets all the messages from the **User**, which was specified with the <code>set(@NotNull VoiceChannel, @Nullable Member)</code> method,
 > in this channel. (max. 1000 messages per channel)
 >
-> Returns: The written messages of the specified user in this channel
+> Returns: The written messages of the specified **User** in this channel.
 > <br>Annotation: **Nullable**
 ```swift
 getMessagesByUser()
 ```
 <br>
 
-> Gets all the messages from a specific user in this channel. (max. 1000 messages per channel)
+> Gets all the messages from a specific **User** in this channel. (max. 1000 messages per channel)
 >
-> Parameter: **user** - The member, from which the messages should be retrieved
-> <br>Returns: The written messages of the specified user in this channel
+> Parameter: **user** - The **User**, from which the messages should be retrieved.
+> <br>Returns: The written messages of the specified **User** in this channel.
 > <br>Annotation: **Nullable**
 ```swift
 getMessagesByUser(@NotNull User)
@@ -1524,19 +1530,20 @@ getMessagesByUser(@NotNull User)
 <br>
 
 > This works like a normal message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
-> <br>Another option you can use a specified time like minutes, hours or even days.
-> <br>(if the time unit equals <b>null</b>, there will be used a default time unit: <b>TimeUnit#SECONDS</b>)
+> <br>Another option is that you can use a specific **TimeUnit** like **TimeUnit#MINUTES**,
+> **TimeUnit#HOURS** or **TimeUnit#DAYS**.
+> <br>(if the <code>unit</code> parameter equals <b>null</b>, <code>SECONDS</code> will be used)
 >
 > Parameter:
-> <br>**message** - The message action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>**unit** - The time unit, which is used for specifying the type of time for the delay
-> <br>Returns: The specified message action
+> <br>**message** - The **MessageAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>**unit** - The **TimeUnit**, which is used for specifying the type of time for the delay.
+> <br>Returns: The specified **MessageAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nullable TimeUnit)
@@ -1544,53 +1551,54 @@ sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nul
 <br>
 
 > This works like a normal message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
 >
 > Parameter:
-> <br>**message** - The message action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>Returns: The specified message action
+> <br>**message** - The **MessageAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>Returns: The specified **MessageAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction)
 ```
 <br>
 
-> This works like a normal (message component) message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> This works like a normal (interaction) message sending, but with more given options and a delay between using this.
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
-> <br>Another option you can use a specified time like minutes, hours or even days.
-> <br>(if the time unit equals null, there will be used a default time unit: <b>TimeUnit#SECONDS</b>)
+> <br>Another option is that you can use a specific **TimeUnit** like **TimeUnit#MINUTES**,
+> **TimeUnit#HOURS** or **TimeUnit#DAYS**.
+> <br>(if the <code>unit</code> parameter equals <b>null</b>, <code>SECONDS</code> will be used)
 >
 > Parameter:
-> <br>**message** - The reply callback action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>**unit** - The time unit, which is used for specifying the type of time for the delay
-> <br>Returns: The specified message action
+> <br>**message** - The **ReplyCallbackAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>**unit** - The **TimeUnit**, which is used for specifying the type of time for the delay.
+> <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction, @Nullable TimeUnit)
 ```
 <br>
 
-> This works like a normal (message component) message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long delay in seconds <b>must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> This works like a normal (interaction) message sending, but with more given options and a delay between using this.
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
 >
 > Parameter:
-> <br>**message** - The reply callback action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>Returns: The specified message action
+> <br>**message** - The **ReplyCallbackAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction)
@@ -1630,42 +1638,42 @@ DirectMessageChannel channel = DirectMessageChannel.set(@NotNull PrivateChannel)
 
 ### Methods
 
-> Constructs a <b>new</b> direct-message channel instance.
-> <br>If you don't initialize a private channel or a member, the direct-message channel always will be <b>null</b>.
+> Constructs a <b>new DirectMessageChannel</b> instance.
+> <br>If you don't initialize a **PrivateChannel** or a **Member**, the **DirectMessageChannel** always will be <b>null</b>.
 >
 > Parameter:
-> <br>**channel** - The private channel, which should be initialized
-> <br>**member** - The member, which should be initialized
-> <br>Returns: A <b>new</b> direct-message channel instance
+> <br>**channel** - The **PrivateChannel**, which should be initialized.
+> <br>**member** - The **Member**, which should be initialized.
+> <br>Returns: A <b>new DirectMessageChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
 set(@NotNull PrivateChannel, @Nullable Member)
 ```
 <br>
 
-> Constructs a <b>new</b> direct-message channel instance.
-> <br>If you don't initialize a private channel, direct-message channel always will be <b>null</b>.
+> Constructs a <b>new DirectMessageChannel</b> instance.
+> <br>If you don't initialize a **PrivateChannel**, **DirectMessageChannel** always will be <b>null</b>.
 >
-> Parameter: **channel** - The private channel, which should be initialized
-> <br>Returns: A <b>new</b> direct-message channel instance
+> Parameter: **channel** - The **PrivateChannel**, which should be initialized.
+> <br>Returns: A <b>new DirectMessageChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
 set(@NotNull PrivateChannel)
 ```
 <br>
 
-> The author of the message received as member object.
+> The author of the **Message** received as **Member** object.
 >
-> Returns: The author of the message as null-able member object
+> Returns: The author of the **Message** as null-able **Member** object.
 > <br>Annotation: **Nullable**
 ```swift
 getMember()
 ```
 <br>
 
-> The private channel for this message.
+> The **PrivateChannel** for this **Message**.
 >
-> Returns: The private channel
+> Returns: The **PrivateChannel**.
 > <br>Annotation: **NotNull**
 ```swift
 getChannel()
@@ -1673,33 +1681,33 @@ getChannel()
 <br>
 
 > Convenience method to delete messages in the most efficient way available.
-> <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
+> <br>No checks will be done to prevent failures, use <code>CompletionStage#exceptionally(Function)</code> to handle failures.
 >
 > Parameter:
-> <br>**amount** - The amount of messages to delete
-> <br>**clear** - The safety clear option, which helps for specifying different message types, which will not be deleted
-> <br>Returns: A list of futures representing all deletion task
+> <br>**amount** - The amount of messages to delete.
+> <br>**clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
+> <br>Returns: A **List** of futures representing all deletion task.
 > <br>Annotation: **Nullable**
 ```swift
 purgeMessages(int, @Nullable SafetyClear)
 ```
 <br>
 
-> Convenience method to a complete private channel in the most efficient way available.
-> <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
+> Convenience method to a complete **PrivateChannel** in the most efficient way available.
+> <br>No checks will be done to prevent failures, use <code>CompletionStage#exceptionally(Function)</code> to handle failures.
 >
-> Parameter: **clear** - The safety clear option, which helps for specifying different message types, which will not be deleted
-> <br>Returns: A list of futures representing all deletion task
+> Parameter: **clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
+> <br>Returns: A **List** of futures representing all deletion task.
 > <br>Annotation: **Nullable**
 ```swift
 purgeChannel(@Nullable SafetyClear)
 ```
 <br>
 
-> Convenience method to a complete private channel in the most efficient way available.
-> <br>No checks will be done to prevent failures, use **CompletionStage#exceptionally(Function)** to handle failures.
+> Convenience method to a complete **PrivateChannel** in the most efficient way available.
+> <br>No checks will be done to prevent failures, use <code>CompletionStage#exceptionally(Function)</code> to handle failures.
 >
-> Returns: A list of futures representing all deletion task
+> Returns: A **List** of futures representing all deletion task.
 > <br>Annotation: **Nullable**
 ```swift
 purgeChannel()
@@ -1709,30 +1717,30 @@ purgeChannel()
 > Checks if the content, you specified, is written in this channel.
 >
 > Parameter:
-> <br>**content** - The message content, which should be checked
-> <br>**checkAmount** - The amount of messages, which should be checked
+> <br>**content** - The message content, which should be checked.
+> <br>**checkAmount** - The amount of messages, which should be checked.
 > <br>Returns:
-> <br>**true** - If the content, you specified, is written in this channel
-> <br>**false** - If the content, you specified, is not written in this channel
+> <br>**true** - If the content, you specified, is written in this channel.
+> <br>**false** - If the content, you specified, is not written in this channel.
 ```swift
 containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from the user, which was specified with the `set(@NotNull PrivateChannel, @Nullable Member)` method,
+> Gets all the messages from the **User**, which was specified with the <code>set(@NotNull PrivateChannel, @Nullable Member)</code> method,
 > in this channel. (max. 1000 messages per channel)
 >
-> Returns: The written messages of the specified user in this channel
+> Returns: The written messages of the specified **User** in this channel.
 > <br>Annotation: **Nullable**
 ```swift
 getMessagesByUser()
 ```
 <br>
 
-> Gets all the messages from a specific user in this channel. (max. 1000 messages per channel)
+> Gets all the messages from a specific **User** in this channel. (max. 1000 messages per channel)
 >
-> Parameter: **user** - The member, from which the messages should be retrieved
-> <br>Returns: The written messages of the specified user in this channel
+> Parameter: **user** - The **User**, from which the messages should be retrieved.
+> <br>Returns: The written messages of the specified **User** in this channel.
 > <br>Annotation: **Nullable**
 ```swift
 getMessagesByUser(@NotNull User)
@@ -1740,19 +1748,20 @@ getMessagesByUser(@NotNull User)
 <br>
 
 > This works like a normal message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
-> <br>Another option you can use a specified time like minutes, hours or even days.
-> <br>(if the time unit equals <b>null</b>, there will be used a default time unit: <b>TimeUnit#SECONDS</b>)
+> <br>Another option is that you can use a specific **TimeUnit** like **TimeUnit#MINUTES**,
+> **TimeUnit#HOURS** or **TimeUnit#DAYS**.
+> <br>(if the <code>unit</code> parameter equals <b>null</b>, <code>SECONDS</code> will be used)
 >
 > Parameter:
-> <br>**message** - The message action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>**unit** - The time unit, which is used for specifying the type of time for the delay
-> <br>Returns: The specified message action
+> <br>**message** - The **MessageAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>**unit** - The **TimeUnit**, which is used for specifying the type of time for the delay.
+> <br>Returns: The specified **MessageAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nullable TimeUnit)
@@ -1760,65 +1769,66 @@ sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nul
 <br>
 
 > This works like a normal message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
 >
 > Parameter:
-> <br>**message** - The message action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>Returns: The specified message action
+> <br>**message** - The **MessageAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>Returns: The specified **MessageAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction)
 ```
 <br>
 
-> This works like a normal (message component) message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long <b>delayInSeconds must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> This works like a normal (interaction) message sending, but with more given options and a delay between using this.
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
-> <br>Another option you can use a specified time like minutes, hours or even days.
-> <br>(if the time unit equals null, there will be used a default time unit: <b>TimeUnit#SECONDS</b>)
+> <br>Another option is that you can use a specific **TimeUnit** like **TimeUnit#MINUTES**,
+> **TimeUnit#HOURS** or **TimeUnit#DAYS**.
+> <br>(if the <code>unit</code> parameter equals <b>null</b>, <code>SECONDS</code> will be used)
 >
 > Parameter:
-> <br>**message** - The reply callback action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>**unit** - The time unit, which is used for specifying the type of time for the delay
-> <br>Returns: The specified message action
+> <br>**message** - The **ReplyCallbackAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>**unit** - The **TimeUnit**, which is used for specifying the type of time for the delay.
+> <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction, @Nullable TimeUnit)
 ```
 <br>
 
-> This works like a normal (message component) message sending, but with more given options and a delay between using this.
-> <br>You must specify a delay to time out a command. (the long delay in seconds <b>must not equal to 0</b>.
-> If this is <b>true</b> a illegal argument exception will be thrown. The same is applicable for numbers under 0)
+> This works like a normal (interaction) message sending, but with more given options and a delay between using this.
+> <br>You must specify a delay to time out a command. (the  <code>delayInSeconds</code> parameter <b>must not equal to 0</b>.
+> <br>If this is <code>true</code> a **IllegalArgumentException** will be thrown. The same is applicable for numbers under 0.
 > <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
 > equals <b>null</b>, there will be sent a default error message)
 >
 > Parameter:
-> <br>**message** - The reply callback action, which should be used
-> <br>**delayInSeconds** - The delay for the executing command in seconds
-> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet
-> <br>Returns: The specified message action
+> <br>**message** - The **ReplyCallbackAction**, which should be used.
+> <br>**delayInSeconds** - The delay for the executing command in seconds.
+> <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
+> <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
 replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction)
 ```
 <br>
 
-> Closes a private channel. After being closed successfully the private channel
-> is removed from the JDA mapping.
-> <br>As a note, this does not remove the history of the private channel. If the channel is
-> reopened the history will still be present.
+> Closes a **PrivateChannel**. 
+> <br>After being closed successfully the **PrivateChannel** is removed from the **JDA** mapping.
+> <br>As a note, this does not remove the history of the **PrivateChannel**. 
+> <br>If the channel is reopened the history will still be present.
 >
-> Returns: A rest-action - Type: void
+> Returns: **RestAction** - Type: **Void**
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift 
 close()
@@ -1851,7 +1861,7 @@ Version: v2.1.4
 Since: v1.0.0-alpha.1
 ```
 
-**Description:** Represents a guild-specific user.
+**Description:** Represents a guild-specific **User**.
 
 ### Getting GuildMember:
 
@@ -1861,95 +1871,95 @@ GuildMember member = GuildMember.set(@Nullable Member);
 
 ### Methods
 
-> Constructs a <b>new</b> guild member instance. 
-> <br>If you don't initialize a member, the guild member always will be <b>null</b>.
+> Constructs a <b>new< GuildMember/b> instance. 
+> <br>If you don't initialize a **Member**, the **GuildMember** always will be <b>null</b>.
 >
-> Parameter: **member** - The member, which should be used to get guild member
-> <br>Returns: A <b>new</b> guild member instance
+> Parameter: **member** - The **Member**, which should be used to get **GuildMember**.
+> <br>Returns: A <b>new GuildMember</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
 set(@Nullable Member)
 ```
 <br>
 
-> The author of the message received as member object.
+> The author of the **Message** received as **Member** object.
 >
-> Returns: The author of the message as null-able member object
+> Returns: The author of the **Message** as null-able **Member** object.
 > <br>Annotation: **Nullable**
 ```swift
 getMember()
 ```
 <br>
 
-> Checks if the role with the id you specified, is found on the role board of the member.
+> Checks if the **Role** with the id you specified, is found on the **Role** board of the **Member**.
 >
-> Parameter: **roleId** - The id of the role, which should be checked
-> <br>Returns: The role with the id you specified
+> Parameter: **roleId** - The id of the **Role**, which should be checked
+> <br>Returns: The **Role** with the id you specified
 > <br>Annotation: **Nullable**, **CheckReturnValue**
 ```swift
 findRoleById(long)
 ```
 <br>
 
-> Checks if the role with the id you specified, is found on the role board of the member.
+> Checks if the **Role** with the id you specified, is found on the **Role** board of the **Member**.
 >
-> Parameter: **roleId** - The id of the role, which should be checked
-> <br>Returns: The role with the id you specified
+> Parameter: **roleId** - The id of the **Role**, which should be checked.
+> <br>Returns: The **Role** with the id you specified.
 > <br>Annotation: **Nullable**, **CheckReturnValue**
 ```swift
 findRoleById(@NotNull String)
 ```
 <br>
 
-> Checks if the role with the name you specified, is found on the role board of the member.
+> Checks if the **Role** with the name you specified, is found on the **Role** board of the **Member**.
 >
-> Parameter: **roleName** - The name of the role, which should be checked
-> <br>Returns: The role with the name you specified
+> Parameter: **roleName** - The name of the **Role**, which should be checked.
+> <br>Returns: The **Role** with the name you specified.
 > <br>Annotation: **Nullable**, **CheckReturnValue**
 ```swift
 findRoleByName(@NotNull String)
 ```
 <br>
 
-> Checks if the member has the role with the id you specified.
+> Checks if the **Member** has the **Role** with the id you specified.
 >
-> Parameter: **roleId** - The id of the role, which should be checked
+> Parameter: **roleId** - The id of the **Role**, which should be checked.
 > <br>Returns:
-> <br>**true** - If the member has the role
-> <br>**false** - If the member has not the role
+> <br>**true** - If the **Member** has the **Role**.
+> <br>**false** - If the **Member** has not the **Role**.
 ```swift
 hasRoleWithId(long)
 ```
 <br>
 
-> Checks if the member has the role with the id you specified.
+> Checks if the **Member** has the **Role** with the id you specified.
 >
-> Parameter: **roleId** - The id of the role, which should be checked
+> Parameter: **roleId** - The id of the **Role**, which should be checked.
 > <br>Returns:
-> <br>**true** - If the member has the role
-> <br>**false** - If the member has not the role
+> <br>**true** - If the **Member** has the **Role**.
+> <br>**false** - If the **Member** has not the **Role**.
 ```swift
 hasRoleWithId(@NotNull String)
 ```
 <br>
 
-> Checks if the member has the role with the name you specified.
+> Checks if the **Member** has the **Role** with the name you specified.
 >
-> Parameter: **roleName** - The name of the role, which should be checked
+> Parameter: **roleName** - The name of the **Role**, which should be checked.
 > <br>Returns:
-> <br>**true** - If the member has the role
-> <br>**false** - If the member has not the role
+> <br>**true** - If the **Member** has the **Role**.
+> <br>**false** - If the **Member** has not the **Role**.
 ```swift
 hasRoleWithName(@NotNull String)
 ```
 <br>
 
-> Checks if the member was pinged in a specified message.
+> Checks if the **Member** was pinged in a specified **Message**.
 >
-> Parameter: **message** - The message, which should checked, if the member got pinged in the message
+> Parameter: **message** - The **Message**, which should checked, if the **Member** got pinged in the **Message**.
 > <br>Returns:
-> <br>**true** - If the member got pinged in the message
-> <br>**false** - If the member got pinged in the message
+> <br>**true** - If the **Member** got pinged in the **Message**.
+> <br>**false** - If the **Member** got pinged in the **Message**.
 ```swift
 isMentioned(@NotNull Message)
 ```
@@ -1972,7 +1982,7 @@ Version: v1.1.4
 Since: v1.0.0-alpha.4
 ```
 
-**Description:** Represents the member instance for the target user.
+**Description:** Represents the **Member** instance for the target **User**.
 
 ### Getting GuildTargetMember:
 
@@ -1986,22 +1996,22 @@ GuildTargetMember target = GuildTargetMember.set(@NotNull MessageContextInteract
 
 ### Methods
 
-> Constructs a <b>new</b> guild target member instance. 
-> <br>If you don't initialize a user-context-interaction-event, the guild target member always will be <b>null</b>.
+> Constructs a <b>new GuildTargetMember</b> instance. 
+> <br>If you don't initialize a **UserContextInteractionEvent**, the **GuildTargetMember** always will be <b>null</b>.
 >
-> Parameter: **userEvent** - The user-context-interaction-event, which should be initialized
-> <br>Returns: A <b>new</b> guild target member instance
+> Parameter: **userEvent** - The **UserContextInteractionEvent**, which should be initialized.
+> <br>Returns: A <b>new GuildTargetMember</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
 set(@NotNull UserContextInteractionEvent)
 ```
 <br>
 
-> Constructs a <b>new</b> guild target member instance. 
-> If you don't initialize a message-context-interaction-event, the guild target member always will be <b>null</b>.
+> Constructs a <b>new GuildTargetMember</b> instance. 
+> If you don't initialize a **MessageContextInteractionEvent**, the **GuildTargetMember** always will be <b>null</b>.
 >
-> Parameter: **messageEvent** - The message-context-interaction-event, which should be initialized
-> <br>Returns: A <b>new</b> guild target member instance
+> Parameter: **messageEvent** - The **MessageContextInteractionEvent**, which should be initialized.
+> <br>Returns: A <b>new GuildTargetMember</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
 set(@NotNull MessageContextInteractionEvent)
@@ -2010,7 +2020,7 @@ set(@NotNull MessageContextInteractionEvent)
 
 > Indicates that a user context-command was used.
 >
-> Returns: The user-context-interaction-event
+> Returns: The **UserContextInteractionEvent**.
 > <br>Annotation: **NotNull**
 ```swift
 getUserContext()
@@ -2019,82 +2029,82 @@ getUserContext()
 
 > Indicates that a message context-command was used.
 >
-> Returns: The message-context-interaction-event
+> Returns: The **MessageContextInteractionEvent**.
 > <br>Annotation: **NotNull**
 ```swift
 getMessageContext()
 ```
 <br>
 
-> Checks if the role with the id you specified, is found on the role board of the target member.
+> Checks if the **Role** with the id you specified, is found on the **Role** board of the **TargetMember**.
 >
-> Parameter: **roleId** - The id of the role, which should be checked
-> <br>Returns: The role with the id you specified
+> Parameter: **roleId** - The id of the **Role**, which should be checked.
+> <br>Returns: The **Role** with the id you specified.
 > <br>Annotation: **Nullable**, **CheckReturnValue**
 ```swift
 findRoleById(long)
 ```
 <br>
 
-> Checks if the role with the id you specified, is found on the role board of the target member.
+> Checks if the **Role** with the id you specified, is found on the **Role** board of the **TargetMember**.
 >
-> Parameter: **roleId** - The id of the role, which should be checked
-> <br>Returns: The role with the id you specified
+> Parameter: **roleId** - The id of the **Role**, which should be checked.
+> <br>Returns: The **Role** with the id you specified.
 > <br>Annotation: **Nullable**, **CheckReturnValue**
 ```swift
 findRoleById(@NotNull String)
 ```
 <br>
 
-> Checks if the role with the name you specified, is found on the role board of the target member.
+> Checks if the **Role** with the name you specified, is found on the **Role** board of the **TargetMember**.
 >
-> Parameter: **roleName** - The name of the role, which should be checked
-> <br>Returns: The role with the name you specified
+> Parameter: **roleName** - The name of the **Role**, which should be checked.
+> <br>Returns: The **Role** with the name you specified.
 > <br>Annotation: **Nullable**, **CheckReturnValue**
 ```swift
 findRoleByName(@NotNull String)
 ```
 <br>
 
-> Checks if the target member has the role with the id you specified.
+> Checks if the **TargetMember** has the **Role** with the id you specified.
 >
-> Parameter: **roleId** - The id of the role, which should be checked
+> Parameter: **roleId** - The id of the **Role**, which should be checked.
 > <br>Returns:
-> <br>**true** - If the target member has the role
-> <br>**false** - If the target member has not the role 
+> <br>**true** - If the **TargetMember** has the **Role**.
+> <br>**false** - If the **TargetMember** has not the **Role** .
 ```swift
 hasRoleWithId(long)
 ```
 <br>
 
-> Checks if the target member has the role with the id you specified.
+> Checks if the **TargetMember** has the **Role** with the id you specified.
 >
-> Parameter: **roleId** - The id of the role, which should be checked
+> Parameter: **roleId** - The id of the **Role**, which should be checked.
 > <br>Returns:
-> <br>**true** - If the target member has the role
-> <br>**false** - If the target member has not the role
+> <br>**true** - If the **TargetMember** has the **Role**.
+> <br>**false** - If the **TargetMember** has not the **Role**.
 ```swift
 hasRoleWithId(@NotNull String)
 ```
 <br>
 
-> Checks if the target member has the role with the name you specified.
+> Checks if the **TargetMember** has the **Role** with the name you specified.
 >
-> Parameter: **roleName** - The name of the role, which should be checked
+> Parameter: **roleName** - The name of the **Role**, which should be checked.
 > <br>Returns:
-> <br>**true** - If the target member has the role
-> <br>**false** - If the target member has not the role
+> <br>**true** - If the **TargetMember** has the **Role**.
+> <br>**false** - If the **TargetMember** has not the **Role**.
 ```swift
 hasRoleWithName(@NotNull String)
 ```
 <br>
 
-> Checks if the target member was pinged in a specified message.
+> Checks if the **TargetMember** was pinged in a specified **Message**.
 >
-> Parameter: **message** - The message, which should checked, if the target member got pinged in the message
+> Parameter: **message** - The **Message**, which should checked, if the **TargetMember** got pinged in the **Message**.
 > <br>Returns:
-> <br>**true** - If the target member got pinged in the message
-> <br>**false** - If the target member got pinged in the message
+> <br>**true** - If the **TargetMember** got pinged in the **Message**.
+> <br>**false** - If the **TargetMember** got pinged in the **Message**.
 ```swift
 isMentioned(@NotNull Message)
 ```
@@ -2117,7 +2127,7 @@ Version: v1.1.4
 Since: v1.1.1
 ```
 
-**Description:** Represents a member, who joined a thread channel.
+**Description:** Represents a **Member**, who joined a **ThreadChannel**.
 
 ### Getting GuildThreadMember:
 
@@ -2127,95 +2137,95 @@ GuildThreadMember member = GuildThreadMember.set(@Nullable ThreadMember);
 
 ### Methods
 
-> Constructs a <b>new</b> guild thread member instance. 
-> <br>If you don't initialize a thread member, the guild thread member always will be <b>null</b>.
+> Constructs a <b>new GuildThreadMember</b> instance. 
+> <br>If you don't initialize a **ThreadMember**, the **GuildThreadMember** always will be <b>null</b>.
 >
-> Parameter: **member** - The thread member, which should be used to get guild thread member
-> <br>Returns: A <b>new</b> guild thread member instance
+> Parameter: **member** - The **ThreadMember**, which should be used to get **GuildThreadMember**.
+> <br>Returns: A <b>new</b> **GuildThreadMember** instance.
 > <br>Annotation: **NotNull**
 ```swift
 set(@Nullable ThreadMember)
 ```
 <br>
 
-> The author of the message received as member object.
+> The author of the **Message** received as **Member** object.
 >
-> Returns: The author of the message as null-able thread member object
+> Returns: The author of the **Message** as null-able **ThreadMember** object.
 > <br>Annotation: **Nullable**
 ```swift
 getMember()
 ```
 <br>
 
-> Checks if the role with the id you specified, is found on the role board of the thread member.
+> Checks if the **Role** with the id you specified, is found on the **Role** board of the **ThreadMember**.
 >
-> Parameter: **roleId** - The id of the role, which should be checked
-> <br>Returns: The role with the id you specified
+> Parameter: **roleId** - The id of the **Role**, which should be checked.
+> <br>Returns: The **Role** with the id you specified.
 > <br>Annotation: **Nullable**, **CheckReturnValue**
 ```swift
 findRoleById(long)
 ```
 <br>
 
-> Checks if the role with the id you specified, is found on the role board of the thread member.
+> Checks if the **Role** with the id you specified, is found on the **Role** board of the **ThreadMember**.
 >
-> Parameter: **roleId** - The id of the role, which should be checked
-> <br>Returns: The role with the id you specified
+> Parameter: **roleId** - The id of the **Role**, which should be checked.
+> <br>Returns: The **Role** with the id you specified.
 > <br>Annotation: **Nullable**, **CheckReturnValue**
 ```swift
 findRoleById(@NotNull String)
 ```
 <br>
 
-> Checks if the role with the name you specified, is found on the role board of the thread member.
+> Checks if the **Role** with the name you specified, is found on the **Role** board of the **ThreadMember**.
 >
-> Parameter: **roleName** - The name of the role, which should be checked
-> <br>Returns: The role with the name you specified
+> Parameter: **roleName** - The name of the **Role**, which should be checked.
+> <br>Returns: The **Role** with the name you specified.
 > <br>Annotation: **Nullable**, **CheckReturnValue**
 ```swift
 findRoleByName(@NotNull String)
 ```
 <br>
 
-> Checks if the thread member has the role with the id you specified.
+> Checks if the **ThreadMember** has the **Role** with the id you specified.
 >
-> Parameter: **roleId** - The id of the role, which should be checked
+> Parameter: **roleId** - The id of the **Role**, which should be checked.
 > <br>Returns:
-> <br>**true** - If the thread member has the role
-> <br>**false** - If the thread member has not the role
+> <br>**true** - If the **ThreadMember** has the **Role**.
+> <br>**false** - If the **ThreadMember** has not the **Role**.
 ```swift
 hasRoleWithId(long)
 ```
 <br>
 
-> Checks if the thread member has the role with the id you specified.
+> Checks if the **ThreadMember** has the **Role** with the id you specified.
 >
-> Parameter: **roleId** - The id of the role, which should be checked
+> Parameter: **roleId** - The id of the **Role**, which should be checked.
 > <br>Returns:
-> <br>**true** - If the thread member has the role
-> <br>**false** - If the thread member has not the role
+> <br>**true** - If the **ThreadMember** has the **Role**.
+> <br>**false** - If the **ThreadMember** has not the **Role**.
 ```swift
 hasRoleWithId(@NotNull String)
 ```
 <br>
 
-> Checks if the thread member has the role with the name you specified.
+> Checks if the **ThreadMember** has the **Role** with the name you specified.
 >
-> Parameter: **roleName** - The name of the role, which should be checked
+> Parameter: **roleName** - The name of the **Role**, which should be checked.
 > <br>Returns:
-> <br>**true** - If the thread member has the role
-> <br>**false** - If the thread member has not the role
+> <br>**true** - If the **ThreadMember** has the **Role**.
+> <br>**false** - If the **ThreadMember** has not the **Role**.
 ```swift
 hasRoleWithName(@NotNull String)
 ```
 <br>
 
-> Checks if the thread member was pinged in a specified message.
+> Checks if the **ThreadMember** was pinged in a specified **Message**.
 >
-> Parameter: **message** - The message, which should checked, if the thread member got pinged in the message
+> Parameter: **message** - The **Message**, which should checked, if the **ThreadMember** got pinged in the **Message**.
 > <br>Returns:
-> <br>**true** - If the thread member got pinged in the message
-> <br>**false** - If the thread member got pinged in the message
+> <br>**true** - If the **ThreadMember** got pinged in the **Message**.
+> <br>**false** - If the **ThreadMember** got pinged in the **Message**.
 ```swift
 isMentioned(@NotNull Message)
 ```
@@ -2238,7 +2248,7 @@ Version: v1.1.4
 Since: v1.0.1
 ```
 
-**Description:** Represents the self member (aka. the bot itself) of a specific guild.
+**Description:** Represents the **SelfMember** (aka. the bot itself) of a specific **Guild**.
 
 ### Getting SelfMember:
 
@@ -2248,95 +2258,95 @@ SelfMember self = SelfMember.set(@NotNull Guild);
 
 ### Methods
 
-> Constructs a <b>new</b> self member instance.
-> <br>If you don't initialize a guild, the self member always will be <b>null</b>.
+> Constructs a <b>new SelfMember</b> instance.
+> <br>If you don't initialize a **Guild**, the **SelfMember** always will be <b>null</b>.
 >
-> Parameter: **guild** - The guild, which should be used to get the self member
-> <br>Returns: A <b>new</b> self member instance
-> <br>Annotation: **NotNull**
+> Parameter: **guild** - The **Guild**, which should be used to get the **SelfMember**
+> <br>Returns: A <b>new SelfMember</b> instance.
+> <br>Annotation: **NotNull**.
 ```swift
 set(@NotNull Guild)
 ```
 <br>
 
-> The guild, the message was received in.
+> The **Guild**, the message was received in.
 >
-> Returns: The guild, the message was received in
+> Returns: The **Guild**, the message was received in.
 > <br>Annotation: **Nullable**
 ```swift
 getGuild()
 ```
 <br>
 
-> Checks if the role with the id you specified, is found on the role board of the self member.
+> Checks if the **Role** with the id you specified, is found on the **Role** board of the **SelfMember**.
 >
-> Parameter: **roleId** - The id of the role, which should be checked
-> <br>Returns: The role with the id you specified
+> Parameter: **roleId** - The id of the **Role**, which should be checked.
+> <br>Returns: The **Role** with the id you specified.
 > <br>Annotation: **Nullable**, **CheckReturnValue**
 ```swift
 findRoleById(long)
 ```
 <br>
 
-> Checks if the role with the id you specified, is found on the role board of the self member.
+> Checks if the **Role** with the id you specified, is found on the **Role** board of the **SelfMember**.
 >
-> Parameter: **roleId** - The id of the role, which should be checked
-> <br>Returns: The role with the id you specified
+> Parameter: **roleId** - The id of the **Role**, which should be checked.
+> <br>Returns: The **Role** with the id you specified.
 > <br>Annotation: **Nullable**, **CheckReturnValue**
 ```swift
 findRoleById(@NotNull String)
 ```
 <br>
 
-> Checks if the role with the name you specified, is found on the role board of the self member.
+> Checks if the **Role** with the name you specified, is found on the **Role** board of the **SelfMember**.
 >
-> Parameter: **roleName** - The name of the role, which should be checked
-> <br>Returns: The role with the name you specified
+> Parameter: **roleName** - The name of the **Role**, which should be checked.
+> <br>Returns: The **Role** with the name you specified.
 > <br>Annotation: **Nullable**, **CheckReturnValue**
 ```swift
 findRoleByName(@NotNull String)
 ```
 <br>
 
-> Checks if the self member has the role with the id you specified.
+> Checks if the **SelfMember** has the **Role** with the id you specified.
 >
-> Parameter: **roleId** - The id of the role, which should be checked
+> Parameter: **roleId** - The id of the **Role**, which should be checked.
 > <br>Returns:
-> <br>**true** - If the self member has the role
-> <br>**false** - If the self member has not the role
+> <br>**true** - If the **SelfMember** has the **Role**.
+> <br>**false** - If the **SelfMember** has not the **Role**.
 ```swift
 hasRoleWithId(long)
 ```
 <br>
 
-> Checks if the self member has the role with the id you specified.
+> Checks if the **SelfMember** has the **Role** with the id you specified.
 >
-> Parameter: **roleId** - The id of the role, which should be checked
+> Parameter: **roleId** - The id of the **Role**, which should be checked.
 > <br>Returns:
-> <br>**true** - If the self member has the role
-> <br>**false** - If the self member has not the role
+> <br>**true** - If the **SelfMember** has the **Role**.
+> <br>**false** - If the **SelfMember** has not the **Role**.
 ```swift
 hasRoleWithId(@NotNull String)
 ```
 <br>
 
-> Checks if the self member has the role with the name you specified.
+> Checks if the **SelfMember** has the **Role** with the name you specified.
 >
-> Parameter: **roleName** - The name of the role, which should be checked
+> Parameter: **roleName** - The name of the **Role**, which should be checked.
 > <br>Returns:
-> <br>**true** - If the self member has the role
-> <br>**false** - If the self member has not the role
+> <br>**true** - If the **SelfMember** has the **Role**.
+> <br>**false** - If the **SelfMember** has not the **Role**.
 ```swift
 hasRoleWithName(@NotNull String)
 ```
 <br>
 
-> Checks if the self member was pinged in a specified message.
+> Checks if the **SelfMember** was pinged in a specified message.
 >
-> Parameter: **message** - The message, which should checked, if the self member got pinged in the message
+> Parameter: **message** - The message, which should checked, if the **SelfMember** got pinged in the message.
 > <br>Returns:
-> <br>**true** - If the self member got pinged in the message
-> <br>**false** - If the self member got pinged in the message
+> <br>**true** - If the **SelfMember** got pinged in the message.
+> <br>**false** - If the **SelfMember** got pinged in the message.
 ```swift
 isMentioned(@NotNull Message)
 ```
@@ -2359,12 +2369,10 @@ Version: v1.0.0
 Since: v1.1.6
 ```
 
-
 **PLEASE NOTE: Only use this feature to record conversations with the consent of all users in the channel.
 <br>Recording a conversation against other users' consent is illegal, and you are violating the Discord Terms of Service.**
 
-**Description:**  
-This class is used to record audio from a voice channel.
+**Description:** This class is used to record audio from a VoiceChannel.
 
 ### Getting VoiceRecorder:
 
@@ -2374,9 +2382,9 @@ VoiceRecorder recorder = VoiceRecorder.newRecorder();
 
 ### Methods
 
-> Represents a <b>new</b> voice recorder instance.
+> Represents a <b>new VoiceRecorder</b> instance.
 >
-> Returns: A <b>new</b> voice recorder instance
+> Returns: A <b>new VoiceRecorder</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
 newRecorder()
@@ -2387,23 +2395,23 @@ newRecorder()
 > <br>If the volume isn't set the volume will be automatically set to 1.0.
 > <br>This method should only be used if the value is greater or smaller than 1.0.
 >
-> Parameter: **volume** - The volume of the audio to be recorded
-> <br>Returns: The current instance of the voice recorder class
+> Parameter: **volume** - The volume of the audio to be recorded.
+> <br>Returns: The current instance of the **VoiceRecorder** class.
 > <br>Annotation: **NotNull**
 ```swift
 setVolume(double)
 ```
 <br>
 
-> Sets the audio-receive-handler that the audio manager will use to
-> process audio data received from an audio connection.
-> <br>The handler provided here will persist between audio connection connect and disconnects.
-> <br>Furthermore, you don't need to have an audio connection to set a handler.
-> <br>When JDA sets up a <b>new</b> audio connection it will use the handler provided here.
-> <br>Setting this to <code>null</code> will remove the audio handler.
+> Sets the **AudioReceivedHandler** that the **AudioManager** will use to
+> process audio data received from an **AudioConnection**.
+> <br>The handler provided here will persist between **AudioConnection** connect and disconnects.
+> <br>Furthermore, you don't need to have an **AudioConnection** to set a handler.
+> <br>When **JDA** sets up a <b>new AudioConnection</b> it will use the handler provided here.
+> <br>Setting this to <code>null</code> will remove the **AudioReceivedHandler**.
 >
-> Parameter: **guild** - The guild to receive the audio from
-> <br>Returns: The current instance of the voice recorder class
+> Parameter: **guild** - The **Guild** to receive the audio from.
+> <br>Returns: The current instance of the **VoiceRecorder** class.
 > <br>Annotation: **NotNull**
 ```swift
 setReceivingHandler(@NotNull Guild)
@@ -2411,15 +2419,15 @@ setReceivingHandler(@NotNull Guild)
 <br>
 
 > Sets if the audio should be stacked or not.
-> <br>This means that you set, if the audio will or will not be removed from the concurrent linked queue
+> <br>This means that you set, if the audio will or will not be removed from the **ConcurrentLinkedQueue**
 > when the recording is finished.
 > <br>This is useful if you want to record multiple conversations in one audio file.
 > <br>If you want that the audio will be removed from the queue and thus with each join the audio file will be reinitialized, set this to <code>false</code>.
 > <br>If the boolean isn't set this will be automatically set to <code>false</code>.
 > <br>This method should only be used if the value is <code>true</code>.
 >
-> Parameter: **shouldStack** - Whether the audio should be stacked
-> <br>Returns: The current instance of the voice recorder class
+> Parameter: **shouldStack** - Whether the audio should be stacked.
+> <br>Returns: The current instance of the **VoiceRecorder** class.
 > <br>Annotation: **NotNull**
 ```swift
 shouldStack(boolean)
@@ -2428,20 +2436,20 @@ shouldStack(boolean)
 
 > <b>PLEASE NOTE: Only use this feature to record conversations with the consent of all users in the channel.
 > <br>Recording a conversation against other users' consent is illegal, and you are violating the Discord Terms of Service.</b>
-> <br><br>This method will start recording audio from the voice channel that the bot is currently in.
-> <br>This method will return a file that contains the audio that was recorded.
+> <br><br>This method will start recording audio from the **VoiceChannel** that the bot is currently in.
+> <br>This method will return a **File** that contains the audio that was recorded.
 > <br><br>This is recommended to use in the **ListenerAdapter#onGuildVoiceLeave(GuildVoiceLeaveEvent)** method.
-> <br>Note that the audio connection should be closed before this method is called.
+> <br>Note that the **AudioConnection** should be closed before this method is called.
 > <br><br>This method supports any kind of audio file.
-> <br>Following audio file formats are tested:
+> <br>Following audio file-formats are tested:
 > <br>- <code>.wav</code>
 > <br>- <code>.mp3</code>
 > <br>- <code>.ogg</code>
 > <br>- <code>.opus</code>
 > <br>- <code>.m4a</code>
 >
-> Parameter: **file** - The file to save the audio to
-> <br>Returns: The file that the audio was saved to
+> Parameter: **file** - The **File** to save the audio to.
+> <br>Returns: The **File** that the audio was saved to.
 > <br>Annotation: **NotNull**
 ```swift
 createRecording(@NotNull File)
@@ -2452,27 +2460,27 @@ createRecording(@NotNull File)
 > <br>This is the volume of the audio that will be recorded.
 > <br>If the volume isn't set the volume will be automatically set to 1.0.
 >
-> Returns: The current volume of the audio as a double
+> Returns: The current volume of the audio as a double.
 ```swift
 getVolume()
 ```
 <br>
 
-> The audio manager that represents the audio connection for this guild.
-> <br>If no audio manager exists for this guild, this will create a <b>new</b> one.
-> <br>This operation is <code>synchronized</code> on all audio managers for this JDA instance, this means
-> that calling <code>getAudioManager()</code> on any other guild while a thread is accessing this method may be locked.
+> The **AudioManager** that represents the **AudioConnection** for this **Guild**.
+> <br>If no **AudioManager** exists for this **Guild**, this will create a <b>new</b> one.
+> <br>This operation is <code>synchronized</code> on all **AudioManager** for this **JDA** instance, this means
+> that calling <code>getAudioManager()</code> on any other **Guild** while a thread is accessing this method may be locked.
 >
-> Returns: The audio manager for this guild
+> Returns: The **AudioManager** for this **Guild**.
 > <br>Annotation: **Nullable**, **CheckReturnValue**
 ```swift
 getAudioManager()
 ```
 <br>
 
-> The guild, the message was received in.
+> The **Guild**, the message was received in.
 >
-> Returns: The guild, the message was received in
+> Returns: The guild, the message was received in.
 > <br>Annotation: **Nullable**, **CheckReturnValue**
 ```swift
 getGuild()
@@ -2480,12 +2488,12 @@ getGuild()
 <br>
 
 > If the audio should be stacked or not.
-> <br>This means that you set, if the audio will or will not be removed from the concurrent linked queue
+> <br>This means that you set, if the audio will or will not be removed from the **ConcurrentLinkedQueue**
 > when the recording is finished.
 >
 > Returns:
-> <br>**true** - If the audio should be stacked
-> <br>**false** - If the audio should be removed from the queue
+> <br>**true** - If the audio should be stacked.
+> <br>**false** - If the audio should be removed from the queue.
 ```swift
 stackEnabled()
 ```
@@ -2504,6 +2512,148 @@ toString()
 
 <hr>
 
+## MessageMention
+
+```yml
+Author: BlockyDotJar
+Version: v1.0.0
+Since: v1.1.6
+```
+
+**Description:** Class to access the mentions of various entities.
+
+### Getting MessageMention:
+
+```java
+MessageMention mention = MessageMention.set(@NotNull Message);
+```
+
+### Methods
+
+> Constructs a <b>new MessageMention</b> instance.
+> <br>If you don't initialize a **Message**, the **MessageMention** always will be <b>null</b>.
+>
+> Parameter: **message** - The **Message**, which should be used to get a **MessageMention**.
+> <br>Returns: A <b>new</b> **MessageMention** instance.
+```swift
+set(@NotNull Message)
+```
+<br>
+
+> The received **Message** object.
+>
+> Returns: The received **Message** object.
+> <br>Annotation: **NotNull**
+```swift
+getMessage()
+```
+<br>
+
+> An immutable **List** of all mentioned slash-commands.
+> <br>If none were mentioned, this **List** is empty.
+> <br>Elements are sorted in order of appearance.
+>
+> Returns: A **List** of all mentioned slash-commands.
+> <br>Annotation: **NotNull**
+```swift
+getSlashCommands()
+```
+<br>
+
+> A **Bag** of slash-commands used.
+> <br>This can be used to retrieve the amount of times a slash-command was used.
+> <br><b>Example:</b>
+> <br><pre><code>
+> void sendCount(@NotNull MessageMention msg)
+> {
+>     List<String> mentions = msg.getSlashCommands(); // distinct list, in order of appearance
+>     Bag<String> count = msg.getSlashCommandsBag();
+>     StringBuilder content = new StringBuilder();
+>     for (String slash : mentions)
+>     {
+>         content.append(slash)
+>                .append(": ")
+>                .append(count.getCount(slash))
+>                .append("\n");
+>     }
+>     msg.getMessage().getChannel().sendMessage(content.toString()).queue();
+> }
+> </code></pre>
+>
+> Returns: **Bag** of used slash-commands.
+> <br>Annotation: **NotNull**
+```swift
+getSlashCommandsBag()
+```
+<br>
+
+> Checks if given **Type** is mentioned in the **Message**.
+>
+> Parameter: **type** - The **Type** to check for.
+> <br>Returns:
+> <br><b>true</b> - If the **Type** is mentioned in the **Message**.
+> <br><b>false</b> - If the **Type** is not mentioned in the **Message**.
+```swift
+isMentioned(@NotNull Type)
+```
+<br>
+
+> Creates a slash-command mention for you.
+> <br>Only use this method in combination with <code>SlashCommandEventInteractionEvent.getRawData()</code>.
+>
+> Parameter: **rawData** - The **DataObject** to parse. (Only use this method in combination with <code>SlashCommandEventInteractionEvent.getRawData()</code>).
+> <br>Returns: The slash-command mention as a string.
+> <br>Annotation: **NotNull**
+```swift
+createSlashCommandMention(@NotNull DataObject)
+```
+
+### Overridden methods
+
+```swift
+equals(@Nullable Object)
+hashCode()
+toString()
+```
+
+## Type
+
+```yml
+Author: BlockyDotJar
+Version: v1.0.0
+Since: v1.1.6
+```
+
+**Description:** Mention constants, useful for use with **Patterns**.
+
+### Getting VoiceRecorder:
+
+```java
+MessageMention.Type mentionType = MessageMention.Type.FIELD_NAME;
+```
+
+### Methods
+
+> Represents a mention for a slash-command.
+> <br>The first group matches the name of the command and the second the id of the mention.
+```java
+SLASH_COMMAND("</([a-zA-Z0-9_/[^\\S\\r\\n]/-]+):([0-9]+)>");
+```
+<br>
+
+> Annotation: **NotNull** 
+```swift
+getPattern()
+```
+
+### Overridden methods
+
+```swift
+toString()
+```
+
+<hr>
+
 ## Annotations
 
 **Summary:**
@@ -2512,7 +2662,7 @@ toString()
 2. [DeprecatedSince](#deprecatedsince)
 3. [ForRemoval](#forremoval)
 4. [ReplaceWith](#replacewith)
-4. [Undocumented](#undocumented)
+5. [Undocumented](#undocumented)
 
 ## Deadline
 
@@ -2531,7 +2681,7 @@ Since: v1.0.0-alpha.1
 
 ### Methods
 
-> Returns: The version, in which the <b>new</b> method/class should be finished
+> Returns: The version, in which the <b>new</b> method/class should be finished.
 ```swift
 version()
 ```
@@ -2553,7 +2703,7 @@ Since: v1.0.0-alpha.1
 
 ### Methods
 
-> Returns: The version, since when the method/class is deprecated
+> Returns: The version, since when the method/class is deprecated.
 ```swift
 version()
 ```
@@ -2575,7 +2725,7 @@ Since: v1.0.0
 
 ### Methods
 
-> Returns: The version, in which the deprecated method/class should be removed
+> Returns: The version, in which the deprecated method/class should be removed.
 ```swift
 deadline()
 ```
@@ -2597,7 +2747,7 @@ Since: v1.0.0-alpha.1
 
 ### Methods
 
-> Returns: The method or class, which should used instead
+> Returns: The method or class, which should used instead.
 ```swift
 value()
 ```

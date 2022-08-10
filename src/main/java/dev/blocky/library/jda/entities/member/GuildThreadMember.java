@@ -15,6 +15,7 @@
  */
 package dev.blocky.library.jda.entities.member;
 
+import com.google.errorprone.annotations.CheckReturnValue;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.internal.utils.JDALogger;
@@ -22,12 +23,11 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
-import com.google.errorprone.annotations.CheckReturnValue;
 import java.util.List;
 import java.util.Objects;
 
 /**
- * Represents a {@link Member member}, who joined a {@link ThreadChannel thread channel}.
+ * Represents a {@link Member}, who joined a {@link ThreadChannel}.
  *
  * @author BlockyDotJar
  * @version v1.1.4
@@ -49,12 +49,12 @@ public class GuildThreadMember
     }
 
     /**
-     * Constructs a <b>new</b> {@link GuildThreadMember guild thread member} instance.
-     * <br>If you don't initialize a {@link ThreadMember thread member}, the {@link GuildThreadMember guild thread member} always will be <b>null</b>.
+     * Constructs a <b>new</b> {@link GuildThreadMember} instance.
+     * <br>If you don't initialize a {@link ThreadMember}, the {@link GuildThreadMember} always will be <b>null</b>.
      *
-     * @param member The {@link ThreadMember thread member}, which should be used to get {@link GuildThreadMember guild thread member}
+     * @param member The {@link ThreadMember}, which should be used to get {@link GuildThreadMember}.
      *
-     * @return A <b>new</b> {@link GuildThreadMember guild thread member} instance
+     * @return A <b>new</b> {@link GuildThreadMember} instance.
      */
     @NotNull
     public static GuildThreadMember set(@Nullable ThreadMember member)
@@ -63,9 +63,9 @@ public class GuildThreadMember
     }
 
     /**
-     * The author of the {@link Message message} received as {@link ThreadMember thread member} object.
+     * The author of the {@link Message} received as {@link Member} object.
      *
-     * @return The author of the {@link Message message} as null-able thread member object
+     * @return The author of the {@link Message} as <b>null-able</b> {@link ThreadMember} object.
      */
     @Nullable
     public ThreadMember getMember()
@@ -74,11 +74,11 @@ public class GuildThreadMember
     }
 
     /**
-     * Checks if the {@link Role role} with the id you specified, is found on the role board of the {@link Member thread member}.
+     * Checks if the {@link Role} with the id you specified, is found on the role board of the {@link ThreadMember}.
      *
-     * @param roleId The id of the {@link Role role}, which should be checked
+     * @param roleId The id of the {@link Role}, which should be checked.
      *
-     * @return The {@link Role role} with the id you specified
+     * @return The {@link Role} with the id you specified.
      */
     @Nullable
     @CheckReturnValue
@@ -89,11 +89,11 @@ public class GuildThreadMember
     }
 
     /**
-     * Checks if the {@link Role role} with the id you specified, is found on the role board of the {@link Member thread member}.
+     * Checks if the {@link Role} with the id you specified, is found on the role board of the {@link ThreadMember}.
      *
-     * @param roleId The id of the {@link Role role}, which should be checked
+     * @param roleId The id of the {@link Role}, which should be checked.
      *
-     * @return The {@link Role role} with the id you specified
+     * @return The {@link Role} with the id you specified.
      */
     @Nullable
     @CheckReturnValue
@@ -104,11 +104,11 @@ public class GuildThreadMember
     }
 
     /**
-     * Checks if the {@link Role role} with the name you specified, is found on the role board of the {@link Member thread member}.
+     * Checks if the {@link Role} with the name you specified, is found on the role board of the {@link ThreadMember}.
      *
-     * @param roleName The name of the {@link Role role}, which should be checked
+     * @param roleName The name of the {@link Role}, which should be checked.
      *
-     * @return The {@link Role role} with the name you specified
+     * @return The {@link Role} with the name you specified.
      */
     @Nullable
     @CheckReturnValue
@@ -119,12 +119,12 @@ public class GuildThreadMember
     }
 
     /**
-     * Checks if the {@link Member thread member} has the {@link Role role} with the id you specified.
+     * Checks if the {@link ThreadMember} has the {@link Role} with the id you specified.
      *
-     * @param roleId The id of the {@link Role role}, which should be checked
+     * @param roleId The id of the {@link Role}, which should be checked.
      *
-     * @return <b>true</b> - If the {@link Member thread member} has the {@link Role role}
-     *         <br><b>false</b> - If the {@link Member thread member} has not the {@link Role role}
+     * @return <b>true</b> - If the {@link ThreadMember} has the {@link Role}.
+     *         <br><b>false</b> - If the {@link ThreadMember} has not the {@link Role}.
      */
     public boolean hasRoleWithId(long roleId)
     {
@@ -132,12 +132,12 @@ public class GuildThreadMember
     }
 
     /**
-     * Checks if the {@link Member thread member} has the {@link Role role} with the id you specified.
+     * Checks if the {@link ThreadMember} has the {@link Role} with the id you specified.
      *
-     * @param roleId The id of the {@link Role role}, which should be checked
+     * @param roleId The id of the {@link Role}, which should be checked.
      *
-     * @return <b>true</b> - If the {@link Member thread member} has the {@link Role role}
-     *         <br><b>false</b> - If the {@link Member thread member} has not the {@link Role role}
+     * @return <b>true</b> - If the {@link ThreadMember} has the {@link Role}.
+     *         <br><b>false</b> - If the {@link ThreadMember} has not the {@link Role}.
      */
     public boolean hasRoleWithId(@NotNull String roleId)
     {
@@ -145,12 +145,12 @@ public class GuildThreadMember
     }
 
     /**
-     * Checks if the {@link Member thread member} has the {@link Role role} with the name you specified.
+     * Checks if the {@link ThreadMember} has the {@link Role} with the name you specified.
      *
-     * @param roleName The name of the {@link Role role}, which should be checked
+     * @param roleName The name of the {@link Role}, which should be checked.
      *
-     * @return <b>true</b> - If the {@link Member thread member} has the {@link Role role}
-     *         <br><b>false</b> - If the {@link Member thread member} has not the {@link Role role}
+     * @return <b>true</b> - If the {@link ThreadMember} has the {@link Role}.
+     *         <br><b>false</b> - If the {@link ThreadMember} has not the {@link Role}.
      */
     public boolean hasRoleWithName(@NotNull String roleName)
     {
@@ -158,12 +158,12 @@ public class GuildThreadMember
     }
 
     /**
-     * Checks if the {@link Member thread member} was pinged in a specified {@link Message message}.
+     * Checks if the {@link ThreadMember} was pinged in a specified {@link Message}.
      *
-     * @param message The {@link Message message}, which should checked, if the {@link Member thread member} got pinged in the {@link Message message}
+     * @param message The {@link Message}, which should checked, if the {@link ThreadMember} got pinged in the {@link Message}.
      *
-     * @return <b>true</b> - If the {@link Member thread member} got pinged in the {@link Message message}
-     *         <br><b>false</b> - If the {@link Member thread member} got pinged in the {@link Message message}
+     * @return <b>true</b> - If the {@link ThreadMember} got pinged in the {@link Message}.
+     *         <br><b>false</b> - If the {@link ThreadMember} got pinged in the {@link Message}.
      */
     public boolean isMentioned(@NotNull Message message)
     {

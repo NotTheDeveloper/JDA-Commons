@@ -15,6 +15,7 @@
  */
 package dev.blocky.library.jda;
 
+import com.google.errorprone.annotations.CheckReturnValue;
 import dev.blocky.library.jda.enums.SafetyClear;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageChannel;
@@ -24,7 +25,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
-import com.google.errorprone.annotations.CheckReturnValue;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,7 +43,7 @@ public class Utility
     private static final HashMap<Long, Long> map = new HashMap<>();
 
     /**
-     * Constructs a <b>new</b> {@link Utility utility}.
+     * Constructs a <b>new</b> {@link Utility}.
      * <br>This is a private constructor, because it should not be accessed for other classes.
      */
     protected Utility()
@@ -51,14 +51,14 @@ public class Utility
     }
 
     /**
-     * Checks, which {@link SafetyClear safety clear} enum is given. (if <b>clear</b> equals null, the
-     * {@link SafetyClear safety clear} enum  will be set to {@link SafetyClear#NONE SafetyClear#NONE})
+     * Checks, which {@link SafetyClear} enum is given. (if the {@code clear} parameter equals <b>null</b>, the {@link SafetyClear}
+     * enum will be set to {@link SafetyClear#NONE NONE})
      *
-     * @param clear The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
-     * @param channel The {@link TextChannel text channel}, which should be initialized
-     * @param amount The amount of messages to delete
+     * @param clear The {@link SafetyClear} option, which helps for specifying different message types, which will not be deleted.
+     * @param channel The {@link TextChannel}, which should be initialized.
+     * @param amount The amount of messages to delete.
      *
-     * @return A list of messages representing the precursor of all deletion tasks
+     * @return A {@link List} of messages representing the precursor of all deletion tasks.
      */
     @NotNull
     @CheckReturnValue
@@ -69,7 +69,7 @@ public class Utility
         if (clear == null)
         {
             clear = SafetyClear.NONE;
-            logger.info("'clear' equals null, defaulting to 'SafetyClear.NONE'");
+            logger.info("'clear' equals null, defaulting to 'NONE'");
         }
 
         if (amount == 0)
@@ -131,14 +131,14 @@ public class Utility
     }
 
     /**
-     * Checks, which {@link SafetyClear safety clear} enum is given. (if <b>clear</b> equals null, the
-     * {@link SafetyClear safety clear} enum  will be set to {@link SafetyClear#NONE SafetyClear#NONE})
+     * Checks, which {@link SafetyClear} enum is given. (if the {@code clear} parameter equals <b>null</b>, the {@link SafetyClear}
+     * enum  will be set to {@link SafetyClear#NONE NONE})
      *
-     * @param clear The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
-     * @param channel The {@link MessageChannel message channel}, which  should be initialized
-     * @param amount The amount of messages to delete
+     * @param clear The {@link SafetyClear} option, which helps for specifying different message types, which will not be deleted.
+     * @param channel The {@link MessageChannel}, which  should be initialized.
+     * @param amount The amount of messages to delete.
      *
-     * @return A list of messages representing the precursor of all deletion tasks
+     * @return A {@link List} of messages representing the precursor of all deletion tasks.
      */
     @NotNull
     @CheckReturnValue
@@ -149,7 +149,7 @@ public class Utility
         if (clear == null)
         {
             clear = SafetyClear.NONE;
-            logger.info("'clear' equals null, defaulting to 'SafetyClear.NONE'");
+            logger.info("'clear' equals null, defaulting to 'NONE'");
         }
 
         if (amount == 0)
@@ -213,13 +213,13 @@ public class Utility
     }
 
     /**
-     * Checks, which {@link SafetyClear safety clear} enum is given. (if <b>clear</b> equals null, the
-     * {@link SafetyClear safety clear} enum will be set to {@link SafetyClear#NONE SafetyClear#NONE}).
+     * Checks, which {@link SafetyClear} enum is given. (if the {@code clear} parameter equals <b>null</b>, the {@link SafetyClear}
+     * enum will be set to {@link SafetyClear#NONE NONE})
      *
-     * @param clear The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
-     * @param channel The {@link TextChannel text channel}, which should be initialized
+     * @param clear The {@link SafetyClear} option, which helps for specifying different message types, which will not be deleted.
+     * @param channel The {@link TextChannel}, which should be initialized.
      *
-     * @return A list of messages representing the precursor of all deletion tasks
+     * @return A {@link List} of messages representing the precursor of all deletion tasks.
      */
     @NotNull
     @CheckReturnValue
@@ -230,7 +230,7 @@ public class Utility
         if (clear == null)
         {
             clear = SafetyClear.NONE;
-            logger.info("'clear' equals null, defaulting to 'SafetyClear.NONE'");
+            logger.info("'clear' equals null, defaulting to 'NONE'");
         }
 
         for (Message message : channel.getIterableHistory().cache(false))
@@ -275,13 +275,13 @@ public class Utility
     }
 
     /**
-     * Checks, which {@link SafetyClear safety clear} enum is given. (if <b>clear</b> equals null, the
-     * {@link SafetyClear safety clear} enum will be set to {@link SafetyClear#NONE SafetyClear#NONE}).
+     * Checks, which {@link SafetyClear} enum is given. (if the {@code clear} parameter equals <b>null</b>, the {@link SafetyClear}
+     * enum will be set to {@link SafetyClear#NONE NONE})
      *
-     * @param clear The {@link SafetyClear safety clear} option, which helps for specifying different message types, which will not be deleted
-     * @param channel The {@link MessageChannel message channel}, which should be initialized
+     * @param clear The {@link SafetyClear} option, which helps for specifying different message types, which will not be deleted.
+     * @param channel The {@link MessageChannel}, which should be initialized.
      *
-     * @return A list of messages representing the precursor of all deletion tasks
+     * @return A {@link List} of messages representing the precursor of all deletion tasks.
      */
     @NotNull
     @CheckReturnValue
@@ -292,7 +292,7 @@ public class Utility
         if (clear == null)
         {
             clear = SafetyClear.NONE;
-            logger.info("'clear' equals null, defaulting to 'SafetyClear.NONE'");
+            logger.info("'clear' equals null, defaulting to 'NONE'");
         }
 
         for (Message message : channel.getIterableHistory().cache(false))
@@ -337,20 +337,20 @@ public class Utility
     }
 
     /**
-     * Calculates the delay, depending on which {@link TimeUnit time unit} is specified.
+     * Calculates the delay, depending on which {@link TimeUnit} is specified.
      *
-     * @param unit The {@link TimeUnit time unit}, which should be used for calculating each time (if {@link TimeUnit time unit} equals null the
-     *             default {@link TimeUnit time unit} will be used [{@link TimeUnit#SECONDS TimeUnit#SECONDS}])
-     * @param delayInSeconds The delay in seconds which should be converted
+     * @param unit The {@link TimeUnit}, which should be used for calculating each time. (if the {@code unit} parameter
+     *             equals <b>null</b>, {@link TimeUnit#SECONDS SECONDS} will be used)
+     * @param delayInSeconds The delay in seconds which should be converted.
      *
-     * @return The delay calculated to the specified {@link TimeUnit time unit}
+     * @return The delay calculated to the specified {@link TimeUnit}.
      */
     protected static long calculateDelay(@Nullable TimeUnit unit, long delayInSeconds)
     {
         if (unit == null)
         {
             unit = TimeUnit.SECONDS;
-            logger.info("'clear' equals null, defaulting to 'SafetyClear.NONE'");
+            logger.info("'clear' equals null, defaulting to 'NONE'");
         }
 
         if (delayInSeconds == 0)
@@ -397,9 +397,9 @@ public class Utility
     }
 
     /**
-     * The {@link Utility#map hash map} instance from the {@link Utility utility} class.
+     * The {@link Utility#map} instance from the {@link Utility} class.
      *
-     * @return {@link Utility#map Utility#map}
+     * @return {@link Utility#map}.
      */
     @NotNull
     protected static HashMap<Long, Long> getHashMap()

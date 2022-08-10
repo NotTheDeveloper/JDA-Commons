@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Represents the {@link Member member} instance for the target {@link User user}.
+ * Represents the {@link Member} instance for the target {@link User}.
  *
  * @author BlockyDotJar
  * @version v1.1.4
@@ -65,13 +65,13 @@ public class GuildTargetMember
     }
 
     /**
-     * Constructs a <b>new</b> {@link GuildTargetMember guild target member} instance.
-     * <br>If you don't initialize a {@link UserContextInteractionEvent user-context-interaction-event}, the
-     * {@link GuildTargetMember guild target memeber} always will be <b>null</b>.
+     * Constructs a <b>new</b> {@link GuildTargetMember} instance.
+     * <br>If you don't initialize a {@link UserContextInteractionEvent}, the
+     * {@link GuildTargetMember} always will be <b>null</b>.
      *
-     * @param userEvent The {@link UserContextInteractionEvent user-context-interaction-event}, which should be initialized
+     * @param userEvent The {@link UserContextInteractionEvent}, which should be initialized.
      *
-     * @return A <b>new</b> {@link GuildTargetMember guild target member} instance
+     * @return A <b>new</b> {@link GuildTargetMember} instance.
      */
     @NotNull
     public static GuildTargetMember set(@NotNull UserContextInteractionEvent userEvent)
@@ -80,13 +80,13 @@ public class GuildTargetMember
     }
 
     /**
-     * Constructs a <b>new</b> {@link GuildTargetMember guild target member} instance.
-     * <br>If you don't initialize a {@link MessageContextInteractionEvent message-context-interaction-event}, the
-     * {@link GuildTargetMember guild target member} always will be <b>null</b>.
+     * Constructs a <b>new</b> {@link GuildTargetMember} instance.
+     * <br>If you don't initialize a {@link MessageContextInteractionEvent}, the
+     * {@link GuildTargetMember} always will be <b>null</b>.
      *
-     * @param messageEvent The {@link MessageContextInteractionEvent message-context-interaction-event}, which should be initialized
+     * @param messageEvent The {@link MessageContextInteractionEvent}, which should be initialized.
      *
-     * @return A <b>new</b> {@link GuildTargetMember guild target member} instance
+     * @return A <b>new</b> {@link GuildTargetMember} instance.
      */
     @NotNull
     public static GuildTargetMember set(@NotNull MessageContextInteractionEvent messageEvent)
@@ -97,7 +97,7 @@ public class GuildTargetMember
     /**
      * Indicates that a user context-command was used.
      *
-     * @return The {@link UserContextInteractionEvent user-context-interaction-event}
+     * @return The {@link UserContextInteractionEvent}.
      */
     @NotNull
     public UserContextInteractionEvent getUserContext()
@@ -108,7 +108,7 @@ public class GuildTargetMember
     /**
      * Indicates that a message context-command was used.
      *
-     * @return The {@link MessageContextInteractionEvent message-context-interaction-event}
+     * @return The {@link MessageContextInteractionEvent}.
      */
     @NotNull
     public MessageContextInteractionEvent getMessageContext()
@@ -117,11 +117,11 @@ public class GuildTargetMember
     }
 
     /**
-     * Checks if the {@link Role role} with the id you specified, is found on the role board of the {@link Member target member}.
+     * Checks if the {@link Role} with the id you specified, is found on the role board of the {@link Member}.
      *
-     * @param roleId The id of the {@link Role role}, which should be checked
+     * @param roleId The id of the {@link Role}, which should be checked.
      *
-     * @return The {@link Role role} with the id you specified
+     * @return The {@link Role} with the id you specified.
      */
     @Nullable
     @CheckReturnValue
@@ -132,11 +132,11 @@ public class GuildTargetMember
     }
 
     /**
-     * Checks if the {@link Role role} with the id you specified, is found on the role board of the {@link Member target member}.
+     * Checks if the {@link Role} with the id you specified, is found on the role board of the {@link Member}.
      *
-     * @param roleId The id of the {@link Role role}, which should be checked
+     * @param roleId The id of the {@link Role}, which should be checked.
      *
-     * @return The {@link Role role} with the id you specified
+     * @return The {@link Role} with the id you specified.
      */
     @Nullable
     @CheckReturnValue
@@ -147,11 +147,11 @@ public class GuildTargetMember
     }
 
     /**
-     * Checks if the {@link Role role} with the name you specified, is found on the role board of the {@link Member target member}.
+     * Checks if the {@link Role} with the name you specified, is found on the role board of the {@link Member}.
      *
-     * @param roleName The name of the {@link Role role}, which should be checked
+     * @param roleName The name of the {@link Role}, which should be checked.
      *
-     * @return The {@link Role role} with the name you specified
+     * @return The {@link Role} with the name you specified.
      */
     @Nullable
     @CheckReturnValue
@@ -162,12 +162,12 @@ public class GuildTargetMember
     }
 
     /**
-     * Checks if the {@link Member target member} has the {@link Role role} with the id you specified.
+     * Checks if the {@link Member} has the {@link Role} with the id you specified.
      *
-     * @param roleId The id of the {@link Role role}, which should be checked
+     * @param roleId The id of the {@link Role}, which should be checked.
      *
-     * @return <b>true</b> - If the {@link Member target member} has the {@link Role role}
-     *         <br><b>false</b> - If the {@link Member target member} has not the {@link Role role}
+     * @return <b>true</b> - If the {@link Member} has the {@link Role}.
+     *         <br><b>false</b> - If the {@link Member} has not the {@link Role}.
      */
     public boolean hasRoleWithId(long roleId)
     {
@@ -175,12 +175,12 @@ public class GuildTargetMember
     }
 
     /**
-     * Checks if the {@link Member target member} has the {@link Role role} with the id you specified.
+     * Checks if the {@link Member} has the {@link Role} with the id you specified.
      *
-     * @param roleId The id of the {@link Role role}, which should be checked
+     * @param roleId The id of the {@link Role}, which should be checked.
      *
-     * @return <b>true</b> - If the {@link Member target member} has the {@link Role role}
-     *         <br><b>false</b> - If the {@link Member target member} has not the {@link Role role}
+     * @return <b>true</b> - If the {@link Member} has the {@link Role}.
+     *         <br><b>false</b> - If the {@link Member} has not the {@link Role}.
      */
     public boolean hasRoleWithId(@NotNull String roleId)
     {
@@ -188,12 +188,12 @@ public class GuildTargetMember
     }
 
     /**
-     * Checks if the {@link Member target member} has the {@link Role role} with the name you specified.
+     * Checks if the {@link Member} has the {@link Role} with the name you specified.
      *
-     * @param roleName The name of the {@link Role role}, which should be checked
+     * @param roleName The name of the {@link Role}, which should be checked.
      *
-     * @return <b>true</b> - If the {@link Member target member} has the {@link Role role}
-     *         <br><b>false</b> - If the {@link Member target member} has not the {@link Role role}
+     * @return <b>true</b> - If the {@link Member} has the {@link Role}.
+     *         <br><b>false</b> - If the {@link Member} has not the {@link Role}.
      */
     public boolean hasRoleWithName(@NotNull String roleName)
     {
@@ -201,12 +201,12 @@ public class GuildTargetMember
     }
 
     /**
-     * Checks if the {@link Member target member} was pinged in a specified {@link Message message}.
+     * Checks if the {@link Member} was pinged in a specified {@link Message}.
      *
-     * @param message The {@link Message message}, which should checked, if the {@link Member target member} got pinged in the {@link Message message}
+     * @param message The {@link Message}, which should checked, if the {@link Member} got pinged in the {@link Message}.
      *
-     * @return <b>true</b> - If the {@link Member target member} got pinged in the {@link Message message}
-     *         <br><b>false</b> - If the {@link Member target member} got pinged in the {@link Message message}
+     * @return <b>true</b> - If the {@link Member} got pinged in the {@link Message}.
+     *         <br><b>false</b> - If the {@link Member} got pinged in the {@link Message}.
      */
     public boolean isMentioned(@NotNull Message message)
     {

@@ -23,10 +23,10 @@ import org.jetbrains.annotations.NotNull;
 import java.time.OffsetDateTime;
 
 /**
- * This is a simple avatar user context-command.
+ * This is a simple user context-command, which sends the avatar of the user.
  *
  * @author BlockyDotJar
- * @version v2.1.1
+ * @version v2.1.2
  * @since v1.0.0
  */
 public class AvatarUserContextCommand implements IUserContext
@@ -41,7 +41,7 @@ public class AvatarUserContextCommand implements IUserContext
 
         builder.setTitle("Avatar of " + event.getTargetMember().getUser().getAsTag());
         builder.setDescription("[Here you can download the avatar](" + event.getTargetMember().getUser().getAvatarUrl() + ")"); // Gets the avatar url of the user, the context-menu was used on.
-        builder.setImage(event.getTargetMember().getUser().getAvatarUrl());
-        event.replyEmbeds(builder.build()).queue(); // Sends the embed.
+        builder.setImage(event.getTargetMember().getUser().getAvatarUrl()); // Sets the image of the embed to the avatar url of the user, the context-menu was used on.
+        event.replyEmbeds(builder.build()).queue();
     }
 }

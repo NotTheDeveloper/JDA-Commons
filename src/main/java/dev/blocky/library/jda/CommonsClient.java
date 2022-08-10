@@ -35,7 +35,7 @@ public final class CommonsClient
     }
 
     /**
-     * This is the builder for the {@link CommonsClient commons client}.
+     * This is the builder for the {@link CommonsClient}.
      *
      * @author BlockyDotJar
      * @version v1.0.0-alpha.6
@@ -50,9 +50,9 @@ public final class CommonsClient
         }
 
         /**
-         * Represents a <b>new</b> {@link CommonsClient commons client} instance.
+         * Represents a <b>new</b> {@link CommonsClient} instance.
          *
-         * @return A <b>new</b> {@link CommonsClient commons client} instance
+         * @return A <b>new</b> {@link CommonsClient} instance.
          */
         @NotNull
         public static CommonsClient getCommonsClient()

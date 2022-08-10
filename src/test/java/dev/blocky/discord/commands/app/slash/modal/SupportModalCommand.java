@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.blocky.discord.commands.app.slash;
+package dev.blocky.discord.commands.app.slash.modal;
 
 import dev.blocky.library.jda.interfaces.app.slash.ISlashCommand;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -27,7 +27,7 @@ import org.jetbrains.annotations.NotNull;
  * This is a simple modal slash-command.
  *
  * @author BlockyDotJar
- * @version v1.1.1
+ * @version v1.1.2
  * @since v1.1.1
  */
 public class SupportModalCommand implements ISlashCommand
@@ -36,13 +36,13 @@ public class SupportModalCommand implements ISlashCommand
     public void onSlashCommand(@NotNull SlashCommandInteractionEvent event)
     {
         TextInput email =
-                TextInput.create("email", "Email", TextInputStyle.SHORT) // Creates a text input with a SHORT input style.
+                TextInput.create("email", "Email", TextInputStyle.SHORT) // Creates a TextInput with a SHORT input style.
                 .setPlaceholder("Enter your E-mail")
                 .setRequiredRange(10, 100) // Sets a minimum of 10 and a maximum of 100 required characters.
                 .build();
 
         TextInput body =
-                TextInput.create("body", "Body", TextInputStyle.PARAGRAPH) // Creates a text input with a PARAGRAPH input style.
+                TextInput.create("body", "Body", TextInputStyle.PARAGRAPH) // Creates a TextInput with a PARAGRAPH TextInputStyle.
                 .setPlaceholder("Your concerns go here")
                 .setRequiredRange(30, 1000) // Sets a minimum of 30 and a maximum of 1000 required characters.
                 .build();
@@ -53,7 +53,6 @@ public class SupportModalCommand implements ISlashCommand
                 .addActionRows(ActionRow.of(email), ActionRow.of(body))
                 .build();
 
-        // Sends the modal.
         event.replyModal(modal).queue();
     }
 }

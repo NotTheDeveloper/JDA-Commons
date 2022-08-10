@@ -28,11 +28,11 @@ import org.jetbrains.annotations.NotNull;
 public interface ICommand
 {
     /**
-     *  A simple command interface, which you can use to easily program message commands.
-     * <br>This contains an <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/CommandManager.java">command manager</a>.
+     * A simple command interface, which you can use to easily program message commands.
+     * <br>This contains an <a href="https://github.com/BlockyDotJar/JDA-Commons/blob/main/src/test/java/dev/blocky/discord/CommandManager.java">CommandManager</a>.
      *
-     * @param event The {@link MessageReceivedEvent message received event} for performing a command
-     * @param args An array of strings for performing a command
+     * @param event The {@link MessageReceivedEvent} for performing a command.
+     * @param args An array of strings for performing a command.
      */
     void onCommand(@NotNull MessageReceivedEvent event, @NotNull String[] args);
 }
