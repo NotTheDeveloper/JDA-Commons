@@ -102,12 +102,12 @@ public class CommandManager extends ListenerAdapter
     {
         String message = event.getMessage().getContentDisplay();
 
-        if (!event.isFromType(ChannelType.TEXT) || !event.isFromType(ChannelType.VOICE))
+        if (!message.startsWith("!"))
         {
             return;
         }
 
-        if (!message.startsWith("!"))
+        if (!event.isFromType(ChannelType.TEXT) && !event.isFromType(ChannelType.VOICE))
         {
             return;
         }

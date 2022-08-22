@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
  * @since v1.0.0
  */
 @Deadline(version = "v1.3.0")
-public final class CommonsClient
+public class CommonsClient
 {
     private CommonsClient()
     {

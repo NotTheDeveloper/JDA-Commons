@@ -26,6 +26,8 @@ import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
 import com.google.errorprone.annotations.CheckReturnValue;
+
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -41,13 +43,15 @@ public class GuildMember
     private static final Logger logger = JDALogger.getLog(GuildMember.class);
     private final Member member;
 
-    private GuildMember(@Nullable Member member)
+    private GuildMember(@NotNull Member member)
     {
         this.member = member;
 
-        if (!member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
+        EnumSet<GatewayIntent> intents = member.getJDA().getGatewayIntents();
+
+        if (!intents.contains(GatewayIntent.GUILD_MEMBERS))
         {
-                logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
+            logger.warn("The 'GUILD_MEMBERS' intent is not enabled, which means, that some stuff could not work.");
         }
     }
 
@@ -60,7 +64,7 @@ public class GuildMember
      * @return A <b>new</b> {@link GuildMember} instance
      */
     @NotNull
-    public static GuildMember set(@Nullable Member member)
+    public static GuildMember set(@NotNull Member member)
     {
         return new GuildMember(member);
     }
@@ -68,9 +72,9 @@ public class GuildMember
     /**
      * The author of the {@link Message} received as {@link Member} object.
      *
-     * @return The author of the {@link Message} as null-able {@link Member} object
+     * @return The author of the {@link Message} as <b>non-null</b> {@link Member} object
      */
-    @Nullable
+    @NotNull
     public Member getMember()
     {
         return member;

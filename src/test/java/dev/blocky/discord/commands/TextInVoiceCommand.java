@@ -21,7 +21,7 @@ import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.entities.VoiceChannel;
 import net.dv8tion.jda.api.entities.channel.unions.MessageChannelUnion;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.api.requests.restaction.MessageAction;
+import net.dv8tion.jda.api.requests.restaction.MessageCreateAction;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -51,10 +51,10 @@ public class TextInVoiceCommand implements ICommand
             }
 
             // Creates a *new* GuildVoiceChannel, by initializing a VoiceChannel and a member.
-            GuildVoiceChannel voiceChannel = GuildVoiceChannel.set(vc, event.getMember());
-            // Creates a MessageAction by simply sending a message.
-            MessageAction action = channel.sendMessage("Hello World!");
-            //Creates a timeouted message by handing over the MessageAction above and setting a delay of 10 seconds.
+            GuildVoiceChannel voiceChannel = GuildVoiceChannel.set(event.getChannel(), event.getMember());
+            // Creates a MessageCreateAction by simply sending a message.
+            MessageCreateAction action = channel.sendMessage("Hello World!");
+            //Creates a timeouted message by handing over the MessageCreateAction above and setting a delay of 10 seconds.
             voiceChannel.sendTimeoutedMessage(action, 10L, null).queue();
         }
     }

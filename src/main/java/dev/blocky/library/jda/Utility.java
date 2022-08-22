@@ -18,8 +18,7 @@ package dev.blocky.library.jda;
 import com.google.errorprone.annotations.CheckReturnValue;
 import dev.blocky.library.jda.enums.SafetyClear;
 import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.MessageChannel;
-import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.channel.unions.MessageChannelUnion;
 import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -55,14 +54,14 @@ public class Utility
      * enum will be set to {@link SafetyClear#NONE NONE})
      *
      * @param clear The {@link SafetyClear} option, which helps for specifying different message types, which will not be deleted.
-     * @param channel The {@link TextChannel}, which should be initialized.
+     * @param channel The {@link MessageChannelUnion}, which should be initialized.
      * @param amount The amount of messages to delete.
      *
      * @return A {@link List} of messages representing the precursor of all deletion tasks.
      */
     @NotNull
     @CheckReturnValue
-    protected static List<Message> checkClearSafety(@Nullable SafetyClear clear, @NotNull TextChannel channel, int amount)
+    protected static List<Message> checkClearSafety(@Nullable SafetyClear clear, @NotNull MessageChannelUnion channel, int amount)
     {
         List<Message> messages = new ArrayList<>();
 
@@ -91,117 +90,35 @@ public class Utility
         {
             switch (clear)
             {
-                case NONE:
+            case NONE:
+                messages.add(message);
+                break;
+            case ALL:
+                if (!message.isEdited() && !message.isPinned() && !message.isWebhookMessage())
+                {
                     messages.add(message);
-                    break;
-                case ALL:
-                    if (!message.isEdited() && !message.isPinned() && !message.isWebhookMessage())
-                    {
-                        messages.add(message);
-                    }
-                    break;
-                case PINNED_MESSAGES:
-                    if (!message.isPinned())
-                    {
-                        messages.add(message);
-                    }
-                    break;
-                case WEBHOOK_MESSAGES:
-                    if (!message.isWebhookMessage())
-                    {
-                        messages.add(message);
-                    }
-                    break;
-                case EDITED_MESSAGES:
-                    if (!message.isEdited())
-                    {
-                        messages.add(message);
-                    }
-                    break;
-                default:
-                    break;
-            }
-
-            if (--i <= 0)
-            {
+                }
                 break;
-            }
-        }
-        return messages;
-    }
-
-    /**
-     * Checks, which {@link SafetyClear} enum is given. (if the {@code clear} parameter equals <b>null</b>, the {@link SafetyClear}
-     * enum  will be set to {@link SafetyClear#NONE NONE})
-     *
-     * @param clear The {@link SafetyClear} option, which helps for specifying different message types, which will not be deleted.
-     * @param channel The {@link MessageChannel}, which  should be initialized.
-     * @param amount The amount of messages to delete.
-     *
-     * @return A {@link List} of messages representing the precursor of all deletion tasks.
-     */
-    @NotNull
-    @CheckReturnValue
-    protected static List<Message> checkClearSafety(@Nullable SafetyClear clear, @NotNull MessageChannel channel, int amount)
-    {
-        List<Message> messages = new ArrayList<>();
-
-        if (clear == null)
-        {
-            clear = SafetyClear.NONE;
-            logger.info("'clear' equals null, defaulting to 'NONE'");
-        }
-
-        if (amount == 0)
-        {
-            logger.error("The amount of messages, which you are specifying, equals 0, so it makes no sense that you use this method.",
-                    new IllegalArgumentException());
-        }
-
-        if (amount < 0)
-        {
-            logger.error("The amount of messages, which you are specifying, can not be under 0.",
-                    new IllegalArgumentException());
-        }
-
-        int i = amount + 1;
-
-        for (Message message : channel.getIterableHistory().cache(false))
-        {
-            switch (clear)
-            {
-                case NONE:
-                    if (message.isFromGuild())
-                    {
-                        messages.add(message);
-                    }
-                    break;
-                case ALL:
-                    if (!message.isEdited() && !message.isPinned() && !message.isWebhookMessage())
-                    {
-                        messages.add(message);
-                    }
-                    break;
-                case PINNED_MESSAGES:
-                    if (!message.isPinned())
-                    {
-                        messages.add(message);
-                    }
-                    break;
-                case WEBHOOK_MESSAGES:
-                    if (!message.isWebhookMessage())
-                    {
-                        messages.add(message);
-                    }
-                    break;
-                case EDITED_MESSAGES:
-                    if (!message.isEdited())
-                    {
-                        messages.add(message);
-                    }
-                    break;
-                default:
-                    break;
+            case PINNED_MESSAGES:
+                if (!message.isPinned())
+                {
+                    messages.add(message);
+                }
+                break;
+            case WEBHOOK_MESSAGES:
+                if (!message.isWebhookMessage())
+                {
+                    messages.add(message);
+                }
+                break;
+            case EDITED_MESSAGES:
+                if (!message.isEdited())
+                {
+                    messages.add(message);
+                }
+                break;
+            default:
+                break;
             }
 
             if (--i <= 0)
@@ -217,13 +134,13 @@ public class Utility
      * enum will be set to {@link SafetyClear#NONE NONE})
      *
      * @param clear The {@link SafetyClear} option, which helps for specifying different message types, which will not be deleted.
-     * @param channel The {@link TextChannel}, which should be initialized.
+     * @param channel The {@link MessageChannelUnion}, which should be initialized.
      *
      * @return A {@link List} of messages representing the precursor of all deletion tasks.
      */
     @NotNull
     @CheckReturnValue
-    protected static List<Message> checkChannelClearSafety(@Nullable SafetyClear clear, @NotNull TextChannel channel)
+    protected static List<Message> checkChannelClearSafety(@Nullable SafetyClear clear, @NotNull MessageChannelUnion channel)
     {
         List<Message> messages = new ArrayList<>();
 
@@ -237,100 +154,35 @@ public class Utility
         {
             switch (clear)
             {
-                case NONE:
-                    if (message.isFromGuild())
-                    {
-                        messages.add(message);
-                    }
-                    break;
-                case ALL:
-                    if (!message.isEdited() && !message.isPinned() && !message.isWebhookMessage())
-                    {
-                        messages.add(message);
-                    }
-                    break;
-                case PINNED_MESSAGES:
-                    if (!message.isPinned())
-                    {
-                        messages.add(message);
-                    }
-                    break;
-                case WEBHOOK_MESSAGES:
-                    if (!message.isWebhookMessage())
-                    {
-                        messages.add(message);
-                    }
-                    break;
-                case EDITED_MESSAGES:
-                    if (!message.isEdited())
-                    {
-                        messages.add(message);
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-        return messages;
-    }
-
-    /**
-     * Checks, which {@link SafetyClear} enum is given. (if the {@code clear} parameter equals <b>null</b>, the {@link SafetyClear}
-     * enum will be set to {@link SafetyClear#NONE NONE})
-     *
-     * @param clear The {@link SafetyClear} option, which helps for specifying different message types, which will not be deleted.
-     * @param channel The {@link MessageChannel}, which should be initialized.
-     *
-     * @return A {@link List} of messages representing the precursor of all deletion tasks.
-     */
-    @NotNull
-    @CheckReturnValue
-    protected static List<Message> checkChannelClearSafety(@Nullable SafetyClear clear, @NotNull MessageChannel channel)
-    {
-        List<Message> messages = new ArrayList<>();
-
-        if (clear == null)
-        {
-            clear = SafetyClear.NONE;
-            logger.info("'clear' equals null, defaulting to 'NONE'");
-        }
-
-        for (Message message : channel.getIterableHistory().cache(false))
-        {
-            switch (clear)
-            {
-                case NONE:
-                    if (message.isFromGuild())
-                    {
-                        messages.add(message);
-                    }
-                    break;
-                case ALL:
-                    if (!message.isEdited() && !message.isPinned() && !message.isWebhookMessage())
-                    {
-                        messages.add(message);
-                    }
-                    break;
-                case PINNED_MESSAGES:
-                    if (!message.isPinned())
-                    {
-                        messages.add(message);
-                    }
-                    break;
-                case WEBHOOK_MESSAGES:
-                    if (!message.isWebhookMessage())
-                    {
-                        messages.add(message);
-                    }
-                    break;
-                case EDITED_MESSAGES:
-                    if (!message.isEdited())
-                    {
-                        messages.add(message);
-                    }
-                    break;
-                default:
-                    break;
+            case NONE:
+                messages.add(message);
+                break;
+            case ALL:
+                if (!message.isEdited() && !message.isPinned() && !message.isWebhookMessage())
+                {
+                    messages.add(message);
+                }
+                break;
+            case PINNED_MESSAGES:
+                if (!message.isPinned())
+                {
+                    messages.add(message);
+                }
+                break;
+            case WEBHOOK_MESSAGES:
+                if (!message.isWebhookMessage())
+                {
+                    messages.add(message);
+                }
+                break;
+            case EDITED_MESSAGES:
+                if (!message.isEdited())
+                {
+                    messages.add(message);
+                }
+                break;
+            default:
+                break;
             }
         }
         return messages;
@@ -350,48 +202,46 @@ public class Utility
         if (unit == null)
         {
             unit = TimeUnit.SECONDS;
-            logger.info("'clear' equals null, defaulting to 'NONE'");
+            logger.info("'unit' equals null, defaulting to 'SECONDS'");
         }
 
         if (delayInSeconds == 0)
         {
-            logger.error("The delay in seconds, which you are specifying, equals 0, so it makes no sense that you chose a timeouted message.",
-                    new IllegalArgumentException());
+            throw new IllegalArgumentException("The delay in seconds, which you are specifying, equals 0, so it makes no sense that you chose a timeouted message.");
         }
 
         if (delayInSeconds < 0)
         {
-            logger.error("The delay in seconds, which you are specifying, can not be under 0.",
-                    new IllegalArgumentException());
+            throw new IllegalArgumentException("The delay in seconds, which you are specifying, can not be under 0.");
         }
 
         long delay = 0;
 
         switch (unit)
         {
-            case NANOSECONDS:
-                delay = delayInSeconds / 1000000;
-                break;
-            case MICROSECONDS:
-                delay = delayInSeconds / 1000;
-                break;
-            case MILLISECONDS:
-                delay = delayInSeconds;
-                break;
-            case SECONDS:
-                delay = delayInSeconds * 1000;
-                break;
-            case MINUTES:
-                delay = delayInSeconds * 60000;
-                break;
-            case HOURS:
-                delay = delayInSeconds * 3600000;
-                break;
-            case DAYS:
-                delay = delayInSeconds * 86400000;
-                break;
-            default:
-                break;
+        case NANOSECONDS:
+            delay = delayInSeconds / 1000000;
+            break;
+        case MICROSECONDS:
+            delay = delayInSeconds / 1000;
+            break;
+        case MILLISECONDS:
+            delay = delayInSeconds;
+            break;
+        case SECONDS:
+            delay = delayInSeconds * 1000;
+            break;
+        case MINUTES:
+            delay = delayInSeconds * 60000;
+            break;
+        case HOURS:
+            delay = delayInSeconds * 3600000;
+            break;
+        case DAYS:
+            delay = delayInSeconds * 86400000;
+            break;
+        default:
+            break;
         }
         return delay;
     }

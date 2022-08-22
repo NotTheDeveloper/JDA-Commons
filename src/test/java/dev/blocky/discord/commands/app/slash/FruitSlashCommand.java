@@ -35,27 +35,27 @@ public class FruitSlashCommand implements ISlashCommand
     {
         switch (event.getOption("name").getAsString())
         {
-            case "apple":
-                event.reply("Apple was chosen.").queue();
-                break;
-            case "apricot":
-                event.reply("Apricot was chosen.").queue();
-                break;
-            case "banana":
-                event.reply("Banana was chosen.").queue();
-                break;
-            case "cherry":
-                event.reply("Cherry was chosen.").queue();
-                break;
-            case "coconut":
-                event.reply("Coconut was chosen.").queue();
-                break;
-            case "cranberry":
-                event.reply("Cranberry was chosen.").queue();
-                break;
-            default:
-                event.reply("Unknown fruit.").queue();
-                break;
+        case "apple":
+            event.reply("Apple was chosen.").queue();
+            break;
+        case "apricot":
+            event.reply("Apricot was chosen.").queue();
+            break;
+        case "banana":
+            event.reply("Banana was chosen.").queue();
+            break;
+        case "cherry":
+            event.reply("Cherry was chosen.").queue();
+            break;
+        case "coconut":
+            event.reply("Coconut was chosen.").queue();
+            break;
+        case "cranberry":
+            event.reply("Cranberry was chosen.").queue();
+            break;
+        default:
+            event.reply("Unknown fruit.").queue();
+            break;
         }
     }
 }

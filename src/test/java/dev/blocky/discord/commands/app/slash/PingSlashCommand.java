@@ -41,15 +41,15 @@ public class PingSlashCommand implements ISlashCommand
 
         builder.setTimestamp(OffsetDateTime.now());
         builder.setFooter(event.getMember().getUser().getAsTag());
-        builder.setTitle("Ping? Pong! 🏓");
+        builder.setTitle("Ping? Pong!");
         builder.addField("Discord API gateway ping:",
-                         "```yml\n"
-                                 + event.getJDA().getGatewayPing() + "ms " +
-                                 "```\n", true);
+                "```yml\n"
+                        + event.getJDA().getGatewayPing() + "ms " +
+                        "```\n", true);
         builder.addField("Discord API REST ping:",
-                         "```yml\n"
-                                 + restPing + "ms " +
-                                 "```", true);
+                "```yml\n"
+                        + restPing + "ms " +
+                        "```", true);
 
         // If the Discord gateway ping is higher than/equal to 200, the embed color should be red.
         // If the Discord gateway ping is higher than/equal to 100 and between/equal to 199, the embed color should be yellow.

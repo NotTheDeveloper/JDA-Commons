@@ -39,7 +39,7 @@ import java.util.regex.Pattern;
 public class MessageMention
 {
     private final List<String> mentionedSlashCommands = new ArrayList<>();
-    private final Bag<String>  mentionedSlashCommandsBag = new HashBag<>();
+    private final Bag<String> mentionedSlashCommandsBag = new HashBag<>();
     private final Message message;
     private final String content;
 

@@ -18,7 +18,7 @@ package dev.blocky.discord.commands;
 import dev.blocky.library.jda.entities.channel.GuildMessageChannel;
 import dev.blocky.library.jda.interfaces.ICommand;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.api.requests.restaction.MessageAction;
+import net.dv8tion.jda.api.requests.restaction.MessageCreateAction;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -35,9 +35,9 @@ public class HelloWorldCommand implements ICommand
     {
         // Creates a *new* GuildMessageChannel, by initializing a MessageChannel and a member.
         GuildMessageChannel channel = GuildMessageChannel.set(event.getChannel(), event.getMember());
-        // Creates a MessageAction by simply sending a message.
-        MessageAction action = event.getChannel().sendMessage("Hello World!");
-        //Creates a timeouted message by handing over the MessageAction above and setting a delay of 10 seconds.
-        channel.sendTimeoutedMessage(action, 10L, null).queue();
+        // Creates a MessageCreateAction by simply sending a message.
+        MessageCreateAction action = event.getChannel().sendMessage("Hello World!");
+        //Creates a timeouted message by handing over the MessageCreateAction above and setting a delay of 10 seconds.
+        channel.sendTimeoutedMessage(action, 0L, null).queue();
     }
 }

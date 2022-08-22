@@ -5,7 +5,7 @@
 [license]: https://github.com/BlockyDotJar/JDA-Commons/tree/main/LICENSE
 
 [discord-invite-shield]: https://discord.com/api/guilds/876766868864647188/widget.png
-[discord-invite]: https://discord.gg/FnGFbzCw2r
+[discord-invite]: https://discord.gg/mYKK4BwGxe
 
 [download]: #download
 
@@ -93,6 +93,8 @@ After that you add this repository and dependency to your `pom.xml`:
 
 Be sure to replace the **`GITHUB_USERNAME`** key below with your GitHub username and **`GITHUB_TOKEN`** with a [GitHub token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-tokenn)!
 
+**Gradle Groovy:**
+
 ```gradle
 repositories {
     maven {
@@ -100,6 +102,20 @@ repositories {
         credentials {
             username = project.findProperty("gpr.user") ?: "GITHUB_USERNAME"
             password = project.findProperty("gpr.key") ?: "GITHUB_TOKEN"
+        }
+    }
+}
+```
+
+**Kotlin DSL:**
+
+```gradle
+repositories {
+    maven {
+        url = uri("https://maven.pkg.github.com/BlockyDotJar/JDA-Commons")
+        credentials {
+            username = project.findProperty("gpr.user") as String? ?: "GITHUB_USERNAME"
+            password = project.findProperty("gpr.key") as String? ?: "GITHUB_TOKEN"
         }
     }
 }
@@ -214,18 +230,21 @@ More can be found in the GitHub organization: [JDA-Applications](https://github.
 This project requires **Java 8+**
 
 * JDA (Java Discord API)
-  * Version: **v5.0.0-alpha.17**
-  * [Github](https://github.com/DV8FromTheWorld/JDA)
+    * Version: **v5.0.0-alpha.18**
+    * [Github](https://github.com/DV8FromTheWorld/JDA)
 * slf4j-api
-  * Version: **v1.7.36**
-  * [Github](https://github.com/qos-ch/slf4j)
+    * Version: **v2.0.0**
+    * [Github](https://github.com/qos-ch/slf4j)
 * logback-classic
-  * Version: **v1.2.11**
-  * [Github](https://github.com/qos-ch/logback)
+    * Version: **v1.3.0-beta0**
+    * [Github](https://github.com/qos-ch/logback)
+* error_prone_annotations
+    * Version: **v2.15.0**
+    * [Github](https://github.com/google/error-prone)
 
 <hr>
 
-These are only the libraries, which we have in our [pom.xml](https://github.com/BlockyDotJar/JDA-Commons/blob/main/pom.xml), but we are using [all libraries](https://github.com/DV8FromTheWorld/JDA#dependencies), which the original JDA uses too.
+These are only the libraries, which we have in our [build.gradle.kts](https://github.com/BlockyDotJar/JDA-Commons/blob/main/build.gradle.kts), but we are using [all libraries](https://github.com/DV8FromTheWorld/JDA#dependencies), which the original JDA uses too.
 
 <hr>
 

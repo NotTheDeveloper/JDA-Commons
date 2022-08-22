@@ -28,6 +28,8 @@ import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
 import com.google.errorprone.annotations.CheckReturnValue;
+
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -48,9 +50,21 @@ public class GuildTargetMember
     {
         this.userEvent = userEvent;
 
-        if (!userEvent.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
+        EnumSet<GatewayIntent> intents = userEvent.getJDA().getGatewayIntents();
+
+        if (!intents.contains(GatewayIntent.GUILD_MESSAGES) && !intents.contains(GatewayIntent.GUILD_MEMBERS))
         {
-            logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
+            logger.warn("Both the 'GUILD_MESSAGES' and the 'GUILD_MEMBERS' intents are not enabled, which means, that some stuff could not work.");
+        }
+
+        if (!intents.contains(GatewayIntent.GUILD_MESSAGES))
+        {
+            logger.warn("The 'GUILD_MESSAGES' intent is not enabled, which means, that some stuff could not work.");
+        }
+
+        if (!intents.contains(GatewayIntent.GUILD_MEMBERS))
+        {
+            logger.warn("The 'GUILD_MEMBERS' intent is not enabled, which means, that some stuff could not work.");
         }
     }
 
@@ -58,9 +72,21 @@ public class GuildTargetMember
     {
         this.messageEvent = messageEvent;
 
-        if (!messageEvent.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
+        EnumSet<GatewayIntent> intents = messageEvent.getJDA().getGatewayIntents();
+
+        if (!intents.contains(GatewayIntent.GUILD_MESSAGES) && !intents.contains(GatewayIntent.GUILD_MEMBERS))
         {
-            logger.warn("The GUILD_MEMBERS Intent is not enabled, which means, that some stuff could not work.");
+            logger.warn("Both the 'GUILD_MESSAGES' and the 'GUILD_MEMBERS' intents are not enabled, which means, that some stuff could not work.");
+        }
+
+        if (!intents.contains(GatewayIntent.GUILD_MESSAGES))
+        {
+            logger.warn("The 'GUILD_MESSAGES' intent is not enabled, which means, that some stuff could not work.");
+        }
+
+        if (!intents.contains(GatewayIntent.GUILD_MEMBERS))
+        {
+            logger.warn("The 'GUILD_MEMBERS' intent is not enabled, which means, that some stuff could not work.");
         }
     }
 
@@ -210,7 +236,7 @@ public class GuildTargetMember
      */
     public boolean isMentioned(@NotNull Message message)
     {
-        return message.getMentions().isMentioned(userEvent != null ? userEvent.getTargetMember(): messageEvent.getTarget().getMember(), Message.MentionType.USER);
+        return message.getMentions().isMentioned(userEvent != null ? userEvent.getTargetMember() : messageEvent.getTarget().getMember(), Message.MentionType.USER);
     }
 
     @Override

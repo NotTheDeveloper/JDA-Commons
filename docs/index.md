@@ -4,7 +4,7 @@
 [license]: https://github.com/BlockyDotJar/JDA-Commons/tree/main/LICENSE
 
 [discord-invite-shield]: https://discord.com/api/guilds/876766868864647188/widget.png
-[discord-invite]: https://discord.gg/FnGFbzCw2r
+[discord-invite]: https://discord.gg/mYKK4BwGxe
 
 [download]: #download
 
@@ -12,7 +12,7 @@
 [ ![license-shield][] ][license]
 [ ![discord-invite-shield][] ][discord-invite]
 
-> Note: If you have any suggestions/questions/feedback for this wiki please contact Blocky.jar ツ#8117 via [Discord](https://discord.gg/FnGFbzCw2r)
+> Note: If you have any suggestions/questions/feedback for this wiki please contact Blocky.jar ツ#8117 via [Discord](https://discord.gg/mYKK4BwGxe)
 
 If you want some examples for JDA too than check out the [example directory](https://github.com/BlockyDotJar/JDA-Commons/tree/main/src/test/java/dev/blocky/discord).
 
@@ -115,12 +115,12 @@ Since: v1.0.0
 >
 > Parameter:
 > <br>**clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
-> <br>**channel** - The **TextChannel**, which should be initialized.
+> <br>**channel** - The **MessageChannelUnion**, which should be initialized.
 > <br>**amount** - The amount of messages to delete.
 > <br>Returns: A **List** of messages representing the precursor of all deletion tasks.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-checkClearSafety(@Nullable SafetyClear, @NotNull TextChannel, int)
+checkClearSafety(@Nullable SafetyClear, @NotNull MessageChannelUnion, int)
 ```
 <br>
 
@@ -128,36 +128,11 @@ checkClearSafety(@Nullable SafetyClear, @NotNull TextChannel, int)
 >
 > Parameter:
 > <br>**clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
-> <br>**channel** - The **MessageChannel**, which should be initialized.
-> <br>**amount** - The amount of messages to delete.
+> <br>**channel** - The **MessageChannelUnion**, which should be initialized.
 > <br>Returns: A **List** of messages representing the precursor of all deletion tasks.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-checkClearSafety(@Nullable SafetyClear, @NotNull MessageChannel, int)
-```
-<br>
-
-> Checks, which **SafetyClear** enum is given. (if the <code>clear</code> parameter equals **null**, the **SafetyClear** enum will be set to <code>NONE</code>)
->
-> Parameter:
-> <br>**clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
-> <br>**channel** - The **TextChannel**, which should be initialized.
-> <br>Returns: A **List** of messages representing the precursor of all deletion tasks.
-> <br>Annotation: **NotNull**, **CheckReturnValue**
-```swift
-checkChannelClearSafety(@Nullable SafetyClear, @NotNull TextChannel)
-```
-<br>
-
-> Checks, which **SafetyClear** enum is given. (if the <code>clear</code> parameter equals **null**, the **SafetyClear** enum will be set to <code>NONE</code>)
->
-> Parameter:
-> <br>**clear** - The **SafetyClear** option, which helps for specifying different message types, which will not be deleted.
-> <br>**channel** - The **MessageChannel**, which should be initialized.
-> <br>Returns: A **List** of messages representing the precursor of all deletion tasks.
-> <br>Annotation: **NotNull**, **CheckReturnValue**
-```swift
-checkChannelClearSafety(@Nullable SafetyClear, @NotNull MessageChannel)
+checkChannelClearSafety(@Nullable SafetyClear, @NotNull MessageChannelUnion)
 ```
 <br>
 
@@ -504,37 +479,37 @@ Since: v1.0.0-alpha.1
 
 **Recommended:**
 ```java
-GuildTextChannel channel = GuildTextChannel.set(@NotNull TextChannel, @Nullable Member);
+GuildTextChannel channel = GuildTextChannel.set(@NotNull MessageChannelUnion, @Nullable Member);
 ```
 
 **Alternatively:**
 ```java
-GuildTextChannel channel = GuildTextChannel.set(@NotNull TextChannel);
+GuildTextChannel channel = GuildTextChannel.set(@NotNull MessageChannelUnion);
 ```
 
 ### Methods
 
 > Constructs a <b>new GuildTextChannel</b> instance.
-> <br>If you don't initialize a **TextChannel** or a **Member**, the **GuildTextChannel** always will be <b>null</b>.
+> <br>If you don't initialize a **MessageChannelUnion** or a **Member**, the **GuildTextChannel** always will be <b>null</b>.
 >
 > Parameter:
-> <br>**channel** - The **TextChannel**, which should be initialized.
+> <br>**channel** - The **MessageChannelUnion**, which should be initialized.
 > <br>**member** - The **Member**, which should be initialized.
 > <br>Returns: A <b>new GuildTextChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
-set(@NotNull TextChannel, @Nullable Member)
+set(@NotNull MessageChannelUnion, @Nullable Member)
 ```
 <br>
 
 > Constructs a <b>new GuildTextChannel</b> instance.
-> <br>If you don't initialize a **TextChannel**, the **GuildTextChannel** always will be <b>null</b>.
+> <br>If you don't initialize a **MessageChannelUnion**, the **GuildTextChannel** always will be <b>null</b>.
 >
-> Parameter: **channel** - The **TextChannel**, which should be initialize.
+> Parameter: **channel** - The **MessageChannelUnion**, which should be initialize.
 > <br>Returns: A <b>new GuildTextChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
-set(@NotNull TextChannel)
+set(@NotNull MessageChannelUnion)
 ```
 <br>
 
@@ -603,7 +578,7 @@ containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from the **User**, which was specified with the <code>set(@NotNull TextChannel, @Nullable Member)</code> method,
+> Gets all the messages from the **User**, which was specified with the <code>set(@NotNull MessageChannelUnion, @Nullable Member)</code> method,
 > in this channel. (max. 1000 messages per channel)
 >
 > Returns: The written messages of the specified **User** in this channel.
@@ -633,14 +608,14 @@ getMessagesByUser(@NotNull User)
 > <br>(if the <code>unit</code> parameter equals <b>null</b>, <code>SECONDS</code> will be used)
 >
 > Parameter:
-> <br>**message** - The **MessageAction**, which should be used.
+> <br>**message** - The **MessageCreateAction**, which should be used.
 > <br>**delayInSeconds** - The delay for the executing command in seconds.
 > <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
 > <br>**unit** - The **TimeUnit**, which is used for specifying the type of time for the delay.
-> <br>Returns: The specified **MessageAction**.
+> <br>Returns: The specified **MessageCreateAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nullable TimeUnit)
+sendTimeoutedMessage(@NotNull MessageCreateAction, long, @Nullable MessageCreateAction, @Nullable TimeUnit)
 ```
 <br>
 
@@ -651,13 +626,13 @@ sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nul
 > equals <b>null</b>, there will be sent a default error message)
 >
 > Parameter:
-> <br>**message** - The **MessageAction**, which should be used.
+> <br>**message** - The **MessageCreateAction**, which should be used.
 > <br>**delayInSeconds** - The delay for the executing command in seconds.
 > <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
-> <br>Returns: The specified **MessageAction**.
+> <br>Returns: The specified **MessageCreateAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction)
+sendTimeoutedMessage(@NotNull MessageCreateAction, long, @Nullable MessageCreateAction)
 ```
 <br>
 
@@ -678,7 +653,7 @@ sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction)
 > <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction, @Nullable TimeUnit)
+replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @NotNull ReplyCallbackAction, @Nullable TimeUnit)
 ```
 <br>
 
@@ -695,7 +670,7 @@ replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallback
 > <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction)
+replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @NotNull ReplyCallbackAction)
 ```
 
 ### Overridden methods
@@ -722,37 +697,37 @@ Since: v1.0.0-alpha.1
 
 **Recommended:**
 ```java
-GuildMessageChannel channel = GuildMessageChannel.set(@NotNull MessageChannel, @Nullable Member);
+GuildMessageChannel channel = GuildMessageChannel.set(@NotNull MessageChannelUnion, @Nullable Member);
 ```
 
 **Alternatively:**
 ```java
-GuildMessageChannel channel = GuildMessageChannel.set(@NotNull MessageChannel);
+GuildMessageChannel channel = GuildMessageChannel.set(@NotNull MessageChannelUnion);
 ```
 
 ### Methods
 
 > Constructs a <b>new GuildMessageChannel</b> instance.
-> <br>If you don't initialize a **MessageChannel** or a **Member**, the **GuildMessageChannel** always will be <b>null</b>.
+> <br>If you don't initialize a **MessageChannelUnion** or a **Member**, the **GuildMessageChannel** always will be <b>null</b>.
 >
 > Parameter:
-> <br>**channel** - The **MessageChannel**, which should be initialized.
+> <br>**channel** - The **MessageChannelUnion**, which should be initialized.
 > <br>**member** - The **Member**, which should be initialized.
 > <br>Returns: A <b>new GuildMessageChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
-set(@NotNull MessageChannel, @Nullable Member)
+set(@NotNull MessageChannelUnion, @Nullable Member)
 ```
 <br>
 
 > Constructs a <b>new GuildMessageChannel</b> instance.
-> <br>If you don't initialize a **MessageChannel**, **Member** always will be <b>null</b>.
+> <br>If you don't initialize a **MessageChannelUnion**, **Member** always will be <b>null</b>.
 >
-> Parameter: **channel** - The **MessageChannel**, which should be initialized.
+> Parameter: **channel** - The **MessageChannelUnion**, which should be initialized.
 > <br>Returns: A <b>new GuildMessageChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
-set(@NotNull MessageChannel)
+set(@NotNull MessageChannelUnion)
 ```
 <br>
 
@@ -821,7 +796,7 @@ containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from the **User**, which was specified with the <code>set(@NotNull MessageChannel, @Nullable Member)</code> method,
+> Gets all the messages from the **User**, which was specified with the <code>set(@NotNull MessageChannelUnion, @Nullable Member)</code> method,
 > in this channel. (max. 1000 messages per channel)
 >
 > Returns: The written messages of the specified **User** in this channel
@@ -851,14 +826,14 @@ getMessagesByUser(@NotNull User)
 > <br>(if the <code>unit</code> parameter equals <b>null</b>, <code>SECONDS</code> will be used)
 >
 > Parameter:
-> <br>**message** - The **MessageAction**, which should be used.
+> <br>**message** - The **MessageCreateAction**, which should be used.
 > <br>**delayInSeconds** - The delay for the executing command in seconds.
 > <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
 > <br>**unit** - The **TimeUnit**, which is used for specifying the type of time for the delay.
-> <br>Returns: The specified **MessageAction**.
+> <br>Returns: The specified **MessageCreateAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nullable TimeUnit)
+sendTimeoutedMessage(@NotNull MessageCreateAction, long, @Nullable MessageCreateAction, @Nullable TimeUnit)
 ```
 <br>
 
@@ -869,13 +844,13 @@ sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nul
 > equals <b>null</b>, there will be sent a default error message)
 >
 > Parameter:
-> <br>**message** - The **MessageAction**, which should be used.
+> <br>**message** - The **MessageCreateAction**, which should be used.
 > <br>**delayInSeconds** - The delay for the executing command in seconds.
 > <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
-> <br>Returns: The specified **MessageAction**.
+> <br>Returns: The specified **MessageCreateAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction)
+sendTimeoutedMessage(@NotNull MessageCreateAction, long, @Nullable MessageCreateAction)
 ```
 <br>
 
@@ -896,7 +871,7 @@ sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction)
 > <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction, @Nullable TimeUnit)
+replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @NotNull ReplyCallbackAction, @Nullable TimeUnit)
 ```
 <br>
 
@@ -913,7 +888,7 @@ replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallback
 > <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction)
+replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @NotNull ReplyCallbackAction)
 ```
 
 ### Overridden methods
@@ -940,37 +915,37 @@ Since: v1.1.1
 
 **Recommended:**
 ```java
-GuildNewsChannel channel = GuildNewsChannel.set(@NotNull NewsChannel, @Nullable Member);
+GuildNewsChannel channel = GuildNewsChannel.set(@NotNull MessageChannelUnion, @Nullable Member);
 ```
 
 **Alternatively:**
 ```java
-GuildNewsChannel channel = GuildNewsChannel.set(@NotNull NewsChannel);
+GuildNewsChannel channel = GuildNewsChannel.set(@NotNull MessageChannelUnion);
 ```
 
 ### Methods
 
 > Constructs a <b>new GuildNewsChannel</b> instance.
-> <br>If you don't initialize a **NewsChannel** or a **Member**, the **GuildNewsChannel** always will be <b>null</b>.
+> <br>If you don't initialize a **MessageChannelUnion** or a **Member**, the **GuildNewsChannel** always will be <b>null</b>.
 >
 > Parameter:
-> <br>**channel** - The **NewsChannel**, which should be initialized.
+> <br>**channel** - The **MessageChannelUnion**, which should be initialized.
 > <br>**member** - The **Member**,, which should be initialized.
 > <br>Returns: A <b>new GuildNewsChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
-set(@NotNull NewsChannel, @Nullable Member)
+set(@NotNull MessageChannelUnion, @Nullable Member)
 ```
 <br>
 
 > Constructs a <b>new GuildNewsChannel</b> instance.
-> <br>If you don't initialize a **NewsChannel**, **GuildNewsChannel** always will be <b>null</b>.
+> <br>If you don't initialize a **MessageChannelUnion**, **GuildNewsChannel** always will be <b>null</b>.
 >
-> Parameter: **channel** - The **NewsChannel**, which should be initialized .
+> Parameter: **channel** - The **MessageChannelUnion**, which should be initialized .
 > <br>Returns: A <b>new GuildNewsChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
-set(@NotNull NewsChannel)
+set(@NotNull MessageChannelUnion)
 ```
 <br>
 
@@ -1039,7 +1014,7 @@ containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from the **User**, which was specified with the <code>set(@NotNull NewsChannel, @Nullable Member)</code> method,
+> Gets all the messages from the **User**, which was specified with the <code>set(@NotNull MessageChannelUnion, @Nullable Member)</code> method,
 > in this channel. (max. 1000 messages per channel)
 >
 > Returns: The written messages of the specified **User** in this channel.
@@ -1069,14 +1044,14 @@ getMessagesByUser(@NotNull User)
 > <br>(if the <code>unit</code> parameter equals <b>null</b>, <code>SECONDS</code> will be used)
 >
 > Parameter:
-> <br>**message** - The **MessageAction**, which should be used.
+> <br>**message** - The **MessageCreateAction**, which should be used.
 > <br>**delayInSeconds** - The delay for the executing command in seconds.
 > <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
 > <br>**unit** - The **TimeUnit**, which is used for specifying the type of time for the delay.
-> <br>Returns: The specified **MessageAction**.
+> <br>Returns: The specified **MessageCreateAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nullable TimeUnit)
+sendTimeoutedMessage(@NotNull MessageCreateAction, long, @Nullable MessageCreateAction, @Nullable TimeUnit)
 ```
 <br>
 
@@ -1087,13 +1062,13 @@ sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nul
 > equals <b>null</b>, there will be sent a default error message)
 >
 > Parameter:
-> <br>**message** - The **MessageAction**, which should be used.
+> <br>**message** - The **MessageCreateAction**, which should be used.
 > <br>**delayInSeconds** - The delay for the executing command in seconds.
 > <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
-> <br>Returns: The specified **MessageAction**.
+> <br>Returns: The specified **MessageCreateAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction)
+sendTimeoutedMessage(@NotNull MessageCreateAction, long, @Nullable MessageCreateAction)
 ```
 <br>
 
@@ -1114,7 +1089,7 @@ sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction)
 > <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction, @Nullable TimeUnit)
+replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @NotNull ReplyCallbackAction, @Nullable TimeUnit)
 ```
 <br>
 
@@ -1131,7 +1106,7 @@ replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallback
 > <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction)
+replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @NotNull ReplyCallbackAction)
 ```
 <br>
 
@@ -1192,37 +1167,37 @@ Since: v1.1.1
 
 **Recommended:**
 ```java
-GuildThreadChannel channel = GuildThreadChannel.set(@NotNull ThreadChannel, @Nullable Member);
+GuildThreadChannel channel = GuildThreadChannel.set(@NotNull MessageChannelUnion, @Nullable Member);
 ```
 
 **Alternatively:**
 ```java
-GuildThreadChannel channel = GuildThreadChannel.set(@NotNull ThreadChannel);
+GuildThreadChannel channel = GuildThreadChannel.set(@NotNull MessageChannelUnion);
 ```
 
 ### Methods
 
 > Constructs a <b>new GuildThreadChannel</b> instance.
-> <br>If you don't initialize a **ThreadChannel** or a **Member**, the **GuildThreadChannel** always will be <b>null</b>.
+> <br>If you don't initialize a **MessageChannelUnion** or a **Member**, the **GuildThreadChannel** always will be <b>null</b>.
 >
 > Parameter:
-> <br>**channel** - The **ThreadChannel**, which should be initialized.
+> <br>**channel** - The **MessageChannelUnion**, which should be initialized.
 > <br>**member** - The **Member**, which should be initialized.
 > <br>Returns: A <b>new GuildThreadChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
-set(@NotNull ThreadChannel, @Nullable Member)
+set(@NotNull MessageChannelUnion, @Nullable Member)
 ```
 <br>
 
 > Constructs a <b>new GuildThreadChannel</b> instance.
-> <br>If you don't initialize a **ThreadChannel**, **GuildThreadChannel** always will be <b>null</b>.
+> <br>If you don't initialize a **MessageChannelUnion**, **GuildThreadChannel** always will be <b>null</b>.
 >
-> Parameter: **channel** - The **ThreadChannel**, which should be initialized.
+> Parameter: **channel** - The **MessageChannelUnion**, which should be initialized.
 > <br>Returns: A <b>new GuildThreadChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
-set(@NotNull ThreadChannel)
+set(@NotNull MessageChannelUnion)
 ```
 <br>
 
@@ -1291,7 +1266,7 @@ containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from the **User**, which was specified with the <code>set(@NotNull ThreadChannel, @Nullable Member)</code> method,
+> Gets all the messages from the **User**, which was specified with the <code>set(@NotNull MessageChannelUnion, @Nullable Member)</code> method,
 > in this channel. (max. 1000 messages per channel)
 >
 > Returns: The written messages of the specified **User** in this channel.
@@ -1321,14 +1296,14 @@ getMessagesByUser(@NotNull User)
 > <br>(if the <code>unit</code> parameter equals <b>null</b>, <code>SECONDS</code> will be used)
 >
 > Parameter:
-> <br>**message** - The **MessageAction**, which should be used.
+> <br>**message** - The **MessageCreateAction**, which should be used.
 > <br>**delayInSeconds** - The delay for the executing command in seconds.
 > <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
 > <br>**unit** - The **TimeUnit**, which is used for specifying the type of time for the delay.
-> <br>Returns: The specified **MessageAction**.
+> <br>Returns: The specified **MessageCreateAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nullable TimeUnit)
+sendTimeoutedMessage(@NotNull MessageCreateAction, long, @Nullable MessageCreateAction, @Nullable TimeUnit)
 ```
 <br>
 
@@ -1339,13 +1314,13 @@ sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nul
 > equals <b>null</b>, there will be sent a default error message)
 >
 > Parameter:
-> <br>**message** - The **MessageAction**, which should be used.
+> <br>**message** - The **MessageCreateAction**, which should be used.
 > <br>**delayInSeconds** - The delay for the executing command in seconds.
 > <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
-> <br>Returns: The specified **MessageAction**.
+> <br>Returns: The specified **MessageCreateAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction)
+sendTimeoutedMessage(@NotNull MessageCreateAction, long, @Nullable MessageCreateAction)
 ```
 <br>
 
@@ -1366,7 +1341,7 @@ sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction)
 > <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction, @Nullable TimeUnit)
+replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @NotNull ReplyCallbackAction, @Nullable TimeUnit)
 ```
 <br>
 
@@ -1383,7 +1358,7 @@ replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallback
 > <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction)
+replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @NotNull ReplyCallbackAction)
 ```
 
 ### Overridden methods
@@ -1410,37 +1385,37 @@ Since: v1.1.5
 
 **Recommended:**
 ```java
-GuildVoiceChannel channel = GuildVoiceChannel.set(@NotNull VoiceChannel, @Nullable Member);
+GuildVoiceChannel channel = GuildVoiceChannel.set(@NotNull MessageChannelUnion, @Nullable Member);
 ```
 
 **Alternatively:**
 ```java
-GuildVoiceChannel channel = GuildVoiceChannel.set(@NotNull VoiceChannel);
+GuildVoiceChannel channel = GuildVoiceChannel.set(@NotNull MessageChannelUnion);
 ```
 
 ### Methods
 
 > Constructs a <b>new GuildVoiceChannel</b> instance.
-> <br>If you don't initialize a **VoiceChannel** or a **Member**, the **GuildVoiceChannel** always will be <b>null</b>.
+> <br>If you don't initialize a **MessageChannelUnion** or a **Member**, the **GuildVoiceChannel** always will be <b>null</b>.
 >
 > Parameter:
-> <br>**channel** - The **VoiceChannel**, which should be initialized.
+> <br>**channel** - The **MessageChannelUnion**, which should be initialized.
 > <br>**member** - The **Member**, which should be initialized.
 > <br>Returns: A <b>new GuildVoiceChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
-set(@NotNull VoiceChannel, @Nullable Member)
+set(@NotNull MessageChannelUnion, @Nullable Member)
 ```
 <br>
 
 > Constructs a <b>new GuildVoiceChannel</b> instance.
-> <br>If you don't initialize a **VoiceChannel**, **GuildVoiceChannel** always will be <b>null</b>.
+> <br>If you don't initialize a **MessageChannelUnion**, **GuildVoiceChannel** always will be <b>null</b>.
 >
-> Parameter: **channel** - The **VoiceChannel**, which should be initialized.
+> Parameter: **channel** - The **MessageChannelUnion**, which should be initialized.
 > <br>Returns: A <b>new GuildVoiceChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
-set(@NotNull VoiceChannel)
+set(@NotNull MessageChannelUnion)
 ```
 <br>
 
@@ -1509,7 +1484,7 @@ containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from the **User**, which was specified with the <code>set(@NotNull VoiceChannel, @Nullable Member)</code> method,
+> Gets all the messages from the **User**, which was specified with the <code>set(@NotNull MessageChannelUnion, @Nullable Member)</code> method,
 > in this channel. (max. 1000 messages per channel)
 >
 > Returns: The written messages of the specified **User** in this channel.
@@ -1539,14 +1514,14 @@ getMessagesByUser(@NotNull User)
 > <br>(if the <code>unit</code> parameter equals <b>null</b>, <code>SECONDS</code> will be used)
 >
 > Parameter:
-> <br>**message** - The **MessageAction**, which should be used.
+> <br>**message** - The **MessageCreateAction**, which should be used.
 > <br>**delayInSeconds** - The delay for the executing command in seconds.
 > <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
 > <br>**unit** - The **TimeUnit**, which is used for specifying the type of time for the delay.
-> <br>Returns: The specified **MessageAction**.
+> <br>Returns: The specified **MessageCreateAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nullable TimeUnit)
+sendTimeoutedMessage(@NotNull MessageCreateAction, long, @Nullable MessageCreateAction, @Nullable TimeUnit)
 ```
 <br>
 
@@ -1557,13 +1532,13 @@ sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nul
 > equals <b>null</b>, there will be sent a default error message)
 >
 > Parameter:
-> <br>**message** - The **MessageAction**, which should be used.
+> <br>**message** - The **MessageCreateAction**, which should be used.
 > <br>**delayInSeconds** - The delay for the executing command in seconds.
 > <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
-> <br>Returns: The specified **MessageAction**.
+> <br>Returns: The specified **MessageCreateAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction)
+sendTimeoutedMessage(@NotNull MessageCreateAction, long, @Nullable MessageCreateAction)
 ```
 <br>
 
@@ -1584,7 +1559,7 @@ sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction)
 > <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction, @Nullable TimeUnit)
+replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @NotNull ReplyCallbackAction, @Nullable TimeUnit)
 ```
 <br>
 
@@ -1601,7 +1576,7 @@ replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallback
 > <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction)
+replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @NotNull ReplyCallbackAction)
 ```
 
 ### Overridden methods
@@ -1628,46 +1603,46 @@ Since: v1.1.1
 
 **Recommended:**
 ```java
-DirectMessageChannel channel = DirectMessageChannel.set(@NotNull PrivateChannel, @Nullable Member);
+DirectMessageChannel channel = DirectMessageChannel.set(@NotNull MessageChannelUnion, @Nullable User);
 ```
 
 **Alternatively:**
 ```java
-DirectMessageChannel channel = DirectMessageChannel.set(@NotNull PrivateChannel);
+DirectMessageChannel channel = DirectMessageChannel.set(@NotNull MessageChannelUnion);
 ```
 
 ### Methods
 
 > Constructs a <b>new DirectMessageChannel</b> instance.
-> <br>If you don't initialize a **PrivateChannel** or a **Member**, the **DirectMessageChannel** always will be <b>null</b>.
+> <br>If you don't initialize a **MessageChannelUnion** or a **User**, the **DirectMessageChannel** always will be <b>null</b>.
 >
 > Parameter:
-> <br>**channel** - The **PrivateChannel**, which should be initialized.
-> <br>**member** - The **Member**, which should be initialized.
+> <br>**channel** - The **MessageChannelUnion**, which should be initialized.
+> <br>**member** - The **User**, which should be initialized.
 > <br>Returns: A <b>new DirectMessageChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
-set(@NotNull PrivateChannel, @Nullable Member)
+set(@NotNull MessageChannelUnion, @Nullable User)
 ```
 <br>
 
 > Constructs a <b>new DirectMessageChannel</b> instance.
-> <br>If you don't initialize a **PrivateChannel**, **DirectMessageChannel** always will be <b>null</b>.
+> <br>If you don't initialize a **MessageChannelUnion**, **DirectMessageChannel** always will be <b>null</b>.
 >
-> Parameter: **channel** - The **PrivateChannel**, which should be initialized.
+> Parameter: **channel** - The **MessageChannelUnion**, which should be initialized.
 > <br>Returns: A <b>new DirectMessageChannel</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
-set(@NotNull PrivateChannel)
+set(@NotNull MessageChannelUnion)
 ```
 <br>
 
-> The author of the **Message** received as **Member** object.
+> The author of the **Message** received as **User** object.
 >
-> Returns: The author of the **Message** as null-able **Member** object.
+> Returns: The author of the **Message** as null-able **User** object.
 > <br>Annotation: **Nullable**
 ```swift
-getMember()
+getUser()
 ```
 <br>
 
@@ -1727,7 +1702,7 @@ containsMessage(@NotNull CharSequence, int)
 ```
 <br>
 
-> Gets all the messages from the **User**, which was specified with the <code>set(@NotNull PrivateChannel, @Nullable Member)</code> method,
+> Gets all the messages from the **User**, which was specified with the <code>set(@NotNull MessageChannelUnion, @Nullable Member)</code> method,
 > in this channel. (max. 1000 messages per channel)
 >
 > Returns: The written messages of the specified **User** in this channel.
@@ -1757,14 +1732,14 @@ getMessagesByUser(@NotNull User)
 > <br>(if the <code>unit</code> parameter equals <b>null</b>, <code>SECONDS</code> will be used)
 >
 > Parameter:
-> <br>**message** - The **MessageAction**, which should be used.
+> <br>**message** - The **MessageCreateAction**, which should be used.
 > <br>**delayInSeconds** - The delay for the executing command in seconds.
 > <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
 > <br>**unit** - The **TimeUnit**, which is used for specifying the type of time for the delay.
-> <br>Returns: The specified **MessageAction**.
+> <br>Returns: The specified **MessageCreateAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nullable TimeUnit)
+sendTimeoutedMessage(@NotNull MessageCreateAction, long, @Nullable MessageCreateAction, @Nullable TimeUnit)
 ```
 <br>
 
@@ -1775,13 +1750,13 @@ sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction, @Nul
 > equals <b>null</b>, there will be sent a default error message)
 >
 > Parameter:
-> <br>**message** - The **MessageAction**, which should be used.
+> <br>**message** - The **MessageCreateAction**, which should be used.
 > <br>**delayInSeconds** - The delay for the executing command in seconds.
 > <br>**delayMessage** - The error message, which should appear, if the member has not waited for the delay yet.
-> <br>Returns: The specified **MessageAction**.
+> <br>Returns: The specified **MessageCreateAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction)
+sendTimeoutedMessage(@NotNull MessageCreateAction, long, @Nullable MessageCreateAction)
 ```
 <br>
 
@@ -1802,7 +1777,7 @@ sendTimeoutedMessage(@NotNull MessageAction, long, @Nullable MessageAction)
 > <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction, @Nullable TimeUnit)
+replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @NotNull ReplyCallbackAction, @Nullable TimeUnit)
 ```
 <br>
 
@@ -1819,7 +1794,7 @@ replyTimoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallback
 > <br>Returns: The specified **ReplyCallbackAction**.
 > <br>Annotation: **NotNull**, **CheckReturnValue**
 ```swift
-replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @Nullable ReplyCallbackAction)
+replyTimeoutedMessage(@NotNull ReplyCallbackAction, long, @NotNull ReplyCallbackAction)
 ```
 <br>
 
@@ -1866,7 +1841,7 @@ Since: v1.0.0-alpha.1
 ### Getting GuildMember:
 
 ```java
-GuildMember member = GuildMember.set(@Nullable Member);
+GuildMember member = GuildMember.set(@NotNull Member);
 ```
 
 ### Methods
@@ -1878,14 +1853,14 @@ GuildMember member = GuildMember.set(@Nullable Member);
 > <br>Returns: A <b>new GuildMember</b> instance.
 > <br>Annotation: **NotNull**
 ```swift
-set(@Nullable Member)
+set(@NotNull Member)
 ```
 <br>
 
 > The author of the **Message** received as **Member** object.
 >
-> Returns: The author of the **Message** as null-able **Member** object.
-> <br>Annotation: **Nullable**
+> Returns: The author of the **Message** as **non-null Member** object.
+> <br>Annotation: **NotNull**
 ```swift
 getMember()
 ```
@@ -2132,7 +2107,7 @@ Since: v1.1.1
 ### Getting GuildThreadMember:
 
 ```java
-GuildThreadMember member = GuildThreadMember.set(@Nullable ThreadMember);
+GuildThreadMember member = GuildThreadMember.set(@NotNull ThreadMember);
 ```
 
 ### Methods
@@ -2144,14 +2119,14 @@ GuildThreadMember member = GuildThreadMember.set(@Nullable ThreadMember);
 > <br>Returns: A <b>new</b> **GuildThreadMember** instance.
 > <br>Annotation: **NotNull**
 ```swift
-set(@Nullable ThreadMember)
+set(@NotNull ThreadMember)
 ```
 <br>
 
 > The author of the **Message** received as **Member** object.
 >
-> Returns: The author of the **Message** as null-able **ThreadMember** object.
-> <br>Annotation: **Nullable**
+> Returns: The author of the **Message** as **non-null ThreadMember** object.
+> <br>Annotation: **NotNull**
 ```swift
 getMember()
 ```
@@ -2780,7 +2755,7 @@ If you want the most up-to-date builds, you can get them here: [Latest build dow
 ## Getting help
 
 For general troubleshooting you can visit JDA's wiki [troubleshooting](https://jda.wiki/using-jda/troubleshooting/) and [FAQ](https://jda.wiki/introduction/faq/).
-<br>If you need help, or just want to talk with the JDA-C or other Devs, you can join the [support server](https://discord.gg/FnGFbzCw2r).
+<br>If you need help, or just want to talk with the JDA-C or other Devs, you can join the [support server](https://discord.gg/mYKK4BwGxe).
 
 <br>Especially interesting are the [getting started](https://jda.wiki/introduction/jda/)
 and [Setup](https://jda.wiki/setup/intellij/) pages.

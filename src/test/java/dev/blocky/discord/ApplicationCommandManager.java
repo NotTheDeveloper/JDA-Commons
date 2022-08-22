@@ -18,8 +18,8 @@ package dev.blocky.discord;
 import dev.blocky.discord.commands.app.message.RickRollMessageContextCommand;
 import dev.blocky.discord.commands.app.slash.FruitSlashCommand;
 import dev.blocky.discord.commands.app.slash.PingSlashCommand;
-import dev.blocky.discord.commands.app.slash.modal.SupportModalCommand;
 import dev.blocky.discord.commands.app.slash.autocomplete.FruitAutoCompletable;
+import dev.blocky.discord.commands.app.slash.modal.SupportModalCommand;
 import dev.blocky.discord.commands.app.user.AvatarUserContextCommand;
 import dev.blocky.library.jda.interfaces.app.message.IMessageContext;
 import dev.blocky.library.jda.interfaces.app.slash.IAutoCompletable;
@@ -186,7 +186,7 @@ public class ApplicationCommandManager extends ListenerAdapter
 
         EmbedBuilder builder = new EmbedBuilder();
 
-        builder.setTitle("An error occurred ⚠️");
+        builder.setTitle("An error occurred!");
         builder.setDescription("Only <@" + authorId + "> can use this button!");
         builder.setColor(0xf22613);
         builder.setFooter(event.getMember().getUser().getAsTag());
@@ -213,7 +213,7 @@ public class ApplicationCommandManager extends ListenerAdapter
 
         EmbedBuilder builder = new EmbedBuilder();
 
-        builder.setTitle("An error occurred ⚠️");
+        builder.setTitle("An error occurred!");
         builder.setDescription("Only <@" + authorId + "> can use this select menu!");
         builder.setColor(0xf22613);
         builder.setFooter(event.getMember().getUser().getAsTag());
@@ -227,19 +227,19 @@ public class ApplicationCommandManager extends ListenerAdapter
 
         switch (type)
         {
-            case "yes":
-                event.getMessage().delete().queue();
-                event.getChannel().sendMessage("Right choice!")
-                        .setActionRow(
-                                Button.link("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "GET IT!!!")
-                        )
-                        .queue();
-                break;
-            case "no":
-                event.getMessage().delete().queue();
-                break;
-            default:
-                break;
+        case "yes":
+            event.getMessage().delete().queue();
+            event.getChannel().sendMessage("Right choice!")
+                    .setActionRow(
+                            Button.link("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "GET IT!!!")
+                    )
+                    .queue();
+            break;
+        case "no":
+            event.getMessage().delete().queue();
+            break;
+        default:
+            break;
         }
     }
 
@@ -260,7 +260,7 @@ public class ApplicationCommandManager extends ListenerAdapter
 
         if (!email.contains("@"))
         {
-            builder.setTitle("An error occurred ⚠️");
+            builder.setTitle("An error occurred!");
             builder.setDescription("Invalid Email! Email must contain a `@`!");
             builder.setColor(0xf22613);
             builder.setFooter(event.getMember().getUser().getAsTag());

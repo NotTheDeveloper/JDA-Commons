@@ -19,15 +19,19 @@ import com.google.errorprone.annotations.CheckReturnValue;
 import dev.blocky.library.jda.Utility;
 import dev.blocky.library.jda.enums.SafetyClear;
 import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.entities.channel.unions.MessageChannelUnion;
 import net.dv8tion.jda.api.requests.GatewayIntent;
-import net.dv8tion.jda.api.requests.restaction.MessageAction;
+import net.dv8tion.jda.api.requests.restaction.MessageCreateAction;
 import net.dv8tion.jda.api.requests.restaction.interactions.ReplyCallbackAction;
+import net.dv8tion.jda.api.utils.messages.MessageCreateBuilder;
+import net.dv8tion.jda.api.utils.messages.MessageCreateData;
 import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
 import java.text.DecimalFormat;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
@@ -47,35 +51,42 @@ import java.util.stream.Collectors;
 public class GuildVoiceChannel extends Utility
 {
     private static final Logger logger = JDALogger.getLog(GuildVoiceChannel.class);
+    private final MessageChannelUnion union;
     private final VoiceChannel channel;
     private Member member;
 
-    private GuildVoiceChannel(@NotNull VoiceChannel channel, @Nullable Member member)
+    private GuildVoiceChannel(@NotNull MessageChannelUnion union, @Nullable Member member)
     {
-        this.channel = channel;
+        this.channel = union.asVoiceChannel();
+        this.union = union;
         this.member = member;
 
-        if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES) && !member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
+        EnumSet<GatewayIntent> intents = channel.getJDA().getGatewayIntents();
+
+        if (!intents.contains(GatewayIntent.GUILD_MESSAGES) && !intents.contains(GatewayIntent.GUILD_MEMBERS))
         {
             logger.warn("Both the GUILD_MESSAGES and the GUILD_MEMBERS intents are not enabled, which means, that some stuff could not work.");
         }
 
-        if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES))
+        if (!intents.contains(GatewayIntent.GUILD_MESSAGES))
         {
             logger.warn("The GUILD_MESSAGES intent is not enabled, which means, that some stuff could not work.");
         }
 
-        if (!member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
+        if (!intents.contains(GatewayIntent.GUILD_MEMBERS))
         {
             logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
         }
     }
 
-    private GuildVoiceChannel(@NotNull VoiceChannel channel)
+    private GuildVoiceChannel(@NotNull MessageChannelUnion union)
     {
-        this.channel = channel;
+        this.channel = union.asVoiceChannel();
+        this.union = union;
 
-        if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES))
+        EnumSet<GatewayIntent> intents = channel.getJDA().getGatewayIntents();
+
+        if (!intents.contains(GatewayIntent.GUILD_MESSAGES))
         {
             logger.warn("The GUILD_MESSAGES intent is not enabled, which means, that some stuff could not work.");
         }
@@ -83,33 +94,33 @@ public class GuildVoiceChannel extends Utility
 
     /**
      * Constructs a <b>new</b> {@link GuildVoiceChannel} instance.
-     * <br>If you don't initialize a {@link VoiceChannel} or a {@link Member},
+     * <br>If you don't initialize a {@link MessageChannelUnion} or a {@link Member},
      * the {@link GuildVoiceChannel} always will be <b>null</b>.
      *
-     * @param channel The {@link VoiceChannel}, which should be initialized.
+     * @param union The {@link MessageChannelUnion}, which should be initialized.
      * @param member The {@link Member}, which should be initialized.
      *
      * @return A <b>new</b> {@link GuildVoiceChannel} instance.
      */
     @NotNull
-    public static GuildVoiceChannel set(@NotNull VoiceChannel channel, @Nullable Member member)
+    public static GuildVoiceChannel set(@NotNull MessageChannelUnion union, @Nullable Member member)
     {
-        return new GuildVoiceChannel(channel, member);
+        return new GuildVoiceChannel(union, member);
     }
 
     /**
      * Constructs a <b>new</b> {@link GuildVoiceChannel} instance.
-     * <br>If you don't initialize a {@link VoiceChannel},
+     * <br>If you don't initialize a {@link MessageChannelUnion},
      * the {@link GuildVoiceChannel} always will be <b>null</b>.
      *
-     * @param channel The {@link VoiceChannel}, which should be initialized.
+     * @param union The {@link MessageChannelUnion}, which should be initialized.
      *
      * @return A <b>new</b> {@link GuildVoiceChannel} instance.
      */
     @NotNull
-    public static GuildVoiceChannel set(@NotNull VoiceChannel channel)
+    public static GuildVoiceChannel set(@NotNull MessageChannelUnion union)
     {
-        return new GuildVoiceChannel(channel);
+        return new GuildVoiceChannel(union);
     }
 
     /**
@@ -146,7 +157,7 @@ public class GuildVoiceChannel extends Utility
     @Nullable
     public List<CompletableFuture<Void>> purgeMessages(int amount, @Nullable SafetyClear clear)
     {
-        return channel.purgeMessages(checkClearSafety(clear, channel, amount));
+        return channel.purgeMessages(checkClearSafety(clear, union, amount));
     }
 
     /**
@@ -160,7 +171,7 @@ public class GuildVoiceChannel extends Utility
     @Nullable
     public List<CompletableFuture<Void>> purgeChannel(@Nullable SafetyClear clear)
     {
-        return channel.purgeMessages(checkChannelClearSafety(clear, channel));
+        return channel.purgeMessages(checkChannelClearSafety(clear, union));
     }
 
     /**
@@ -207,7 +218,7 @@ public class GuildVoiceChannel extends Utility
     }
 
     /**
-     * Gets all the messages from the {@link User}, which was specified with the {@link #set(VoiceChannel, Member)} method,
+     * Gets all the messages from the {@link User}, which was specified with the {@link #set(MessageChannelUnion, Member)} method,
      * in this channel. (max. 1000 messages per channel)
      *
      * @return The written messages of the specified {@link User} in this channel
@@ -252,59 +263,54 @@ public class GuildVoiceChannel extends Utility
      * {@link TimeUnit#HOURS} or {@link TimeUnit#DAYS}.
      * <br>(if the {@code unit} parameter equals <b>null</b>, {@link TimeUnit#SECONDS SECONDS} will be used)
      *
-     * @param message The {@link MessageAction}, which should be used.
+     * @param message The {@link MessageCreateAction}, which should be used.
      * @param delayInSeconds The delay for the executing command in seconds.
      * @param delayMessage The error message, which should appear, if the member has not waited for the delay yet.
      * @param unit The {@link TimeUnit}, which is used for specifying the type of time for the delay.
      *
-     * @return The specified {@link MessageAction}.
+     * @return The specified {@link MessageCreateAction}.
      */
     @NotNull
     @CheckReturnValue
-    public MessageAction sendTimeoutedMessage(@NotNull MessageAction message, long delayInSeconds, @Nullable MessageAction delayMessage,
-                                              @Nullable TimeUnit unit)
+    public MessageCreateAction sendTimeoutedMessage(@NotNull MessageCreateAction message, long delayInSeconds, @Nullable MessageCreateAction delayMessage,
+                                                    @Nullable TimeUnit unit)
     {
         if (member == null)
         {
             throw new IllegalStateException("You must specify a member, which should be used for this command.");
         }
 
-        try
-        {
-            long id = member.getIdLong();
-            long time;
-            if (getHashMap().containsKey(id))
-            {
-                time = getHashMap().get(id);
+        long id = member.getIdLong();
 
-                if ((System.currentTimeMillis() - time) >= calculateDelay(unit, delayInSeconds))
-                {
-                    getHashMap().put(id, System.currentTimeMillis());
-                    return message;
-                }
-                else
-                {
-                    if (delayMessage == null)
-                    {
-                        DecimalFormat df = new DecimalFormat("0.00");
-                        delayMessage = channel.sendMessage(member.getEffectiveName() + ", you must wait "
-                                + df.format((calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛");
-                    }
-                    else
-                    {
-                        return delayMessage;
-                    }
-                }
-            }
-            else
-            {
-                getHashMap().put(id, System.currentTimeMillis());
-                return message;
-            }
-        }
-        catch (NullPointerException e)
+        if (!getHashMap().containsKey(id))
         {
-            logger.error("The message Action, which you are specifying, equals null.", e);
+            getHashMap().put(id, System.currentTimeMillis());
+            return message;
+        }
+
+        long time = getHashMap().get(id);
+
+        if ((System.currentTimeMillis() - time) >= calculateDelay(unit, delayInSeconds))
+        {
+            getHashMap().put(id, System.currentTimeMillis());
+            return message;
+        }
+
+        if (delayMessage != null)
+        {
+            return delayMessage;
+        }
+
+        DecimalFormat df = new DecimalFormat("0.00");
+
+        MessageCreateBuilder builder = new MessageCreateBuilder()
+                .setContent(member.getEffectiveName() + ", you must wait " +
+                        df.format((calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) +
+                        " " + (unit == null ? "seconds" : unit.toString().toLowerCase()) + " ⌛");
+
+        try (MessageCreateData createData = builder.build())
+        {
+            delayMessage = channel.sendMessage(createData);
         }
         return delayMessage;
     }
@@ -316,15 +322,15 @@ public class GuildVoiceChannel extends Utility
      * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
      *
-     * @param message The {@link MessageAction}, which should be used.
+     * @param message The {@link MessageCreateAction}, which should be used.
      * @param delayInSeconds The delay for the executing command in seconds.
      * @param delayMessage The error message, which should appear, if the member has not waited for the delay yet.
      *
-     * @return The specified {@link MessageAction}.
+     * @return The specified {@link MessageCreateAction}.
      */
     @NotNull
     @CheckReturnValue
-    public MessageAction sendTimeoutedMessage(@NotNull MessageAction message, long delayInSeconds, @Nullable MessageAction delayMessage)
+    public MessageCreateAction sendTimeoutedMessage(@NotNull MessageCreateAction message, long delayInSeconds, @Nullable MessageCreateAction delayMessage)
     {
         return sendTimeoutedMessage(message, delayInSeconds, delayMessage, null);
     }
@@ -348,7 +354,7 @@ public class GuildVoiceChannel extends Utility
      */
     @NotNull
     @CheckReturnValue
-    public ReplyCallbackAction replyTimeoutedMessage(@NotNull ReplyCallbackAction message, long delayInSeconds, @Nullable ReplyCallbackAction delayMessage,
+    public ReplyCallbackAction replyTimeoutedMessage(@NotNull ReplyCallbackAction message, long delayInSeconds, @NotNull ReplyCallbackAction delayMessage,
                                                      @Nullable TimeUnit unit)
     {
         if (member == null)
@@ -356,42 +362,20 @@ public class GuildVoiceChannel extends Utility
             throw new IllegalStateException("You must specify a member, which should be used for this command.");
         }
 
-        try
-        {
-            long id = member.getIdLong();
-            long time;
-            if (getHashMap().containsKey(id))
-            {
-                time = getHashMap().get(id);
+        long id = member.getIdLong();
 
-                if ((System.currentTimeMillis() - time) >= calculateDelay(unit, delayInSeconds))
-                {
-                    getHashMap().put(id, System.currentTimeMillis());
-                    return message;
-                }
-                else
-                {
-                    if (delayMessage == null)
-                    {
-                        DecimalFormat df = new DecimalFormat("0.00");
-                        channel.sendMessage(member.getEffectiveName() + ", you must wait "
-                                + df.format((calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) + " seconds ⌛").queue();
-                    }
-                    else
-                    {
-                        return delayMessage;
-                    }
-                }
-            }
-            else
-            {
-                getHashMap().put(id, System.currentTimeMillis());
-                return message;
-            }
-        }
-        catch (NullPointerException e)
+        if (!getHashMap().containsKey(id))
         {
-            logger.error("The reply callback action, which you are specifying, equals null.", e);
+            getHashMap().put(id, System.currentTimeMillis());
+            return message;
+        }
+
+        long time = getHashMap().get(id);
+
+        if ((System.currentTimeMillis() - time) >= calculateDelay(unit, delayInSeconds))
+        {
+            getHashMap().put(id, System.currentTimeMillis());
+            return message;
         }
         return delayMessage;
     }
@@ -411,7 +395,7 @@ public class GuildVoiceChannel extends Utility
      */
     @NotNull
     @CheckReturnValue
-    public ReplyCallbackAction replyTimeoutedMessage(@NotNull ReplyCallbackAction message, long delayInSeconds, @Nullable ReplyCallbackAction delayMessage)
+    public ReplyCallbackAction replyTimeoutedMessage(@NotNull ReplyCallbackAction message, long delayInSeconds, @NotNull ReplyCallbackAction delayMessage)
     {
         return replyTimeoutedMessage(message, delayInSeconds, delayMessage, null);
     }

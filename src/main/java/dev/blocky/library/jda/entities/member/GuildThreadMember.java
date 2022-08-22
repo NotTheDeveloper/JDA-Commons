@@ -23,6 +23,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,13 +39,25 @@ public class GuildThreadMember
     private static final Logger logger = JDALogger.getLog(GuildThreadMember.class);
     private final ThreadMember member;
 
-    private GuildThreadMember(@Nullable ThreadMember member)
+    private GuildThreadMember(@NotNull ThreadMember member)
     {
         this.member = member;
 
-        if (!member.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
+        EnumSet<GatewayIntent> intents = member.getJDA().getGatewayIntents();
+
+        if (!intents.contains(GatewayIntent.GUILD_MESSAGES) && !intents.contains(GatewayIntent.GUILD_MEMBERS))
         {
-            logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
+            logger.warn("Both the 'GUILD_MESSAGES' and the 'GUILD_MEMBERS' intents are not enabled, which means, that some stuff could not work.");
+        }
+
+        if (!intents.contains(GatewayIntent.GUILD_MESSAGES))
+        {
+            logger.warn("The 'GUILD_MESSAGES' intent is not enabled, which means, that some stuff could not work.");
+        }
+
+        if (!intents.contains(GatewayIntent.GUILD_MEMBERS))
+        {
+            logger.warn("The 'GUILD_MEMBERS' intent is not enabled, which means, that some stuff could not work.");
         }
     }
 
@@ -57,7 +70,7 @@ public class GuildThreadMember
      * @return A <b>new</b> {@link GuildThreadMember} instance.
      */
     @NotNull
-    public static GuildThreadMember set(@Nullable ThreadMember member)
+    public static GuildThreadMember set(@NotNull ThreadMember member)
     {
         return new GuildThreadMember(member);
     }
@@ -65,9 +78,9 @@ public class GuildThreadMember
     /**
      * The author of the {@link Message} received as {@link Member} object.
      *
-     * @return The author of the {@link Message} as <b>null-able</b> {@link ThreadMember} object.
+     * @return The author of the {@link Message} as <b>non-null</b> {@link ThreadMember} object.
      */
-    @Nullable
+    @NotNull
     public ThreadMember getMember()
     {
         return member;

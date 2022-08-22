@@ -25,6 +25,8 @@ import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
 import com.google.errorprone.annotations.CheckReturnValue;
+
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -44,19 +46,21 @@ public class SelfMember
     {
         this.guild = guild;
 
-        if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES) && !guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
+        EnumSet<GatewayIntent> intents = guild.getJDA().getGatewayIntents();
+
+        if (!intents.contains(GatewayIntent.GUILD_MESSAGES) && !intents.contains(GatewayIntent.GUILD_MEMBERS))
         {
-            logger.warn("Both the GUILD_MESSAGES and the GUILD_MEMBERS intents are not enabled, which means, that some stuff could not work.");
+            logger.warn("Both the 'GUILD_MESSAGES' and the 'GUILD_MEMBERS' intents are not enabled, which means, that some stuff could not work.");
         }
 
-        if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MESSAGES))
+        if (!intents.contains(GatewayIntent.GUILD_MESSAGES))
         {
-            logger.warn("The GUILD_MESSAGES intent is not enabled, which means, that some stuff could not work.");
+            logger.warn("The 'GUILD_MESSAGES' intent is not enabled, which means, that some stuff could not work.");
         }
 
-        if (!guild.getJDA().getGatewayIntents().contains(GatewayIntent.GUILD_MEMBERS))
+        if (!intents.contains(GatewayIntent.GUILD_MEMBERS))
         {
-            logger.warn("The GUILD_MEMBERS intent is not enabled, which means, that some stuff could not work.");
+            logger.warn("The 'GUILD_MEMBERS' intent is not enabled, which means, that some stuff could not work.");
         }
     }
 

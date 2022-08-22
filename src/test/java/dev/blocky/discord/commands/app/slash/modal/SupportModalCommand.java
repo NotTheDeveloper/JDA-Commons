@@ -37,21 +37,21 @@ public class SupportModalCommand implements ISlashCommand
     {
         TextInput email =
                 TextInput.create("email", "Email", TextInputStyle.SHORT) // Creates a TextInput with a SHORT input style.
-                .setPlaceholder("Enter your E-mail")
-                .setRequiredRange(10, 100) // Sets a minimum of 10 and a maximum of 100 required characters.
-                .build();
+                        .setPlaceholder("Enter your E-mail")
+                        .setRequiredRange(10, 100) // Sets a minimum of 10 and a maximum of 100 required characters.
+                        .build();
 
         TextInput body =
                 TextInput.create("body", "Body", TextInputStyle.PARAGRAPH) // Creates a TextInput with a PARAGRAPH TextInputStyle.
-                .setPlaceholder("Your concerns go here")
-                .setRequiredRange(30, 1000) // Sets a minimum of 30 and a maximum of 1000 required characters.
-                .build();
+                        .setPlaceholder("Your concerns go here")
+                        .setRequiredRange(30, 1000) // Sets a minimum of 30 and a maximum of 1000 required characters.
+                        .build();
 
         // Creates the modal, by simply pasting the two TextInputs into two different action rows.
         Modal modal =
                 Modal.create("support", "Support")
-                .addActionRows(ActionRow.of(email), ActionRow.of(body))
-                .build();
+                        .addActionRows(ActionRow.of(email), ActionRow.of(body))
+                        .build();
 
         event.replyModal(modal).queue();
     }
