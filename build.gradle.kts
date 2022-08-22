@@ -28,7 +28,6 @@ repositories {
 dependencies {
     implementation("net.dv8tion:JDA:5.0.0-alpha.18")
     implementation("org.slf4j:slf4j-api:2.0.0")
-    implementation("ch.qos.logback:logback-classic:1.3.0-beta0")
     implementation("com.google.errorprone:error_prone_annotations:2.15.0")
 }
 

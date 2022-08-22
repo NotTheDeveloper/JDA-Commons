@@ -235,9 +235,6 @@ This project requires **Java 8+**
 * slf4j-api
     * Version: **v2.0.0**
     * [Github](https://github.com/qos-ch/slf4j)
-* logback-classic
-    * Version: **v1.3.0-beta0**
-    * [Github](https://github.com/qos-ch/logback)
 * error_prone_annotations
     * Version: **v2.15.0**
     * [Github](https://github.com/google/error-prone)
