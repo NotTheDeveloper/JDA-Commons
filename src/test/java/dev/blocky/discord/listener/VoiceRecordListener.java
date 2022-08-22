@@ -38,7 +38,7 @@ import java.io.File;
  */
 public class VoiceRecordListener extends ListenerAdapter
 {
-    private final Logger logger = JDALogger.getLog(VoiceRecorder.class);
+    private static final Logger logger = JDALogger.getLog(VoiceRecorder.class);
 
     @Override
     public void onGuildVoiceJoin(@NotNull GuildVoiceJoinEvent event)

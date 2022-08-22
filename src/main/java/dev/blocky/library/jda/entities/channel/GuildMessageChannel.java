@@ -191,8 +191,8 @@ public class GuildMessageChannel extends Utility
      * @param content The message content, which should be checked.
      * @param checkAmount The amount of messages, which should be checked.
      *
-     * @return  <b>true</b> - If the content, you specified, is written in this channel.
-     *          <br><b>false</b> - If the content, you specified, is not written in this channel.
+     * @return <b>true</b> - If the content, you specified, is written in this channel.
+     *         <br><b>false</b> - If the content, you specified, is not written in this channel.
      */
     public boolean containsMessage(@NotNull CharSequence content, int checkAmount)
     {

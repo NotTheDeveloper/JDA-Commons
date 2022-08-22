@@ -42,13 +42,13 @@ import java.util.regex.Pattern;
  */
 public class CommandManager extends ListenerAdapter
 {
-    private final Logger logger = JDALogger.getLog(CommandManager.class);
+    private static final Logger logger = JDALogger.getLog(CommandManager.class);
     private static ConcurrentHashMap<String, ICommand> commands;
 
     /**
      * Constructs a <b>new</b> {@link CommandManager}.
      */
-    protected CommandManager()
+    CommandManager()
     {
         commands = new ConcurrentHashMap<>();
 

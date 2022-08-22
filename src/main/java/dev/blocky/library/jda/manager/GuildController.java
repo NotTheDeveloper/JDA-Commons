@@ -45,7 +45,7 @@ import java.util.stream.Stream;
 @Deadline(version = "v1.3.0")
 public class GuildController
 {
-    private final Logger logger = JDALogger.getLog(GuildController.class);
+    private static final Logger logger = JDALogger.getLog(GuildController.class);
     private final Guild guild;
 
     private GuildController(@NotNull Guild guild)
@@ -98,7 +98,7 @@ public class GuildController
      * {@link CommandAutoCompleteInteractionEvent}.
      * <br>This event isn't fired for each keystroke, but is sent when Discord determines the user has paused typing for a bit.
      *
-     * <pAn autocompletion can suggest up to 25 options, and users don't have to send a command with one of the options.
+     * <p>An autocompletion can suggest up to 25 options, and users don't have to send a command with one of the options.
      * <br>Maps the words to choices and only displays words that start with the user's current input.
      *
      * @param query The query input for a {@link IAutoCompleteCallback}.

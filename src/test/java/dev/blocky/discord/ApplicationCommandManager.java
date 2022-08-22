@@ -63,7 +63,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ApplicationCommandManager extends ListenerAdapter
 {
-    private final Logger logger = JDALogger.getLog(ApplicationCommandManager.class);
+    private static final Logger logger = JDALogger.getLog(ApplicationCommandManager.class);
     private final Map<String, IAutoCompletable> autoCompletableMap;
     private final Map<String, ISlashCommand> slashMap;
     private final Map<String, IMessageContext> messageMap;

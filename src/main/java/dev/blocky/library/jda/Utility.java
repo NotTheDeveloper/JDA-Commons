@@ -38,7 +38,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class Utility
 {
-    private final static Logger logger = JDALogger.getLog(Utility.class);
+    private static final Logger logger = JDALogger.getLog(Utility.class);
     private static final HashMap<Long, Long> map = new HashMap<>();
 
     /**
