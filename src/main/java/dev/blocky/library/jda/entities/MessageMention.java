@@ -216,7 +216,8 @@ public class MessageMention
 
         MessageMention that = (MessageMention) o;
 
-        return mentionedSlashCommands.equals(that.mentionedSlashCommands) && mentionedSlashCommandsBag.equals(that.mentionedSlashCommandsBag) && message.equals(that.message) && Objects.equals(content, that.content);
+        return mentionedSlashCommands.equals(that.mentionedSlashCommands) && mentionedSlashCommandsBag.equals(that.mentionedSlashCommandsBag)
+                && message.equals(that.message) && Objects.equals(content, that.content);
     }
 
     @Override

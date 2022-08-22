@@ -28,8 +28,9 @@ The JDA-Commons library is only a little extension to the JDA library, which add
 3. [Documentation](#documentation)
 4. [Support](#getting-help)
 5. [Other extensions and plugins](#third-party-recommendations)
-6. [Dependencies](#dependencies)
-7. [Other libraries](#jda-related-projects)
+6. [Contributing](#contribution)
+7. [Dependencies](#dependencies)
+8. [Other libraries](#jda-related-projects)
 
 ## User- and Self- bots
 
@@ -224,6 +225,35 @@ There is a number of examples available in the [README](https://github.com/MinnD
 More can be found in the GitHub organization: [JDA-Applications](https://github.com/JDA-Applications)
 
 <hr>
+
+
+## Contribution
+
+If you want to contribute to JDA-C, make sure to base your branch off of our **developer** or a **feature** branch
+and create your PR into that **same** branch.
+<br>**We will be rejecting any PRs, which are not based to the developer or a feature branch!**
+<br>It is very possible that your change might already be in development or you missed something.
+
+More information can be found at the [contributing](https://github.com/BlockyDotJar/JDA-Commons/wiki/Contributing) wiki page.
+
+### Deprecation Policy
+
+When a feature is introduced to replace or enhance existing functionality we might deprecate old functionality.
+
+A deprecated method/class usually has a replacement mentioned in its documentation which should be switched to.
+<br>Deprecated functionality might or might not exist in the next minor release. (Hint: The minor version is the `MM` of `XX.MM.RR` in our version format)
+
+It is possible that some features are deprecated without replacement, in this case the functionality is no longer supported by either the JDA-C structure
+due to fundamental changes or due to Tixte-API changes that cause it to be removed.
+
+We highly recommend discontinuing usage of deprecated functionality and update by going through each minor release instead of jumping.
+<br>For instance, when updating from version `1.1.0` to version `1.1.6` you should do the following:
+
+- Update to `1.1.3` and check for deprecation
+- Update to `1.1.6` and check for deprecation
+
+The `RR` in version `1.1.RR` should be replaced by the latest version that was published for `1.1`, you can find out which the latest
+version was by looking at the [release page](https://github.com/BlockyDotJar/JDA-Commons/releases).
 
 ## Dependencies:
 

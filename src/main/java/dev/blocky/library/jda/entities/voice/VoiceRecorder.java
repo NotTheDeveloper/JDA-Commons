@@ -43,7 +43,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * <b>PLEASE NOTE: Only use this feature to record conversations with the consent of all users in the channel.
  * <br>Recording a conversation against other users' consent is illegal, and you are violating the Discord Terms of Service.</b>
- * <br><br>This class is used to record audio from a {@link VoiceChannel}.
+ *
+ * <p>This class is used to record audio from a {@link VoiceChannel}.
  *
  * @author BlockyDotJar
  * @version v1.0.0
@@ -59,24 +60,6 @@ public class VoiceRecorder implements AudioReceiveHandler
 
     private VoiceRecorder()
     {
-    }
-
-    @Override
-    public boolean canReceiveCombined()
-    {
-        return true;
-    }
-
-    @Override
-    public boolean canReceiveUser()
-    {
-        return false;
-    }
-
-    @Override
-    public void handleCombinedAudio(@NotNull CombinedAudio combinedAudio)
-    {
-        receivedBytes.add(combinedAudio.getAudioData(volume));
     }
 
     /**
@@ -154,11 +137,14 @@ public class VoiceRecorder implements AudioReceiveHandler
     /**
      * <b>PLEASE NOTE: Only use this feature to record conversations with the consent of all users in the channel.
      * <br>Recording a conversation against other users' consent is illegal, and you are violating the Discord Terms of Service.</b>
-     * <br><br>This method will start recording audio from the {@link VoiceChannel} that the bot is currently in.
+     *
+     * <p>This method will start recording audio from the {@link VoiceChannel} that the bot is currently in.
      * <br>This method will return a {@link File} that contains the audio that was recorded.
-     * <br><br>This is recommended to use in the {@link ListenerAdapter#onGuildVoiceLeave(GuildVoiceLeaveEvent)} method.
+     *
+     * <p>This is recommended to use in the {@link ListenerAdapter#onGuildVoiceLeave(GuildVoiceLeaveEvent)} method.
      * <br>Note that the {@link AudioConnection} should be closed before this method is called.
-     * <br><br>This method supports any kind of audio file.
+     *
+     * <p>This method supports any kind of audio file.
      * <br>Following audio file-formats are tested:
      * <br>- {@code .wav}
      * <br>- {@code .mp3}
@@ -285,6 +271,24 @@ public class VoiceRecorder implements AudioReceiveHandler
                 ),
                 AudioFileFormat.Type.WAVE,
                 outFile);
+    }
+
+    @Override
+    public boolean canReceiveCombined()
+    {
+        return true;
+    }
+
+    @Override
+    public boolean canReceiveUser()
+    {
+        return false;
+    }
+
+    @Override
+    public void handleCombinedAudio(@NotNull CombinedAudio combinedAudio)
+    {
+        receivedBytes.add(combinedAudio.getAudioData(volume));
     }
 
     @Override

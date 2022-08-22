@@ -97,7 +97,8 @@ public class GuildController
      * As the user is typing an argument that has autocomplete enabled for it, the bot will receive an
      * {@link CommandAutoCompleteInteractionEvent}.
      * <br>This event isn't fired for each keystroke, but is sent when Discord determines the user has paused typing for a bit.
-     * <br><br>An autocompletion can suggest up to 25 options, and users don't have to send a command with one of the options.
+     *
+     * <pAn autocompletion can suggest up to 25 options, and users don't have to send a command with one of the options.
      * <br>Maps the words to choices and only displays words that start with the user's current input.
      *
      * @param query The query input for a {@link IAutoCompleteCallback}.

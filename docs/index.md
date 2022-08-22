@@ -205,7 +205,8 @@ getGuild()
 
 > As the user is typing an argument that has autocomplete enabled for it, the bot will receive an **CommandAutoCompleteInteractionEvent**.
 > <br>This event isn't fired for each keystroke, but is sent when Discord determines the user has paused typing for a bit.
-> <br><br>An autocompletion can suggest up to 25 options, and users don't have to send a command with one of the options.
+> 
+> <p>An autocompletion can suggest up to 25 options, and users don't have to send a command with one of the options.
 > <br>Maps the words to choices and only displays words that start with the user's current input.
 >
 > Parameter:
@@ -2411,11 +2412,14 @@ shouldStack(boolean)
 
 > <b>PLEASE NOTE: Only use this feature to record conversations with the consent of all users in the channel.
 > <br>Recording a conversation against other users' consent is illegal, and you are violating the Discord Terms of Service.</b>
-> <br><br>This method will start recording audio from the **VoiceChannel** that the bot is currently in.
+> 
+> <p>This method will start recording audio from the **VoiceChannel** that the bot is currently in.
 > <br>This method will return a **File** that contains the audio that was recorded.
-> <br><br>This is recommended to use in the **ListenerAdapter#onGuildVoiceLeave(GuildVoiceLeaveEvent)** method.
+>
+> <p>This is recommended to use in the **ListenerAdapter#onGuildVoiceLeave(GuildVoiceLeaveEvent)** method.
 > <br>Note that the **AudioConnection** should be closed before this method is called.
-> <br><br>This method supports any kind of audio file.
+>
+> <p>This method supports any kind of audio file.
 > <br>Following audio file-formats are tested:
 > <br>- <code>.wav</code>
 > <br>- <code>.mp3</code>
