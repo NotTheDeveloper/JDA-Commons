@@ -4,7 +4,7 @@
  *
  * <ul>
  * <li>{@link dev.blocky.discord.commands.app.slash.FruitSlashCommand}
- * <br>This is the implementation class of {@link dev.blocky.discord.commands.app.slash.autocomplete.FruitAutoCompletable}.</li>
+ * <br>This is the implementation class of {@link dev.blocky.discord.commands.app.slash.autocomplete.FruitAutoCompletable FruitAutoCompletable}.</li>
  *
  * <li>{@link dev.blocky.discord.commands.app.slash.PingSlashCommand}
  * <br>This is a simple ping slash-command.</li>

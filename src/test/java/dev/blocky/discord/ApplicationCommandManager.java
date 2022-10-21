@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Dominic (aka. BlockyDotJar)
+ * Copyright 2022 Dominic R. (aka. BlockyDotJar)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * {@link SelectMenuInteractionEvent select menu interactions}.
  *
  * @author BlockyDotJar
- * @version v2.2.1
+ * @version v2.2.2
  * @since v1.0.0
  */
 public class ApplicationCommandManager extends ListenerAdapter
@@ -227,19 +227,17 @@ public class ApplicationCommandManager extends ListenerAdapter
 
         switch (type)
         {
-        case "yes":
+        case "yes" ->
+        {
             event.getMessage().delete().queue();
             event.getChannel().sendMessage("Right choice!")
                     .setActionRow(
                             Button.link("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "GET IT!!!")
                     )
                     .queue();
-            break;
-        case "no":
-            event.getMessage().delete().queue();
-            break;
-        default:
-            break;
+        }
+        case "no" -> event.getMessage().delete().queue();
+        default -> { }
         }
     }
 

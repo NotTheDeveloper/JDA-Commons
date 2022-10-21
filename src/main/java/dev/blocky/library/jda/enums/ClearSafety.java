@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Dominic (aka. BlockyDotJar)
+ * Copyright 2022 Dominic R. (aka. BlockyDotJar)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,10 +19,10 @@ package dev.blocky.library.jda.enums;
  * This is an enum, which is used for a safer clearing process.
  *
  * @author BlockyDotJar
- * @version v1.1.1
+ * @version v2.0.0
  * @since v1.0.0
  */
-public enum SafetyClear
+public enum ClearSafety
 {
     /**
      * The clear process will be done normally without any checks.
@@ -34,17 +34,36 @@ public enum SafetyClear
      *
      * <ul>
      *     <li>
+     *         If the message is edited
+     *     </li>
+     *     <li>
      *         If the message is pinned
      *     </li>
      *     <li>
      *         If the message is a webhook message
      *     </li>
      *     <li>
-     *         If the message is edited
+     *         If the message is ephemeral
+     *     </li>
+     *     <li>
+     *         If the message is containing suppressed embeds
+     *     </li>
+     *     <li>
+     *         If the message is triggering tts
      *     </li>
      * </ul>
      */
     ALL,
+
+    /**
+     * The clear process will be done with the following check:
+     * <ul>
+     *     <li>
+     *         If the message is edited
+     *     </li>
+     * </ul>
+     */
+    EDITED_MESSAGES,
 
     /**
      * The clear process will be done with the following check:
@@ -70,9 +89,29 @@ public enum SafetyClear
      * The clear process will be done with the following check:
      * <ul>
      *     <li>
-     *         If the message is edited
+     *         If the message is ephemeral
      *     </li>
      * </ul>
      */
-    EDITED_MESSAGES
+    EPHEMERAL_MESSAGES,
+
+    /**
+     * The clear process will be done with the following check:
+     * <ul>
+     *     <li>
+     *         If the message is containing suppressed embeds
+     *     </li>
+     * </ul>
+     */
+    SUPPRESSED_EMBEDS,
+
+    /**
+     * The clear process will be done with the following check:
+     * <ul>
+     *     <li>
+     *         If the message is triggering tts
+     *     </li>
+     * </ul>
+     */
+    TTS_MESSAGES
 }

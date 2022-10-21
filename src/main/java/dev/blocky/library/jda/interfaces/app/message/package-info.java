@@ -1,6 +1,5 @@
 /**
  * Root package of the JDA-Common message context interfaces.
- *
  * <br>From here you can navigate to the message context interfaces.
  *
  * <ul>

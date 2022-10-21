@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Dominic (aka. BlockyDotJar)
+ * Copyright 2022 Dominic R. (aka. BlockyDotJar)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,79 +15,26 @@
  */
 package dev.blocky.library.jda.entities.member;
 
+import com.google.errorprone.annotations.CheckReturnValue;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.Role;
-import net.dv8tion.jda.api.requests.GatewayIntent;
-import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
 
-import com.google.errorprone.annotations.CheckReturnValue;
-
-import java.util.EnumSet;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Represents the {@link SelfMember} (aka. the bot itself) of a specific {@link Guild}.
  *
+ * @param guild The {@link Guild}, which should be used to get the {@link SelfMember}.
+ *
  * @author BlockyDotJar
- * @version v1.1.4
+ * @version v2.0.0
  * @since v1.0.1
  */
-public class SelfMember
+public record SelfMember(@NotNull Guild guild)
 {
-    private static final Logger logger = JDALogger.getLog(SelfMember.class);
-    private final Guild guild;
-
-    private SelfMember(@NotNull Guild guild)
-    {
-        this.guild = guild;
-
-        EnumSet<GatewayIntent> intents = guild.getJDA().getGatewayIntents();
-
-        if (!intents.contains(GatewayIntent.GUILD_MESSAGES) && !intents.contains(GatewayIntent.GUILD_MEMBERS))
-        {
-            logger.warn("Both the 'GUILD_MESSAGES' and the 'GUILD_MEMBERS' intents are not enabled, which means, that some stuff could not work.");
-        }
-
-        if (!intents.contains(GatewayIntent.GUILD_MESSAGES))
-        {
-            logger.warn("The 'GUILD_MESSAGES' intent is not enabled, which means, that some stuff could not work.");
-        }
-
-        if (!intents.contains(GatewayIntent.GUILD_MEMBERS))
-        {
-            logger.warn("The 'GUILD_MEMBERS' intent is not enabled, which means, that some stuff could not work.");
-        }
-    }
-
-    /**
-     * Constructs a <b>new</b> {@link SelfMember} instance.
-     * <br>If you don't  initialize a {@link Guild}, the {@link SelfMember} always will be <b>null</b>.
-     *
-     * @param guild The {@link Guild}, which should be used to get the {@link SelfMember}.
-     *
-     * @return A <b>new</b> {@link SelfMember} instance.
-     */
-    @NotNull
-    public static SelfMember set(@NotNull Guild guild)
-    {
-        return new SelfMember(guild);
-    }
-
-    /**
-     * The {@link Guild}, the message was received in.
-     *
-     * @return The {@link Guild}, the message was received in
-     */
-    @Nullable
-    public Guild getGuild()
-    {
-        return guild;
-    }
 
     /**
      * Checks if the {@link Role} with the id you specified, is found on the role board of the {@link SelfMember}.
@@ -184,38 +131,5 @@ public class SelfMember
     public boolean isMentioned(@NotNull Message message)
     {
         return message.getMentions().isMentioned(guild.getSelfMember(), Message.MentionType.USER);
-    }
-
-    @Override
-    public boolean equals(@Nullable Object o)
-    {
-        if (this == o)
-        {
-            return true;
-        }
-
-        if (o == null || getClass() != o.getClass())
-        {
-            return false;
-        }
-
-        SelfMember that = (SelfMember) o;
-
-        return guild.equals(that.getGuild());
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return Objects.hash(guild);
-    }
-
-    @NotNull
-    @Override
-    public String toString()
-    {
-        return "SelfMember{" +
-                "guild=" + guild +
-                '}';
     }
 }

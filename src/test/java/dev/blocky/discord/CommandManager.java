@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Dominic (aka. BlockyDotJar)
+ * Copyright 2022 Dominic R. (aka. BlockyDotJar)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,15 +18,15 @@ package dev.blocky.discord;
 import dev.blocky.discord.commands.HelloWorldCommand;
 import dev.blocky.discord.commands.TextInVoiceCommand;
 import dev.blocky.library.jda.interfaces.ICommand;
-import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.events.ReadyEvent;
-import net.dv8tion.jda.api.events.ShutdownEvent;
+import net.dv8tion.jda.api.entities.channel.ChannelType;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.events.session.ReadyEvent;
+import net.dv8tion.jda.api.events.session.ShutdownEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.internal.utils.Checks;
 import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
 import java.util.Arrays;
@@ -37,7 +37,7 @@ import java.util.regex.Pattern;
  * This is a class, which manages default {@link Message} commands.
  *
  * @author BlockyDotJar
- * @version v2.1.4
+ * @version v2.1.5
  * @since v1.0.0-alpha.3
  */
 public class CommandManager extends ListenerAdapter
@@ -71,8 +71,10 @@ public class CommandManager extends ListenerAdapter
      * @return <b>true</b> - If {@link ICommand} is not equal to <b>null</b>.
      *         <br><b>false</b> - If {@link ICommand} equals <b>null</b>.
      */
-    protected boolean onMessage(@Nullable String command, @NotNull MessageReceivedEvent event, @NotNull String[] args)
+    boolean onMessage(@NotNull String command, @NotNull MessageReceivedEvent event, @NotNull String[] args)
     {
+        Checks.noWhitespace(command, "command");
+
         ICommand cmd = commands.get(command.toLowerCase());
         if (cmd != null)
         {

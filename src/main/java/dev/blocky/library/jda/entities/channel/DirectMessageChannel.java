@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Dominic (aka. BlockyDotJar)
+ * Copyright 2022 Dominic R. (aka. BlockyDotJar)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +16,11 @@
 package dev.blocky.library.jda.entities.channel;
 
 import com.google.errorprone.annotations.CheckReturnValue;
-import dev.blocky.library.jda.Utility;
-import dev.blocky.library.jda.enums.SafetyClear;
+import dev.blocky.library.jda.enums.ClearSafety;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.PrivateChannel;
 import net.dv8tion.jda.api.entities.User;
-import net.dv8tion.jda.api.entities.channel.unions.MessageChannelUnion;
+import net.dv8tion.jda.api.entities.channel.concrete.PrivateChannel;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.requests.RestAction;
 import net.dv8tion.jda.api.requests.restaction.MessageCreateAction;
@@ -31,15 +29,14 @@ import net.dv8tion.jda.api.utils.messages.MessageCreateBuilder;
 import net.dv8tion.jda.api.utils.messages.MessageCreateData;
 import net.dv8tion.jda.internal.requests.RestActionImpl;
 import net.dv8tion.jda.internal.requests.Route;
+import net.dv8tion.jda.internal.utils.Checks;
 import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
 import java.text.DecimalFormat;
-import java.util.EnumSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.TimeUnit;
@@ -48,125 +45,45 @@ import java.util.stream.Collectors;
 
 /**
  * Represents the connection used for direct-messaging.
- -
+ *
+ * @param channel The {@link PrivateChannel}, which should be initialized.
+ * @param user The {@link User}, which should be initialized.
+ *
  * @author BlockyDotJar
- * @version v1.1.4
+ * @version v2.0.0
  * @since v1.1.1
  */
-public class DirectMessageChannel extends Utility
+public record DirectMessageChannel(@NotNull PrivateChannel channel, @Nullable User user) implements ChannelUtils
 {
     private static final Logger logger = JDALogger.getLog(DirectMessageChannel.class);
-    private final MessageChannelUnion union;
-    private final PrivateChannel channel;
-    private User user;
-
-    private DirectMessageChannel(@NotNull MessageChannelUnion union, @Nullable User user)
-    {
-        this.channel = union.asPrivateChannel();
-        this.union = union;
-        this.user = user;
-
-        EnumSet<GatewayIntent> intents = channel.getJDA().getGatewayIntents();
-
-        if (!intents.contains(GatewayIntent.DIRECT_MESSAGES))
-        {
-            logger.warn("The 'DIRECT_MESSAGES' intent is not enabled, which means, that some stuff could not work.");
-        }
-    }
-
-    private DirectMessageChannel(@NotNull MessageChannelUnion union)
-    {
-        this.channel = union.asPrivateChannel();
-        this.union = union;
-
-        EnumSet<GatewayIntent> intents = channel.getJDA().getGatewayIntents();
-
-        if (!intents.contains(GatewayIntent.DIRECT_MESSAGES))
-        {
-            logger.warn("The 'DIRECT_MESSAGES' intent is not enabled, which means, that some stuff could not work.");
-        }
-    }
-
-    /**
-     * Constructs a <b>new</b> {@link DirectMessageChannel} instance.
-     * <br>If you don't initialize a {@link MessageChannelUnion} or a {@link User},
-     * the {@link DirectMessageChannel} always will be <b>null</b>.
-     *
-     * @param union The {@link MessageChannelUnion}, which  should be initialized.
-     * @param user The {@link User}, which should be initialized.
-     *
-     * @return A <b>new</b> {@link DirectMessageChannel} instance.
-     */
-    @NotNull
-    public static DirectMessageChannel set(@NotNull MessageChannelUnion union, @Nullable User user)
-    {
-        return new DirectMessageChannel(union, user);
-    }
-
-    /**
-     * Constructs a <b>new</b> {@link DirectMessageChannel} instance.
-     * <br>If you don't initialize a {@link MessageChannelUnion},
-     * the {@link DirectMessageChannel} always will be <b>null</b>.
-     *
-     * @param union The {@link MessageChannelUnion}, which should be initialized.
-     *
-     * @return A <b>new</b> {@link DirectMessageChannel} instance.
-     */
-    @NotNull
-    public static DirectMessageChannel set(@NotNull MessageChannelUnion union)
-    {
-        return new DirectMessageChannel(union);
-    }
-
-    /**
-     * The author of the {@link Message} received as {@link User} object.
-     *
-     * @return The author of the {@link Message} as null-able {@link User} object.
-     */
-    @Nullable
-    public User getUser()
-    {
-        return user;
-    }
-
-    /**
-     * The {@link PrivateChannel} for this {@link Message}.
-     *
-     * @return The {@link PrivateChannel}.
-     */
-    @NotNull
-    public PrivateChannel getChannel()
-    {
-        return channel;
-    }
 
     /**
      * Convenience method to delete messages in the most efficient way available.
      * <br>No checks will be done to prevent failures, use {@link CompletionStage#exceptionally(Function)} to handle failures.
      *
      * @param amount The amount of messages to delete.
-     * @param clear The {@link SafetyClear} option, which helps for specifying different message types, which will not be deleted.
+     * @param safeties The {@link ClearSafety} options, which helps for specifying different message types, which will not be deleted.
      *
      * @return A {@link List} of futures representing all deletion task.
      */
-    @Nullable
-    public List<CompletableFuture<Void>> purgeMessages(int amount, @Nullable SafetyClear clear)
+    @NotNull
+    public List<CompletableFuture<Void>> purgeMessages(int amount, @NotNull ClearSafety... safeties)
     {
-        return channel.purgeMessages(checkClearSafety(clear, union, amount));
+        return channel.purgeMessages(ChannelUtils.checkClearSafety(channel, amount, safeties));
     }
 
     /**
      * Convenience method to delete a complete {@link PrivateChannel} in the most efficient way available.
      * <br>No checks will be done to prevent failures, use {@link CompletionStage#exceptionally(Function)} to handle failures.
      *
-     * @param clear The {@link SafetyClear} option, which helps for specifying different message types, which will not be deleted.
+     * @param safeties The {@link ClearSafety} options, which helps for specifying different message types, which will not be deleted.
      *
      * @return A {@link List} of futures representing all deletion task.
      */
-    @Nullable
-    public List<CompletableFuture<Void>> purgeChannel(@Nullable SafetyClear clear)
+    @NotNull
+    public List<CompletableFuture<Void>> purgeChannel(@NotNull ClearSafety... safeties)
     {
-        return channel.purgeMessages(checkChannelClearSafety(clear, union));
+        return channel.purgeMessages(ChannelUtils.checkChannelClearSafety(channel, safeties));
     }
 
     /**
@@ -175,10 +92,10 @@ public class DirectMessageChannel extends Utility
      *
      * @return A {@link List} of futures representing all deletion task.
      */
-    @Nullable
+    @NotNull
     public List<CompletableFuture<Void>> purgeChannel()
     {
-        return purgeChannel(null);
+        return purgeChannel(ClearSafety.NONE);
     }
 
     /**
@@ -192,6 +109,8 @@ public class DirectMessageChannel extends Utility
      */
     public boolean containsMessage(@NotNull CharSequence content, int checkAmount)
     {
+        Checks.check(checkAmount > 0, "checkAmount may not be negative");
+
         if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.MESSAGE_CONTENT))
         {
             logger.warn("The MESSAGE_CONTENT intent is not enabled, which means, that some stuff could not work.");
@@ -213,8 +132,7 @@ public class DirectMessageChannel extends Utility
     }
 
     /**
-     * Gets all the messages from the {@link User}, which was specified with the {@link #set(MessageChannelUnion, User)} method,
-     * in this channel. (max. 1000 messages per channel)
+     * Gets all the messages from the {@link User} in this channel. (max. 1000 messages per channel)
      *
      * @return The written messages of the specified {@link User} in this channel.
      */
@@ -223,7 +141,7 @@ public class DirectMessageChannel extends Utility
     {
         if (user == null)
         {
-            throw new IllegalStateException("You must specify a member, which should be used for this command.");
+            throw new IllegalStateException("You must specify a user, which should be used for this command.");
         }
 
         return getMessagesByUser(user);
@@ -250,7 +168,7 @@ public class DirectMessageChannel extends Utility
 
     /**
      * This works like a normal message sending, but with more given options and a delay between using this.
-     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>.
+     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>)
      * <br>If this is {@code true} a {@link IllegalArgumentException} will be thrown. The same is applicable for numbers under 0.
      * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
@@ -277,17 +195,17 @@ public class DirectMessageChannel extends Utility
 
         long id = user.getIdLong();
 
-        if (!getHashMap().containsKey(id))
+        if (!ChannelUtils.getHashMap().containsKey(id))
         {
-            getHashMap().put(id, System.currentTimeMillis());
+            ChannelUtils.getHashMap().put(id, System.currentTimeMillis());
             return message;
         }
 
-        long time = getHashMap().get(id);
+        long time = ChannelUtils.getHashMap().get(id);
 
-        if ((System.currentTimeMillis() - time) >= calculateDelay(unit, delayInSeconds))
+        if ((System.currentTimeMillis() - time) >= ChannelUtils.calculateDelay(unit, delayInSeconds))
         {
-            getHashMap().put(id, System.currentTimeMillis());
+            ChannelUtils.getHashMap().put(id, System.currentTimeMillis());
             return message;
         }
 
@@ -300,7 +218,7 @@ public class DirectMessageChannel extends Utility
 
         MessageCreateBuilder builder = new MessageCreateBuilder()
                 .setContent(user.getName() + ", you must wait " +
-                        df.format((calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) +
+                        df.format((ChannelUtils.calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) +
                         " " + (unit == null ? "seconds" : unit.toString().toLowerCase()) + " ⌛");
 
         try (MessageCreateData createData = builder.build())
@@ -312,7 +230,7 @@ public class DirectMessageChannel extends Utility
 
     /**
      * This works like a normal message sending, but with more given options and a delay between using this.
-     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>.
+     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>)
      * <br>If this is {@code true} a {@link IllegalArgumentException} will be thrown. The same is applicable for numbers under 0.
      * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
@@ -332,7 +250,7 @@ public class DirectMessageChannel extends Utility
 
     /**
      * This works like a normal (interaction) message sending, but with more given options and a delay between using this.
-     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>.
+     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>)
      * <br>If this is {@code true} a {@link IllegalArgumentException} will be thrown. The same is applicable for numbers under 0.
      * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
@@ -359,17 +277,17 @@ public class DirectMessageChannel extends Utility
 
         long id = user.getIdLong();
 
-        if (!getHashMap().containsKey(id))
+        if (!ChannelUtils.getHashMap().containsKey(id))
         {
-            getHashMap().put(id, System.currentTimeMillis());
+            ChannelUtils.getHashMap().put(id, System.currentTimeMillis());
             return message;
         }
 
-        long time = getHashMap().get(id);
+        long time = ChannelUtils.getHashMap().get(id);
 
-        if ((System.currentTimeMillis() - time) >= calculateDelay(unit, delayInSeconds))
+        if ((System.currentTimeMillis() - time) >= ChannelUtils.calculateDelay(unit, delayInSeconds))
         {
-            getHashMap().put(id, System.currentTimeMillis());
+            ChannelUtils.getHashMap().put(id, System.currentTimeMillis());
             return message;
         }
         return delayMessage;
@@ -377,7 +295,7 @@ public class DirectMessageChannel extends Utility
 
     /**
      * This works like a normal (interaction) message sending, but with more given options and a delay between using this.
-     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>.
+     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>)
      * <br>If this is {@code true} a {@link IllegalArgumentException} will be thrown. The same is applicable for numbers under 0.
      * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
@@ -409,41 +327,5 @@ public class DirectMessageChannel extends Utility
     {
         Route.CompiledRoute route = Route.Channels.DELETE_CHANNEL.compile(channel.getId());
         return new RestActionImpl<>(channel.getJDA(), route);
-    }
-
-    @Override
-    public boolean equals(@Nullable Object o)
-    {
-        if (this == o)
-        {
-            return true;
-        }
-
-        if (o == null || getClass() != o.getClass())
-        {
-            return false;
-        }
-
-        DirectMessageChannel that = (DirectMessageChannel) o;
-
-        return channel.equals(that.channel) && Objects.equals(user, that.user);
-    }
-
-
-    @Override
-    public int hashCode()
-    {
-        return Objects.hash(channel, user);
-    }
-
-
-    @NotNull
-    @Override
-    public String toString()
-    {
-        return "DirectMessageChannel{" +
-                "channel=" + channel +
-                ", user=" + user +
-                '}';
     }
 }

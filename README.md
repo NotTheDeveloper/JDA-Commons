@@ -19,7 +19,7 @@ JDA strives to provide a clean and full wrapping of the Discord REST API and its
 
 **OK but what is the JDA-C (JDA-Commons) library now?**
 
-The JDA-Commons library is only a little extension to the JDA library, which adds lots of utility methods to the original library.
+The JDA-Commons library is only a little extension to the JDA library, which adds lots of utility methods and classes to the original library.
 
 ## Summary
 
@@ -92,19 +92,25 @@ After that you add this repository and dependency to your `pom.xml`:
 
 ### Gradle
 
-Be sure to replace the **`GITHUB_USERNAME`** key below with your GitHub username and **`GITHUB_TOKEN`** with a [GitHub token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-tokenn)!
+Be sure to replace the **`GITHUB_USERNAME`** key below with your GitHub username and **`GITHUB_TOKEN`** with a [GitHub token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)!
 
 **Gradle Groovy:**
 
 ```gradle
 repositories {
     maven {
-        url = uri("https://maven.pkg.github.com/BlockyDotJar/JDA-Commons")
+        url = uri 'https://maven.pkg.github.com/BlockyDotJar/JDA-Commons'
         credentials {
-            username = project.findProperty("gpr.user") ?: "GITHUB_USERNAME"
-            password = project.findProperty("gpr.key") ?: "GITHUB_TOKEN"
+            username = project.findProperty('gpr.user') ?: 'GITHUB_USERNAME'
+            password = project.findProperty('gpr.key') ?: 'GITHUB_TOKEN'
         }
     }
+}
+```
+
+```gradle
+dependencies {
+    implementation 'dev.blocky.library:jda-commons:VERSION'
 }
 ```
 
@@ -136,15 +142,26 @@ That means you should add some SLF4J implementation to your build path in additi
 If no implementation is found, following message will be printed to the console on startup:
 
 ```php
-SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: No SLF4J providers were found.
 SLF4J: Defaulting to no-operation (NOP) logger implementation
-SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+SLF4J: See http://www.slf4j.org/codes.html#noProviders for further details.
+```
+
+Or if you use an outdated version of it, something like this will appear in your console:
+
+```php
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#noProviders for further details.
+SLF4J: Class path contains SLF4J bindings targeting slf4j-api versions prior to 1.8.
+SLF4J: Ignoring binding found at [jar:file:/C:/Users/UserName/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.2.11/4741689214e9d1e8408b206506cbe76d1c6a7d60/logback-classic-1.2.11.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#ignoredBindings for an explanation.
 ```
 
 JDA and JDA-C are currently providing a fallback logger in case that no SLF4J implementation is present.
 We strongly recommend to use one though, as that can improve speed and allows you to customize the logger as well as logging to some files.
 
-There is a guide for logback-classic available at the JDA wiki: [Logging Setup](https://jda.wiki/setup/logging/).
+There is a guide for logback-classic available at our wiki: [Logging Setup](https://github.com/BlockyDotJar/JDA-Commons/wiki/Logging-Setup).
 
 ## Documentation
 
@@ -257,16 +274,19 @@ version was by looking at the [release page](https://github.com/BlockyDotJar/JDA
 
 ## Dependencies:
 
-This project requires **Java 8+**
+This project requires **Java 19+**
 
 * JDA (Java Discord API)
-    * Version: **v5.0.0-alpha.18**
+    * Version: **v5.0.0-alpha.21**
     * [Github](https://github.com/DV8FromTheWorld/JDA)
 * slf4j-api
-    * Version: **v2.0.0**
+    * Version: **v2.0.3**
     * [Github](https://github.com/qos-ch/slf4j)
+* jetbrains-annotations
+    * Version: **v23.0.0**
+    * [Github](https://github.com/JetBrains/java-annotations)
 * error_prone_annotations
-    * Version: **v2.15.0**
+    * Version: **v2.16.0**
     * [Github](https://github.com/google/error-prone)
 
 <hr>
@@ -277,8 +297,8 @@ These are only the libraries, which we have in our [build.gradle.kts](https://gi
 
 ## JDA related projects
 
-- [Discord.NET](https://github.com/discord-net/Discord.Net)
-- [discord.py](https://github.com/Rapptz/discord.py)
+- [discord.py-message-components](https://github.com/mccoderpy/discord.py-message-components/tree/developer)
+- [DisCatSharp](https://github.com/Aiko-IT-Systems/DisCatSharp)
 - [discord.js](https://github.com/discordjs/discord.js)
 - [serenity](https://github.com/serenity-rs/serenity)
 

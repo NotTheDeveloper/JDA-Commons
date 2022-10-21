@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Dominic (aka. BlockyDotJar)
+ * Copyright 2022 Dominic R. (aka. BlockyDotJar)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
  * This is a simple hello-world command.
  *
  * @author BlockyDotJar
- * @version v2.1.3
+ * @version v2.1.4
  * @since v1.0.0-alpha.3
  */
 public class HelloWorldCommand implements ICommand
@@ -34,10 +34,10 @@ public class HelloWorldCommand implements ICommand
     public void onCommand(@NotNull MessageReceivedEvent event, @NotNull String[] args)
     {
         // Creates a *new* GuildMessageChannel, by initializing a MessageChannel and a member.
-        GuildMessageChannel channel = GuildMessageChannel.set(event.getChannel(), event.getMember());
+        GuildMessageChannel channel = new GuildMessageChannel(event.getChannel(), event.getMember().getUser());
         // Creates a MessageCreateAction by simply sending a message.
         MessageCreateAction action = event.getChannel().sendMessage("Hello World!");
-        //Creates a timeouted message by handing over the MessageCreateAction above and setting a delay of 10 seconds.
-        channel.sendTimeoutedMessage(action, 0L, null).queue();
+        //Creates a timeouting message by handing over the MessageCreateAction above and setting a delay of 10 seconds.
+        channel.sendTimeoutedMessage(action, 10L, null).queue();
     }
 }

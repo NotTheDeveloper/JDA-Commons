@@ -13,7 +13,7 @@
  * {@link net.dv8tion.jda.api.events.interaction.component.SelectMenuInteractionEvent select menu interactions}.</li>
  *
  * <li>{@link dev.blocky.discord.CommandManager}
- * <br>This is a class, which manages default {@link net.dv8tion.jda.api.entities.Message} commands.</li>
+ * <br>This is a class, which manages default {@link net.dv8tion.jda.api.entities.Message Message} commands.</li>
  *
  * <li>{@link dev.blocky.discord.DiscordBotExample}
  * <br>This is the main class of the Discord-Bot.</li>

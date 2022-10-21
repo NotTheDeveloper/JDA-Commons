@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Dominic (aka. BlockyDotJar)
+ * Copyright 2022 Dominic R. (aka. BlockyDotJar)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
  * A simple message context-menu interface, which you can use to easily program some message context-menus.
  *
  * @author BlockyDotJar
- * @version v1.1.3
+ * @version v1.1.4
  * @since v1.0.0
  */
 public interface IMessageContext

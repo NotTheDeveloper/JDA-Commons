@@ -1,6 +1,5 @@
 /**
  * Root package of the JDA-Common user context-command interfaces.
- *
  * <br>From here you can navigate to the user context-command interfaces.
  *
  * <ul>

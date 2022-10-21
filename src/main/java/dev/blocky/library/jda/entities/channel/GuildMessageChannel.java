@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Dominic (aka. BlockyDotJar)
+ * Copyright 2022 Dominic R. (aka. BlockyDotJar)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,27 +16,23 @@
 package dev.blocky.library.jda.entities.channel;
 
 import com.google.errorprone.annotations.CheckReturnValue;
-import dev.blocky.library.jda.Utility;
-import dev.blocky.library.jda.enums.SafetyClear;
-import net.dv8tion.jda.api.entities.Member;
+import dev.blocky.library.jda.enums.ClearSafety;
 import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.User;
-import net.dv8tion.jda.api.entities.channel.unions.MessageChannelUnion;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.requests.restaction.MessageCreateAction;
 import net.dv8tion.jda.api.requests.restaction.interactions.ReplyCallbackAction;
 import net.dv8tion.jda.api.utils.messages.MessageCreateBuilder;
 import net.dv8tion.jda.api.utils.messages.MessageCreateData;
+import net.dv8tion.jda.internal.utils.Checks;
 import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
 import java.text.DecimalFormat;
-import java.util.EnumSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.TimeUnit;
@@ -44,133 +40,46 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * Represents a Discord channel that can have {@link Message messages}  and files sent to it.
+ * Represents a Discord channel that can have {@link Message messages} and files sent to it.
+ *
+ * @param channel The {@link MessageChannel}, which should be initialized.
+ * @param user The {@link User}, which should be initialized.
  *
  * @author BlockyDotJar
- * @version v2.1.4
+ * @version v3.0.0
  * @since v1.0.0-alpha.1
  */
-public class GuildMessageChannel extends Utility
+public record GuildMessageChannel(@NotNull MessageChannel channel, @Nullable User user) implements ChannelUtils
 {
     private static final Logger logger = JDALogger.getLog(GuildMessageChannel.class);
-    private final MessageChannelUnion channel;
-    private Member member;
-
-    private GuildMessageChannel(@NotNull MessageChannelUnion channel, @Nullable Member member)
-    {
-        this.channel = channel;
-        this.member = member;
-
-        EnumSet<GatewayIntent> intents = channel.getJDA().getGatewayIntents();
-
-        if (!intents.contains(GatewayIntent.GUILD_MESSAGES) && !intents.contains(GatewayIntent.GUILD_MEMBERS))
-        {
-            logger.warn("Both the 'GUILD_MESSAGES' and the 'GUILD_MEMBERS' intents are not enabled, which means, that some stuff could not work.");
-        }
-
-        if (!intents.contains(GatewayIntent.GUILD_MESSAGES))
-        {
-            logger.warn("The 'GUILD_MESSAGES' intent is not enabled, which means, that some stuff could not work.");
-        }
-
-        if (!intents.contains(GatewayIntent.GUILD_MEMBERS))
-        {
-            logger.warn("The 'GUILD_MEMBERS' intent is not enabled, which means, that some stuff could not work.");
-        }
-    }
-
-    private GuildMessageChannel(@NotNull MessageChannelUnion channel)
-    {
-        this.channel = channel;
-
-        EnumSet<GatewayIntent> intents = channel.getJDA().getGatewayIntents();
-
-        if (!intents.contains(GatewayIntent.GUILD_MESSAGES))
-        {
-            logger.warn("The 'GUILD_MESSAGES' intent is not enabled, which means, that some stuff could not work.");
-        }
-    }
-
-    /**
-     * Constructs a <b>new</b> {@link GuildMessageChannel} instance.
-     * <br>If you don't initialize a {@link MessageChannelUnion} or a {@link Member},
-     * the {@link GuildMessageChannel} always will be <b>null</b>.
-     *
-     * @param channel The {@link MessageChannelUnion}, which should be initialized.
-     * @param member The {@link Member}, which should be initialized.
-     *
-     * @return A <b>new</b> {@link GuildMessageChannel} instance.
-     */
-    @NotNull
-    public static GuildMessageChannel set(@NotNull MessageChannelUnion channel, @Nullable Member member)
-    {
-        return new GuildMessageChannel(channel, member);
-    }
-
-    /**
-     * Constructs a <b>new</b> {@link GuildMessageChannel} instance.
-     * <br>If you don't initialize a {@link MessageChannelUnion},
-     * the {@link GuildMessageChannel} always will be <b>null</b>.
-     *
-     * @param channel The {@link MessageChannelUnion}, which  should be initialized.
-     *
-     * @return A <b>new</b> {@link GuildMessageChannel} instance.
-     */
-    @NotNull
-    public static GuildMessageChannel set(@NotNull MessageChannelUnion channel)
-    {
-        return new GuildMessageChannel(channel);
-    }
-
-    /**
-     * The author of the {@link Message} received as {@link Member} object.
-     *
-     * @return The author of the {@link Message} as <b>null-able</b> {@link Member} object.
-     */
-    @Nullable
-    public Member getMember()
-    {
-        return member;
-    }
-
-    /**
-     * The {@link MessageChannel} for this {@link Message}.
-     *
-     * @return The {@link MessageChannel}.
-     */
-    @NotNull
-    public MessageChannel getChannel()
-    {
-        return channel;
-    }
 
     /**
      * Convenience method to delete messages in the most efficient way available.
      * <br>No checks will be done to prevent failures, use {@link CompletionStage#exceptionally(Function)} to handle failures.
      *
      * @param amount The amount of messages to delete.
-     * @param clear The {@link SafetyClear} option, which helps for specifying different message types, which will not be deleted.
+     * @param safeties The {@link ClearSafety} options, which helps for specifying different message types, which will not be deleted.
      *
      * @return A {@link List} of futures representing all deletion task.
      */
-    @Nullable
-    public List<CompletableFuture<Void>> purgeMessages(int amount, @Nullable SafetyClear clear)
+    @NotNull
+    public List<CompletableFuture<Void>> purgeMessages(int amount, @NotNull ClearSafety... safeties)
     {
-        return channel.purgeMessages(checkClearSafety(clear, channel, amount));
+        return channel.purgeMessages(ChannelUtils.checkClearSafety(channel, amount, safeties));
     }
 
     /**
      * Convenience method to delete a complete {@link MessageChannel} in the most efficient way available.
      * <br>No checks will be done to prevent failures, use {@link CompletionStage#exceptionally(Function)} to handle failures.
      *
-     * @param clear The {@link SafetyClear} option, which helps for specifying different message types, which will not be deleted.
+     * @param safeties The {@link ClearSafety} options, which helps for specifying different message types, which will not be deleted.
      *
      * @return A {@link List} of futures representing all deletion task.
      */
-    @Nullable
-    public List<CompletableFuture<Void>> purgeChannel(@Nullable SafetyClear clear)
+    @NotNull
+    public List<CompletableFuture<Void>> purgeChannel(@NotNull ClearSafety... safeties)
     {
-        return channel.purgeMessages(checkChannelClearSafety(clear, channel));
+        return channel.purgeMessages(ChannelUtils.checkChannelClearSafety(channel, safeties));
     }
 
     /**
@@ -179,10 +88,10 @@ public class GuildMessageChannel extends Utility
      *
      * @return A {@link List} of futures representing all deletion task.
      */
-    @Nullable
+    @NotNull
     public List<CompletableFuture<Void>> purgeChannel()
     {
-        return purgeChannel(null);
+        return purgeChannel(ClearSafety.NONE);
     }
 
     /**
@@ -196,6 +105,8 @@ public class GuildMessageChannel extends Utility
      */
     public boolean containsMessage(@NotNull CharSequence content, int checkAmount)
     {
+        Checks.check(checkAmount > 0, "checkAmount may not be negative");
+
         if (!channel.getJDA().getGatewayIntents().contains(GatewayIntent.MESSAGE_CONTENT))
         {
             logger.warn("The MESSAGE_CONTENT intent is not enabled, which means, that some stuff could not work.");
@@ -217,20 +128,19 @@ public class GuildMessageChannel extends Utility
     }
 
     /**
-     * Gets all the messages from the {@link User}, which was specified with the {@link #set(MessageChannelUnion, Member)} method,
-     * in this channel. (max. 1000 messages per channel)
+     * Gets all the messages from the {@link User} in this channel. (max. 1000 messages per channel)
      *
      * @return The written messages of the specified {@link User} in this channel.
      */
     @Nullable
     public CompletableFuture<List<Message>> getMessagesByUser()
     {
-        if (member == null)
+        if (user == null)
         {
-            throw new IllegalStateException("You must specify a member, which should be used for this command.");
+            throw new IllegalStateException("You must specify a user, which should be used for this command.");
         }
 
-        return getMessagesByUser(member.getUser());
+        return getMessagesByUser(user);
     }
 
     /**
@@ -254,7 +164,7 @@ public class GuildMessageChannel extends Utility
 
     /**
      * This works like a normal message sending, but with more given options and a delay between using this.
-     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>.
+     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>)
      * <br>If this is {@code true} a {@link IllegalArgumentException} will be thrown. The same is applicable for numbers under 0.
      * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
@@ -274,24 +184,24 @@ public class GuildMessageChannel extends Utility
     public MessageCreateAction sendTimeoutedMessage(@NotNull MessageCreateAction message, long delayInSeconds, @Nullable MessageCreateAction delayMessage,
                                                     @Nullable TimeUnit unit)
     {
-        if (member == null)
+        if (user == null)
         {
-            throw new IllegalStateException("You must specify a member, which should be used for this command.");
+            throw new IllegalStateException("You must specify a user, which should be used for this command.");
         }
 
-        long id = member.getIdLong();
+        long id = user.getIdLong();
 
-        if (!getHashMap().containsKey(id))
+        if (!ChannelUtils.getHashMap().containsKey(id))
         {
-            getHashMap().put(id, System.currentTimeMillis());
+            ChannelUtils.getHashMap().put(id, System.currentTimeMillis());
             return message;
         }
 
-        long time = getHashMap().get(id);
+        long time = ChannelUtils.getHashMap().get(id);
 
-        if ((System.currentTimeMillis() - time) >= calculateDelay(unit, delayInSeconds))
+        if ((System.currentTimeMillis() - time) >= ChannelUtils.calculateDelay(unit, delayInSeconds))
         {
-            getHashMap().put(id, System.currentTimeMillis());
+            ChannelUtils.getHashMap().put(id, System.currentTimeMillis());
             return message;
         }
 
@@ -303,8 +213,8 @@ public class GuildMessageChannel extends Utility
         DecimalFormat df = new DecimalFormat("0.00");
 
         MessageCreateBuilder builder = new MessageCreateBuilder()
-                .setContent(member.getEffectiveName() + ", you must wait " +
-                        df.format((calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) +
+                .setContent(user.getName()+ ", you must wait " +
+                        df.format((ChannelUtils.calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) +
                         " " + (unit == null ? "seconds" : unit.toString().toLowerCase()) + " ⌛");
 
         try (MessageCreateData createData = builder.build())
@@ -316,7 +226,7 @@ public class GuildMessageChannel extends Utility
 
     /**
      * This works like a normal message sending, but with more given options and a delay between using this.
-     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>.
+     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>)
      * <br>If this is {@code true} a {@link IllegalArgumentException} will be thrown. The same is applicable for numbers under 0.
      * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
@@ -336,7 +246,7 @@ public class GuildMessageChannel extends Utility
 
     /**
      * This works like a normal (interaction) message sending, but with more given options and a delay between using this.
-     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>.
+     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>)
      * <br>If this is {@code true} a {@link IllegalArgumentException} will be thrown. The same is applicable for numbers under 0.
      * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
@@ -356,24 +266,24 @@ public class GuildMessageChannel extends Utility
     public ReplyCallbackAction replyTimeoutedMessage(@NotNull ReplyCallbackAction message, long delayInSeconds, @NotNull ReplyCallbackAction delayMessage,
                                                      @Nullable TimeUnit unit)
     {
-        if (member == null)
+        if (user == null)
         {
-            throw new IllegalStateException("You must specify a member, which should be used for this command.");
+            throw new IllegalStateException("You must specify a user, which should be used for this command.");
         }
 
-        long id = member.getIdLong();
+        long id = user.getIdLong();
 
-        if (!getHashMap().containsKey(id))
+        if (!ChannelUtils.getHashMap().containsKey(id))
         {
-            getHashMap().put(id, System.currentTimeMillis());
+            ChannelUtils.getHashMap().put(id, System.currentTimeMillis());
             return message;
         }
 
-        long time = getHashMap().get(id);
+        long time = ChannelUtils.getHashMap().get(id);
 
-        if ((System.currentTimeMillis() - time) >= calculateDelay(unit, delayInSeconds))
+        if ((System.currentTimeMillis() - time) >= ChannelUtils.calculateDelay(unit, delayInSeconds))
         {
-            getHashMap().put(id, System.currentTimeMillis());
+            ChannelUtils.getHashMap().put(id, System.currentTimeMillis());
             return message;
         }
         return delayMessage;
@@ -381,7 +291,7 @@ public class GuildMessageChannel extends Utility
 
     /**
      * This works like a normal (interaction) message sending, but with more given options and a delay between using this.
-     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>.
+     * <br>You must specify a delay to time out a command. (the {@code delayInSeconds} parameter <b>must not equal to 0</b>)
      * <br>If this is {@code true} a {@link IllegalArgumentException} will be thrown. The same is applicable for numbers under 0.
      * <br>You also can specify a delay message, which will be sent if you are under a delay. (if the delay message
      * equals <b>null</b>, there will be sent a default error message)
@@ -397,39 +307,5 @@ public class GuildMessageChannel extends Utility
     public ReplyCallbackAction replyTimeoutedMessage(@NotNull ReplyCallbackAction message, long delayInSeconds, @NotNull ReplyCallbackAction delayMessage)
     {
         return replyTimeoutedMessage(message, delayInSeconds, delayMessage, null);
-    }
-
-    @Override
-    public boolean equals(@Nullable Object o)
-    {
-        if (this == o)
-        {
-            return true;
-        }
-
-        if (o == null || getClass() != o.getClass())
-        {
-            return false;
-        }
-
-        GuildMessageChannel that = (GuildMessageChannel) o;
-
-        return channel.equals(that.channel) && Objects.equals(member, that.member);
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return Objects.hash(channel, member);
-    }
-
-    @NotNull
-    @Override
-    public String toString()
-    {
-        return "GuildMessageChannel{" +
-                "channel=" + channel +
-                ", member=" + member +
-                '}';
     }
 }

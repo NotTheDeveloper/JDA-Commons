@@ -1,6 +1,5 @@
 /**
  * Root package of JDA-Common Managers.
- *
  * <br>From here you can navigate to the Managers.
  *
  * <ul>

@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Dominic (aka. BlockyDotJar)
+ * Copyright 2022 Dominic R. (aka. BlockyDotJar)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@ package dev.blocky.discord.commands;
 
 import dev.blocky.library.jda.entities.channel.GuildVoiceChannel;
 import dev.blocky.library.jda.interfaces.ICommand;
-import net.dv8tion.jda.api.entities.ChannelType;
-import net.dv8tion.jda.api.entities.VoiceChannel;
+import net.dv8tion.jda.api.entities.channel.ChannelType;
+import net.dv8tion.jda.api.entities.channel.concrete.VoiceChannel;
 import net.dv8tion.jda.api.entities.channel.unions.MessageChannelUnion;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.requests.restaction.MessageCreateAction;
@@ -29,7 +29,7 @@ import org.jetbrains.annotations.NotNull;
  * <br>This command also represents text-in-voice.
  *
  * @author BlockyDotJar
- * @version v1.0.3
+ * @version v1.0.4
  * @since v1.1.5
  */
 public class TextInVoiceCommand implements ICommand
@@ -51,7 +51,7 @@ public class TextInVoiceCommand implements ICommand
             }
 
             // Creates a *new* GuildVoiceChannel, by initializing a VoiceChannel and a member.
-            GuildVoiceChannel voiceChannel = GuildVoiceChannel.set(event.getChannel(), event.getMember());
+            GuildVoiceChannel voiceChannel = new GuildVoiceChannel(vc, event.getMember().getUser());
             // Creates a MessageCreateAction by simply sending a message.
             MessageCreateAction action = channel.sendMessage("Hello World!");
             //Creates a timeouted message by handing over the MessageCreateAction above and setting a delay of 10 seconds.

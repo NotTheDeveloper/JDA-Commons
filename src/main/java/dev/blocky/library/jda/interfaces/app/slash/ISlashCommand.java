@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Dominic (aka. BlockyDotJar)
+ * Copyright 2022 Dominic R. (aka. BlockyDotJar)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  */
 package dev.blocky.library.jda.interfaces.app.slash;
 
-import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
  * A simple slash-command interface, which you can use to easily program some slash-commands.
  *
  * @author BlockyDotJar
- * @version v2.1.3
+ * @version v2.1.4
  * @since v1.0.0
  */
 public interface ISlashCommand

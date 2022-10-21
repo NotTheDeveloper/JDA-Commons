@@ -1,6 +1,5 @@
 /**
  * Root package of the JDA-Common slash-command interfaces.
- *
  * <br>From here you can navigate to the slash-command interfaces.
  *
  * <ul>

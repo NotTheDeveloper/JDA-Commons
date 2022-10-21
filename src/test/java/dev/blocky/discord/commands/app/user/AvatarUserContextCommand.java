@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Dominic (aka. BlockyDotJar)
+ * Copyright 2022 Dominic R. (aka. BlockyDotJar)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import java.time.OffsetDateTime;
  * This is a simple user context-command, which sends the avatar of the user.
  *
  * @author BlockyDotJar
- * @version v2.1.2
+ * @version v2.1.3
  * @since v1.0.0
  */
 public class AvatarUserContextCommand implements IUserContext

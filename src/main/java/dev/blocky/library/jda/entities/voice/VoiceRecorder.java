@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Dominic (aka. BlockyDotJar), Emil (aka. TheDesignCraftYT) and nurkaapii
+ * Copyright 2022 Dominic R. (aka. BlockyDotJar), Emil (aka. TheDesignCraftYT) and nurkaapii
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,9 +21,8 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.audio.AudioReceiveHandler;
 import net.dv8tion.jda.api.audio.CombinedAudio;
 import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.entities.VoiceChannel;
-import net.dv8tion.jda.api.events.guild.voice.GuildVoiceLeaveEvent;
-import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.entities.channel.concrete.VoiceChannel;
 import net.dv8tion.jda.api.managers.AudioManager;
 import net.dv8tion.jda.internal.audio.AudioConnection;
 import net.dv8tion.jda.internal.utils.Checks;
@@ -47,11 +46,14 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * <p>This class is used to record audio from a {@link VoiceChannel}.
  *
  * @author BlockyDotJar
- * @version v1.0.0
+ * @version v1.0.1
  * @since v1.1.6
  */
 public class VoiceRecorder implements AudioReceiveHandler
 {
+    /**
+     * The {@link ConcurrentLinkedQueue} to add {@link File} information to.
+     */
     public static final ConcurrentLinkedQueue<byte[]> receivedBytes = new ConcurrentLinkedQueue<>();
     private boolean shouldStack = false;
     private AudioManager audioManager;
@@ -85,7 +87,7 @@ public class VoiceRecorder implements AudioReceiveHandler
     @NotNull
     public VoiceRecorder setVolume(double volume)
     {
-        Checks.notNegative((int) volume, "Volume");
+        Checks.check(volume > 0, "volume may not be negative");
         this.volume = volume;
         return this;
     }
@@ -141,7 +143,7 @@ public class VoiceRecorder implements AudioReceiveHandler
      * <p>This method will start recording audio from the {@link VoiceChannel} that the bot is currently in.
      * <br>This method will return a {@link File} that contains the audio that was recorded.
      *
-     * <p>This is recommended to use in the {@link ListenerAdapter#onGuildVoiceLeave(GuildVoiceLeaveEvent)} method.
+     * <p>This is recommended to use, when the {@link User} leaves the channel.
      * <br>Note that the {@link AudioConnection} should be closed before this method is called.
      *
      * <p>This method supports any kind of audio file.
@@ -153,12 +155,13 @@ public class VoiceRecorder implements AudioReceiveHandler
      * <br>- {@code .m4a}
      *
      * @param file The {@link File} to save the audio to.
+     * @param sampleRate The number of samples per second.
      *
      * @return The {@link File} that the audio was saved to.
      */
     @NotNull
     @CanIgnoreReturnValue
-    public File createRecording(@NotNull File file)
+    public File createRecording(@NotNull File file, float sampleRate)
     {
         try
         {
@@ -183,10 +186,11 @@ public class VoiceRecorder implements AudioReceiveHandler
             if (!file.exists())
             {
                 file.createNewFile();
+                writeWavFile(file, decodedData, sampleRate);
             }
             else
             {
-                writeWavFile(file, decodedData);
+                writeWavFile(file, decodedData, sampleRate);
             }
 
             if (!stackEnabled())
@@ -199,6 +203,38 @@ public class VoiceRecorder implements AudioReceiveHandler
             e.printStackTrace();
         }
         return file;
+    }
+
+    /**
+     * <b>PLEASE NOTE: Only use this feature to record conversations with the consent of all users in the channel.
+     * <br>Recording a conversation against other users' consent is illegal, and you are violating the Discord Terms of Service.</b>
+     *
+     * <p>This method will start recording audio from the {@link VoiceChannel} that the bot is currently in.
+     * <br>This method will return a {@link File} that contains the audio that was recorded.
+     *
+     * <p>This is recommended to use, when the {@link User} leaves the channel.
+     * <br>Note that the {@link AudioConnection} should be closed before this method is called.
+     *
+     * <p>The sample rate of this method equals 48000, but if you need a different sample rate use {@link VoiceRecorder#createRecording(File, float)}
+     * instead.
+     *
+     * <p>This method supports any kind of audio file.
+     * <br>Following audio file-formats are tested:
+     * <br>- {@code .wav}
+     * <br>- {@code .mp3}
+     * <br>- {@code .ogg}
+     * <br>- {@code .opus}
+     * <br>- {@code .m4a}
+     *
+     * @param file The {@link File} to save the audio to.
+     *
+     * @return The {@link File} that the audio was saved to.
+     */
+    @NotNull
+    @CanIgnoreReturnValue
+    public File createRecording(@NotNull File file)
+    {
+        return createRecording(file, 48000);
     }
 
     /**
@@ -253,10 +289,17 @@ public class VoiceRecorder implements AudioReceiveHandler
         return shouldStack;
     }
 
-    private void writeWavFile(@NotNull File outFile, byte[] decodedData) throws IOException
+    private void writeWavFile(@NotNull File outFile, byte[] decodedData, float sampleRate) throws IOException
     {
+        Checks.check(sampleRate > 0, "sampleRate may not be negative");
+
+        if (sampleRate > 48000)
+        {
+            throw new IllegalStateException("sampleRate may not be over 48000");
+        }
+
         AudioFormat format = new AudioFormat(
-                48000,
+                sampleRate,
                 16,
                 2,
                 true,

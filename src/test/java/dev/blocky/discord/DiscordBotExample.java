@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Dominic (aka. BlockyDotJar)
+ * Copyright 2022 Dominic R. (aka. BlockyDotJar)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,6 @@ import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
-import javax.security.auth.login.LoginException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -39,7 +38,7 @@ import java.util.EnumSet;
  * This is the main class of the Discord-Bot.
  *
  * @author BlockyDotJar
- * @version v2.1.3
+ * @version v2.1.4
  * @since v1.0.0-alpha.1
  */
 public class DiscordBotExample
@@ -55,19 +54,16 @@ public class DiscordBotExample
      *
      * @param args An array of string arguments.
      *
-     * @throws LoginException If an login failure occurs.
      */
-    public static void main(@NotNull String[] args) throws LoginException
+    public static void main(@NotNull String[] args)
     {
         new DiscordBotExample();
     }
 
     /**
      * Constructs a <b>new</b> {@link DiscordBotExample}.
-     *
-     * @throws LoginException If an login failure occurs.
      */
-    public DiscordBotExample() throws LoginException
+    public DiscordBotExample()
     {
         jda = JDABuilder
                 .createDefault("BOT_TOKEN", // Replace BOT_TOKEN with the token of your bot.
@@ -156,7 +152,7 @@ public class DiscordBotExample
                 e.printStackTrace();
             }
         }
-        ).start(); // Causes this thread to begin execution.
+        ).start(); // Creates a thread to execute a task and schedules it to execute.
     }
 
     /**

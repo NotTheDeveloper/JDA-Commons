@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Dominic (aka. BlockyDotJar)
+ * Copyright 2022 Dominic R. (aka. BlockyDotJar)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,70 +15,27 @@
  */
 package dev.blocky.library.jda.entities.member;
 
+import com.google.errorprone.annotations.CheckReturnValue;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.User;
-import net.dv8tion.jda.api.requests.GatewayIntent;
-import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
 
-import com.google.errorprone.annotations.CheckReturnValue;
-
-import java.util.EnumSet;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Represents a guild-specific {@link User}.
  *
+ * @param member The {@link Member}, which should be used to get {@link GuildMember}.
+ *
  * @author BlockyDotJar
- * @version v2.1.4
+ * @version v3.0.0
  * @since v1.0.0-alpha.1
  */
-public class GuildMember
+public record GuildMember(@NotNull Member member)
 {
-    private static final Logger logger = JDALogger.getLog(GuildMember.class);
-    private final Member member;
-
-    private GuildMember(@NotNull Member member)
-    {
-        this.member = member;
-
-        EnumSet<GatewayIntent> intents = member.getJDA().getGatewayIntents();
-
-        if (!intents.contains(GatewayIntent.GUILD_MEMBERS))
-        {
-            logger.warn("The 'GUILD_MEMBERS' intent is not enabled, which means, that some stuff could not work.");
-        }
-    }
-
-    /**
-     * Constructs a <b>new</b> {@link GuildMember} instance.
-     * <br>If you don't initialize a {@link Member}, the {@link GuildMember} always will be <b>null</b>.
-     *
-     * @param member The {@link Member}, which should be used to get {@link GuildMember}
-     *
-     * @return A <b>new</b> {@link GuildMember} instance
-     */
-    @NotNull
-    public static GuildMember set(@NotNull Member member)
-    {
-        return new GuildMember(member);
-    }
-
-    /**
-     * The author of the {@link Message} received as {@link Member} object.
-     *
-     * @return The author of the {@link Message} as <b>non-null</b> {@link Member} object
-     */
-    @NotNull
-    public Member getMember()
-    {
-        return member;
-    }
 
     /**
      * Checks if the {@link Role} with the id you specified, is found on the role board of the {@link Member}.
@@ -175,38 +132,5 @@ public class GuildMember
     public boolean isMentioned(@NotNull Message message)
     {
         return message.getMentions().isMentioned(member, Message.MentionType.USER);
-    }
-
-    @Override
-    public boolean equals(@Nullable Object o)
-    {
-        if (this == o)
-        {
-            return true;
-        }
-
-        if (o == null || getClass() != o.getClass())
-        {
-            return false;
-        }
-
-        GuildMember that = (GuildMember) o;
-
-        return Objects.equals(member, that.member);
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return Objects.hash(member);
-    }
-
-    @NotNull
-    @Override
-    public String toString()
-    {
-        return "GuildMember{" +
-                "member=" + member +
-                '}';
     }
 }

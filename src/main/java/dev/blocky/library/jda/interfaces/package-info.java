@@ -1,6 +1,5 @@
 /**
  * Root package of the JDA-Common command interfaces.
- *
  * <br>From here you can navigate to the Command Interfaces.
  *
  * <ul>
