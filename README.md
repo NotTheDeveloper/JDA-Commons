@@ -274,9 +274,9 @@ version was by looking at the [release page](https://github.com/BlockyDotJar/JDA
 
 ## Dependencies:
 
-This project requires **Java 19+**
+This project requires **Java 17+**
 
-* JDA (Java Discord API)
+* JDA
     * Version: **v5.0.0-alpha.21**
     * [Github](https://github.com/DV8FromTheWorld/JDA)
 * slf4j-api
