@@ -1,6 +1,9 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     `java-library`
     `maven-publish`
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 publishing {
@@ -34,7 +37,7 @@ dependencies {
 }
 
 group = "dev.blocky.library"
-version = "1.2.0-pr.3"
+version = "1.2.0-pr.4"
 description = "This is an extension of the Java Discord API from Austin Keener, which adds lots of utility methods and classes."
 
 java {
@@ -48,4 +51,8 @@ val jar by tasks.getting(Jar::class) {
     manifest {
         attributes["Automatic-Module-Name"] = "jdacommons"
     }
+}
+
+val shadowJar by tasks.getting(ShadowJar::class) {
+    minimize()
 }

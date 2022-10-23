@@ -275,6 +275,7 @@ version was by looking at the [release page](https://github.com/BlockyDotJar/JDA
 ## Dependencies:
 
 This project requires **Java 17+**
+<br>All dependencies are managed automatically by Gradle.
 
 * JDA
     * Version: **v5.0.0-alpha.21**
