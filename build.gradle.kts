@@ -29,7 +29,7 @@ repositories {
 }
 
 dependencies {
-    api("net.dv8tion:JDA:5.0.0-alpha.21")
+    api("net.dv8tion:JDA:5.0.0-alpha.22")
     api("org.slf4j:slf4j-api:2.0.3")
 
     compileOnly("com.google.errorprone:error_prone_annotations:2.16")
@@ -37,7 +37,7 @@ dependencies {
 }
 
 group = "dev.blocky.library"
-version = "1.2.0-pr.4"
+version = "1.2.0-pr.5"
 description = "This is an extension of the Java Discord API from Austin Keener, which adds lots of utility methods and classes."
 
 java {

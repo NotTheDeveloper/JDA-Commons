@@ -9,8 +9,9 @@
  * {@link net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent message context-menus},
  * {@link net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent user context-menus},
  * {@link net.dv8tion.jda.api.events.interaction.ModalInteractionEvent modal interactions},
- * {@link net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent button interactions} and
- * {@link net.dv8tion.jda.api.events.interaction.component.SelectMenuInteractionEvent select menu interactions}.</li>
+ * {@link net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent button interactions},
+ * {@link net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionEvent string select interactions} and
+ * {@link net.dv8tion.jda.api.events.interaction.component.EntitySelectInteractionEvent entitiy select interactions}.</li>
  *
  * <li>{@link dev.blocky.discord.CommandManager}
  * <br>This is a class, which manages default {@link net.dv8tion.jda.api.entities.Message Message} commands.</li>

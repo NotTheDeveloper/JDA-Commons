@@ -32,7 +32,8 @@ import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionE
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.UserContextInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
-import net.dv8tion.jda.api.events.interaction.component.SelectMenuInteractionEvent;
+import net.dv8tion.jda.api.events.interaction.component.EntitySelectInteractionEvent;
+import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
@@ -54,11 +55,12 @@ import java.util.concurrent.ConcurrentHashMap;
  * {@link MessageContextInteractionEvent message context-menus},
  * {@link UserContextInteractionEvent user context-menus},
  * {@link ModalInteractionEvent modal interactions},
- * {@link ButtonInteractionEvent button interactions} and
- * {@link SelectMenuInteractionEvent select menu interactions}.
+ * {@link ButtonInteractionEvent button interactions},
+ * {@link StringSelectInteractionEvent string select interactions} and
+ * {@link EntitySelectInteractionEvent entitiy select interactions}.
  *
  * @author BlockyDotJar
- * @version v2.2.2
+ * @version v2.2.3
  * @since v1.0.0
  */
 public class ApplicationCommandManager extends ListenerAdapter
@@ -205,7 +207,7 @@ public class ApplicationCommandManager extends ListenerAdapter
     }
 
     @Override
-    public void onSelectMenuInteraction(@NotNull SelectMenuInteractionEvent event)
+    public void onStringSelectInteraction(@NotNull StringSelectInteractionEvent event)
     {
         String[] id = event.getSelectedOptions().get(0).getValue().split(":");
         String authorId = id[0];
