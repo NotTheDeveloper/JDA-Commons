@@ -155,7 +155,7 @@ public sealed interface ChannelUtils permits DirectMessageChannel, GuildMessageC
     @CheckReturnValue
     static List<Message> checkChannelClearSafety(@NotNull MessageChannel channel, @NotNull ClearSafety... safeties)
     {
-        List<Message> messages = new ArrayList<>();
+        final List<Message> messages = new ArrayList<>();
 
         Arrays.stream(safeties).forEach((clear) ->
                 {

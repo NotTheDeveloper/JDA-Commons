@@ -193,7 +193,7 @@ public record DirectMessageChannel(@NotNull PrivateChannel channel, @Nullable Us
             throw new IllegalStateException("You must specify a member, which should be used for this command.");
         }
 
-        long id = user.getIdLong();
+        final long id = user.getIdLong();
 
         if (!ChannelUtils.getHashMap().containsKey(id))
         {
@@ -201,7 +201,7 @@ public record DirectMessageChannel(@NotNull PrivateChannel channel, @Nullable Us
             return message;
         }
 
-        long time = ChannelUtils.getHashMap().get(id);
+        final long time = ChannelUtils.getHashMap().get(id);
 
         if ((System.currentTimeMillis() - time) >= ChannelUtils.calculateDelay(unit, delayInSeconds))
         {
@@ -214,14 +214,14 @@ public record DirectMessageChannel(@NotNull PrivateChannel channel, @Nullable Us
             return delayMessage;
         }
 
-        DecimalFormat df = new DecimalFormat("0.00");
+        final DecimalFormat df = new DecimalFormat("0.00");
 
-        MessageCreateBuilder builder = new MessageCreateBuilder()
+        final MessageCreateBuilder builder = new MessageCreateBuilder()
                 .setContent(user.getName() + ", you must wait " +
                         df.format((ChannelUtils.calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) +
                         " " + (unit == null ? "seconds" : unit.toString().toLowerCase()) + " ⌛");
 
-        try (MessageCreateData createData = builder.build())
+        try (final MessageCreateData createData = builder.build())
         {
             delayMessage = channel.sendMessage(createData);
         }
@@ -275,7 +275,7 @@ public record DirectMessageChannel(@NotNull PrivateChannel channel, @Nullable Us
             throw new IllegalStateException("You must specify a member, which should be used for this command.");
         }
 
-        long id = user.getIdLong();
+        final long id = user.getIdLong();
 
         if (!ChannelUtils.getHashMap().containsKey(id))
         {
@@ -283,7 +283,7 @@ public record DirectMessageChannel(@NotNull PrivateChannel channel, @Nullable Us
             return message;
         }
 
-        long time = ChannelUtils.getHashMap().get(id);
+        final long time = ChannelUtils.getHashMap().get(id);
 
         if ((System.currentTimeMillis() - time) >= ChannelUtils.calculateDelay(unit, delayInSeconds))
         {
@@ -325,7 +325,7 @@ public record DirectMessageChannel(@NotNull PrivateChannel channel, @Nullable Us
     @CheckReturnValue
     public RestAction<Void> close()
     {
-        Route.CompiledRoute route = Route.Channels.DELETE_CHANNEL.compile(channel.getId());
+        final Route.CompiledRoute route = Route.Channels.DELETE_CHANNEL.compile(channel.getId());
         return new RestActionImpl<>(channel.getJDA(), route);
     }
 }

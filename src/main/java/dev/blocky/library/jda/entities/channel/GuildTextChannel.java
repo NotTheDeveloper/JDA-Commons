@@ -190,7 +190,7 @@ public record GuildTextChannel(@NotNull TextChannel channel, @Nullable User user
             throw new IllegalStateException("You must specify a user, which should be used for this command.");
         }
 
-        long id = user.getIdLong();
+        final long id = user.getIdLong();
 
         if (!ChannelUtils.getHashMap().containsKey(id))
         {
@@ -198,7 +198,7 @@ public record GuildTextChannel(@NotNull TextChannel channel, @Nullable User user
             return message;
         }
 
-        long time = ChannelUtils.getHashMap().get(id);
+        final long time = ChannelUtils.getHashMap().get(id);
 
         if ((System.currentTimeMillis() - time) >= ChannelUtils.calculateDelay(unit, delayInSeconds))
         {
@@ -211,14 +211,14 @@ public record GuildTextChannel(@NotNull TextChannel channel, @Nullable User user
             return delayMessage;
         }
 
-        DecimalFormat df = new DecimalFormat("0.00");
+        final DecimalFormat df = new DecimalFormat("0.00");
 
-        MessageCreateBuilder builder = new MessageCreateBuilder()
+        final MessageCreateBuilder builder = new MessageCreateBuilder()
                 .setContent(user.getName() + ", you must wait " +
                         df.format((ChannelUtils.calculateDelay(unit, delayInSeconds) - (System.currentTimeMillis() - time)) / 1000.d) +
                         " " + (unit == null ? "seconds" : unit.toString().toLowerCase()) + " ⌛");
 
-        try (MessageCreateData createData = builder.build())
+        try (final MessageCreateData createData = builder.build())
         {
             delayMessage = channel.sendMessage(createData);
         }
@@ -272,7 +272,7 @@ public record GuildTextChannel(@NotNull TextChannel channel, @Nullable User user
             throw new IllegalStateException("You must specify a user, which should be used for this command.");
         }
 
-        long id = user.getIdLong();
+        final long id = user.getIdLong();
 
         if (!ChannelUtils.getHashMap().containsKey(id))
         {
@@ -280,7 +280,7 @@ public record GuildTextChannel(@NotNull TextChannel channel, @Nullable User user
             return message;
         }
 
-        long time = ChannelUtils.getHashMap().get(id);
+        final long time = ChannelUtils.getHashMap().get(id);
 
         if ((System.currentTimeMillis() - time) >= ChannelUtils.calculateDelay(unit, delayInSeconds))
         {

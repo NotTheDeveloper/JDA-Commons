@@ -27,7 +27,7 @@ import java.util.List;
  * This is a simple slash-command with auto-complete.
  *
  * @author BlockyDotJar
- * @version v1.1.2
+ * @version v1.1.3
  * @since v1.1.4
  */
 public class FruitAutoCompletable implements IAutoCompletable
@@ -44,9 +44,9 @@ public class FruitAutoCompletable implements IAutoCompletable
         // Checks if the current used option has the name 'name'.
         if (event.getFocusedOption().getName().equals("name"))
         {
-            GuildController controller = new GuildController(event.getGuild());
+            final GuildController controller = new GuildController(event.getGuild());
             // Maps the words to choices and only displays words that start with the user's current input.
-            List<Command.Choice> options = controller.upsertAutocompleteCommand(event.getFocusedOption(), words);
+            final List<Command.Choice> options = controller.upsertAutocompleteCommand(event.getFocusedOption(), words);
 
             event.replyChoices(options).queue();
         }

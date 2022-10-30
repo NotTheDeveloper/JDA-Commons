@@ -42,8 +42,8 @@ public class VoiceRecordListener extends ListenerAdapter
     @Override
     public void onGuildVoiceUpdate(@NotNull GuildVoiceUpdateEvent event)
     {
-        Guild guild = event.getGuild();
-        Member member = event.getMember();
+        final Guild guild = event.getGuild();
+        final Member member = event.getMember();
 
         if (event.getChannelJoined() != null && event.getChannelLeft() == null)
         {

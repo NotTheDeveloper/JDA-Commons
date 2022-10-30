@@ -107,7 +107,7 @@ public class VoiceRecorder implements AudioReceiveHandler
     @NotNull
     public VoiceRecorder setReceivingHandler(@NotNull Guild guild)
     {
-        AudioManager audioManager = guild.getAudioManager();
+        final AudioManager audioManager = guild.getAudioManager();
         audioManager.setReceivingHandler(this);
 
         this.audioManager = audioManager;
@@ -172,7 +172,8 @@ public class VoiceRecorder implements AudioReceiveHandler
                 size += ba.length;
             }
 
-            byte[] decodedData = new byte[size];
+            final byte[] decodedData = new byte[size];
+
             int i = 0;
 
             for (byte[] ba : receivedBytes)
@@ -298,7 +299,7 @@ public class VoiceRecorder implements AudioReceiveHandler
             throw new IllegalStateException("sampleRate may not be over 48000");
         }
 
-        AudioFormat format = new AudioFormat(
+        final AudioFormat format = new AudioFormat(
                 sampleRate,
                 16,
                 2,
@@ -306,12 +307,11 @@ public class VoiceRecorder implements AudioReceiveHandler
                 true
         );
 
+        final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(decodedData);
+        final AudioInputStream audioInputStream = new AudioInputStream(byteArrayInputStream, format, decodedData.length);
+
         AudioSystem.write(
-                new AudioInputStream(
-                        new ByteArrayInputStream(decodedData),
-                        format,
-                        decodedData.length
-                ),
+                audioInputStream,
                 AudioFileFormat.Type.WAVE,
                 outFile);
     }
@@ -347,7 +347,7 @@ public class VoiceRecorder implements AudioReceiveHandler
             return false;
         }
 
-        VoiceRecorder that = (VoiceRecorder) o;
+        final VoiceRecorder that = (VoiceRecorder) o;
 
         return shouldStack == that.shouldStack && Double.compare(that.volume, volume) == 0 &&
                 Objects.equals(audioManager, that.audioManager) && Objects.equals(guild, that.guild);

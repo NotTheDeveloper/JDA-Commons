@@ -75,7 +75,8 @@ public class CommandManager extends ListenerAdapter
     {
         Checks.noWhitespace(command, "command");
 
-        ICommand cmd = commands.get(command.toLowerCase());
+        final ICommand cmd = commands.get(command.toLowerCase());
+
         if (cmd != null)
         {
             cmd.onCommand(event, args);
@@ -102,7 +103,7 @@ public class CommandManager extends ListenerAdapter
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event)
     {
-        String message = event.getMessage().getContentDisplay();
+        final String message = event.getMessage().getContentDisplay();
 
         if (!message.startsWith("!"))
         {
@@ -117,10 +118,10 @@ public class CommandManager extends ListenerAdapter
         // This will split the message into an array of strings, using " " as a delimiter.
         // The first element of the array will be the command.
         // The rest of the elements will be the arguments.
-        String[] args = message.substring(1).split(" ");
+        final String[] args = message.substring(1).split(" ");
         // This will get the first element of the array.
         // This will be the command.
-        String[] split = event.getMessage().getContentRaw()
+        final String[] split = event.getMessage().getContentRaw()
                 .replaceFirst("(?i)" + Pattern.quote("!"), "")
                 .split("\\s+");
 

@@ -47,7 +47,7 @@ public record SelfMember(@NotNull Guild guild)
     @CheckReturnValue
     public Role findRoleById(long roleId)
     {
-        List<Role> roles = guild.getSelfMember().getRoles();
+        final List<Role> roles = guild.getSelfMember().getRoles();
         return roles.stream().filter(role -> role.getIdLong() == roleId).findFirst().orElse(null);
     }
 
@@ -62,7 +62,7 @@ public record SelfMember(@NotNull Guild guild)
     @CheckReturnValue
     public Role findRoleById(@NotNull String roleId)
     {
-        List<Role> roles = guild.getSelfMember().getRoles();
+        final List<Role> roles = guild.getSelfMember().getRoles();
         return roles.stream().filter(role -> role.getId().equals(roleId)).findFirst().orElse(null);
     }
 
@@ -77,7 +77,7 @@ public record SelfMember(@NotNull Guild guild)
     @CheckReturnValue
     public Role findRoleByName(@NotNull String roleName)
     {
-        List<Role> roles = guild.getSelfMember().getRoles();
+        final List<Role> roles = guild.getSelfMember().getRoles();
         return roles.stream().filter(role -> role.getName().equals(roleName)).findFirst().orElse(null);
     }
 

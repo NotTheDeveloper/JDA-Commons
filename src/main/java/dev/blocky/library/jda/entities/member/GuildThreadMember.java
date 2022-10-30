@@ -49,7 +49,7 @@ public record GuildThreadMember(@NotNull ThreadMember member)
     @CheckReturnValue
     public Role findRoleById(long roleId)
     {
-        List<Role> roles = member.getMember().getRoles();
+        final List<Role> roles = member.getMember().getRoles();
         return roles.stream().filter(role -> role.getIdLong() == roleId).findFirst().orElse(null);
     }
 
@@ -64,7 +64,7 @@ public record GuildThreadMember(@NotNull ThreadMember member)
     @CheckReturnValue
     public Role findRoleById(@NotNull String roleId)
     {
-        List<Role> roles = member.getMember().getRoles();
+        final List<Role> roles = member.getMember().getRoles();
         return roles.stream().filter(role -> role.getId().equals(roleId)).findFirst().orElse(null);
     }
 
@@ -79,7 +79,7 @@ public record GuildThreadMember(@NotNull ThreadMember member)
     @CheckReturnValue
     public Role findRoleByName(@NotNull String roleName)
     {
-        List<Role> roles = member.getMember().getRoles();
+        final List<Role> roles = member.getMember().getRoles();
         return roles.stream().filter(role -> role.getName().equals(roleName)).findFirst().orElse(null);
     }
 

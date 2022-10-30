@@ -29,7 +29,7 @@ import org.jetbrains.annotations.NotNull;
  * <br>This command also represents text-in-voice.
  *
  * @author BlockyDotJar
- * @version v1.0.4
+ * @version v1.0.5
  * @since v1.1.5
  */
 public class TextInVoiceCommand implements ICommand
@@ -37,12 +37,12 @@ public class TextInVoiceCommand implements ICommand
     @Override
     public void onCommand(@NotNull MessageReceivedEvent event, @NotNull String[] args)
     {
-        MessageChannelUnion channel = event.getChannel();
+        final MessageChannelUnion channel = event.getChannel();
 
         // Specialized handling on concrete types.
         if (channel.getType() == ChannelType.VOICE)
         {
-            VoiceChannel vc = channel.asVoiceChannel(); // Easy type conversion, just like casting, but with clear type information.
+            final VoiceChannel vc = channel.asVoiceChannel(); // Easy type conversion, just like casting, but with clear type information.
 
             // This requires the GUILD_VOICE_STATES intent and the VOICE_STATE CacheFlag.
             if (!event.getGuild().getSelfMember().getVoiceState().inAudioChannel())
@@ -51,9 +51,9 @@ public class TextInVoiceCommand implements ICommand
             }
 
             // Creates a *new* GuildVoiceChannel, by initializing a VoiceChannel and a member.
-            GuildVoiceChannel voiceChannel = new GuildVoiceChannel(vc, event.getMember().getUser());
+            final GuildVoiceChannel voiceChannel = new GuildVoiceChannel(vc, event.getMember().getUser());
             // Creates a MessageCreateAction by simply sending a message.
-            MessageCreateAction action = channel.sendMessage("Hello World!");
+            final MessageCreateAction action = channel.sendMessage("Hello World!");
             //Creates a timeouted message by handing over the MessageCreateAction above and setting a delay of 10 seconds.
             voiceChannel.sendTimeoutedMessage(action, 10L, null).queue();
         }

@@ -27,7 +27,7 @@ import java.time.OffsetDateTime;
  * This is a simple ping slash-command.
  *
  * @author BlockyDotJar
- * @version v2.1.3
+ * @version v2.1.4
  * @since v1.0.0
  */
 public class PingSlashCommand implements ISlashCommand
@@ -35,9 +35,9 @@ public class PingSlashCommand implements ISlashCommand
     @Override
     public void onSlashCommand(@NotNull SlashCommandInteractionEvent event)
     {
-        long restPing = event.getJDA().getRestPing().complete();
+        final long restPing = event.getJDA().getRestPing().complete();
 
-        EmbedBuilder builder = new EmbedBuilder();
+        final EmbedBuilder builder = new EmbedBuilder();
 
         builder.setTimestamp(OffsetDateTime.now());
         builder.setFooter(event.getMember().getUser().getAsTag());

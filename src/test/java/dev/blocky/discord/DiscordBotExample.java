@@ -89,7 +89,8 @@ public class DiscordBotExample
                                 CacheFlag.CLIENT_STATUS,
                                 CacheFlag.ACTIVITY,
                                 CacheFlag.EMOJI,
-                                CacheFlag.STICKER
+                                CacheFlag.STICKER,
+                                CacheFlag.SCHEDULED_EVENTS
                         )
                 )
                 // Policy which decides whether a member (and respective user) should be kept in cache.
@@ -118,10 +119,11 @@ public class DiscordBotExample
     {
         new Thread(() ->
         {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
             try
             {
-                String line = reader.readLine();
+                final String line = reader.readLine();
                 while (line != null)
                 {
                     if (line.equalsIgnoreCase("exit") && jda != null)

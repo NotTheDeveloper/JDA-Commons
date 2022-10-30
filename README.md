@@ -249,7 +249,7 @@ More can be found in the GitHub organization: [JDA-Applications](https://github.
 If you want to contribute to JDA-C, make sure to base your branch off of our **developer** or a **feature** branch
 and create your PR into that **same** branch.
 <br>**We will be rejecting any PRs, which are not based to the developer or a feature branch!**
-<br>It is very possible that your change might already be in development or you missed something.
+<br>It is very possible that your change might already be in development, or you missed something.
 
 More information can be found at the [contributing](https://github.com/BlockyDotJar/JDA-Commons/wiki/Contributing) wiki page.
 

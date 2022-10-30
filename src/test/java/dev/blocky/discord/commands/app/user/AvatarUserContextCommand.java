@@ -26,7 +26,7 @@ import java.time.OffsetDateTime;
  * This is a simple user context-command, which sends the avatar of the user.
  *
  * @author BlockyDotJar
- * @version v2.1.3
+ * @version v2.1.4
  * @since v1.0.0
  */
 public class AvatarUserContextCommand implements IUserContext
@@ -34,14 +34,14 @@ public class AvatarUserContextCommand implements IUserContext
     @Override
     public void onUserContext(@NotNull UserContextInteractionEvent event)
     {
-        EmbedBuilder builder = new EmbedBuilder();
+        final EmbedBuilder builder = new EmbedBuilder();
 
         builder.setTimestamp(OffsetDateTime.now()); // Sets the timestamp to the time, when the message has been sent.
         builder.setColor(0x7289dd);
-
         builder.setTitle("Avatar of " + event.getTargetMember().getUser().getAsTag());
         builder.setDescription("[Here you can download the avatar](" + event.getTargetMember().getUser().getAvatarUrl() + ")"); // Gets the avatar url of the user, the context-menu was used on.
         builder.setImage(event.getTargetMember().getUser().getAvatarUrl()); // Sets the image of the embed to the avatar url of the user, the context-menu was used on.
+
         event.replyEmbeds(builder.build()).queue();
     }
 }

@@ -16,16 +16,24 @@
 package dev.blocky.discord;
 
 import dev.blocky.discord.commands.app.message.RickRollMessageContextCommand;
+import dev.blocky.discord.commands.app.slash.EntitySelectSlashCommand;
 import dev.blocky.discord.commands.app.slash.FruitSlashCommand;
 import dev.blocky.discord.commands.app.slash.PingSlashCommand;
 import dev.blocky.discord.commands.app.slash.autocomplete.FruitAutoCompletable;
 import dev.blocky.discord.commands.app.slash.modal.SupportModalCommand;
 import dev.blocky.discord.commands.app.user.AvatarUserContextCommand;
+import dev.blocky.library.jda.entities.member.GuildMember;
 import dev.blocky.library.jda.interfaces.app.message.IMessageContext;
 import dev.blocky.library.jda.interfaces.app.slash.IAutoCompletable;
 import dev.blocky.library.jda.interfaces.app.slash.ISlashCommand;
 import dev.blocky.library.jda.interfaces.app.user.IUserContext;
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.entities.UserSnowflake;
+import net.dv8tion.jda.api.entities.channel.middleman.GuildChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.CommandAutoCompleteInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.command.MessageContextInteractionEvent;
@@ -94,6 +102,7 @@ public class ApplicationCommandManager extends ListenerAdapter
         slashMap.put("ping", new PingSlashCommand());
         slashMap.put("support", new SupportModalCommand());
         slashMap.put("fruit", new FruitSlashCommand());
+        slashMap.put("entity-select", new EntitySelectSlashCommand());
 
         /*
          * Here you can import your user context-commands.
@@ -113,19 +122,18 @@ public class ApplicationCommandManager extends ListenerAdapter
                                 .addOptions(new OptionData(OptionType.STRING, "name", "The fruit to find!")
                                         .setRequired(true)
                                         .setAutoComplete(true))
-                                .setGuildOnly(false)
                 )
                 .addCommands(
                         Commands.slash("ping", "Shows the ping of the bot!")
-                                .setGuildOnly(false)
                 )
                 .addCommands(
                         Commands.slash("support", "Sends an modal with different questions!")
-                                .setGuildOnly(false)
+                )
+                .addCommands(
+                        Commands.slash("entity-select", "Sends some entity select menus!")
                 )
                 .addCommands(
                         Commands.user("avatar")
-                                .setGuildOnly(false)
                 )
                 .addCommands(
                         Commands.message("rick-roll")
@@ -138,8 +146,8 @@ public class ApplicationCommandManager extends ListenerAdapter
     @Override
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event)
     {
-        String commandName = event.getName();
-        ISlashCommand command = slashMap.get(commandName);
+        final String commandName = event.getName();
+        final ISlashCommand command = slashMap.get(commandName);
 
         command.onSlashCommand(event);
 
@@ -149,8 +157,8 @@ public class ApplicationCommandManager extends ListenerAdapter
     @Override
     public void onCommandAutoCompleteInteraction(@NotNull CommandAutoCompleteInteractionEvent event)
     {
-        String commandName = event.getName();
-        IAutoCompletable command = autoCompletableMap.get(commandName);
+        final String commandName = event.getName();
+        final IAutoCompletable command = autoCompletableMap.get(commandName);
 
         command.onCommandAutoComplete(event);
 
@@ -160,8 +168,8 @@ public class ApplicationCommandManager extends ListenerAdapter
     @Override
     public void onMessageContextInteraction(@NotNull MessageContextInteractionEvent event)
     {
-        String commandName = event.getName();
-        IMessageContext command = messageMap.get(commandName);
+        final String commandName = event.getName();
+        final IMessageContext command = messageMap.get(commandName);
 
         command.onMessageContext(event);
 
@@ -171,8 +179,8 @@ public class ApplicationCommandManager extends ListenerAdapter
     @Override
     public void onUserContextInteraction(@NotNull UserContextInteractionEvent event)
     {
-        String commandName = event.getName();
-        IUserContext command = userMap.get(commandName);
+        final String commandName = event.getName();
+        final IUserContext command = userMap.get(commandName);
 
         command.onUserContext(event);
 
@@ -182,11 +190,11 @@ public class ApplicationCommandManager extends ListenerAdapter
     @Override
     public void onButtonInteraction(@NotNull ButtonInteractionEvent event)
     {
-        String[] id = event.getButton().getId().split(":");
-        String authorId = id[0];
-        String type = id[1];
+        final String[] id = event.getButton().getId().split(":");
+        final String authorId = id[0];
+        final String type = id[1];
 
-        EmbedBuilder builder = new EmbedBuilder();
+        final EmbedBuilder builder = new EmbedBuilder();
 
         builder.setTitle("An error occurred!");
         builder.setDescription("Only <@" + authorId + "> can use this button!");
@@ -209,11 +217,11 @@ public class ApplicationCommandManager extends ListenerAdapter
     @Override
     public void onStringSelectInteraction(@NotNull StringSelectInteractionEvent event)
     {
-        String[] id = event.getSelectedOptions().get(0).getValue().split(":");
-        String authorId = id[0];
-        String type = id[1];
+        final String[] id = event.getSelectedOptions().get(0).getValue().split(":");
+        final String authorId = id[0];
+        final String type = id[1];
 
-        EmbedBuilder builder = new EmbedBuilder();
+        final EmbedBuilder builder = new EmbedBuilder();
 
         builder.setTitle("An error occurred!");
         builder.setDescription("Only <@" + authorId + "> can use this select menu!");
@@ -244,13 +252,66 @@ public class ApplicationCommandManager extends ListenerAdapter
     }
 
     @Override
+    public void onEntitySelectInteraction(@NotNull EntitySelectInteractionEvent event)
+    {
+        switch (event.getSelectMenu().getId())
+        {
+        case "channel-select" ->
+        {
+            final GuildChannel guildChannel = event.getMentions().getChannels().get(0);
+
+            event.reply("Channel selected: " + guildChannel.getAsMention() + "!").queue();
+
+            final Guild guild = event.getGuild();
+            final MessageChannel channel = guild.getChannelById(MessageChannel.class, guildChannel.getIdLong());
+
+            channel.sendMessage("Hello there!").queue();
+        }
+        case "role-select" ->
+        {
+            final GuildMember member = new GuildMember(event.getMember());
+            final Role role = event.getMentions().getRoles().get(0);
+            final Guild guild = event.getGuild();
+
+            if (!event.getGuild().getSelfMember().canInteract(role))
+            {
+                event.reply("Can't interact with this role!").queue();
+            }
+
+            if (member.hasRoleWithId(role.getIdLong()))
+            {
+                guild.removeRoleFromMember(UserSnowflake.fromId(event.getUser().getIdLong()), role).queue();
+                event.reply("Removed role " + role.getAsMention() + " from user " + event.getMember().getAsMention()).queue();
+            }
+            else
+            {
+                guild.addRoleToMember(UserSnowflake.fromId(event.getUser().getIdLong()), role).queue();
+                event.reply("Added role " + role.getAsMention() + " to user " + event.getMember().getAsMention()).queue();
+            }
+        }
+        case "user-select" ->
+        {
+            final User user = event.getMentions().getUsers().get(0);
+
+            event.reply("User selected: " + user.getAsMention() + "!").queue();
+
+            user.openPrivateChannel().queue(
+                    (success) -> success.sendMessage("Hello there!").queue(),
+                    (failed) -> logger.warn(user.getAsTag() + " doesn't allow private messages")
+            );
+        }
+        default -> { }
+        }
+    }
+
+    @Override
     public void onModalInteraction(@NotNull ModalInteractionEvent event)
     {
-        String email = event.getValue("email").getAsString();
-        String body = event.getValue("body").getAsString();
+        final String email = event.getValue("email").getAsString();
+        final String body = event.getValue("body").getAsString();
 
-        EmbedBuilder builder = new EmbedBuilder();
-        EmbedBuilder success = new EmbedBuilder();
+        final EmbedBuilder builder = new EmbedBuilder();
+        final EmbedBuilder success = new EmbedBuilder();
 
         success.setColor(0x00ab2e);
         success.setTitle("Success!");

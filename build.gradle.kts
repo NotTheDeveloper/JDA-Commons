@@ -37,7 +37,7 @@ dependencies {
 }
 
 group = "dev.blocky.library"
-version = "1.2.0-pr.5"
+version = "1.2.0-pr.6"
 description = "This is an extension of the Java Discord API from Austin Keener, which adds lots of utility methods and classes."
 
 java {
