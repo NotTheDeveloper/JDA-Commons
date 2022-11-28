@@ -24,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
  * This is the implementation class of {@link FruitAutoCompletable}.
  *
  * @author BlockyDotJar
- * @version v1.0.2
+ * @version v1.0.3
  * @since v1.1.4
  */
 public class FruitSlashCommand implements ISlashCommand
@@ -33,7 +33,7 @@ public class FruitSlashCommand implements ISlashCommand
     @Override
     public void onSlashCommand(@NotNull SlashCommandInteractionEvent event)
     {
-        switch (event.getOption("name").getAsString())
+        switch (event.getOption("fruit").getAsString())
         {
         case "apple" -> event.reply("Apple was chosen.").queue();
         case "apricot" -> event.reply("Apricot was chosen.").queue();

@@ -278,10 +278,10 @@ This project requires **Java 17+**
 <br>All dependencies are managed automatically by Gradle.
 
 * JDA
-    * Version: **v5.0.0-alpha.22**
+    * Version: **v5.0.0-beta.1**
     * [Github](https://github.com/DV8FromTheWorld/JDA)
 * slf4j-api
-    * Version: **v2.0.4**
+    * Version: **v2.0.5**
     * [Github](https://github.com/qos-ch/slf4j)
 * jetbrains-annotations
     * Version: **v23.0.0**

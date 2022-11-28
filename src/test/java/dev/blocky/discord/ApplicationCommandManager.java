@@ -18,7 +18,6 @@ package dev.blocky.discord;
 import dev.blocky.discord.commands.app.message.RickRollMessageContextCommand;
 import dev.blocky.discord.commands.app.slash.EntitySelectSlashCommand;
 import dev.blocky.discord.commands.app.slash.FruitSlashCommand;
-import dev.blocky.discord.commands.app.slash.PingSlashCommand;
 import dev.blocky.discord.commands.app.slash.autocomplete.FruitAutoCompletable;
 import dev.blocky.discord.commands.app.slash.modal.SupportModalCommand;
 import dev.blocky.discord.commands.app.user.AvatarUserContextCommand;
@@ -43,10 +42,12 @@ import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.EntitySelectInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions;
+import net.dv8tion.jda.api.interactions.DiscordLocale;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
+import net.dv8tion.jda.api.interactions.commands.localization.LocalizationFunction;
+import net.dv8tion.jda.api.interactions.commands.localization.ResourceBundleLocalizationFunction;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import net.dv8tion.jda.internal.utils.JDALogger;
 import org.jetbrains.annotations.NotNull;
@@ -68,7 +69,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * {@link EntitySelectInteractionEvent entitiy select interactions}.
  *
  * @author BlockyDotJar
- * @version v2.2.3
+ * @version v2.3.0
  * @since v1.0.0
  */
 public class ApplicationCommandManager extends ListenerAdapter
@@ -93,15 +94,14 @@ public class ApplicationCommandManager extends ListenerAdapter
          * Here you can import your auto-completable slash-commands.
          */
 
-        autoCompletableMap.put("fruit", new FruitAutoCompletable());
+        autoCompletableMap.put("fruits", new FruitAutoCompletable());
 
         /*
          * Here you can import your slash-commands.
          */
 
-        slashMap.put("ping", new PingSlashCommand());
+        slashMap.put("fruits", new FruitSlashCommand());
         slashMap.put("support", new SupportModalCommand());
-        slashMap.put("fruit", new FruitSlashCommand());
         slashMap.put("entity-select", new EntitySelectSlashCommand());
 
         /*
@@ -116,29 +116,48 @@ public class ApplicationCommandManager extends ListenerAdapter
 
         messageMap.put("rick-roll", new RickRollMessageContextCommand());
 
+        // This is the function that will retrieve the localization strings from the specified bundles.
+        // The localized strings will be injected when the commands are sent to Discord.
+        // You can see the strings being used in the "resources" folder, in "Commands_de_DE.properties".
+        // You can also provide a custom implementation of LocalizationFunction if you wish to.
+        // This would enable you for example to get localizations in other format, or, allow wildcards to save some space / remove duplicated localizations.
+        final LocalizationFunction localizationFunction = ResourceBundleLocalizationFunction
+                .fromBundles("Commands", DiscordLocale.GERMAN)
+                .build();
+
         DiscordBotExample.getJDA().updateCommands()
                 .addCommands(
-                        Commands.slash("fruit", "Find a given fruit!")
-                                .addOptions(new OptionData(OptionType.STRING, "name", "The fruit to find!")
+                        // Sets the name and description of the slash-command.
+                        Commands.slash("fruits", "Find a given fruit!")
+                                .setLocalizationFunction(localizationFunction)
+                                // Adds a string option to the slash-command and sets a name/description to it.
+                                .addOptions(new OptionData(OptionType.STRING, "fruit", "The fruit to find!")
+                                                .setNameLocalization(DiscordLocale.GERMAN, "frucht")
+                                                .setDescriptionLocalization(DiscordLocale.GERMAN, "Nimm eine Frucht!")
+                                        // This option shall be required.
                                         .setRequired(true)
+                                        // This option also shall use auto-completion.
                                         .setAutoComplete(true))
                 )
                 .addCommands(
-                        Commands.slash("ping", "Shows the ping of the bot!")
-                )
-                .addCommands(
+                        // Sets the name and description of the slash-command.
                         Commands.slash("support", "Sends an modal with different questions!")
+                                .setLocalizationFunction(localizationFunction)
                 )
                 .addCommands(
+                        // Sets the name and description of the slash-command.
                         Commands.slash("entity-select", "Sends some entity select menus!")
+                                .setLocalizationFunction(localizationFunction)
+                                // This shall only be used in guilds, not in the DMs.
+                                .setGuildOnly(true)
                 )
                 .addCommands(
+                        // Sets the name of the user context-menu.
                         Commands.user("avatar")
                 )
                 .addCommands(
+                        // Sets the name of the message context-menu.
                         Commands.message("rick-roll")
-                                .setGuildOnly(true)
-                                .setDefaultPermissions(DefaultMemberPermissions.ENABLED)
                 )
                 .queue();
     }
@@ -202,6 +221,7 @@ public class ApplicationCommandManager extends ListenerAdapter
         builder.setFooter(event.getMember().getUser().getAsTag());
         builder.setTimestamp(OffsetDateTime.now());
 
+        // Only the user, who executed the action, for sending the message, shall be able to use the button.
         if (!authorId.equals(event.getUser().getId()))
         {
             event.replyEmbeds(builder.build()).setEphemeral(true).queue();
@@ -229,6 +249,7 @@ public class ApplicationCommandManager extends ListenerAdapter
         builder.setFooter(event.getMember().getUser().getAsTag());
         builder.setTimestamp(OffsetDateTime.now());
 
+        // Only the user, who executed the action, for sending the message, shall be able to use the select-menu.
         if (!authorId.equals(event.getUser().getId()))
         {
             event.replyEmbeds(builder.build()).setEphemeral(true).queue();
@@ -240,6 +261,7 @@ public class ApplicationCommandManager extends ListenerAdapter
         case "yes" ->
         {
             event.getMessage().delete().queue();
+
             event.getChannel().sendMessage("Right choice!")
                     .setActionRow(
                             Button.link("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "GET IT!!!")
@@ -297,7 +319,7 @@ public class ApplicationCommandManager extends ListenerAdapter
 
             user.openPrivateChannel().queue(
                     (success) -> success.sendMessage("Hello there!").queue(),
-                    (failed) -> logger.warn(user.getAsTag() + " doesn't allow private messages")
+                    (failed) -> logger.warn(user.getAsTag() + " doesn't allow private messages!")
             );
         }
         default -> { }

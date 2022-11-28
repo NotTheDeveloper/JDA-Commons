@@ -37,7 +37,7 @@ import java.util.regex.Pattern;
  * This is a class, which manages default {@link Message} commands.
  *
  * @author BlockyDotJar
- * @version v2.1.5
+ * @version v2.1.6
  * @since v1.0.0-alpha.3
  */
 public class CommandManager extends ListenerAdapter
@@ -110,6 +110,7 @@ public class CommandManager extends ListenerAdapter
             return;
         }
 
+        // Voice must be accepted because of text-in-voice.
         if (!event.isFromType(ChannelType.TEXT) && !event.isFromType(ChannelType.VOICE))
         {
             return;
